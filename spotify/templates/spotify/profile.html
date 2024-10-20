@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Profile</title>
+</head>
+<body>
+    <h1>Welcome, {{ user_data.display_name }}</h1>
+    {% if user_data.email %}
+        <p>Email: {{ user_data.email }}</p>
+    {% endif %}
+    {% if user_data.country %}
+        <p>Country: {{ user_data.country }}</p>
+    {% endif %}
+    {% if user_data.external_urls and user_data.external_urls.spotify %}
+        <p>Spotify URL: <a href="{{ user_data.external_urls.spotify }}">{{ user_data.external_urls.spotify }}</a></p>
+    {% endif %}
+</body>
+</html>
