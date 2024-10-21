@@ -1,0 +1,60 @@
+<!-- templates/spotify/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Wrapped</title>
+    
+    <!-- Load the static template tag -->
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+
+        <h1>Welcome, {{ user_data.display_name }}</h1>
+        {% if user_data.email %}
+            <p>Email: {{ user_data.email }}</p>
+        {% endif %}
+        {% if user_data.country %}
+            <p>Country: {{ user_data.country }}</p>
+        {% endif %}
+        {% if user_data.external_urls and user_data.external_urls.spotify %}
+            <p>Spotify URL: <a href="{{ user_data.external_urls.spotify }}">{{ user_data.external_urls.spotify }}</a></p>
+        {% endif %}
+        <!-- Display Top Artists -->
+        <section id="top-artists">
+            <h2>Top Artists</h2>
+            <ul>
+                {% for artist in artists %}
+                    <li>
+                        <img src="{{ artist.images.0.url }}" alt="{{ artist.name }}" width="100">
+                        <p>{{ artist.name }}</p>
+                    </li>
+                {% empty %}
+                    <li>No top artists available.</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <!-- Display Top Tracks -->
+        <section id="top-tracks">
+            <h2>Top Tracks</h2>
+            <ul>
+                {% for track in tracks %}
+                    <li>
+                        <img src="{{ track.album.images.0.url }}" alt="{{ track.name }}" width="100">
+                        <p>{{ track.name }} by {{ track.artists.0.name }}</p>
+                    </li>
+                {% empty %}
+                    <li>No top tracks available.</li>
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
