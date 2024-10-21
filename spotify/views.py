@@ -75,6 +75,7 @@ def get_user_profile(request):
 
 def profile(request):
     access_token = request.session.get('access_token')
+    #access_token = request.session.get('spotify_access_token')
 
     # Check if access token is available
     if not access_token:
@@ -93,14 +94,26 @@ def profile(request):
         user_profile_response.raise_for_status()
         user_data = user_profile_response.json()
 
+            # Get the user's top artists
+        artists_response = requests.get('https://api.spotify.com/v1/me/top/artists', headers=headers)
+        artists = artists_response.json().get('items', [])
+
+    # Get the user's top tracks
+        tracks_response = requests.get('https://api.spotify.com/v1/me/top/tracks', headers=headers)
+        tracks = tracks_response.json().get('items', [])
+
         print("User profile data fetched successfully.")
 
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data from Spotify API: {e}")
         return render(request, 'spotify/profile.html', {
             'user_data': None,
+            'artists': artists,
+            'tracks': tracks,
         })
 
     return render(request, 'spotify/profile.html', {
         'user_data': user_data,
+        'artists': artists,
+        'tracks': tracks,
     })
