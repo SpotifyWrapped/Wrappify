@@ -7,21 +7,24 @@ from urllib.parse import urlencode
 
 # Spotify app credentials
 SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
+SPOTIFY_CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
 SPOTIFY_REDIRECT_URI = os.getenv('SPOTIFY_REDIRECT_URI')
 SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize"
 SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
 SCOPE = "user-read-private user-read-email user-top-read"
 
-# Step 1: Redirect the user to Spotify's login page
+# initial Welcome Page
+def login(request):
+    return render(request, 'spotify/login.html')
+
+# login page will redirect to spotify login
 def loginPage(request):
-    # Define Spotify auth parameters
     auth_params = {
         "client_id": SPOTIFY_CLIENT_ID,
         "response_type": "code",
         "redirect_uri": SPOTIFY_REDIRECT_URI,
         "scope": SCOPE,
     }
-    # Redirect user to Spotify's login page
     auth_url = f"{SPOTIFY_AUTH_URL}?{urlencode(auth_params)}"
     return redirect(auth_url)
 
@@ -38,7 +41,7 @@ def spotify_callback(request):
         'code': code,
         'redirect_uri': SPOTIFY_REDIRECT_URI,
         'client_id': SPOTIFY_CLIENT_ID,
-        'client_secret': os.getenv('SPOTIFY_CLIENT_SECRET'),
+        'client_secret': SPOTIFY_CLIENT_SECRET,
     }
 
     token_response = requests.post(SPOTIFY_TOKEN_URL, data=token_data)
@@ -124,17 +127,29 @@ def profile(request):
         else:
             avg_danceability = avg_energy = avg_valence = 0
 
+        # Get recommendations based on top tracks or artists
+        if tracks or artists:
+            seed_artists = ','.join([artist['id'] for artist in artists[:2]]) if artists else ''
+            seed_tracks = ','.join([track['id'] for track in tracks[:2]]) if tracks else ''
+
+            recommend_params = {
+                'seed_artists': seed_artists,
+                'seed_tracks': seed_tracks,
+                'limit': 5
+            }
+
+            recommend_response = requests.get('https://api.spotify.com/v1/recommendations', headers=headers, params=recommend_params)
+            recommend_response.raise_for_status()
+            recommend_json = recommend_response.json()
+            recommendations = recommend_json.get('tracks', [])
+
     except requests.exceptions.RequestException as e:
         return render(request, 'spotify/error.html', {'message': "Error fetching data from Spotify API."})
 
-    # Render the profile page with the user data, top 10 tracks, top genres, total playback time, and mood analysis
+    # Render the profile page with the user data, artists, and tracks
     return render(request, 'spotify/profile.html', {
         'user_data': user_data,
         'artists': artists,
-        'tracks': top_10_tracks,
-        'top_genres': top_genres,
-        'total_playback_minutes': f"{total_playback_minutes:.2f}",
-        'avg_danceability': f"{avg_danceability:.2f}",
-        'avg_energy': f"{avg_energy:.2f}",
-        'avg_valence': f"{avg_valence:.2f}"
+        'tracks': tracks,
     })
+
