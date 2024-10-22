@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login with Spotify</title>
+    <title>Your Spotify Wrapped</title>
 </head>
 <body>
-    <h1>Login</h1>
-    <a href="{% url 'login' %}">Login with Spotify</a>
+    <div style="text-align: center; margin-top: 20%;">
+        <h1>Your Spotify Wrapped</h1>
+        <p>Get started by connecting your Spotify account</p>
+        <a href="{% url 'redirect' %}" style="font-size: 20px; text-decoration: none; color: white; background-color: green; padding: 10px 20px; border-radius: 5px;">Click Here --></a>
+    </div>
 </body>
 </html>

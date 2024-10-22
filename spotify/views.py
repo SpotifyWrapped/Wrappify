@@ -13,6 +13,11 @@ SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
 # Updated Spotify scopes to include user-top-read
 SCOPE = "user-read-private user-read-email user-top-read"
 
+# initial Welcome Page
+def login(request):
+    return render(request, 'spotify/login.html')
+
+# login page will redirect to spotify login
 def loginPage(request):
     # Define Spotify auth parameters
     auth_params = {
@@ -26,6 +31,7 @@ def loginPage(request):
     print(f"Authorization URL: {auth_url}")  # Debugging: Check if scopes are correct
     return redirect(auth_url)
 
+# refreshes token
 def spotify_callback(request):
     code = request.GET.get('code')
 
@@ -60,6 +66,7 @@ def spotify_callback(request):
     else:
         return render(request, 'spotify/error.html', {"message": "Token exchange failed."})
 
+# profile view
 def profile(request):
     access_token = request.session.get('access_token')
 
