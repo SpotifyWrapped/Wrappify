@@ -14,14 +14,12 @@ SCOPE = "user-read-private user-read-email user-top-read"
 
 # Step 1: Redirect the user to Spotify's login page
 def loginPage(request):
-    # Define Spotify auth parameters
     auth_params = {
         "client_id": SPOTIFY_CLIENT_ID,
         "response_type": "code",
         "redirect_uri": SPOTIFY_REDIRECT_URI,
         "scope": SCOPE,
     }
-    # Redirect user to Spotify's login page
     auth_url = f"{SPOTIFY_AUTH_URL}?{urlencode(auth_params)}"
     return redirect(auth_url)
 
@@ -32,7 +30,6 @@ def spotify_callback(request):
     if not code:
         return render(request, 'spotify/error.html', {"message": "Authorization failed."})
 
-    # Exchange the authorization code for tokens
     token_data = {
         'grant_type': 'authorization_code',
         'code': code,
@@ -124,6 +121,24 @@ def profile(request):
         else:
             avg_danceability = avg_energy = avg_valence = 0
 
+        # Fetch detailed information for the user's top artist (Deep Dive)
+        if artists:
+            top_artist = artists[0]  # Get the user's top artist
+            artist_id = top_artist['id']
+
+            # Fetch detailed information for the top artist
+            artist_details_response = requests.get(f'https://api.spotify.com/v1/artists/{artist_id}', headers=headers)
+            artist_details_response.raise_for_status()
+            top_artist_details = artist_details_response.json()
+
+            # Calculate the user's total listening time for the top artist
+            top_artist_tracks = [track for track in all_tracks if any(artist['id'] == artist_id for artist in track['artists'])]
+            total_artist_playback_ms = sum(track['duration_ms'] for track in top_artist_tracks)
+            total_artist_playback_minutes = total_artist_playback_ms / 60000  # Convert to minutes
+        else:
+            top_artist_details = None
+            total_artist_playback_minutes = 0
+
     except requests.exceptions.RequestException as e:
         return render(request, 'spotify/error.html', {'message': "Error fetching data from Spotify API."})
 
@@ -136,5 +151,7 @@ def profile(request):
         'total_playback_minutes': f"{total_playback_minutes:.2f}",
         'avg_danceability': f"{avg_danceability:.2f}",
         'avg_energy': f"{avg_energy:.2f}",
-        'avg_valence': f"{avg_valence:.2f}"
+        'avg_valence': f"{avg_valence:.2f}",
+        'top_artist_details': top_artist_details,
+        'total_artist_playback_minutes': f"{total_artist_playback_minutes:.2f}"
     })

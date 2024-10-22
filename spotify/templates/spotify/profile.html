@@ -77,6 +77,18 @@
             </ul>
         </section>
 
+        <!-- Display Top Artist Deep Dive -->
+        {% if top_artist_details %}
+        <section id="top-artist-deep-dive">
+            <h2>Your Top Artist: {{ top_artist_details.name }}</h2>
+            <img src="{{ top_artist_details.images.0.url }}" alt="{{ top_artist_details.name }}" width="200">
+            <p><strong>Genres:</strong> {{ top_artist_details.genres|join:", " }}</p>
+            <p><strong>Popularity:</strong> {{ top_artist_details.popularity }} / 100</p>
+            <p><strong>Followers:</strong> {{ top_artist_details.followers.total|floatformat }}</p>
+            <p><strong>Total Listening Time for {{ top_artist_details.name }}:</strong> {{ total_artist_playback_minutes }} minutes</p>
+        </section>
+        {% endif %}
+
     </div>
 
     <script src="{% static 'js/main.js' %}"></script>
