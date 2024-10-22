@@ -23,6 +23,7 @@ def loginPage(request):
     }
     # Redirect user to Spotify's login page
     auth_url = f"{SPOTIFY_AUTH_URL}?{urlencode(auth_params)}"
+    print(f"Authorization URL: {auth_url}")  # Debugging: Check if scopes are correct
     return redirect(auth_url)
 
 def spotify_callback(request):
@@ -59,27 +60,10 @@ def spotify_callback(request):
     else:
         return render(request, 'spotify/error.html', {"message": "Token exchange failed."})
 
-def get_user_profile(request):
-    access_token = request.session.get('access_token')
-
-    if not access_token:
-        return redirect('login')
-
-    headers = {
-        'Authorization': f'Bearer {access_token}'
-    }
-    user_profile_response = requests.get('https://api.spotify.com/v1/me', headers=headers)
-    user_data = user_profile_response.json()
-
-    return render(request, 'spotify/profile.html', {'user_data': user_data})
-
 def profile(request):
     access_token = request.session.get('access_token')
-    #access_token = request.session.get('spotify_access_token')
 
-    # Check if access token is available
     if not access_token:
-        print("No access token, redirecting to login.")
         return redirect('login')
 
     print("Access token found, proceeding to fetch user data.")
@@ -94,24 +78,25 @@ def profile(request):
         user_profile_response.raise_for_status()
         user_data = user_profile_response.json()
 
-            # Get the user's top artists
-        artists_response = requests.get('https://api.spotify.com/v1/me/top/artists', headers=headers)
-        artists = artists_response.json().get('items', [])
+        # Fetch the user's top artists
+        artists_response = requests.get('https://api.spotify.com/v1/me/top/artists?limit=5', headers=headers)
+        artists_response.raise_for_status()
+        artists_json = artists_response.json()
+        artists = artists_json.get('items', [])
 
-    # Get the user's top tracks
-        tracks_response = requests.get('https://api.spotify.com/v1/me/top/tracks', headers=headers)
-        tracks = tracks_response.json().get('items', [])
-
-        print("User profile data fetched successfully.")
+        # Fetch the user's top tracks
+        tracks_response = requests.get('https://api.spotify.com/v1/me/top/tracks?limit=5', headers=headers)
+        tracks_response.raise_for_status()
+        tracks_json = tracks_response.json()
+        tracks = tracks_json.get('items', [])
 
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data from Spotify API: {e}")
-        return render(request, 'spotify/profile.html', {
-            'user_data': None,
-            'artists': artists,
-            'tracks': tracks,
+        return render(request, 'spotify/error.html', {
+            'message': "Error fetching data from Spotify API.",
         })
 
+    # Render the profile page with the user data, artists, and tracks
     return render(request, 'spotify/profile.html', {
         'user_data': user_data,
         'artists': artists,
