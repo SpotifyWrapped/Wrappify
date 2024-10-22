@@ -6,6 +6,7 @@ from urllib.parse import urlencode
 
 # Spotify app credentials
 SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
+SPOTIFY_CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
 SPOTIFY_REDIRECT_URI = os.getenv('SPOTIFY_REDIRECT_URI')
 SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize"
 SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
@@ -19,14 +20,12 @@ def login(request):
 
 # login page will redirect to spotify login
 def loginPage(request):
-    # Define Spotify auth parameters
     auth_params = {
         "client_id": SPOTIFY_CLIENT_ID,
         "response_type": "code",
         "redirect_uri": SPOTIFY_REDIRECT_URI,
         "scope": SCOPE,
     }
-    # Redirect user to Spotify's login page
     auth_url = f"{SPOTIFY_AUTH_URL}?{urlencode(auth_params)}"
     print(f"Authorization URL: {auth_url}")  # Debugging: Check if scopes are correct
     return redirect(auth_url)
@@ -43,13 +42,12 @@ def spotify_callback(request):
         'code': code,
         'redirect_uri': SPOTIFY_REDIRECT_URI,
         'client_id': SPOTIFY_CLIENT_ID,
-        'client_secret': os.getenv('SPOTIFY_CLIENT_SECRET'),
+        'client_secret': SPOTIFY_CLIENT_SECRET,
     }
 
     token_response = requests.post(SPOTIFY_TOKEN_URL, data=token_data)
     token_json = token_response.json()
 
-    # Print token response for debugging
     print("Token JSON response:", token_json)
 
     if 'access_token' in token_json:
@@ -66,7 +64,7 @@ def spotify_callback(request):
     else:
         return render(request, 'spotify/error.html', {"message": "Token exchange failed."})
 
-# profile view
+# profile view with recommendations
 def profile(request):
     access_token = request.session.get('access_token')
 
@@ -97,15 +95,33 @@ def profile(request):
         tracks_json = tracks_response.json()
         tracks = tracks_json.get('items', [])
 
+        # Get recommendations based on top tracks or artists
+        if tracks or artists:
+            seed_artists = ','.join([artist['id'] for artist in artists[:2]]) if artists else ''
+            seed_tracks = ','.join([track['id'] for track in tracks[:2]]) if tracks else ''
+
+            recommend_params = {
+                'seed_artists': seed_artists,
+                'seed_tracks': seed_tracks,
+                'limit': 5
+            }
+
+            recommend_response = requests.get('https://api.spotify.com/v1/recommendations', headers=headers, params=recommend_params)
+            recommend_response.raise_for_status()
+            recommend_json = recommend_response.json()
+            recommendations = recommend_json.get('tracks', [])
+
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data from Spotify API: {e}")
         return render(request, 'spotify/error.html', {
             'message': "Error fetching data from Spotify API.",
         })
 
-    # Render the profile page with the user data, artists, and tracks
+    # Render the profile page with the user data, artists, tracks, and recommendations
     return render(request, 'spotify/profile.html', {
         'user_data': user_data,
         'artists': artists,
         'tracks': tracks,
+        'recommendations': recommendations,  # Pass recommendations to the template
     })
+

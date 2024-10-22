@@ -50,6 +50,27 @@
                 {% endfor %}
             </ul>
         </section>
+
+        <!-- Display Recommended Songs -->
+        <section id="recommendations">
+            <h2>Recommended Songs</h2>
+            <ul>
+                {% for rec in recommendations %}
+                    <li>
+                        <img src="{{ rec.album.images.0.url }}" alt="{{ rec.name }}" width="100">
+                        <p>{{ rec.name }} by {{ rec.artists.0.name }}</p>
+                        {% if rec.preview_url %}
+                            <audio controls>
+                                <source src="{{ rec.preview_url }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        {% endif %}
+                    </li>
+                {% empty %}
+                    <li>No recommendations available.</li>
+                {% endfor %}
+            </ul>
+        </section>
     </div>
 
     <script src="{% static 'js/main.js' %}"></script>
