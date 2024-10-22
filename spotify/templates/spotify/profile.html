@@ -1,4 +1,3 @@
-<!-- templates/spotify/dashboard.html -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +20,21 @@
         {% if user_data.external_urls and user_data.external_urls.spotify %}
             <p>Spotify URL: <a href="{{ user_data.external_urls.spotify }}">{{ user_data.external_urls.spotify }}</a></p>
         {% endif %}
+
+        <!-- Display Total Playback Time -->
+        <section id="total-playback-time">
+            <h2>Total Listening Time (Last 4 Weeks)</h2>
+            <p>You have listened to approximately {{ total_playback_minutes }} minutes in the last 4 weeks.</p>
+        </section>
+
+        <!-- Display Mood Analysis -->
+        <section id="audio-mood">
+            <h2>Your Audio Mood Profile</h2>
+            <p><strong>Danceability:</strong> {{ avg_danceability }} (How much your tracks make you want to dance)</p>
+            <p><strong>Energy:</strong> {{ avg_energy }} (How energetic and intense your music is)</p>
+            <p><strong>Happiness (Valence):</strong> {{ avg_valence }} (How positive your tracks feel)</p>
+        </section>
+
         <!-- Display Top Artists -->
         <section id="top-artists">
             <h2>Top Artists</h2>
@@ -36,9 +50,9 @@
             </ul>
         </section>
 
-        <!-- Display Top Tracks -->
+        <!-- Display Top 10 Tracks -->
         <section id="top-tracks">
-            <h2>Top Tracks</h2>
+            <h2>Top 10 Tracks</h2>
             <ul>
                 {% for track in tracks %}
                     <li>
@@ -47,6 +61,39 @@
                     </li>
                 {% empty %}
                     <li>No top tracks available.</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <!-- Display Recommended Songs -->
+        <section id="recommendations">
+            <h2>Recommended Songs</h2>
+            <ul>
+                {% for rec in recommendations %}
+                    <li>
+                        <img src="{{ rec.album.images.0.url }}" alt="{{ rec.name }}" width="100">
+                        <p>{{ rec.name }} by {{ rec.artists.0.name }}</p>
+                        {% if rec.preview_url %}
+                            <audio controls>
+                                <source src="{{ rec.preview_url }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        {% endif %}
+                    </li>
+                {% empty %}
+                    <li>No recommendations available.</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <!-- Display Top Genres -->
+        <section id="top-genres">
+            <h2>Your Top Genres</h2>
+            <ul>
+                {% for genre, count in top_genres %}
+                    <li>{{ genre }} ({{ count }} times)</li>
+                {% empty %}
+                    <li>No top genres available.</li>
                 {% endfor %}
             </ul>
         </section>
