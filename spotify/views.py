@@ -13,11 +13,11 @@ SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize"
 SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
 SCOPE = "user-read-private user-read-email user-top-read"
 
-# initial Welcome Page
+# Initial Welcome Page
 def login(request):
     return render(request, 'spotify/login.html')
 
-# login page will redirect to spotify login
+# Login page will redirect to Spotify login
 def loginPage(request):
     auth_params = {
         "client_id": SPOTIFY_CLIENT_ID,
@@ -59,6 +59,8 @@ def spotify_callback(request):
 
         return redirect('profile')
     else:
+        # Log the response for debugging
+        print("Token exchange response:", token_json)
         return render(request, 'spotify/error.html', {"message": "Token exchange failed."})
 
 # Step 3: Display the user's profile with their Spotify data (only short-term)
@@ -127,10 +129,13 @@ def profile(request):
         else:
             avg_danceability = avg_energy = avg_valence = 0
 
+        # Initialize recommendations
+        recommendations = []
+
         # Get recommendations based on top tracks or artists
-        if tracks or artists:
+        if all_tracks or artists:
             seed_artists = ','.join([artist['id'] for artist in artists[:2]]) if artists else ''
-            seed_tracks = ','.join([track['id'] for track in tracks[:2]]) if tracks else ''
+            seed_tracks = ','.join([track['id'] for track in all_tracks[:2]]) if all_tracks else ''
 
             recommend_params = {
                 'seed_artists': seed_artists,
@@ -144,12 +149,18 @@ def profile(request):
             recommendations = recommend_json.get('tracks', [])
 
     except requests.exceptions.RequestException as e:
+        print(f"Request failed: {e}")  # Log the error
         return render(request, 'spotify/error.html', {'message': "Error fetching data from Spotify API."})
 
     # Render the profile page with the user data, artists, and tracks
     return render(request, 'spotify/profile.html', {
         'user_data': user_data,
         'artists': artists,
-        'tracks': tracks,
+        'tracks': top_10_tracks,  # Pass only top 10 tracks to the template
+        'recommendations': recommendations,  # Pass recommendations to the template
+        'total_playback_minutes': total_playback_minutes,  # Optional: Pass total playback time
+        'top_genres': top_genres,  # Optional: Pass top genres
+        'avg_danceability': avg_danceability,  # Optional: Average danceability
+        'avg_energy': avg_energy,  # Optional: Average energy
+        'avg_valence': avg_valence,  # Optional: Average valence
     })
-
