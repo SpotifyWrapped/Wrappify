@@ -26,6 +26,7 @@
             <div class="progress-bar" onclick="goToSlide(6)"></div>
             <div class="progress-bar" onclick="goToSlide(7)"></div>
             <div class="progress-bar" onclick="goToSlide(8)"></div>
+            <div class="progress-bar" onclick="goToSlide(9)"></div>
         </div>
 
         <!-- Slideshow Container -->
@@ -110,7 +111,7 @@
         <div class="slides" id="slide7">
             <section id="top-artist-deep-dive">
                 <h2>Your #1 Artist: {{ top_artist.name }}</h2>
-                <img src="{{ top_artist.images.0.url }}" alt="{{ top_artist.name }}" width="200">
+                <img src="{{ top_artist.images.0.url }}" alt="{{ top_artist.name }}" width="100">
                 <p><strong>Genres:</strong> {{ top_artist.genres|join:", " }}</p>
                 <p><strong>Popularity:</strong> {{ top_artist.popularity }} / 100</p>
                 <p><strong>Followers:</strong> {{ top_artist.followers.total|floatformat }}</p>
@@ -160,6 +161,19 @@
                 </ul>
             </section>
         </div>
+
+        <!-- Slide 10: Save or Delete Wrap -->
+        <div class="slides" id="slide10">
+            <section id="save-delete">
+                <h2>Save or Delete Your Wrap</h2>
+                <p>Would you like to save this wrap for later, or delete it?</p>
+                <div class="options">
+                    <button>Save</button>
+                    <button>Delete</button>
+                </div>
+            </section>
+        </div>
+
     </div>
 
     <script src="{% static 'js/main.js' %}"></script>
