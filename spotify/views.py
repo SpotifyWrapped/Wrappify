@@ -63,8 +63,34 @@ def spotify_callback(request):
         print("Token exchange response:", token_json)
         return render(request, 'spotify/error.html', {"message": "Token exchange failed."})
 
-# Step 3: Display the user's profile with their Spotify data (only short-term)
+# Step 3: Display the user's profile
 def profile(request):
+    access_token = request.session.get('access_token')
+
+    if not access_token:
+        return redirect('login')
+
+    headers = {
+        'Authorization': f'Bearer {access_token}',
+    }
+
+    try:
+        # Fetch user profile information
+        user_profile_response = requests.get('https://api.spotify.com/v1/me', headers=headers)
+        user_profile_response.raise_for_status()
+        user_data = user_profile_response.json()
+
+    except requests.exceptions.RequestException as e:
+        print(f"Request failed: {e}")
+        return render(request, 'spotify/error.html', {'message': "Error fetching user data from Spotify API."})
+
+    # Render the profile page with user info only
+    return render(request, 'spotify/profile.html', {
+        'user_data': user_data,
+    })
+
+# Step 4: Display Wraps
+def wraps(request):
     access_token = request.session.get('access_token')
 
     if not access_token:
@@ -84,11 +110,17 @@ def profile(request):
         artists_response = requests.get('https://api.spotify.com/v1/me/top/artists?limit=10&time_range=short_term', headers=headers)
         artists_response.raise_for_status()
         artists_json = artists_response.json()
-        artists = artists_json.get('items', [])
+        all_artists = artists_json.get('items', [])
 
-        # Extract and count genres
+        # Fetch the number 1 artist (top artist)
+        top_artist = all_artists[0] if all_artists else None
+
+        # Display only the top 5 artists
+        top_5_artists = all_artists[:5]
+
+        # Extract and count genres from top artists
         genres = []
-        for artist in artists:
+        for artist in all_artists:
             genres.extend(artist.get('genres', []))  # Add the artist's genres to the list
 
         # Use Counter to count occurrences of each genre
@@ -101,12 +133,12 @@ def profile(request):
         tracks_json = tracks_response.json()
         all_tracks = tracks_json.get('items', [])
 
+        # Display only the top 5 tracks in the frontend
+        top_5_tracks = all_tracks[:5]
+
         # Calculate total playback time in minutes for all tracks
         total_playback_ms = sum(track['duration_ms'] for track in all_tracks)
         total_playback_minutes = total_playback_ms / 60000
-
-        # Display only the top 10 tracks in the frontend
-        top_10_tracks = all_tracks[:10]
 
         # Get track IDs for audio feature analysis
         track_ids = [track['id'] for track in all_tracks]
@@ -133,8 +165,8 @@ def profile(request):
         recommendations = []
 
         # Get recommendations based on top tracks or artists
-        if all_tracks or artists:
-            seed_artists = ','.join([artist['id'] for artist in artists[:2]]) if artists else ''
+        if all_tracks or all_artists:
+            seed_artists = ','.join([artist['id'] for artist in all_artists[:2]]) if all_artists else ''
             seed_tracks = ','.join([track['id'] for track in all_tracks[:2]]) if all_tracks else ''
 
             recommend_params = {
@@ -152,11 +184,12 @@ def profile(request):
         print(f"Request failed: {e}")  # Log the error
         return render(request, 'spotify/error.html', {'message': "Error fetching data from Spotify API."})
 
-    # Render the profile page with the user data, artists, and tracks
-    return render(request, 'spotify/profile.html', {
+    # Render the wraps page with the same user data, top artist, artists, and tracks
+    return render(request, 'spotify/wraps.html', {
         'user_data': user_data,
-        'artists': artists,
-        'tracks': top_10_tracks,  # Pass only top 10 tracks to the template
+        'top_artist': top_artist,  # Pass the #1 artist separately
+        'artists': top_5_artists,  # Pass only top 5 artists to the template
+        'tracks': top_5_tracks,  # Pass only top 5 tracks to the template
         'recommendations': recommendations,  # Pass recommendations to the template
         'total_playback_minutes': total_playback_minutes,  # Optional: Pass total playback time
         'top_genres': top_genres,  # Optional: Pass top genres
@@ -164,3 +197,4 @@ def profile(request):
         'avg_energy': avg_energy,  # Optional: Average energy
         'avg_valence': avg_valence,  # Optional: Average valence
     })
+
