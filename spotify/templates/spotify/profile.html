@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify Wrapped</title>
+    <title>User Profile</title>
     <link rel="stylesheet" href="{% static 'spotify/profile.css' %}">
 </head>
 <body>
-    <div class="container">
-
+    <!-- User Information Section -->
+    <div class="user-info">
         <h1>Welcome, {{ user_data.display_name }}</h1>
         {% if user_data.email %}
             <p>Email: {{ user_data.email }}</p>
@@ -20,77 +20,12 @@
         {% if user_data.external_urls and user_data.external_urls.spotify %}
             <p>Spotify URL: <a href="{{ user_data.external_urls.spotify }}">{{ user_data.external_urls.spotify }}</a></p>
         {% endif %}
-
-        <!-- Display Total Playback Time -->
-        <section id="total-playback-time">
-            <h2>Total Listening Time (Last 4 Weeks)</h2>
-            <p>You have listened to approximately {{ total_playback_minutes }} minutes in the last 4 weeks.</p>
-        </section>
-
-        <!-- Display Mood Analysis -->
-        <section id="audio-mood">
-            <h2>Your Audio Mood Profile</h2>
-            <p><strong>Danceability:</strong> {{ avg_danceability }} (How much your tracks make you want to dance)</p>
-            <p><strong>Energy:</strong> {{ avg_energy }} (How energetic and intense your music is)</p>
-            <p><strong>Happiness (Valence):</strong> {{ avg_valence }} (How positive your tracks feel)</p>
-        </section>
-
-        <!-- Display Top Artists -->
-        <section id="top-artists">
-            <h2>Top Artists</h2>
-            <ul>
-                {% for artist in artists %}
-                    <li>
-                        <img src="{{ artist.images.0.url }}" alt="{{ artist.name }}" width="100">
-                        <p>{{ artist.name }}</p>
-                    </li>
-                {% empty %}
-                    <li>No top artists available.</li>
-                {% endfor %}
-            </ul>
-        </section>
-
-        <!-- Display Top 10 Tracks -->
-        <section id="top-tracks">
-            <h2>Top 10 Tracks</h2>
-            <ul>
-                {% for track in tracks %}
-                    <li>
-                        <img src="{{ track.album.images.0.url }}" alt="{{ track.name }}" width="100">
-                        <p>{{ track.name }} by {{ track.artists.0.name }}</p>
-                    </li>
-                {% empty %}
-                    <li>No top tracks available.</li>
-                {% endfor %}
-            </ul>
-        </section>
-
-        <!-- Display Top Genres -->
-        <section id="top-genres">
-            <h2>Your Top Genres</h2>
-            <ul>
-                {% for genre, count in top_genres %}
-                    <li>{{ genre }} ({{ count }} times)</li>
-                {% empty %}
-                    <li>No top genres available.</li>
-                {% endfor %}
-            </ul>
-        </section>
-
-        <!-- Display Top Artist Deep Dive -->
-        {% if top_artist_details %}
-        <section id="top-artist-deep-dive">
-            <h2>Your Top Artist: {{ top_artist_details.name }}</h2>
-            <img src="{{ top_artist_details.images.0.url }}" alt="{{ top_artist_details.name }}" width="200">
-            <p><strong>Genres:</strong> {{ top_artist_details.genres|join:", " }}</p>
-            <p><strong>Popularity:</strong> {{ top_artist_details.popularity }} / 100</p>
-            <p><strong>Followers:</strong> {{ top_artist_details.followers.total|floatformat }}</p>
-            <p><strong>Total Listening Time for {{ top_artist_details.name }}:</strong> {{ total_artist_playback_minutes }} minutes</p>
-        </section>
-        {% endif %}
-
     </div>
 
-    <script src="{% static 'js/main.js' %}"></script>
+    <!-- Link to Wrapped Page -->
+    <div class="wrapped-link">
+        <a href="{% url 'wraps' %}" class="wrapped-button">View Your Wraps</a>
+    </div>
+
 </body>
 </html>
