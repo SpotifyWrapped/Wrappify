@@ -2,9 +2,17 @@ import os
 import requests
 import time
 from django.shortcuts import redirect, render
+from django.contrib.auth.models import User
+from django.contrib.auth import login, logout
 from collections import Counter
-from urllib.parse import urlencode
+from urllib.parse import urlencode, quote
+from django.urls import reverse
+from django.http import JsonResponse
+from django.conf import settings
+from django.http import HttpResponseRedirect
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 # Spotify app credentials
 SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
 SPOTIFY_CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
@@ -14,21 +22,39 @@ SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
 SCOPE = "user-read-private user-read-email user-top-read"
 
 # Initial Welcome Page
-def login(request):
+def loginPage(request):
     return render(request, 'spotify/login.html')
 
+def logout_view(request):
+    # Log out from Django session
+    logout(request)
+    request.session.clear()
+    return redirect('login')
+
 # Login page will redirect to Spotify login
-def loginPage(request):
+def spotifyLogin(request):
+    # Step 2: Redirect to Spotify's logout URL with a redirect back to the authorization URL
+    logout_url = "https://accounts.spotify.com/en/logout"
+
+    # Prepare the Spotify authorization URL with all parameters including encoded redirect_uri
     auth_params = {
         "client_id": SPOTIFY_CLIENT_ID,
         "response_type": "code",
-        "redirect_uri": SPOTIFY_REDIRECT_URI,
+        "redirect_uri": SPOTIFY_REDIRECT_URI,  # Ensure this is the exact URI registered in Spotify
         "scope": SCOPE,
+        "show_dialog": "true"
     }
     auth_url = f"{SPOTIFY_AUTH_URL}?{urlencode(auth_params)}"
-    return redirect(auth_url)
 
-# Step 2: Handle the Spotify OAuth callback
+    # Construct the final logout URL with a redirect to the encoded authorization URL
+    final_url = f"{logout_url}?continue={quote(auth_url)}"
+
+    # Redirect the user to Spotify logout followed by the authorization page
+    return redirect(final_url)
+
+def homePage(request):
+    return render(request, 'spotify/home.html')
+     
 def spotify_callback(request):
     code = request.GET.get('code')
 
@@ -45,7 +71,14 @@ def spotify_callback(request):
     }
 
     token_response = requests.post(SPOTIFY_TOKEN_URL, data=token_data)
-    token_json = token_response.json()
+
+    try:
+        token_json = token_response.json()
+    except requests.JSONDecodeError:
+        print("Token response is not JSON:", token_response.text)
+        return render(request, 'spotify/error.html', {
+            "message": "Invalid response from Spotify. Please try again."
+        })
 
     if 'access_token' in token_json:
         access_token = token_json['access_token']
@@ -57,7 +90,37 @@ def spotify_callback(request):
         request.session['refresh_token'] = refresh_token
         request.session['token_expires_at'] = time.time() + expires_in  # Expiration time
 
-        return redirect('profile')
+        headers = {
+            'Authorization': f'Bearer {access_token}',
+        }
+
+        user_profile_response = requests.get('https://api.spotify.com/v1/me', headers=headers)
+        if user_profile_response.status_code == 200:
+            user_data = user_profile_response.json()
+            email = user_data.get('email')
+            display_name = user_data.get('display_name')
+
+            # Create or retrieve the user in Django's database
+            try:
+                user, created = User.objects.get_or_create(
+                    username=email,
+                    defaults={
+                        'email': email,
+                        'first_name': display_name or "",  # Ensure display name is set, fallback to empty
+                    }
+                )
+                print(f"User {'created' if created else 'retrieved'} successfully: {email}")
+            except Exception as e:
+                print(f"Error creating/retrieving user: {e}")
+                return render(request, 'spotify/error.html', {"message": "Failed to create or retrieve user account. Please try again."})
+
+            # Log in the user into the Django session
+            login(request, user)
+            # Redirect to the home page after successful login
+            return redirect('home')
+
+        else:
+            return render(request, 'spotify/error.html', {"message": "Failed to retrieve user profile from Spotify."})
     else:
         # Log the response for debugging
         print("Token exchange response:", token_json)
@@ -66,12 +129,14 @@ def spotify_callback(request):
 # Step 3: Display the user's profile with their Spotify data (only short-term)
 def profile(request):
     access_token = request.session.get('access_token')
+    token_expires_at = request.session.get('token_expires_at')
 
-    if not access_token:
-        return redirect('login')
+    # Check if the access token exists and is still valid
+    if not access_token or time.time() > token_expires_at:
+        refresh_token(request)
 
     headers = {
-        'Authorization': f'Bearer {access_token}',
+        'Authorization': f'Bearer {request.session.get("access_token")}',
     }
 
     try:
@@ -111,23 +176,27 @@ def profile(request):
         # Get track IDs for audio feature analysis
         track_ids = [track['id'] for track in all_tracks]
 
-        # Fetch audio features for top tracks
-        audio_features_response = requests.get(
-            'https://api.spotify.com/v1/audio-features',
-            headers=headers,
-            params={'ids': ','.join(track_ids)}
-        )
-        audio_features_response.raise_for_status()
-        audio_features_json = audio_features_response.json()
-        audio_features = audio_features_json.get('audio_features', [])
+        avg_danceability = avg_energy = avg_valence = None
 
-        # Calculate average audio features (mood analysis)
-        if audio_features:
-            avg_danceability = sum(f['danceability'] for f in audio_features) / len(audio_features)
-            avg_energy = sum(f['energy'] for f in audio_features) / len(audio_features)
-            avg_valence = sum(f['valence'] for f in audio_features) / len(audio_features)
-        else:
-            avg_danceability = avg_energy = avg_valence = 0
+        if track_ids:  # Ensure there are track IDs to analyze
+            # Fetch audio features for top tracks
+            audio_features_response = requests.get(
+                'https://api.spotify.com/v1/audio-features',
+                headers=headers,
+                params={'ids': ','.join(track_ids)}
+            )
+            audio_features_response.raise_for_status()
+            audio_features_json = audio_features_response.json()
+            audio_features = audio_features_json.get('audio_features', [])
+
+            # Filter out None values and calculate averages only if audio_features contains valid data
+            valid_features = [f for f in audio_features if f is not None]
+            if valid_features:
+                avg_danceability = sum(f['danceability'] for f in valid_features) / len(valid_features)
+                avg_energy = sum(f['energy'] for f in valid_features) / len(valid_features)
+                avg_valence = sum(f['valence'] for f in valid_features) / len(valid_features)
+
+        
 
         # Initialize recommendations
         recommendations = []
@@ -149,7 +218,8 @@ def profile(request):
             recommendations = recommend_json.get('tracks', [])
 
     except requests.exceptions.RequestException as e:
-        print(f"Request failed: {e}")  # Log the error
+        # Enhanced error logging for Spotify API issues
+        print(f"Spotify API Request failed: {e}, Status Code: {e.response.status_code if e.response else 'N/A'}, Content: {e.response.text if e.response else 'No response content'}")
         return render(request, 'spotify/error.html', {'message': "Error fetching data from Spotify API."})
 
     # Render the profile page with the user data, artists, and tracks
@@ -164,3 +234,30 @@ def profile(request):
         'avg_energy': avg_energy,  # Optional: Average energy
         'avg_valence': avg_valence,  # Optional: Average valence
     })
+
+def refresh_token(request):
+    refresh_token = request.session.get('refresh_token')
+    if not refresh_token:
+        return False
+
+    # Prepare data for token refresh
+    refresh_data = {
+        'grant_type': 'refresh_token',
+        'refresh_token': refresh_token,
+        'client_id': SPOTIFY_CLIENT_ID,
+        'client_secret': SPOTIFY_CLIENT_SECRET,
+    }
+
+    # Send the request to refresh the access token
+    response = requests.post(SPOTIFY_TOKEN_URL, data=refresh_data)
+    response_json = response.json()
+
+    if 'access_token' in response_json:
+        # Update the session with the new access token and expiration time
+        request.session['access_token'] = response_json['access_token']
+        request.session['token_expires_at'] = time.time() + response_json.get('expires_in', 3600)
+        return True
+    else:
+        # Log the error
+        print("Token refresh failed:", response_json)
+        return False

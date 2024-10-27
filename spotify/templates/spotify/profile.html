@@ -10,6 +10,8 @@
 <body>
     <div class="container">
 
+        <p> {{ request.user.first_name }}</p>
+        <a href="{% url 'home' %}">Return Home</a>
         <h1>Welcome, {{ user_data.display_name }}</h1>
         {% if user_data.email %}
             <p>Email: {{ user_data.email }}</p>
