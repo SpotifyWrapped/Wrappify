@@ -2,9 +2,17 @@ import os
 import requests
 import time
 from django.shortcuts import redirect, render
+from django.contrib.auth.models import User
+from django.contrib.auth import login, logout
 from collections import Counter
-from urllib.parse import urlencode
+from urllib.parse import urlencode, quote
+from django.urls import reverse
+from django.http import JsonResponse
+from django.conf import settings
+from django.http import HttpResponseRedirect
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 # Spotify app credentials
 SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
 SPOTIFY_CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
@@ -14,28 +22,37 @@ SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
 SCOPE = "user-read-private user-read-email user-top-read"
 
 # Initial Welcome Page
-def login(request):
+def loginPage(request):
     return render(request, 'spotify/login.html')
 
+#Logout from Spotify and Django session
+def logout_view(request):
+    logout(request)
+    request.session.clear()
+    return redirect('login')
+
 # Login page will redirect to Spotify login
-def loginPage(request):
+def spotifyLogin(request):
+    logout_url = "https://accounts.spotify.com/en/logout"
     auth_params = {
         "client_id": SPOTIFY_CLIENT_ID,
         "response_type": "code",
-        "redirect_uri": SPOTIFY_REDIRECT_URI,
+        "redirect_uri": SPOTIFY_REDIRECT_URI,  # Ensure this is the exact URI registered in Spotify
         "scope": SCOPE,
+        "show_dialog": "true"
     }
     auth_url = f"{SPOTIFY_AUTH_URL}?{urlencode(auth_params)}"
-    return redirect(auth_url)
+    final_url = f"{logout_url}?continue={quote(auth_url)}"
 
-# Step 2: Handle the Spotify OAuth callback
+    return redirect(final_url)
+     
+# Spotify redirects back to this URL after user authorization
 def spotify_callback(request):
     code = request.GET.get('code')
 
     if not code:
         return render(request, 'spotify/error.html', {"message": "Authorization failed."})
 
-    # Exchange the authorization code for tokens
     token_data = {
         'grant_type': 'authorization_code',
         'code': code,
@@ -44,157 +61,163 @@ def spotify_callback(request):
         'client_secret': SPOTIFY_CLIENT_SECRET,
     }
 
-    token_response = requests.post(SPOTIFY_TOKEN_URL, data=token_data)
-    token_json = token_response.json()
+    try:
+        token_response = requests.post(SPOTIFY_TOKEN_URL, data=token_data)
+        token_response.raise_for_status()
+        token_json = token_response.json()
+    except requests.JSONDecodeError:
+        print("Token response is not JSON:", token_response.text)
+        return render(request, 'spotify/error.html', {
+            "message": "Invalid response from Spotify. Please try again."
+        })
 
-    if 'access_token' in token_json:
-        access_token = token_json['access_token']
-        refresh_token = token_json.get('refresh_token')
-        expires_in = token_json['expires_in']  # Token lifetime in seconds
+    access_token = token_json.get('access_token')
+    refresh_token = token_json.get('refresh_token')
+    expires_in = token_json.get('expires_in')
 
-        # Save tokens and expiration time in session
+    if access_token and refresh_token:
         request.session['access_token'] = access_token
         request.session['refresh_token'] = refresh_token
-        request.session['token_expires_at'] = time.time() + expires_in  # Expiration time
+        request.session['token_expires_at'] = time.time() + expires_in
 
-        return redirect('profile')
-    else:
-        # Log the response for debugging
-        print("Token exchange response:", token_json)
-        return render(request, 'spotify/error.html', {"message": "Token exchange failed."})
-
-# Step 3: Display the user's profile
-def profile(request):
-    access_token = request.session.get('access_token')
-
-    if not access_token:
-        return redirect('login')
-
-    headers = {
-        'Authorization': f'Bearer {access_token}',
-    }
-
-    try:
-        # Fetch user profile information
+        headers = {'Authorization': f'Bearer {access_token}'}
         user_profile_response = requests.get('https://api.spotify.com/v1/me', headers=headers)
-        user_profile_response.raise_for_status()
-        user_data = user_profile_response.json()
 
-    except requests.exceptions.RequestException as e:
-        print(f"Request failed: {e}")
+        # Django database operations
+        if user_profile_response.status_code == 200:
+            user_data = user_profile_response.json()
+            email = user_data.get('email')
+            display_name = user_data.get('display_name')
+
+            # Create or retrieve user
+            try:
+                user, created = User.objects.get_or_create(
+                    username=email,
+                    defaults={'email': email, 'first_name': display_name or ""}
+                )
+            except Exception as e:
+                print(f"Error creating/retrieving user: {e}")
+                return render(request, 'spotify/error.html', {"message": "Failed to create or retrieve user account. Please try again."})
+
+            login(request, user)
+            return redirect('profile')
+        else:
+            return render(request, 'spotify/error.html', {"message": "Failed to retrieve user profile from Spotify."})
+    else:
+        print("Token exchange response:", token_json)
+        return render(request, 'spotify/error.html', {"message": "Token exchange failed. Please try again."})
+
+# Display the user's profile
+def profile(request):
+    user_data = spotify_api_request(request, 'https://api.spotify.com/v1/me')
+    if not user_data:
+        return render(request, 'spotify/error.html', {'message': "Error fetching user data from Spotify API."})
+    return render(request, 'spotify/profile.html', {'user_data': user_data})
+
+# Display Wraps
+def wraps(request):
+    user_data = spotify_api_request(request, 'https://api.spotify.com/v1/me')
+    if not user_data:
         return render(request, 'spotify/error.html', {'message': "Error fetching user data from Spotify API."})
 
-    # Render the profile page with user info only
-    return render(request, 'spotify/profile.html', {
-        'user_data': user_data,
-    })
+    artists_json = spotify_api_request(request, 'https://api.spotify.com/v1/me/top/artists', params={'limit': 10, 'time_range': 'short_term'})
+    tracks_json = spotify_api_request(request, 'https://api.spotify.com/v1/me/top/tracks', params={'limit': 50, 'time_range': 'short_term'})
 
-# Step 4: Display Wraps
-def wraps(request):
-    access_token = request.session.get('access_token')
-
-    if not access_token:
-        return redirect('login')
-
-    headers = {
-        'Authorization': f'Bearer {access_token}',
-    }
-
-    try:
-        # Fetch user profile information
-        user_profile_response = requests.get('https://api.spotify.com/v1/me', headers=headers)
-        user_profile_response.raise_for_status()
-        user_data = user_profile_response.json()
-
-        # Fetch the user's top artists (short-term data for the last 4 weeks)
-        artists_response = requests.get('https://api.spotify.com/v1/me/top/artists?limit=10&time_range=short_term', headers=headers)
-        artists_response.raise_for_status()
-        artists_json = artists_response.json()
-        all_artists = artists_json.get('items', [])
-
-        # Fetch the number 1 artist (top artist)
-        top_artist = all_artists[0] if all_artists else None
-
-        # Display only the top 5 artists
-        top_5_artists = all_artists[:5]
-
-        # Extract and count genres from top artists
-        genres = []
-        for artist in all_artists:
-            genres.extend(artist.get('genres', []))  # Add the artist's genres to the list
-
-        # Use Counter to count occurrences of each genre
-        genre_counts = Counter(genres)
-        top_genres = genre_counts.most_common(5)
-
-        # Fetch the user's top tracks (short-term data for the last 4 weeks)
-        tracks_response = requests.get('https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=short_term', headers=headers)
-        tracks_response.raise_for_status()
-        tracks_json = tracks_response.json()
-        all_tracks = tracks_json.get('items', [])
-
-        # Display only the top 5 tracks in the frontend
-        top_5_tracks = all_tracks[:5]
-
-        # Calculate total playback time in minutes for all tracks
-        total_playback_ms = sum(track['duration_ms'] for track in all_tracks)
-        total_playback_minutes = total_playback_ms / 60000
-
-        # Get track IDs for audio feature analysis
-        track_ids = [track['id'] for track in all_tracks]
-
-        # Fetch audio features for top tracks
-        audio_features_response = requests.get(
-            'https://api.spotify.com/v1/audio-features',
-            headers=headers,
-            params={'ids': ','.join(track_ids)}
-        )
-        audio_features_response.raise_for_status()
-        audio_features_json = audio_features_response.json()
-        audio_features = audio_features_json.get('audio_features', [])
-
-        # Calculate average audio features (mood analysis)
-        if audio_features:
-            avg_danceability = sum(f['danceability'] for f in audio_features) / len(audio_features)
-            avg_energy = sum(f['energy'] for f in audio_features) / len(audio_features)
-            avg_valence = sum(f['valence'] for f in audio_features) / len(audio_features)
-        else:
-            avg_danceability = avg_energy = avg_valence = 0
-
-        # Initialize recommendations
-        recommendations = []
-
-        # Get recommendations based on top tracks or artists
-        if all_tracks or all_artists:
-            seed_artists = ','.join([artist['id'] for artist in all_artists[:2]]) if all_artists else ''
-            seed_tracks = ','.join([track['id'] for track in all_tracks[:2]]) if all_tracks else ''
-
-            recommend_params = {
-                'seed_artists': seed_artists,
-                'seed_tracks': seed_tracks,
-                'limit': 5
-            }
-
-            recommend_response = requests.get('https://api.spotify.com/v1/recommendations', headers=headers, params=recommend_params)
-            recommend_response.raise_for_status()
-            recommend_json = recommend_response.json()
-            recommendations = recommend_json.get('tracks', [])
-
-    except requests.exceptions.RequestException as e:
-        print(f"Request failed: {e}")  # Log the error
+    if not artists_json or not tracks_json:
         return render(request, 'spotify/error.html', {'message': "Error fetching data from Spotify API."})
 
-    # Render the wraps page with the same user data, top artist, artists, and tracks
+    all_artists = artists_json.get('items', [])
+    top_artist = all_artists[0] if all_artists else None
+    top_5_artists = all_artists[:5]
+
+    genres = [genre for artist in all_artists for genre in artist.get('genres', [])]
+    top_genres = Counter(genres).most_common(5)
+
+    all_tracks = tracks_json.get('items', [])
+    top_5_tracks = all_tracks[:5]
+    total_playback_minutes = sum(track['duration_ms'] for track in all_tracks) / 60000
+
+    track_ids = [track['id'] for track in all_tracks]
+    avg_danceability = avg_energy = avg_valence = None
+
+    if track_ids:
+        audio_features_json = spotify_api_request(request, 'https://api.spotify.com/v1/audio-features', params={'ids': ','.join(track_ids)})
+        if audio_features_json:
+            valid_features = [f for f in audio_features_json.get('audio_features', []) if f]
+            if valid_features:
+                avg_danceability = sum(f['danceability'] for f in valid_features) / len(valid_features)
+                avg_energy = sum(f['energy'] for f in valid_features) / len(valid_features)
+                avg_valence = sum(f['valence'] for f in valid_features) / len(valid_features)
+
+    recommend_params = {
+        'seed_artists': ','.join([artist['id'] for artist in all_artists[:2]]) if all_artists else '',
+        'seed_tracks': ','.join([track['id'] for track in all_tracks[:2]]) if all_tracks else '',
+        'limit': 5
+    }
+    recommendations_json = spotify_api_request(request, 'https://api.spotify.com/v1/recommendations', params=recommend_params)
+
     return render(request, 'spotify/wraps.html', {
         'user_data': user_data,
-        'top_artist': top_artist,  # Pass the #1 artist separately
-        'artists': top_5_artists,  # Pass only top 5 artists to the template
-        'tracks': top_5_tracks,  # Pass only top 5 tracks to the template
-        'recommendations': recommendations,  # Pass recommendations to the template
-        'total_playback_minutes': total_playback_minutes,  # Optional: Pass total playback time
-        'top_genres': top_genres,  # Optional: Pass top genres
-        'avg_danceability': avg_danceability,  # Optional: Average danceability
-        'avg_energy': avg_energy,  # Optional: Average energy
-        'avg_valence': avg_valence,  # Optional: Average valence
+        'top_artist': top_artist,
+        'artists': top_5_artists,
+        'tracks': top_5_tracks,
+        'recommendations': recommendations_json.get('tracks', []) if recommendations_json else [],
+        'total_playback_minutes': total_playback_minutes,
+        'top_genres': top_genres,
+        'avg_danceability': avg_danceability,
+        'avg_energy': avg_energy,
+        'avg_valence': avg_valence,
     })
 
+# Helper function: retries the access token if it's expired
+def get_valid_token(request):
+    access_token = request.session.get('access_token')
+    token_expires_at = request.session.get('token_expires_at')
+    
+    if access_token and time.time() < token_expires_at:
+        return access_token
+
+    refresh_success = refresh_token(request)
+    if refresh_success:
+        return request.session.get('access_token')
+    else:
+        return None
+
+# Helper function: refreshes the access token
+def refresh_token(request):
+    refresh_token = request.session.get('refresh_token')
+    if not refresh_token:
+        return False
+
+    refresh_data = {
+        'grant_type': 'refresh_token',
+        'refresh_token': refresh_token,
+        'client_id': SPOTIFY_CLIENT_ID,
+        'client_secret': SPOTIFY_CLIENT_SECRET,
+    }
+
+    response = requests.post(SPOTIFY_TOKEN_URL, data=refresh_data)
+    response_json = response.json()
+
+    if 'access_token' in response_json:
+        request.session['access_token'] = response_json['access_token']
+        request.session['token_expires_at'] = time.time() + response_json.get('expires_in', 3600)
+        return True
+    else:
+        print("Token refresh failed:", response_json)
+        return False
+
+# Helper function: makes a request to the Spotify API (v1/me/top/artists, etc.)
+def spotify_api_request(request, url, params=None):
+    access_token = get_valid_token(request)
+    if not access_token:
+        return None
+
+    headers = {'Authorization': f'Bearer {access_token}'}
+    try:
+        response = requests.get(url, headers=headers, params=params)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Spotify API Request failed: {e}")
+        return None

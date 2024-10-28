@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <link rel="stylesheet" href="{% static 'spotify/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'spotify/profile.css' %}?v={{ STATIC_VERSION }}">
 </head>
 <body>
+    <div class="container">
     <!-- User Information Section -->
     <div class="user-info">
-        <h1>Welcome, {{ user_data.display_name }}</h1>
+        <h1>Welcome, {{ request.user.first_name }}</h1>
         {% if user_data.email %}
             <p>Email: {{ user_data.email }}</p>
         {% endif %}
@@ -27,5 +28,10 @@
         <a href="{% url 'wraps' %}" class="wrapped-button">View Your Wraps</a>
     </div>
 
+    <div class="logout">
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+    </div>
 </body>
 </html>

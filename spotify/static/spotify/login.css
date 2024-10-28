@@ -1,4 +1,4 @@
-/* spotify/profile.css */
+/* spotify/wrapped.css */
 
 * {
     margin: 0;
@@ -16,53 +16,38 @@ body {
 }
 
 .container {
-    width: 100%;
-    max-width: 400px;
     text-align: center;
-}
-
-.user-info, .wrapped-link, .logout {
-    margin-bottom: 20px;
     padding: 20px;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: 1px solid #ddd;
+    width: 100%;
+    max-width: 400px;
 }
 
 h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 28px;
     color: #333;
+    margin-bottom: 10px;
 }
 
 p {
     font-size: 16px;
     color: #555;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
-.wrapped-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #1db954;
+.connect-button {
+    font-size: 20px;
     color: white;
     text-decoration: none;
-    border-radius: 4px;
+    background-color: #1db954;
+    padding: 10px 20px;
+    border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
-.wrapped-button:hover {
+.connect-button:hover {
     background-color: #14833b;
-}
-
-.logout a {
-    color: #1db954;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.logout a:hover {
-    color: #14833b;
 }
