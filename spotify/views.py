@@ -80,16 +80,20 @@ def spotify_callback(request):
         request.session['refresh_token'] = refresh_token
         request.session['token_expires_at'] = time.time() + expires_in
 
+        # Call get_valid_token to verify the token's usability immediately after obtaining it
+        if not get_valid_token(request):
+            return render(request, 'spotify/error.html', {
+                "message": "Token validation failed. Please try logging in again."
+            })
+
         headers = {'Authorization': f'Bearer {access_token}'}
         user_profile_response = requests.get('https://api.spotify.com/v1/me', headers=headers)
 
-        # Django database operations
         if user_profile_response.status_code == 200:
             user_data = user_profile_response.json()
             email = user_data.get('email')
             display_name = user_data.get('display_name')
 
-            # Create or retrieve user
             try:
                 user, created = User.objects.get_or_create(
                     username=email,
