@@ -113,37 +113,66 @@ def spotify_callback(request):
 
 # Display the user's profile
 def profile(request):
+    time_range = request.GET.get('time_range', 'short_term')
     user_data = spotify_api_request(request, 'https://api.spotify.com/v1/me')
+
     if not user_data:
         return render(request, 'spotify/error.html', {'message': "Error fetching user data from Spotify API."})
-    return render(request, 'spotify/profile.html', {'user_data': user_data})
+
+    context = {
+        'user_data': user_data,
+        'selected_time_range': time_range,  # Pass to highlight button
+    }
+    return render(request, 'spotify/profile.html', context)
 
 # Display Wraps
 def wraps(request):
+    time_range = request.GET.get('time_range', 'short_term')
+    headers = {'Authorization': f'Bearer {get_valid_token(request)}'}
+
     user_data = spotify_api_request(request, 'https://api.spotify.com/v1/me')
     if not user_data:
         return render(request, 'spotify/error.html', {'message': "Error fetching user data from Spotify API."})
+    
+    # Define human-readable labels for each time range
+    time_range_labels = {
+        'short_term': 'Last 4 Weeks',
+        'medium_term': 'Last 6 Months',
+        'long_term': 'All Time'
+    }
+    time_range_label = time_range_labels.get(time_range, 'Last Month')
 
-    artists_json = spotify_api_request(request, 'https://api.spotify.com/v1/me/top/artists', params={'limit': 10, 'time_range': 'short_term'})
-    tracks_json = spotify_api_request(request, 'https://api.spotify.com/v1/me/top/tracks', params={'limit': 50, 'time_range': 'short_term'})
+    # Fetch user's top artists based on the selected time range
+    artists_response = requests.get(
+        f'https://api.spotify.com/v1/me/top/artists?limit=10&time_range={time_range}', headers=headers
+    )
+    if artists_response.status_code == 200:
+        all_artists = artists_response.json().get('items', [])
+    else:
+        return render(request, 'spotify/error.html', {'message': "Error fetching artists data from Spotify API."})
 
-    if not artists_json or not tracks_json:
-        return render(request, 'spotify/error.html', {'message': "Error fetching data from Spotify API."})
+    # Fetch user's top tracks based on the selected time range
+    tracks_response = requests.get(
+        f'https://api.spotify.com/v1/me/top/tracks?limit=10&time_range={time_range}', headers=headers
+    )
+    if tracks_response.status_code == 200:
+        all_tracks = tracks_response.json().get('items', [])
+    else:
+        return render(request, 'spotify/error.html', {'message': "Error fetching tracks data from Spotify API."})
 
-    all_artists = artists_json.get('items', [])
     top_artist = all_artists[0] if all_artists else None
     top_5_artists = all_artists[:5]
 
     genres = [genre for artist in all_artists for genre in artist.get('genres', [])]
     top_genres = Counter(genres).most_common(5)
 
-    all_tracks = tracks_json.get('items', [])
     top_5_tracks = all_tracks[:5]
     total_playback_minutes = sum(track['duration_ms'] for track in all_tracks) / 60000
 
     track_ids = [track['id'] for track in all_tracks]
     avg_danceability = avg_energy = avg_valence = None
 
+    # Fetch audio features for the tracks if there are track IDs
     if track_ids:
         audio_features_json = spotify_api_request(request, 'https://api.spotify.com/v1/audio-features', params={'ids': ','.join(track_ids)})
         if audio_features_json:
@@ -171,7 +200,10 @@ def wraps(request):
         'avg_danceability': avg_danceability,
         'avg_energy': avg_energy,
         'avg_valence': avg_valence,
+        'selected_time_range': time_range,
+        'time_range_label': time_range_label  # Pass label for display in template
     })
+
 
 # Helper function: retries the access token if it's expired
 def get_valid_token(request):

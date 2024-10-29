@@ -32,23 +32,24 @@
         <!-- Slideshow Container -->
 
         <!-- Slide 1: Intro Slide -->
-        <div class="slides active" id="slide1">
-            <section id="intro">
-                <h2>Welcome to Your 2023 Wrapped</h2>
-                <p>Let’s take a look at your month in music!</p>
-            </section>
-        </div>
+<div class="slides active" id="slide1">
+    <section id="intro">
+        <h2>Welcome to Your Spotify Wrapped</h2>
+        <p>Let’s take a look at your music habits over {{ time_range_label }}!</p>
+    </section>
+</div>
 
-        <!-- Slide 2: Total Playback Time with Peak Day -->
-        <div class="slides" id="slide2">
-            <section id="total-playback-time">
-                <h2>My Minutes Listened</h2>
-                <p>You have listened to approximately {{ total_playback_minutes }} minutes in the last 4 weeks.</p>
-                {% if peak_day %}
-                    <p>Your peak listening day was <strong>{{ peak_day }}</strong> with <strong>{{ peak_minutes }}</strong> minutes listened.</p>
-                {% endif %}
-            </section>
-        </div>
+<!-- Slide 2: Total Playback Time with Peak Day -->
+<div class="slides" id="slide2">
+    <section id="total-playback-time">
+        <h2>My Minutes Listened</h2>
+        <p>You have listened to approximately {{ total_playback_minutes }} minutes in {{ time_range_label }}.</p>
+        {% if peak_day %}
+            <p>Your peak listening day was <strong>{{ peak_day }}</strong> with <strong>{{ peak_minutes }}</strong> minutes listened.</p>
+        {% endif %}
+    </section>
+</div>
+
 
         <!-- Slide 3: Top Genres -->
         <div class="slides" id="slide3">
@@ -170,6 +171,10 @@
                 <div class="options">
                     <button>Save</button>
                     <button>Delete</button>
+                </div>
+                <!-- Go Back to Home Button -->
+                <div class="back-home">
+                    <a href="{% url 'profile' %}" class="back-home-button">Go Back to Home</a>
                 </div>
             </section>
         </div>
