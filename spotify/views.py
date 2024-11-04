@@ -86,15 +86,10 @@ def spotify_callback(request):
         request.session['token_expires_at'] = time.time() + expires_in
 
         # Call get_valid_token to verify the token's usability immediately after obtaining it
-<<<<<<< HEAD
         if not get_valid_token(request):  # This is the new check
             return render(request, 'spotify/error.html', {
                 "message": "Token validation failed. Please try logging in again."
             })
-=======
-        if not get_valid_token(request):
-            return render(request, 'spotify/error.html', {"message": "Token validation failed. Please try logging in again."})
->>>>>>> origin/hung
 
         headers = {'Authorization': f'Bearer {access_token}'}
         user_profile_response = requests.get('https://api.spotify.com/v1/me', headers=headers)
@@ -272,9 +267,7 @@ def get_valid_token(request):
     token_expires_at = request.session.get('token_expires_at')
     if access_token and time.time() < token_expires_at:
         return access_token
-    return refresh_token(request)
 
-<<<<<<< HEAD
     refresh_success = refresh_token(request)
     if refresh_success:
         return request.session.get('access_token')
@@ -283,27 +276,31 @@ def get_valid_token(request):
 
 # Helper function: refreshes the access token
 
-=======
+    return refresh_token(request)
+
 # Refresh the Spotify access token using the refresh token
->>>>>>> origin/hung
 def refresh_token(request):
     refresh_token = request.session.get('refresh_token')
     if not refresh_token:
-        return None
+        return False
+
     refresh_data = {
         'grant_type': 'refresh_token',
         'refresh_token': refresh_token,
         'client_id': SPOTIFY_CLIENT_ID,
         'client_secret': SPOTIFY_CLIENT_SECRET,
     }
+
     response = requests.post(SPOTIFY_TOKEN_URL, data=refresh_data)
     response_json = response.json()
+
     if 'access_token' in response_json:
         request.session['access_token'] = response_json['access_token']
         request.session['token_expires_at'] = time.time() + response_json.get('expires_in', 3600)
-        return request.session['access_token']
-    print("Token refresh failed:", response_json)
-    return None
+        return True
+    else:
+        print("Token refresh failed:", response_json)
+        return False
 
 # Make a request to the Spotify API with valid access token
 def spotify_api_request(request, url, params=None):
