@@ -136,8 +136,19 @@ TIME_ZONE = "UTC"
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
+LANGUAGES = [
+    ('en', 'English'),
+    ('es', 'Spanish'),
+    ('nl', 'Dutch'),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale/',
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/

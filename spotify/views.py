@@ -4,6 +4,9 @@ import time
 from django.shortcuts import redirect, render
 from urllib.parse import urlencode
 
+from django.utils.translation import gettext_lazy as _
+
+User = get_user_model()
 # Spotify app credentials
 SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
 SPOTIFY_REDIRECT_URI = os.getenv('SPOTIFY_REDIRECT_URI')

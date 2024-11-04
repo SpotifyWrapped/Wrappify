@@ -1,12 +1,19 @@
+{% load i18n %}
+
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login with Spotify</title>
+    <title> {% trans "Your Spotify Wrapped" %} </title> 
+    <link rel="stylesheet" href="{% static 'spotify/login.css' %}">
 </head>
 <body>
-    <h1>Login</h1>
-    <a href="{% url 'login' %}">Login with Spotify</a>
+    <div class="container">
+        <h1> {% trans "Your Spotify Wrapped" %} </h1>
+        <p> {% trans "Get started by connecting your Spotify account" %} </p>
+        <a href="{% url 'redirect' %}" class="connect-button">{% trans "Click Here" %}</a>
+    </div>
 </body>
 </html>
