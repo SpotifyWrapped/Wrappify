@@ -42,10 +42,14 @@
         </div>
         
 
-        <!-- Link to Wrapped Page -->
-        <div class="wrapped-link">
-            <a href="{% url 'wraps' %}?time_range={{ selected_time_range }}" class="wrapped-button">View Your Wraps</a>
-        </div>
+    <!-- Link to Wrapped Page -->
+    <div class="wrapped-link">
+        <a href="{% url 'wraps' %}?time_range={{ selected_time_range }}" class="wrapped-button">View Your Wraps</a>
+    </div>
+
+    <div class="wrapped-library">
+        <a href="{% url 'wraps_library' %}">View Wraps Library</a>
+    </div>
 
         <div class="logout">
             <a href="{% url 'logout' %}">Logout</a>
