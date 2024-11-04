@@ -23,6 +23,7 @@ SCOPE = "user-read-private user-read-email user-top-read"
 
 # Initial Welcome Page
 def loginPage(request):
+    request.session.clear()
     return render(request, 'spotify/login.html')
 
 #Logout from Spotify and Django session
@@ -81,7 +82,7 @@ def spotify_callback(request):
         request.session['token_expires_at'] = time.time() + expires_in
 
         # Call get_valid_token to verify the token's usability immediately after obtaining it
-        if not get_valid_token(request):
+        if not get_valid_token(request):  # This is the new check
             return render(request, 'spotify/error.html', {
                 "message": "Token validation failed. Please try logging in again."
             })
@@ -188,6 +189,7 @@ def get_valid_token(request):
         return None
 
 # Helper function: refreshes the access token
+
 def refresh_token(request):
     refresh_token = request.session.get('refresh_token')
     if not refresh_token:
