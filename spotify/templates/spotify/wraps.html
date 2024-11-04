@@ -29,27 +29,24 @@
             <div class="progress-bar" onclick="goToSlide(9)"></div>
         </div>
 
-        <!-- Slideshow Container -->
-
         <!-- Slide 1: Intro Slide -->
-<div class="slides active" id="slide1">
-    <section id="intro">
-        <h2>Welcome to Your Spotify Wrapped</h2>
-        <p>Let’s take a look at your music habits over {{ time_range_label }}!</p>
-    </section>
-</div>
+        <div class="slides active" id="slide1">
+            <section id="intro">
+                <h2>Welcome to Your Spotify Wrapped</h2>
+                <p>Let’s take a look at your music habits over {{ time_range_label }}!</p>
+            </section>
+        </div>
 
-<!-- Slide 2: Total Playback Time with Peak Day -->
-<div class="slides" id="slide2">
-    <section id="total-playback-time">
-        <h2>My Minutes Listened</h2>
-        <p>You have listened to approximately {{ total_playback_minutes }} minutes in {{ time_range_label }}.</p>
-        {% if peak_day %}
-            <p>Your peak listening day was <strong>{{ peak_day }}</strong> with <strong>{{ peak_minutes }}</strong> minutes listened.</p>
-        {% endif %}
-    </section>
-</div>
-
+        <!-- Slide 2: Total Playback Time with Peak Day -->
+        <div class="slides" id="slide2">
+            <section id="total-playback-time">
+                <h2>My Minutes Listened</h2>
+                <p>You have listened to approximately {{ total_playback_minutes }} minutes in {{ time_range_label }}.</p>
+                {% if peak_day %}
+                    <p>Your peak listening day was <strong>{{ peak_day }}</strong> with <strong>{{ peak_minutes }}</strong> minutes listened.</p>
+                {% endif %}
+            </section>
+        </div>
 
         <!-- Slide 3: Top Genres -->
         <div class="slides" id="slide3">
@@ -72,7 +69,7 @@
                 <ul>
                     {% for track in tracks %}
                         <li>
-                            <strong>{{ forloop.counter }}.</strong> <!-- Adding number before track name -->
+                            <strong>{{ forloop.counter }}.</strong>
                             <img src="{{ track.album.images.0.url }}" alt="{{ track.name }}" width="100">
                             <p>{{ track.name }} by {{ track.artists.0.name }}</p>
                             {% if track.preview_url %}
@@ -127,7 +124,7 @@
                 <ul>
                     {% for artist in artists %}
                         <li>
-                            <strong>{{ forloop.counter }}.</strong> <!-- Adding number before artist name -->
+                            <strong>{{ forloop.counter }}.</strong>
                             <img src="{{ artist.images.0.url }}" alt="{{ artist.name }}" width="100">
                             <p>{{ artist.name }}</p>
                         </li>
@@ -166,21 +163,62 @@
         <!-- Slide 10: Save or Delete Wrap -->
         <div class="slides" id="slide10">
             <section id="save-delete">
-                <h2>Save or Delete Your Wrap</h2>
-                <p>Would you like to save this wrap for later, or delete it?</p>
+                <h2>Save Wrap</h2>
                 <div class="options">
-                    <button>Save</button>
-                    <button>Delete</button>
+                    <button onclick="saveWrap()">Save</button>
                 </div>
-                <!-- Go Back to Home Button -->
                 <div class="back-home">
                     <a href="{% url 'profile' %}" class="back-home-button">Go Back to Home</a>
                 </div>
             </section>
         </div>
-
     </div>
 
-    <script src="{% static 'js/main.js' %}"></script>
+    <!-- JSON Script to pass data to JavaScript -->
+    <script type="application/json" id="wrap-data">
+        {{ wrap_data_json|safe }}
+    </script>
+
+    <script>
+        function getCSRFToken() {
+            const name = 'csrftoken';
+            const cookies = document.cookie.split(';');
+            for (let cookie of cookies) {
+                cookie = cookie.trim();
+                if (cookie.startsWith(name + '=')) {
+                    return cookie.substring(name.length + 1);
+                }
+            }
+            return '';
+        }
+    
+        function saveWrap() {
+            // Parse the JSON data from the script tag
+            const wrapData = JSON.parse(document.getElementById('wrap-data').textContent);
+    
+            fetch("{% url 'save_wrap' %}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCSRFToken()
+                },
+                body: JSON.stringify(wrapData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.message) {
+                    alert(data.message);
+                } else if (data.error) {
+                    alert("Error: " + data.error);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
 </body>
 </html>
