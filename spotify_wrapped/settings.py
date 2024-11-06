@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
+from django.utils.translation import gettext_lazy as _
 #Client ID and Client Secret
 load_dotenv()
 
@@ -37,16 +38,28 @@ SECRET_KEY = "django-insecure-0a#e0+yghxs3cpb-*6s00x0g^f&u!l8)fogf_&ey01&4m@)4&x
 DEBUG = True
 
 # USE_I18N = True
-LANGUAGES = [
-    ('en', 'English'),
-    ('es', 'Spanish'),
-    ('fr', 'French'),
-]
+LANGUAGES = (
+    ('en', _('English')),
+    ('es', _('Spanish')),
+    ('nl', _('Dutch')),
+)
+
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'en',},
+        {'code': 'nl',},
+        {'code': 'es',},
+    ),
+    'default': {
+        'fallbacks': ['en'],
+        'hide_untranslated': False,
+    }
+}
 
 LANGUAGE_CODE = 'en'
 
 LOCALE_PATHS = [
-    BASE_DIR / 'locale/'
+    BASE_DIR / 'locale/',
 ]
 
 
@@ -63,6 +76,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'spotify',
+    'rosetta',
+    'parler',
 ]
 
 MIDDLEWARE = [
@@ -130,7 +145,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "UTC"
 
@@ -140,15 +154,8 @@ USE_L10N = True
 
 USE_TZ = True
 
-LANGUAGES = [
-    ('en', 'English'),
-    ('es', 'Spanish'),
-    ('nl', 'Dutch'),
-]
 
-LOCALE_PATHS = [
-    BASE_DIR / 'locale/',
-]
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/

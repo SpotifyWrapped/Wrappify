@@ -8,66 +8,256 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-03 22:51-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2024-11-05 00:17-0500\n"
+"PO-Revision-Date: 2024-11-05 00:19+0000\n"
+"Last-Translator:   <mbanda3@gatech.edu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: .\spotify\models.py:6
-msgid "title"
-msgstr ""
+"X-Translated-Using: django-rosetta 0.10.1\n"
 
 #: .\spotify\models.py:7
+msgid "title"
+msgstr "titel"
+
+#: .\spotify\models.py:8
 msgid "content"
-msgstr ""
+msgstr "inhoud"
 
 #: .\spotify\templates\spotify\error.html:8
 #: .\spotify\templates\spotify\error.html:11
 msgid "Error"
+msgstr "Fout"
+
+#: .\spotify\templates\spotify\index.html:42
+msgid "TestDriven.io Courses"
 msgstr ""
 
-#: .\spotify\templates\spotify\home.html:18
-msgid "Hello world! This is an HTML5 Boilerplate."
-msgstr "Hallo wereld! Dit is een HTML5 Boilerplate."
-
-#: .\spotify\templates\spotify\home.html:19
-msgid "English"
-msgstr ""
-
-#: .\spotify\templates\spotify\home.html:20
-#: .\spotify\templates\spotify\login.html:10
-msgid "Spanish"
-msgstr "Spaans"
-
-#: .\spotify\templates\spotify\home.html:21
-#: .\spotify\templates\spotify\login.html:11
-msgid "Dutch"
-msgstr "Nederlands"
+#: .\spotify\templates\spotify\index.html:48
+msgid "Language"
+msgstr "Taal"
 
 #: .\spotify\templates\spotify\login.html:9
-#: .\spotify\templates\spotify\login.html:16
+#: .\spotify\templates\spotify\login.html:14
 msgid "Your Spotify Wrapped"
 msgstr "Je Spotify verpakt"
 
-#: .\spotify\templates\spotify\login.html:17
+#: .\spotify\templates\spotify\login.html:15
 msgid "Get started by connecting your Spotify account"
 msgstr "Ga aan de slag door uw Spotify-account te koppelen"
 
-#: .\spotify\templates\spotify\login.html:18
+#: .\spotify\templates\spotify\login.html:16
 msgid "Click Here"
-msgstr ""
+msgstr "Klik Hier"
 
+#: .\spotify\templates\spotify\profile.html:9
 #: .\spotify\templates\spotify\wraps.html:9
 #, fuzzy
 #| msgid "Your Spotify Wrapped"
 msgid "Spotify Wrapped"
 msgstr "Je Spotify verpakt"
 
-#: .\spotify\views.py:31
-msgid "this is some random text"
-msgstr "dit is een willekeurige tekst"
+#: .\spotify\templates\spotify\profile.html:19
+msgid "Welcome,"
+msgstr "Welkom,"
+
+#: .\spotify\templates\spotify\profile.html:21
+msgid "Email:"
+msgstr "E-mail:"
+
+#: .\spotify\templates\spotify\profile.html:24
+msgid "Country:"
+msgstr "Land:"
+
+#: .\spotify\templates\spotify\profile.html:27
+msgid "Spotify URL:"
+msgstr "Spotify-URL:"
+
+#: .\spotify\templates\spotify\profile.html:31
+#, fuzzy
+#| msgid "My Top Artists"
+msgid "Top Artists"
+msgstr "Mijn Topartiesten"
+
+#: .\spotify\templates\spotify\profile.html:39
+#: .\spotify\templates\spotify\wraps.html:137
+msgid "No top artists available."
+msgstr "Geen topartiesten beschikbaar."
+
+#: .\spotify\templates\spotify\profile.html:46
+msgid "Top Tracks"
+msgstr "Topnummers"
+
+#: .\spotify\templates\spotify\profile.html:54
+#: .\spotify\templates\spotify\wraps.html:88
+msgid "No top tracks available."
+msgstr "Er zijn geen toptracks beschikbaar."
+
+#: .\spotify\templates\spotify\profile.html:56
+#: .\spotify_wrapped\settings.py:42
+msgid "English"
+msgstr "Engels"
+
+#: .\spotify\templates\spotify\profile.html:57
+#: .\spotify_wrapped\settings.py:43
+msgid "Spanish"
+msgstr "Spaans"
+
+#: .\spotify\templates\spotify\profile.html:58
+#: .\spotify_wrapped\settings.py:44
+msgid "Dutch"
+msgstr "Nederlands"
+
+#: .\spotify\templates\spotify\wraps.html:39
+#, fuzzy
+#| msgid "Your Spotify Wrapped"
+msgid "Welcome to Your Spotify Wrapped"
+msgstr "Je Spotify verpakt"
+
+#: .\spotify\templates\spotify\wraps.html:40
+msgid "Let’s take a look at your music habits over"
+msgstr "Laten we eens kijken naar uw muziekgewoonten"
+
+#: .\spotify\templates\spotify\wraps.html:47
+msgid "My Minutes Listened"
+msgstr "Mijn notulen hebben geluisterd"
+
+#: .\spotify\templates\spotify\wraps.html:48
+msgid "You have listened to approximately"
+msgstr "Je hebt ongeveer geluisterd"
+
+#: .\spotify\templates\spotify\wraps.html:48
+msgid "minutes in"
+msgstr "minuten binnen"
+
+#: .\spotify\templates\spotify\wraps.html:50
+msgid "Your peak listening day was"
+msgstr "Je piekluisterdag was"
+
+#: .\spotify\templates\spotify\wraps.html:50
+msgid "with"
+msgstr "met"
+
+#: .\spotify\templates\spotify\wraps.html:50
+msgid "minutes listened."
+msgstr "minuten geluisterd"
+
+#: .\spotify\templates\spotify\wraps.html:59
+msgid "My Top Genres"
+msgstr "Mijn Topgenres"
+
+#: .\spotify\templates\spotify\wraps.html:64
+#, fuzzy
+#| msgid "No top tracks available."
+msgid "No top genres available."
+msgstr "Er zijn geen toptracks beschikbaar."
+
+#: .\spotify\templates\spotify\wraps.html:73
+msgid "My Top Songs"
+msgstr "Mijn Topnummers"
+
+#: .\spotify\templates\spotify\wraps.html:83
+#: .\spotify\templates\spotify\wraps.html:155
+msgid "Your browser does not support the audio element."
+msgstr "Uw browser ondersteunt het audio-element niet."
+
+#: .\spotify\templates\spotify\wraps.html:98
+msgid "Danceability:"
+msgstr "Dansbaarheid:"
+
+#: .\spotify\templates\spotify\wraps.html:98
+msgid "How much your tracks make you want to dance"
+msgstr "Hoeveel je door je nummers wilt dansen"
+
+#: .\spotify\templates\spotify\wraps.html:99
+msgid "Energy:"
+msgstr "Energie:"
+
+#: .\spotify\templates\spotify\wraps.html:99
+msgid "How energetic and intense your music is"
+msgstr "Hoe energiek en intens je muziek is"
+
+#: .\spotify\templates\spotify\wraps.html:100
+msgid "Happiness"
+msgstr "Geluk"
+
+#: .\spotify\templates\spotify\wraps.html:100
+msgid "How positive your tracks feel"
+msgstr "Hoe positief je tracks voelen"
+
+#: .\spotify\templates\spotify\wraps.html:107
+msgid "HMM... Who's that special someone?"
+msgstr "HMM... Wie is die ene speciale persoon?"
+
+#: .\spotify\templates\spotify\wraps.html:108
+msgid "Someone you just can't stop listening to..."
+msgstr "Iemand naar wie je niet kunt stoppen met luisteren..."
+
+#: .\spotify\templates\spotify\wraps.html:116
+msgid "Your #1 Artist:"
+msgstr "Je nummer 1 artiest:"
+
+#: .\spotify\templates\spotify\wraps.html:118
+msgid "Genres:"
+msgstr "Genres:"
+
+#: .\spotify\templates\spotify\wraps.html:119
+msgid "Popularity:"
+msgstr "Populariteit:"
+
+#: .\spotify\templates\spotify\wraps.html:120
+msgid "Followers:"
+msgstr "Volgers:"
+
+#: .\spotify\templates\spotify\wraps.html:128
+msgid "My Top Artists"
+msgstr "Mijn Topartiesten"
+
+#: .\spotify\templates\spotify\wraps.html:146
+msgid "Recommended Songs"
+msgstr "Aanbevolen Nummers"
+
+#: .\spotify\templates\spotify\wraps.html:158
+#, fuzzy
+#| msgid "No top artists available."
+msgid "No preview available"
+msgstr "Geen topartiesten beschikbaar."
+
+#: .\spotify\templates\spotify\wraps.html:162
+#, fuzzy
+#| msgid "No top artists available."
+msgid "No recommendations available."
+msgstr "Geen topartiesten beschikbaar."
+
+#: .\spotify\templates\spotify\wraps.html:171
+msgid "Save or Delete Your Wrap"
+msgstr "Bewaar of Verwijder Uw Omslagdoek"
+
+#: .\spotify\templates\spotify\wraps.html:172
+msgid "Would you like to save this wrap for later, or delete it?"
+msgstr "Wil je deze wrap bewaren voor later, of verwijderen?"
+
+#: .\spotify\templates\spotify\wraps.html:174
+msgid "Save"
+msgstr "Redden"
+
+#: .\spotify\templates\spotify\wraps.html:175
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: .\spotify\templates\spotify\wraps.html:179
+msgid "Go Back to Home"
+msgstr "Ga Terug naar Huis"
+
+#: .\spotify_wrapped\urls.py:23
+msgid "admin/"
+msgstr "beheerder/"
+
+#~ msgid "Hello world! This is an HTML5 Boilerplate."
+#~ msgstr "Hallo wereld! Dit is een HTML5 Boilerplate."
+
+#~ msgid "this is some random text"
+#~ msgstr "dit is een willekeurige tekst"

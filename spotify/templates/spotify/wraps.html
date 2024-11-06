@@ -36,18 +36,18 @@
         <!-- Slide 1: Intro Slide -->
 <div class="slides active" id="slide1">
     <section id="intro">
-        <h2>Welcome to Your Spotify Wrapped</h2>
-        <p>Let’s take a look at your music habits over {{ time_range_label }}!</p>
+        <h2>{% trans "Welcome to Your Spotify Wrapped" %}</h2>
+        <p>{% trans "Let’s take a look at your music habits over" %} {{ time_range_label }}!</p>
     </section>
 </div>
 
 <!-- Slide 2: Total Playback Time with Peak Day -->
 <div class="slides" id="slide2">
     <section id="total-playback-time">
-        <h2>My Minutes Listened</h2>
-        <p>You have listened to approximately {{ total_playback_minutes }} minutes in {{ time_range_label }}.</p>
+        <h2>{% trans "My Minutes Listened" %}</h2>
+        <p>{% trans "You have listened to approximately" %} {{ total_playback_minutes }} {% trans "minutes in" %} {{ time_range_label }}.</p>
         {% if peak_day %}
-            <p>Your peak listening day was <strong>{{ peak_day }}</strong> with <strong>{{ peak_minutes }}</strong> minutes listened.</p>
+            <p>{% trans "Your peak listening day was" %} <strong>{{ peak_day }}</strong> {% trans "with" %} <strong>{{ peak_minutes }}</strong> {% trans "minutes listened." %}</p>
         {% endif %}
     </section>
 </div>
@@ -56,12 +56,12 @@
         <!-- Slide 3: Top Genres -->
         <div class="slides" id="slide3">
             <section id="top-genres">
-                <h2>My Top Genres</h2>
+                <h2>{% trans "My Top Genres" %}</h2>
                 <ul>
                     {% for genre, count in top_genres %}
                         <li>{{ genre }} ({{ count }} times)</li>
                     {% empty %}
-                        <li>No top genres available.</li>
+                        <li>{% trans "No top genres available." %}</li>
                     {% endfor %}
                 </ul>
             </section>
@@ -70,7 +70,7 @@
         <!-- Slide 4: Top Tracks -->
         <div class="slides" id="slide4">
             <section id="top-tracks">
-                <h2>My Top Songs</h2>
+                <h2>{% trans "My Top Songs" %}</h2>
                 <ul>
                     {% for track in tracks %}
                         <li>
@@ -80,12 +80,12 @@
                             {% if track.preview_url %}
                                 <audio controls>
                                     <source src="{{ track.preview_url }}" type="audio/mpeg">
-                                    Your browser does not support the audio element.
+                                    {% trans "Your browser does not support the audio element." %}
                                 </audio>
                             {% endif %}
                         </li>
                     {% empty %}
-                        <li>No top tracks available.</li>
+                        <li>{% trans "No top tracks available." %}</li>
                     {% endfor %}
                 </ul>
             </section>
@@ -95,17 +95,17 @@
         <div class="slides" id="slide5">
             <section id="audio-mood">
                 <h2>My Vibe</h2>
-                <p><strong>Danceability:</strong> {{ avg_danceability }} (How much your tracks make you want to dance)</p>
-                <p><strong>Energy:</strong> {{ avg_energy }} (How energetic and intense your music is)</p>
-                <p><strong>Happiness (Valence):</strong> {{ avg_valence }} (How positive your tracks feel)</p>
+                <p><strong>{% trans "Danceability:" %}</strong> {{ avg_danceability }} ({% trans "How much your tracks make you want to dance" %})</p>
+                <p><strong>{% trans "Energy:" %}</strong> {{ avg_energy }} ({% trans "How energetic and intense your music is" %})</p>
+                <p><strong>{% trans "Happiness" %} (Valence):</strong> {{ avg_valence }} ({% trans "How positive your tracks feel" %})</p>
             </section>
         </div>
 
         <!-- Slide 6: Transition Slide (Who's your #1) -->
         <div class="slides" id="slide6">
             <section id="extra-slide">
-                <h2>HMM... Who's that special someone?</h2>
-                <p>Someone you just can't stop listening to...</p>
+                <h2>{% trans "HMM... Who's that special someone?" %}</h2>
+                <p>{% trans "Someone you just can't stop listening to..." %}</p>
             </section>
         </div>
 
@@ -113,11 +113,11 @@
         {% if top_artist %}
         <div class="slides" id="slide7">
             <section id="top-artist-deep-dive">
-                <h2>Your #1 Artist: {{ top_artist.name }}</h2>
+                <h2>{% trans "Your #1 Artist:" %}" {{ top_artist.name }}</h2>
                 <img src="{{ top_artist.images.0.url }}" alt="{{ top_artist.name }}" width="100">
-                <p><strong>Genres:</strong> {{ top_artist.genres|join:", " }}</p>
-                <p><strong>Popularity:</strong> {{ top_artist.popularity }} / 100</p>
-                <p><strong>Followers:</strong> {{ top_artist.followers.total|floatformat }}</p>
+                <p><strong>{% trans "Genres:" %}</strong> {{ top_artist.genres|join:", " }}</p>
+                <p><strong>{% trans "Popularity:" %}</strong> {{ top_artist.popularity }} / 100</p>
+                <p><strong>{% trans "Followers:" %}</strong> {{ top_artist.followers.total|floatformat }}</p>
             </section>
         </div>
         {% endif %}
@@ -125,7 +125,7 @@
         <!-- Slide 8: Top Artists -->
         <div class="slides" id="slide8">
             <section id="top-artists">
-                <h2>My Top Artists</h2>
+                <h2>{% trans "My Top Artists" %}</h2>
                 <ul>
                     {% for artist in artists %}
                         <li>
@@ -134,7 +134,7 @@
                             <p>{{ artist.name }}</p>
                         </li>
                     {% empty %}
-                        <li>No top artists available.</li>
+                        <li>{% trans "No top artists available." %}</li>
                     {% endfor %}
                 </ul>
             </section>
@@ -143,7 +143,7 @@
         <!-- Slide 9: Recommended Songs -->
         <div class="slides" id="slide9">
             <section id="recommendations">
-                <h2>Recommended Songs</h2>
+                <h2>{% trans "Recommended Songs" %}</h2>
                 <ul>
                     {% for rec in recommendations %}
                         <li>
@@ -152,14 +152,14 @@
                             {% if rec.preview_url %}
                                 <audio controls>
                                     <source src="{{ rec.preview_url }}" type="audio/mpeg">
-                                    Your browser does not support the audio element.
+                                    {% trans "Your browser does not support the audio element." %}"
                                 </audio>
                             {% else %}
-                                <p>No preview available</p>
+                                <p>{% trans "No preview available" %}</p>
                             {% endif %}
                         </li>
                     {% empty %}
-                        <li>No recommendations available.</li>
+                        <li>{% trans "No recommendations available." %}</li>
                     {% endfor %}
                 </ul>
             </section>
@@ -168,15 +168,15 @@
         <!-- Slide 10: Save or Delete Wrap -->
         <div class="slides" id="slide10">
             <section id="save-delete">
-                <h2>Save or Delete Your Wrap</h2>
-                <p>Would you like to save this wrap for later, or delete it?</p>
+                <h2>{% trans "Save or Delete Your Wrap" %}</h2>
+                <p>{% trans "Would you like to save this wrap for later, or delete it?" %}</p>
                 <div class="options">
-                    <button>Save</button>
-                    <button>Delete</button>
+                    <button>{% trans "Save" %}</button>
+                    <button>{% trans "Delete" %}</button>
                 </div>
                 <!-- Go Back to Home Button -->
                 <div class="back-home">
-                    <a href="{% url 'profile' %}" class="back-home-button">Go Back to Home</a>
+                    <a href="{% url 'profile' %}" class="back-home-button">{% trans "Go Back to Home" %}</a>
                 </div>
             </section>
         </div>

@@ -1,11 +1,21 @@
 import os
-import requests
 import time
-from django.shortcuts import redirect, render
-from urllib.parse import urlencode
+import json
+import requests
+from collections import Counter
+from urllib.parse import urlencode, quote
+from django.conf import settings
+from django.urls import reverse
+from django.http import JsonResponse, HttpResponseRedirect
+from django.shortcuts import redirect, render, get_object_or_404
+from django.contrib.auth import login, logout, get_user_model
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
+from django.core.serializers.json import DjangoJSONEncoder
 
-from django.utils.translation import gettext_lazy as _
+from .models import SavedWrap
 
+# Get the custom user model
 User = get_user_model()
 # Spotify app credentials
 SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
@@ -120,3 +130,171 @@ def profile(request):
         'artists': artists,
         'tracks': tracks,
     })
+
+def wraps(request):
+    time_range = request.GET.get('time_range', 'short_term')
+    headers = {'Authorization': f'Bearer {get_valid_token(request)}'}
+    user_data = spotify_api_request(request, 'https://api.spotify.com/v1/me')
+
+    if not user_data:
+        return render(request, 'spotify/error.html', {'message': "Error fetching user data from Spotify API."})
+
+    # Define human-readable labels for each time range
+    time_range_labels = {
+        'short_term': 'Last 4 Weeks',
+        'medium_term': 'Last 6 Months',
+        'long_term': 'All Time'
+    }
+    time_range_label = time_range_labels.get(time_range, 'Last Month')
+
+    # Fetch user's top artists based on the selected time range
+    artists_response = requests.get(f'https://api.spotify.com/v1/me/top/artists?limit=10&time_range={time_range}', headers=headers)
+    all_artists = artists_response.json().get('items', []) if artists_response.status_code == 200 else []
+
+    # Fetch user's top tracks based on the selected time range
+    tracks_response = requests.get(f'https://api.spotify.com/v1/me/top/tracks?limit=10&time_range={time_range}', headers=headers)
+    all_tracks = tracks_response.json().get('items', []) if tracks_response.status_code == 200 else []
+
+    top_artist = all_artists[0] if all_artists else None
+    top_5_artists = all_artists[:5]
+    genres = [genre for artist in all_artists for genre in artist.get('genres', [])]
+    top_genres = Counter(genres).most_common(5)
+    top_5_tracks = all_tracks[:5]
+    total_playback_minutes = sum(track['duration_ms'] for track in all_tracks) / 60000
+
+    track_ids = [track['id'] for track in all_tracks]
+    avg_danceability = avg_energy = avg_valence = None
+
+    if track_ids:
+        audio_features_json = spotify_api_request(request, 'https://api.spotify.com/v1/audio-features', params={'ids': ','.join(track_ids)})
+        valid_features = [f for f in audio_features_json.get('audio_features', []) if f]
+        if valid_features:
+            avg_danceability = sum(f['danceability'] for f in valid_features) / len(valid_features)
+            avg_energy = sum(f['energy'] for f in valid_features) / len(valid_features)
+            avg_valence = sum(f['valence'] for f in valid_features) / len(valid_features)
+
+    recommend_params = {
+        'seed_artists': ','.join([artist['id'] for artist in all_artists[:2]]) if all_artists else '',
+        'seed_tracks': ','.join([track['id'] for track in all_tracks[:2]]) if all_tracks else '',
+        'limit': 5
+    }
+    recommendations_json = spotify_api_request(request, 'https://api.spotify.com/v1/recommendations', params=recommend_params)
+
+    # wrap_data is the JSON object we will pass to the template
+    wrap_data = {
+        "title": "My Spotify Wrapped",
+        "time_range_label": time_range_label,
+        "total_playback_minutes": int(total_playback_minutes),
+        "top_genres": top_genres,
+        "top_tracks": top_5_tracks,
+        "avg_danceability": avg_danceability,
+        "avg_energy": avg_energy,
+        "avg_valence": avg_valence,
+        "top_artist": top_artist,
+        "top_artists": top_5_artists,
+        "recommendations": recommendations_json.get('tracks', []) if recommendations_json else []
+    }
+    wrap_data_json = json.dumps(wrap_data, cls=DjangoJSONEncoder)
+
+    return render(request, 'spotify/wraps.html', {
+        'user_data': user_data,
+        'wrap_data_json': wrap_data_json,
+        'top_artist': top_artist,
+        'artists': top_5_artists,
+        'tracks': top_5_tracks,
+        'recommendations': recommendations_json.get('tracks', []) if recommendations_json else [],
+        'total_playback_minutes': total_playback_minutes,
+        'top_genres': top_genres,
+        'avg_danceability': avg_danceability,
+        'avg_energy': avg_energy,
+        'avg_valence': avg_valence,
+        'selected_time_range': time_range,
+        'time_range_label': time_range_label
+    })
+
+# Display a list of saved wraps for the user
+@login_required
+def wraps_library(request):
+    saved_wraps = SavedWrap.objects.filter(user=request.user)
+    return render(request, 'spotify/wraps_library.html', {'saved_wraps': saved_wraps})
+
+# Save the current Spotify wrap data to the database
+@login_required
+def save_wrap(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            wrap_data = {
+                'user': request.user,
+                'title': data.get('title', 'My Spotify Wrapped'),
+                'time_range_label': data.get('time_range_label'),
+                'total_playback_minutes': int(data.get('total_playback_minutes', 0)),
+                'top_genres': data.get('top_genres'),
+                'top_tracks': data.get('top_tracks'),
+                'avg_danceability': float(data.get('avg_danceability', 0)),
+                'avg_energy': float(data.get('avg_energy', 0)),
+                'avg_valence': float(data.get('avg_valence', 0)),
+                'top_artist': data.get('top_artist'),
+                'top_artists': data.get('top_artists'),
+                'recommendations': data.get('recommendations')
+            }
+            SavedWrap.objects.create(**wrap_data)
+            return JsonResponse({'message': 'Wrap saved successfully'}, status=200)
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON data'}, status=400)
+        except Exception as e:
+            print(f"Error saving wrap: {e}")
+            return JsonResponse({'error': 'Failed to save wrap data'}, status=500)
+    return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+# Delete a specific saved wrap
+@login_required
+@require_POST
+def delete_wrap(request, wrap_id):
+    wrap = get_object_or_404(SavedWrap, id=wrap_id, user=request.user)
+    wrap.delete()
+    return JsonResponse({'message': 'Wrap deleted successfully'})
+
+# ========== Helper Functions ==========
+
+# Retrieve a valid access token, refreshing if necessary
+def get_valid_token(request):
+    access_token = request.session.get('access_token')
+    token_expires_at = request.session.get('token_expires_at')
+    if access_token and time.time() < token_expires_at:
+        return access_token
+    return refresh_token(request)
+
+# Refresh the Spotify access token using the refresh token
+def refresh_token(request):
+    refresh_token = request.session.get('refresh_token')
+    if not refresh_token:
+        return None
+    refresh_data = {
+        'grant_type': 'refresh_token',
+        'refresh_token': refresh_token,
+        'client_id': SPOTIFY_CLIENT_ID,
+        'client_secret': SPOTIFY_CLIENT_SECRET,
+    }
+    response = requests.post(SPOTIFY_TOKEN_URL, data=refresh_data)
+    response_json = response.json()
+    if 'access_token' in response_json:
+        request.session['access_token'] = response_json['access_token']
+        request.session['token_expires_at'] = time.time() + response_json.get('expires_in', 3600)
+        return request.session['access_token']
+    print("Token refresh failed:", response_json)
+    return None
+
+# Make a request to the Spotify API with valid access token
+def spotify_api_request(request, url, params=None):
+    access_token = get_valid_token(request)
+    if not access_token:
+        return None
+    headers = {'Authorization': f'Bearer {access_token}'}
+    try:
+        response = requests.get(url, headers=headers, params=params)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Spotify API Request failed: {e}")
+        return None
