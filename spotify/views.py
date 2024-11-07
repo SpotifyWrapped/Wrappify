@@ -127,9 +127,12 @@ def profile(request):
     if not user_data:
         return render(request, 'spotify/error.html', {'message': "Error fetching user data from Spotify API."})
 
+    profile_image_url = user_data.get('images', [{}])[0].get('url') if user_data.get('images') else None
+    
     context = {
         'user_data': user_data,
-        'selected_time_range': time_range
+        'selected_time_range': time_range,
+        'profile_image_url': profile_image_url  # Pass the profile image URL to the template
     }
     return render(request, 'spotify/profile.html', context)
 
@@ -315,3 +318,6 @@ def spotify_api_request(request, url, params=None):
     except requests.exceptions.RequestException as e:
         print(f"Spotify API Request failed: {e}")
         return None
+
+def contactPage(request):
+    return render(request, 'spotify/contact.html')
