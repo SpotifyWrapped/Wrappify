@@ -6,19 +6,45 @@
     box-sizing: border-box;
 }
 
-body {
+body, html {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Playfair Display SC', serif;
+    background-color: #E0E7EF;
 }
 
+/* main container */
 .container {
+    position: relative;
     width: 100%;
-    max-width: 400px;
+    max-width: 800px;
     text-align: center;
+    margin: auto;
+    /* padding: 20px; */
+}
+
+
+.jagged-shape1 {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 70vh; /* Full viewport height */
+    background-color: #95B3D6;
+    clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%); /* Jagged effect */
+    box-shadow: 0 0 0 5px black;
+}
+
+.jagged-shape2 {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 40vh; /* Full viewport height */
+    background-color: #5496D7;
+    clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 50%, 40% 10%, 50% 40%, 60% 20%, 70% 50%, 80% 30%, 100% 0, 100% 100%, 0 100%); /* Jagged effect */
+    outline: 5px solid black;
 }
 
 .user-info, .wrapped-link, .logout {
@@ -42,10 +68,16 @@ p {
     margin-bottom: 10px;
 }
 
+button {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
 .wrapped-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #1db954;
+    background-color: #88A3C1;
     color: white;
     text-decoration: none;
     border-radius: 4px;
@@ -53,18 +85,18 @@ p {
 }
 
 .wrapped-button:hover {
-    background-color: #14833b;
+    background-color: #76A1B6;
 }
 
 .logout a {
-    color: #1db954;
+    color: #88A3C1;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
 .logout a:hover {
-    color: #14833b;
+    color: #76A1B6;
 }
 
 .container {
@@ -74,7 +106,11 @@ p {
 }
 
 h1, h2 {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Playfair Display SC', serif;
+}
+
+button {
+    font-family: 'Playfair Display SC', serif;
 }
 
 ul {
@@ -97,7 +133,7 @@ ul li {
 #time-range-buttons a {
     display: inline-block;
     padding: 10px 20px; /* Button padding */
-    background-color: #1DB954; /* Spotify green color */
+    background-color: #88A3C1; /* Spotify green color */
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -106,11 +142,11 @@ ul li {
 }
 
 #time-range-buttons a:hover {
-    background-color: #17a64a; /* Darker green on hover */
+    background-color: #76A1B6; /* Darker green on hover */
 }
 
 #time-range-buttons a.active {
-    background-color: #1a8f3c; /* Even darker green for active button */
+    background-color: #4e92d7e2; /* Even darker green for active button */
     pointer-events: none; /* Disable clicking on the active button */
 }
 
@@ -136,4 +172,49 @@ ul li {
 .back-home-button:hover {
     background-color: #2a4374; /* Darker on hover */
     transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.settings-button {
+    position: fixed; /* Fix the position relative to the viewport */
+    top: 10px; /* Adjust the distance from the top */
+    right: 10px; /* Adjust the distance from the right */
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.settings-button button {
+    background-color: #88A3C1; /* Background color for the button */
+    border: none; /* Remove default border */
+    color: white; /* Text color */
+    padding: 10px; /* Padding for the button */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+    font-size: 18px; /* Font size */
+}
+
+.settings-button button:hover {
+    background-color: #76A1B6; /* Change background color on hover */
+}
+
+.contact-us-button {
+    position: fixed; /* Fix the position relative to the viewport */
+    bottom: 10px; /* Adjust the distance from the bottom */
+    left: 10px; /* Adjust the distance from the left */
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.contact-us-button button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #88A3C1;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    outline: none;
+    border: none;
+}
+
+.contact-us-button button:hover {
+    background-color: #76A1B6; /* Change background color on hover */
 }
