@@ -12,7 +12,9 @@ body, html {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    font-family: 'Playfair Display SC', serif;
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
     background-color: #E0E7EF;
 }
 
@@ -25,7 +27,6 @@ body, html {
     margin: auto;
     /* padding: 20px; */
 }
-
 
 .jagged-shape1 {
     position: fixed;
@@ -47,7 +48,7 @@ body, html {
     outline: 5px solid black;
 }
 
-.user-info, .wrapped-link, .logout {
+.user-info, .wrapped-link, .logout, .time-range-buttons {
     margin-bottom: 20px;
     padding: 20px;
     background-color: #ffffff;
@@ -57,21 +58,81 @@ body, html {
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 80px;
     margin-bottom: 10px;
     color: #333;
+    font-family: "Roboto", serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.profile-details {
+    display: flex;
+    align-items: center;
+}
+
+.spotify-logo {
+    width: 25px;
+    height: 25px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.profile-image {
+    width: 200px; /* Adjust size as needed */
+    height: 200px; /* Match width for a perfect circle */
+    border-radius: 50%; /* This makes the image circular */
+    object-fit: cover; /* Ensures the image fills the circle */
+    margin-right: 30px;
+    
+}
+
+.name-and-link {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 50px;
+}
+
+
+.spotify-link {
+    color: #666; /* Light grey color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Optional: make it bold for better visibility */
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+}
+
+.spotify-link:hover {
+    color: #333; /* Darker grey on hover */
 }
 
 p {
-    font-size: 16px;
+    font-size: 25px;
     color: #555;
     margin-bottom: 10px;
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Use the parent's text color */
 }
 
 button {
     font-size: 16px;
     color: #555;
     margin-bottom: 10px;
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.wrapped-link {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between buttons */
 }
 
 .wrapped-button {
@@ -93,6 +154,9 @@ button {
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .logout a:hover {
@@ -106,11 +170,15 @@ button {
 }
 
 h1, h2 {
-    font-family: 'Playfair Display SC', serif;
+    font-family: "Roboto", serif;
+    font-weight: 700;
+    font-style: normal;
 }
 
 button {
-    font-family: 'Playfair Display SC', serif;
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 ul {
@@ -132,13 +200,18 @@ ul li {
 
 #time-range-buttons a {
     display: inline-block;
-    padding: 10px 20px; /* Button padding */
+    padding: 12px 82px; /* Button padding */
     background-color: #88A3C1; /* Spotify green color */
     color: white;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
     transition: background-color 0.3s ease; /* Smooth hover transition */
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+    white-space: nowrap; /* Prevent text from wrapping */
+    font-size: 19px;
 }
 
 #time-range-buttons a:hover {
@@ -167,6 +240,9 @@ ul li {
     border-radius: 5px;
     transition: background-color 0.3s, transform 0.2s;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .back-home-button:hover {
@@ -189,6 +265,9 @@ ul li {
     border-radius: 5px; /* Rounded corners */
     cursor: pointer; /* Change cursor on hover */
     font-size: 18px; /* Font size */
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .settings-button button:hover {
@@ -202,7 +281,7 @@ ul li {
     z-index: 1000; /* Ensure it appears above other elements */
 }
 
-.contact-us-button button {
+.contact-button {
     display: inline-block;
     padding: 10px 20px;
     background-color: #88A3C1;
@@ -215,6 +294,95 @@ ul li {
     border: none;
 }
 
+.contact-us-button button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #88A3C1;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    outline: none;
+    border: none;
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
 .contact-us-button button:hover {
     background-color: #76A1B6; /* Change background color on hover */
 }
+
+.roboto-black-italic {
+    font-family: "Roboto", serif;
+    font-weight: 900;
+    font-style: italic;
+  }
+  
+  .roboto-black {
+    font-family: "Roboto", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .roboto-bold-italic {
+    font-family: "Roboto", serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+  .roboto-bold {
+    font-family: "Roboto", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .roboto-medium-italic {
+    font-family: "Roboto", serif;
+    font-weight: 500;
+    font-style: italic;
+  }
+  
+  .roboto-medium {
+    font-family: "Roboto", serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .roboto-regular-italic {
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  .roboto-regular {
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .roboto-light-italic {
+    font-family: "Roboto", serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  .roboto-light {
+    font-family: "Roboto", serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .roboto-thin-italic {
+    font-family: "Roboto", serif;
+    font-weight: 100;
+    font-style: italic;
+  }
+  
+  .roboto-thin {
+    font-family: "Roboto", serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+  
