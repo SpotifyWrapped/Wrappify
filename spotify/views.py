@@ -256,6 +256,28 @@ def delete_wrap(request, wrap_id):
     wrap.delete()
     return JsonResponse({'message': 'Wrap deleted successfully'})
 
+# Saved Wrap details
+def wrap_detail(request, wrap_id):
+    # Get the wrap details or return a 404 if not found
+    wrap = get_object_or_404(SavedWrap, id=wrap_id, user=request.user)
+    
+    # Prepare the context for the template
+    context = {
+        'title': wrap.title,
+        'time_range_label': wrap.time_range_label,
+        'total_playback_minutes': wrap.total_playback_minutes,
+        'top_genres': wrap.top_genres,
+        'top_tracks': wrap.top_tracks,
+        'avg_danceability': wrap.avg_danceability,
+        'avg_energy': wrap.avg_energy,
+        'avg_valence': wrap.avg_valence,
+        'top_artist': wrap.top_artist,
+        'artists': wrap.top_artists,
+        'recommendations': wrap.recommendations,
+        'created_at': wrap.created_at,
+    }
+    return render(request, 'spotify/saved_wraps.html', context)
+
 # ========== Helper Functions ==========
 
 # Retrieve a valid access token, refreshing if necessary

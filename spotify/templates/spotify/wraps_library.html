@@ -4,128 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Saved Spotify Wraps</title>
+    <title>Library</title>
     <link rel="stylesheet" href="{% static 'spotify/library.css' %}">
 </head>
 <body>
-    <h1>Your Saved Spotify Wraps</h1>
+
+    <header class="header">
+        <a href="{% url 'profile' %}">
+            <img src="{% static 'spotify/images/Wrappify.png' %}" class="logo">
+        </a>
+    </header>
     
     <div class="wraps-list">
         {% if saved_wraps %}
-            {% for wrap in saved_wraps %}
-                <div class="wrap-entry" id="wrap-{{ wrap.id }}">
-                    <!-- Slide 1: Intro Slide -->
-                    <section class="slide" id="intro">
-                        <h2>{{ wrap.title }}</h2>
-                        <p>Let’s take a look at your music habits over {{ wrap.time_range_label }}!</p>
-                        <p><strong>Saved on:</strong> {{ wrap.created_at }}</p>
-                    </section>
-
-                    <!-- Slide 2: Total Playback Time -->
-                    <section class="slide" id="total-playback-time">
-                        <h2>Total Playback Time</h2>
-                        <p>You have listened to approximately {{ wrap.total_playback_minutes }} minutes in {{ wrap.time_range_label }}.</p>
-                    </section>
-
-                    <!-- Slide 3: Top Genres -->
-                    <section class="slide" id="top-genres">
-                        <h2>Top Genres</h2>
-                        <ul>
-                            {% for genre, count in wrap.top_genres %}
-                                <li>{{ genre }} ({{ count }} times)</li>
-                            {% endfor %}
-                        </ul>
-                    </section>
-
-                    <!-- Slide 4: Top Tracks with Audio Playback -->
-                    <section class="slide" id="top-tracks">
-                        <h2>Top Songs</h2>
-                        <ul>
-                            {% for track in wrap.top_tracks %}
-                                <li>
-                                    <strong>{{ forloop.counter }}.</strong> {{ track.name }} by {{ track.artists.0.name }}
-                                    <img src="{{ track.album.images.0.url }}" alt="{{ track.name }}" width="100">
-                                    
-                                    <!-- Audio Playback for Each Track -->
-                                    {% if track.preview_url %}
-                                        <audio controls>
-                                            <source src="{{ track.preview_url }}" type="audio/mpeg">
-                                            Your browser does not support the audio element.
-                                        </audio>
-                                    {% else %}
-                                        <p>No preview available</p>
-                                    {% endif %}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </section>
-
-                    <!-- Slide 5: Mood Analysis (Vibe) -->
-                    <section class="slide" id="audio-mood">
-                        <h2>My Vibe</h2>
-                        <p><strong>Danceability:</strong> {{ wrap.avg_danceability }} (How much your tracks make you want to dance)</p>
-                        <p><strong>Energy:</strong> {{ wrap.avg_energy }} (How energetic and intense your music is)</p>
-                        <p><strong>Happiness (Valence):</strong> {{ wrap.avg_valence }} (How positive your tracks feel)</p>
-                    </section>
-
-                    <!-- Slide 6: Top Artist Deep Dive -->
-                    {% if wrap.top_artist %}
-                        <section class="slide" id="top-artist-deep-dive">
-                            <h2>Your #1 Artist: {{ wrap.top_artist.name }}</h2>
-                            <img src="{{ wrap.top_artist.images.0.url }}" alt="{{ wrap.top_artist.name }}" width="100">
-                            <p><strong>Genres:</strong> {{ wrap.top_artist.genres|join:", " }}</p>
-                            <p><strong>Popularity:</strong> {{ wrap.top_artist.popularity }} / 100</p>
-                            <p><strong>Followers:</strong> {{ wrap.top_artist.followers.total|floatformat }}</p>
-                        </section>
+            <div class="card-container">
+                {% for wrap in saved_wraps %}
+                    <!-- Card for each wrap -->
+                    <div class="wrap-card" id="wrap-card-{{ wrap.id }}">
+                    <!-- Display the first track’s album image if it exists, else use a default image -->
+                    {% if wrap.top_tracks.0 %}
+                        <img src="{{ wrap.top_tracks.0.album.images.0.url }}" alt="{{ wrap.top_tracks.0.name }}" class="wrap-image">
+                    {% else %}
+                        <img src="path/to/default_image.jpg" alt="Default Image" class="wrap-image">
                     {% endif %}
+                        <h3>My {{ wrap.created_at|date:"F j, Y" }} Wrap</h3>
+                        <p>Duration: {{ wrap.time_range_label }}</p>
 
-                    <!-- Slide 7: Top Artists -->
-                    <section class="slide" id="top-artists">
-                        <h2>Top Artists</h2>
-                        <ul>
-                            {% for artist in wrap.top_artists %}
-                                <li>
-                                    <strong>{{ forloop.counter }}.</strong> {{ artist.name }}
-                                    <img src="{{ artist.images.0.url }}" alt="{{ artist.name }}" width="100">
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </section>
-
-                    <!-- Slide 8: Recommended Songs with Audio Playback -->
-                    <section class="slide" id="recommendations">
-                        <h2>Recommended Songs</h2>
-                        <ul>
-                            {% for rec in wrap.recommendations %}
-                                <li>
-                                    <strong>{{ rec.name }}</strong> by {{ rec.artists.0.name }}
-                                    <img src="{{ rec.album.images.0.url }}" alt="{{ rec.name }}" width="100">
-                                    
-                                    <!-- Audio Playback for Recommendations -->
-                                    {% if rec.preview_url %}
-                                        <audio controls>
-                                            <source src="{{ rec.preview_url }}" type="audio/mpeg">
-                                            Your browser does not support the audio element.
-                                        </audio>
-                                    {% else %}
-                                        <p>No preview available</p>
-                                    {% endif %}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </section>
-
-                    <!-- Delete button for each wrap, using data-wrap-id attribute -->
-                    <button data-wrap-id="{{ wrap.id }}" class="delete-button">Delete Wrap</button>
-                </div>
-            {% endfor %}
-        {% else %}
-            <p>No wraps saved yet.</p>
+                        <!-- Details button with data-url attribute -->
+                        <button class="view-wrap-button" data-url="{% url 'wrap_detail' wrap.id %}">View Wrap</button>
+                        
+                        <!-- Delete button with data-url attribute -->
+                        <button class="delete-wrap-button" data-url="{% url 'delete_wrap' wrap.id %}">Delete</button>
+                    </div>
+                {% endfor %}
+            </div>
         {% endif %}
-    </div>
-
-    <div class="back-home">
-        <a href="{% url 'profile' %}" class="back-home-button">Go Back to Profile</a>
     </div>
 
     <script>
@@ -141,41 +54,41 @@
             return '';
         }
 
-        // Add event listeners to all delete buttons
-        document.querySelectorAll('.delete-button').forEach(button => {
+        // Function to handle navigation to detail page
+        document.querySelectorAll('.view-wrap-button').forEach(button => {
             button.addEventListener('click', function() {
-                const wrapId = this.getAttribute('data-wrap-id');
-                deleteWrap(wrapId);
+                const url = button.getAttribute('data-url');
+                window.location.href = url;  // Navigate to the detail page
             });
         });
 
-        function deleteWrap(wrapId) {
-            const url = `{% url 'delete_wrap' wrap_id=12345 %}`.replace('12345', wrapId);
+        // Function to handle deletion
+        document.querySelectorAll('.delete-wrap-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const url = button.getAttribute('data-url');
+                const wrapCard = button.closest('.wrap-card');
 
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCSRFToken()
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.message) {
-                    alert(data.message);
-                    // Remove the wrap element from the DOM
-                    document.getElementById(`wrap-${wrapId}`).remove();
-                } else if (data.error) {
-                    alert("Error: " + data.error);
-                }
-            })
-            .catch(error => console.error('Error:', error));
-        }
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCSRFToken()
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message) {
+                        alert(data.message);
+                        // Remove the wrap card from the DOM
+                        wrapCard.remove();
+                    } else if (data.error) {
+                        alert("Error: " + data.error);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        });
     </script>
+
 </body>
 </html>
