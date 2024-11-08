@@ -73,27 +73,6 @@ p {
     background-color: #76A1B6;
 }
 
-.contact-us-button {
-  position: fixed; /* Fix the position relative to the viewport */
-  bottom: 10px; /* Adjust the distance from the bottom */
-  left: 10px; /* Adjust the distance from the left */
-  z-index: 1000; /* Ensure it appears above other elements */
-}
-
-
-.contact-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #88A3C1;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    outline: none;
-    border: none;
-}
-
 
 .roboto-black-italic {
     font-family: "Roboto", serif;
