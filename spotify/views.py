@@ -31,12 +31,15 @@ SCOPE = "user-read-private user-read-email user-top-read"
 
 # Render the login page
 def loginPage(request):
+    if request.user.is_authenticated:
+        return redirect('profile')  # Redirect to a different page if the user is logged in
+    request.session.clear()
     return render(request, 'spotify/login.html')
 
 # Log out from both Spotify and Django sessions
 def logout_view(request):
     logout(request)
-    request.session.clear()
+    request.session.flush()
     return redirect('login')
 
 # Redirect the user to Spotify login page
@@ -85,8 +88,10 @@ def spotify_callback(request):
         request.session['token_expires_at'] = time.time() + expires_in
 
         # Call get_valid_token to verify the token's usability immediately after obtaining it
-        if not get_valid_token(request):
-            return render(request, 'spotify/error.html', {"message": "Token validation failed. Please try logging in again."})
+        if not get_valid_token(request):  # This is the new check
+            return render(request, 'spotify/error.html', {
+                "message": "Token validation failed. Please try logging in again."
+            })
 
         headers = {'Authorization': f'Bearer {access_token}'}
         user_profile_response = requests.get('https://api.spotify.com/v1/me', headers=headers)
@@ -124,9 +129,12 @@ def profile(request):
     if not user_data:
         return render(request, 'spotify/error.html', {'message': "Error fetching user data from Spotify API."})
 
+    profile_image_url = user_data.get('images', [{}])[0].get('url') if user_data.get('images') else None
+    
     context = {
         'user_data': user_data,
-        'selected_time_range': time_range
+        'selected_time_range': time_range,
+        'profile_image_url': profile_image_url  # Pass the profile image URL to the template
     }
     return render(request, 'spotify/profile.html', context)
 
@@ -264,27 +272,40 @@ def get_valid_token(request):
     token_expires_at = request.session.get('token_expires_at')
     if access_token and time.time() < token_expires_at:
         return access_token
+
+    refresh_success = refresh_token(request)
+    if refresh_success:
+        return request.session.get('access_token')
+    else:
+        return None
+
+# Helper function: refreshes the access token
+
     return refresh_token(request)
 
 # Refresh the Spotify access token using the refresh token
 def refresh_token(request):
     refresh_token = request.session.get('refresh_token')
     if not refresh_token:
-        return None
+        return False
+
     refresh_data = {
         'grant_type': 'refresh_token',
         'refresh_token': refresh_token,
         'client_id': SPOTIFY_CLIENT_ID,
         'client_secret': SPOTIFY_CLIENT_SECRET,
     }
+
     response = requests.post(SPOTIFY_TOKEN_URL, data=refresh_data)
     response_json = response.json()
+
     if 'access_token' in response_json:
         request.session['access_token'] = response_json['access_token']
         request.session['token_expires_at'] = time.time() + response_json.get('expires_in', 3600)
-        return request.session['access_token']
-    print("Token refresh failed:", response_json)
-    return None
+        return True
+    else:
+        print("Token refresh failed:", response_json)
+        return False
 
 # Make a request to the Spotify API with valid access token
 def spotify_api_request(request, url, params=None):
@@ -299,3 +320,6 @@ def spotify_api_request(request, url, params=None):
     except requests.exceptions.RequestException as e:
         print(f"Spotify API Request failed: {e}")
         return None
+
+def contactPage(request):
+    return render(request, 'spotify/contact.html')
