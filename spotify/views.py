@@ -31,6 +31,8 @@ SCOPE = "user-read-private user-read-email user-top-read"
 
 # Render the login page
 def loginPage(request):
+    if request.user.is_authenticated:
+        return redirect('home')  # Redirect to a different page if the user is logged in
     request.session.clear()
     return render(request, 'spotify/login.html')
 
