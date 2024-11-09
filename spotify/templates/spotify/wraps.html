@@ -105,17 +105,20 @@
         </div>
 
         <!-- Slide 7: #1 Artist Deep Dive -->
-        {% if top_artist %}
         <div class="slides" id="slide7">
             <section id="top-artist-deep-dive">
-                <h2>Your #1 Artist: {{ top_artist.name }}</h2>
-                <img src="{{ top_artist.images.0.url }}" alt="{{ top_artist.name }}" width="100">
-                <p><strong>Genres:</strong> {{ top_artist.genres|join:", " }}</p>
-                <p><strong>Popularity:</strong> {{ top_artist.popularity }} / 100</p>
-                <p><strong>Followers:</strong> {{ top_artist.followers.total|floatformat }}</p>
+                {% if top_artist %}
+                    <h2>Your #1 Artist: {{ top_artist.name }}</h2>
+                    <img src="{{ top_artist.images.0.url }}" alt="{{ top_artist.name }}" width="100">
+                    <p><strong>Genres:</strong> {{ top_artist.genres|join:", " }}</p>
+                    <p><strong>Popularity:</strong> {{ top_artist.popularity }} / 100</p>
+                    <p><strong>Followers:</strong> {{ top_artist.followers.total|floatformat }}</p>
+                {% else %}
+                    <h2>No top artist available</h2>
+                    <p>It seems like you haven't listened to enough music recently to have a top artist.</p>
+                {% endif %}
             </section>
         </div>
-        {% endif %}
 
         <!-- Slide 8: Top Artists -->
         <div class="slides" id="slide8">

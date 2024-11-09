@@ -243,7 +243,7 @@ def save_wrap(request):
                 'avg_danceability': float(data.get('avg_danceability', 0)),
                 'avg_energy': float(data.get('avg_energy', 0)),
                 'avg_valence': float(data.get('avg_valence', 0)),
-                'top_artist': data.get('top_artist'),
+                'top_artist': data.get('top_artist') or "No top artist available",  # Set default value
                 'top_artists': data.get('top_artists'),
                 'recommendations': data.get('recommendations')
             }
