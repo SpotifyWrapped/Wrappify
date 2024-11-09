@@ -11,19 +11,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="jagged-shape1"></div>
-    <div class="jagged-shape2"></div>
     <div class="container">
-        <div class="settings-button">
-            <button>⚙️</button>
-        </div>
+        <a href="{% url 'settings' %}">
+            <p class="settings-button">⚙️</p>
+        </a>
         
 
         <div class="contact-us-button">
             <a href="{% url 'contacts' %}" class="contact-button">Contact The Developers</a>
         </div>
 
-        <!-- User Information Section6 -->
+        <!-- User Information Section -->
         <div class="user-info">
             <div class="profile-details">
                 {% if profile_image_url %}

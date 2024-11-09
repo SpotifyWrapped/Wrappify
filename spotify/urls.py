@@ -11,6 +11,10 @@ urlpatterns = [
     path('save_wrap/', views.save_wrap, name='save_wrap'),
     path('wraps_library/', views.wraps_library, name='wraps_library'),
     path('delete_wrap/<int:wrap_id>/', views.delete_wrap, name='delete_wrap'),
+    path('wrap/<int:wrap_id>/', views.wrap_detail, name='wrap_detail'),
     path('contact/', views.contactPage, name='contacts'),
+    path('settings/', views.settings, name='settings'),
+
+
 
 ]

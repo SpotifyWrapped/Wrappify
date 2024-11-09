@@ -32,14 +32,14 @@ SCOPE = "user-read-private user-read-email user-top-read"
 # Render the login page
 def loginPage(request):
     if request.user.is_authenticated:
-        return redirect('home')  # Redirect to a different page if the user is logged in
+        return redirect('profile')  # Redirect to a different page if the user is logged in
     request.session.clear()
     return render(request, 'spotify/login.html')
 
 # Log out from both Spotify and Django sessions
 def logout_view(request):
     logout(request)
-    request.session.clear()
+    request.session.flush()
     return redirect('login')
 
 # Redirect the user to Spotify login page
@@ -263,6 +263,43 @@ def delete_wrap(request, wrap_id):
     wrap = get_object_or_404(SavedWrap, id=wrap_id, user=request.user)
     wrap.delete()
     return JsonResponse({'message': 'Wrap deleted successfully'})
+
+# Saved Wrap details
+def wrap_detail(request, wrap_id):
+    # Get the wrap details or return a 404 if not found
+    wrap = get_object_or_404(SavedWrap, id=wrap_id, user=request.user)
+    
+    # Prepare the context for the template
+    context = {
+        'title': wrap.title,
+        'time_range_label': wrap.time_range_label,
+        'total_playback_minutes': wrap.total_playback_minutes,
+        'top_genres': wrap.top_genres,
+        'top_tracks': wrap.top_tracks,
+        'avg_danceability': wrap.avg_danceability,
+        'avg_energy': wrap.avg_energy,
+        'avg_valence': wrap.avg_valence,
+        'top_artist': wrap.top_artist,
+        'artists': wrap.top_artists,
+        'recommendations': wrap.recommendations,
+        'created_at': wrap.created_at,
+    }
+    return render(request, 'spotify/saved_wraps.html', context)
+
+# Settings Page
+@login_required
+def settings(request):
+    return render(request, 'spotify/settings.html')
+
+
+
+
+
+
+
+
+
+
 
 # ========== Helper Functions ==========
 
