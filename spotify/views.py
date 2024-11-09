@@ -286,6 +286,21 @@ def wrap_detail(request, wrap_id):
     }
     return render(request, 'spotify/saved_wraps.html', context)
 
+# Settings Page
+@login_required
+def settings(request):
+    return render(request, 'spotify/settings.html')
+
+
+
+
+
+
+
+
+
+
+
 # ========== Helper Functions ==========
 
 # Retrieve a valid access token, refreshing if necessary

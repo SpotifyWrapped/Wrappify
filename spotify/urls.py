@@ -13,6 +13,8 @@ urlpatterns = [
     path('delete_wrap/<int:wrap_id>/', views.delete_wrap, name='delete_wrap'),
     path('wrap/<int:wrap_id>/', views.wrap_detail, name='wrap_detail'),
     path('contact/', views.contactPage, name='contacts'),
+    path('settings/', views.settings, name='settings'),
+
 
 
 ]
