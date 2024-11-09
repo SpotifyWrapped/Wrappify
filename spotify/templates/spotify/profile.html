@@ -12,11 +12,14 @@
 </head>
 <body>
     <div class="container">
-        <a href="{% url 'settings' %}">
-            <p class="settings-button">⚙️</p>
-        </a>
-        
 
+        <div>
+            <a href="{% url 'settings' %}" class="settings-button">
+                <p class="settings-button">⚙️</p>
+            </a>
+        </div>
+
+        
         <div class="contact-us-button">
             <a href="{% url 'contacts' %}" class="contact-button">Contact The Developers</a>
         </div>
@@ -46,7 +49,7 @@
         </div>
         
 
-    <!-- Link to Wrapped Page -->
+    <!-- Link to Library Page -->
     <div class="wrapped-link">
         <a href="{% url 'wraps' %}?time_range={{ selected_time_range }}" class="wrapped-button">View Your Wraps</a>
         <a href="{% url 'wraps_library' %}" class="wrapped-button library-button">Library</a>
