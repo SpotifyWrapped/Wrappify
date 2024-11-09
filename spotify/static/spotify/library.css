@@ -101,7 +101,7 @@ body {
 
 @media (max-width: 600px) {
     .wrap-card {
-        flex: 1 1 100%
+        flex: 1 1 100%;
         max-width: 100%;
     }
 }
