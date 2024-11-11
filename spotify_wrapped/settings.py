@@ -44,6 +44,8 @@ LANGUAGES = (
     ('nl', _('Dutch')),
 )
 
+ROSETTA_REQUIRES_AUTH = True
+
 PARLER_LANGUAGES = {
     None: (
         {'code': 'en',},

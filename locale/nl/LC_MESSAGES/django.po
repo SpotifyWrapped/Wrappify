@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-05 00:17-0500\n"
-"PO-Revision-Date: 2024-11-05 00:19+0000\n"
+"POT-Creation-Date: 2024-11-06 16:33-0500\n"
+"PO-Revision-Date: 2024-11-06 16:12+0000\n"
 "Last-Translator:   <mbanda3@gatech.edu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -32,14 +32,6 @@ msgstr "inhoud"
 msgid "Error"
 msgstr "Fout"
 
-#: .\spotify\templates\spotify\index.html:42
-msgid "TestDriven.io Courses"
-msgstr ""
-
-#: .\spotify\templates\spotify\index.html:48
-msgid "Language"
-msgstr "Taal"
-
 #: .\spotify\templates\spotify\login.html:9
 #: .\spotify\templates\spotify\login.html:14
 msgid "Your Spotify Wrapped"
@@ -55,8 +47,6 @@ msgstr "Klik Hier"
 
 #: .\spotify\templates\spotify\profile.html:9
 #: .\spotify\templates\spotify\wraps.html:9
-#, fuzzy
-#| msgid "Your Spotify Wrapped"
 msgid "Spotify Wrapped"
 msgstr "Je Spotify verpakt"
 
@@ -77,10 +67,8 @@ msgid "Spotify URL:"
 msgstr "Spotify-URL:"
 
 #: .\spotify\templates\spotify\profile.html:31
-#, fuzzy
-#| msgid "My Top Artists"
 msgid "Top Artists"
-msgstr "Mijn Topartiesten"
+msgstr "Topartiesten"
 
 #: .\spotify\templates\spotify\profile.html:39
 #: .\spotify\templates\spotify\wraps.html:137
@@ -96,24 +84,19 @@ msgstr "Topnummers"
 msgid "No top tracks available."
 msgstr "Er zijn geen toptracks beschikbaar."
 
-#: .\spotify\templates\spotify\profile.html:56
-#: .\spotify_wrapped\settings.py:42
+#: .\spotify\templates\spotify\profile.html:56 .\spotify_wrapped\settings.py:42
 msgid "English"
 msgstr "Engels"
 
-#: .\spotify\templates\spotify\profile.html:57
-#: .\spotify_wrapped\settings.py:43
+#: .\spotify\templates\spotify\profile.html:57 .\spotify_wrapped\settings.py:43
 msgid "Spanish"
 msgstr "Spaans"
 
-#: .\spotify\templates\spotify\profile.html:58
-#: .\spotify_wrapped\settings.py:44
+#: .\spotify\templates\spotify\profile.html:58 .\spotify_wrapped\settings.py:44
 msgid "Dutch"
 msgstr "Nederlands"
 
 #: .\spotify\templates\spotify\wraps.html:39
-#, fuzzy
-#| msgid "Your Spotify Wrapped"
 msgid "Welcome to Your Spotify Wrapped"
 msgstr "Je Spotify verpakt"
 
@@ -150,8 +133,6 @@ msgid "My Top Genres"
 msgstr "Mijn Topgenres"
 
 #: .\spotify\templates\spotify\wraps.html:64
-#, fuzzy
-#| msgid "No top tracks available."
 msgid "No top genres available."
 msgstr "Er zijn geen toptracks beschikbaar."
 
@@ -221,14 +202,10 @@ msgid "Recommended Songs"
 msgstr "Aanbevolen Nummers"
 
 #: .\spotify\templates\spotify\wraps.html:158
-#, fuzzy
-#| msgid "No top artists available."
 msgid "No preview available"
 msgstr "Geen topartiesten beschikbaar."
 
 #: .\spotify\templates\spotify\wraps.html:162
-#, fuzzy
-#| msgid "No top artists available."
 msgid "No recommendations available."
 msgstr "Geen topartiesten beschikbaar."
 
@@ -255,6 +232,9 @@ msgstr "Ga Terug naar Huis"
 #: .\spotify_wrapped\urls.py:23
 msgid "admin/"
 msgstr "beheerder/"
+
+#~ msgid "Language"
+#~ msgstr "Taal"
 
 #~ msgid "Hello world! This is an HTML5 Boilerplate."
 #~ msgstr "Hallo wereld! Dit is een HTML5 Boilerplate."

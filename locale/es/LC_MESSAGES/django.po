@@ -8,15 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-05 00:17-0500\n"
-"PO-Revision-Date: 2024-11-05 00:21+0000\n"
+"POT-Creation-Date: 2024-11-06 16:33-0500\n"
+"PO-Revision-Date: 2024-11-06 16:12+0000\n"
 "Last-Translator:   <mbanda3@gatech.edu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
+"1 : 2;\n"
 "X-Translated-Using: django-rosetta 0.10.1\n"
 
 #: .\spotify\models.py:7
@@ -31,14 +32,6 @@ msgstr "contenido"
 #: .\spotify\templates\spotify\error.html:11
 msgid "Error"
 msgstr "error"
-
-#: .\spotify\templates\spotify\index.html:42
-msgid "TestDriven.io Courses"
-msgstr ""
-
-#: .\spotify\templates\spotify\index.html:48
-msgid "Language"
-msgstr "Idioma"
 
 #: .\spotify\templates\spotify\login.html:9
 #: .\spotify\templates\spotify\login.html:14
@@ -55,8 +48,6 @@ msgstr "Haga Clic Aquí"
 
 #: .\spotify\templates\spotify\profile.html:9
 #: .\spotify\templates\spotify\wraps.html:9
-#, fuzzy
-#| msgid "Your Spotify Wrapped"
 msgid "Spotify Wrapped"
 msgstr "Tu Spotify envuelto"
 
@@ -77,10 +68,8 @@ msgid "Spotify URL:"
 msgstr "URL de Spotify:"
 
 #: .\spotify\templates\spotify\profile.html:31
-#, fuzzy
-#| msgid "My Top Artists"
 msgid "Top Artists"
-msgstr "Mis Mejores Artistas"
+msgstr "Mejores Artistas"
 
 #: .\spotify\templates\spotify\profile.html:39
 #: .\spotify\templates\spotify\wraps.html:137
@@ -96,34 +85,27 @@ msgstr "Pistas principales"
 msgid "No top tracks available."
 msgstr "No hay pistas principales disponibles"
 
-#: .\spotify\templates\spotify\profile.html:56
-#: .\spotify_wrapped\settings.py:42
+#: .\spotify\templates\spotify\profile.html:56 .\spotify_wrapped\settings.py:42
 msgid "English"
 msgstr "inglés"
 
-#: .\spotify\templates\spotify\profile.html:57
-#: .\spotify_wrapped\settings.py:43
+#: .\spotify\templates\spotify\profile.html:57 .\spotify_wrapped\settings.py:43
 msgid "Spanish"
 msgstr "espanol"
 
-#: .\spotify\templates\spotify\profile.html:58
-#: .\spotify_wrapped\settings.py:44
+#: .\spotify\templates\spotify\profile.html:58 .\spotify_wrapped\settings.py:44
 msgid "Dutch"
 msgstr "holandes"
 
 #: .\spotify\templates\spotify\wraps.html:39
-#, fuzzy
-#| msgid "Your Spotify Wrapped"
 msgid "Welcome to Your Spotify Wrapped"
 msgstr "Tu Spotify envuelto"
 
 #: .\spotify\templates\spotify\wraps.html:40
-#, fuzzy
 msgid "Let’s take a look at your music habits over"
 msgstr "Echemos un vistazo a tus hábitos musicales."
 
 #: .\spotify\templates\spotify\wraps.html:47
-#, fuzzy
 msgid "My Minutes Listened"
 msgstr "Mis Minutos Escuchados"
 
@@ -152,8 +134,6 @@ msgid "My Top Genres"
 msgstr "Mis Géneros Principales"
 
 #: .\spotify\templates\spotify\wraps.html:64
-#, fuzzy
-#| msgid "No top tracks available."
 msgid "No top genres available."
 msgstr "No hay pistas principales disponibles"
 
@@ -171,7 +151,6 @@ msgid "Danceability:"
 msgstr "Bailabilidad:"
 
 #: .\spotify\templates\spotify\wraps.html:98
-#, fuzzy
 msgid "How much your tracks make you want to dance"
 msgstr "Cuánto te dan ganas de bailar tus canciones"
 
@@ -224,14 +203,10 @@ msgid "Recommended Songs"
 msgstr "Canciones Recomendadas"
 
 #: .\spotify\templates\spotify\wraps.html:158
-#, fuzzy
-#| msgid "No top artists available."
 msgid "No preview available"
 msgstr "No hay artistas destacados disponibles."
 
 #: .\spotify\templates\spotify\wraps.html:162
-#, fuzzy
-#| msgid "No top artists available."
 msgid "No recommendations available."
 msgstr "No hay artistas destacados disponibles."
 
@@ -258,6 +233,9 @@ msgstr "Volver a casa"
 #: .\spotify_wrapped\urls.py:23
 msgid "admin/"
 msgstr "administración/"
+
+#~ msgid "Language"
+#~ msgstr "Idioma"
 
 #~ msgid "Hello world! This is an HTML5 Boilerplate."
 #~ msgstr "¡Hola Mundo! Este es un texto estándar HTML5."
