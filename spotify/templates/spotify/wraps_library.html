@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="{% static 'spotify/library.css' %}">
+</head>
+<body>
+
+    <header class="header">
+        <a href="{% url 'profile' %}">
+            <img src="{% static 'spotify/images/Wrappify.png' %}" class="logo">
+        </a>
+    </header>
+    
+    <div class="wraps-list">
+        {% if saved_wraps %}
+            <div class="card-container">
+                {% for wrap in saved_wraps %}
+                    <!-- Card for each wrap -->
+                    <div class="wrap-card" id="wrap-card-{{ wrap.id }}">
+                    <!-- Display the first track’s album image if it exists, else use a default image -->
+                    {% if wrap.top_tracks.0 %}
+                        <img src="{{ wrap.top_tracks.0.album.images.0.url }}" alt="{{ wrap.top_tracks.0.name }}" class="wrap-image">
+                    {% else %}
+                        <img src="path/to/default_image.jpg" alt="Default Image" class="wrap-image">
+                    {% endif %}
+                        <h3>My {{ wrap.created_at|date:"F j, Y" }} Wrap</h3>
+                        <p>Duration: {{ wrap.time_range_label }}</p>
+
+                        <!-- Details button with data-url attribute -->
+                        <button class="view-wrap-button" data-url="{% url 'wrap_detail' wrap.id %}">View Wrap</button>
+                        
+                        <!-- Delete button with data-url attribute -->
+                        <button class="delete-wrap-button" data-url="{% url 'delete_wrap' wrap.id %}">Delete</button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        function getCSRFToken() {
+            const name = 'csrftoken';
+            const cookies = document.cookie.split(';');
+            for (let cookie of cookies) {
+                cookie = cookie.trim();
+                if (cookie.startsWith(name + '=')) {
+                    return cookie.substring(name.length + 1);
+                }
+            }
+            return '';
+        }
+
+        // Function to handle navigation to detail page
+        document.querySelectorAll('.view-wrap-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const url = button.getAttribute('data-url');
+                window.location.href = url;  // Navigate to the detail page
+            });
+        });
+
+        // Function to handle deletion
+        document.querySelectorAll('.delete-wrap-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const url = button.getAttribute('data-url');
+                const wrapCard = button.closest('.wrap-card');
+
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCSRFToken()
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message) {
+                        alert(data.message);
+                        // Remove the wrap card from the DOM
+                        wrapCard.remove();
+                    } else if (data.error) {
+                        alert("Error: " + data.error);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        });
+    </script>
+
+</body>
+</html>

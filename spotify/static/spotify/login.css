@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #E0E7EF;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  padding: 60px 40px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  width: 100%;
+  max-width: 1100px;
+}
+.jagged-shape1 {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 70vh; /* Full viewport height */
+  background-color: #95B3D6;
+  clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%); /* Jagged effect */
+  box-shadow: 0 0 0 5px black;
+}
+
+.jagged-shape2 {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40vh; /* Full viewport height */
+  background-color: #5496D7;
+  clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 50%, 40% 10%, 50% 40%, 60% 20%, 70% 50%, 80% 30%, 100% 0, 100% 100%, 0 100%); /* Jagged effect */
+  outline: 5px solid black;
+}
+
+.main-heading {
+  font-size: 70px;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 30px;
+  color: #555;
+  margin-bottom: 40px;
+  
+}
+
+.connect-button {
+  font-size: 30px;
+  color: white;
+  text-decoration: none;
+  background-color: #95B3D6;
+  padding: 12px 24px;
+  border-radius: 15px;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.connect-button:hover {
+  background-color: #76A1B6;
+}
+
+
+.roboto-black-italic {
+  font-family: "Roboto", serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.roboto-black {
+  font-family: "Roboto", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-bold-italic {
+  font-family: "Roboto", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.roboto-bold {
+  font-family: "Roboto", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-medium-italic {
+  font-family: "Roboto", serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.roboto-medium {
+  font-family: "Roboto", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-regular-italic {
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.roboto-regular {
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-light-italic {
+  font-family: "Roboto", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.roboto-light {
+  font-family: "Roboto", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-thin-italic {
+  font-family: "Roboto", serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.roboto-thin {
+  font-family: "Roboto", serif;
+  font-weight: 100;
+  font-style: normal;
+}
+>>>>>>> Stashed changes

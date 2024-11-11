@@ -1,8 +1,10 @@
 # Byte-compiled / optimized / DLL files
 *.pyc
 __pycache__/
+*.pyc
 *.py[cod]
 *$py.class
+*.pyc
 
 echo -e "*.pyc\n__pycache__/" >> .gitignore
 # C extensions
