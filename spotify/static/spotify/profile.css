@@ -363,4 +363,67 @@ ul li {
     font-weight: 100;
     font-style: normal;
   }
-  
+
+  /* Dark Mode Toggle Styles */
+.dark-mode-toggle {
+    position: fixed;
+    top: 20px; /* Distance from the top of the page */
+    left: 20px; /* Distance from the left of the page */
+    z-index: 1000; /* Ensure it is above other elements */
+}
+
+/* The switch - hide the checkbox */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide the default checkbox appearance */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider (round) */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+/* The slider before (circle) */
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+/* When checked, change the background color */
+input:checked + .slider {
+    background-color: #4e92d7e2; /* Darker green */
+}
+
+/* When checked, move the slider */
+input:checked + .slider:before {
+    transform: translateX(26px); /* Moves the circle to the right */
+}
+
+/* Optional: Add a hover effect */
+.slider:hover {
+    background-color: #76A1B6;
+}
