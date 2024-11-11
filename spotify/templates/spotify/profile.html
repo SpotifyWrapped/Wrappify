@@ -6,44 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <link rel="stylesheet" href="{% static 'spotify/profile.css' %}?v={{ STATIC_VERSION }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-    <!-- User Information Section -->
-    <div class="user-info">
-        <h1>Welcome, {{ request.user.first_name }}</h1>
-        {% if user_data.email %}
-            <p>Email: {{ user_data.email }}</p>
-        {% endif %}
-        {% if user_data.country %}
-            <p>Country: {{ user_data.country }}</p>
-        {% endif %}
-        {% if user_data.external_urls and user_data.external_urls.spotify %}
-            <p>Spotify URL: <a href="{{ user_data.external_urls.spotify }}">Spotify URL</a></p>
-        {% endif %}
-    </div>
-    
-    <!-- Time Range Selection Buttons -->
-    <div id="time-range-buttons">
-        <a href="{% url 'profile' %}?time_range=short_term" {% if selected_time_range == 'short_term' %}class="active"{% endif %}>Last Month</a>
-        <a href="{% url 'profile' %}?time_range=medium_term" {% if selected_time_range == 'medium_term' %}class="active"{% endif %}>Last 6 Months</a>
-        <a href="{% url 'profile' %}?time_range=long_term" {% if selected_time_range == 'long_term' %}class="active"{% endif %}>All Time</a>
-    </div>
-    
 
-    <!-- Link to Wrapped Page -->
+        <div>
+            <a href="{% url 'settings' %}" class="settings-button">
+                <img src="{% static 'images/settings.png' %}" class="settings-button">
+            </a>
+        </div>
+
+        
+        <div class="contact-us-button">
+            <a href="{% url 'contacts' %}" class="contact-button">Contact The Developers</a>
+        </div>
+
+        <!-- User Information Section -->
+        <div class="user-info">
+            <div class="profile-details">
+                {% if profile_image_url %}
+                    <img src="{{ profile_image_url }}" alt="Profile Picture" class="profile-image">
+                {% else %}
+                    <img src="{% static 'images/pfp.png' %}" class="profile-image">
+                {% endif %}
+                <div class="name-and-link">
+                    <h1 class="username">{{ request.user.first_name }}</h1>
+                    {% if user_data.external_urls and user_data.external_urls.spotify %}
+                        <p><a href="{{ user_data.external_urls.spotify }}" class="spotify-link">Open in Spotify</a></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Time Range Selection Buttons -->
+        <div id="time-range-buttons">
+            <a href="{% url 'profile' %}?time_range=short_term" {% if selected_time_range == 'short_term' %}class="active"{% endif %}>Last Month</a>
+            <a href="{% url 'profile' %}?time_range=medium_term" {% if selected_time_range == 'medium_term' %}class="active"{% endif %}>Last 6 Months</a>
+            <a href="{% url 'profile' %}?time_range=long_term" {% if selected_time_range == 'long_term' %}class="active"{% endif %}>All Time</a>
+        </div>
+        
+
+    <!-- Link to Library Page -->
     <div class="wrapped-link">
         <a href="{% url 'wraps' %}?time_range={{ selected_time_range }}" class="wrapped-button">View Your Wraps</a>
+        <a href="{% url 'wraps_library' %}" class="wrapped-button library-button">Library</a>
     </div>
 
-    <div class="wrapped-library">
-        <a href="{% url 'wraps_library' %}">View Wraps Library</a>
-    </div>
-
-    <div class="logout">
-        <a href="{% url 'logout' %}">Logout</a>
-    </div>
-
+        <div class="logout">
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
     </div>
 </body>
 </html>

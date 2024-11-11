@@ -4,17 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify Wrapped</title>
-    <!-- Linking the CSS file -->
+    <title>Spotify Wrapped - Saved</title>
     <link rel="stylesheet" href="{% static 'spotify/wraps.css' %}">
-    <!-- Linking the JavaScript for slideshow functionality -->
     <script src="{% static 'spotify/slideshow.js' %}" defer></script>
 </head>
 <body>
 
-    <!-- Full-screen slideshow container -->
     <div class="container-full">
-
+        
         <!-- Thin Progress bars for each slide -->
         <div class="progress-bars">
             <div class="progress-bar" onclick="goToSlide(0)"></div>
@@ -37,7 +34,7 @@
             </section>
         </div>
 
-        <!-- Slide 2: Total Playback Time with Peak Day -->
+        <!-- Slide 2: Total Playback Time -->
         <div class="slides" id="slide2">
             <section id="total-playback-time">
                 <h2>My Minutes Listened</h2>
@@ -67,16 +64,17 @@
             <section id="top-tracks">
                 <h2>My Top Songs</h2>
                 <ul>
-                    {% for track in tracks %}
+                    {% for track in top_tracks %}
                         <li>
-                            <strong>{{ forloop.counter }}.</strong>
+                            <strong>{{ forloop.counter }}.</strong> {{ track.name }} by {{ track.artists.0.name }}
                             <img src="{{ track.album.images.0.url }}" alt="{{ track.name }}" width="100">
-                            <p>{{ track.name }} by {{ track.artists.0.name }}</p>
                             {% if track.preview_url %}
                                 <audio controls>
                                     <source src="{{ track.preview_url }}" type="audio/mpeg">
                                     Your browser does not support the audio element.
                                 </audio>
+                            {% else %}
+                                <p>No preview available</p>
                             {% endif %}
                         </li>
                     {% empty %}
@@ -105,20 +103,17 @@
         </div>
 
         <!-- Slide 7: #1 Artist Deep Dive -->
+        {% if top_artist %}
         <div class="slides" id="slide7">
             <section id="top-artist-deep-dive">
-                {% if top_artist %}
-                    <h2>Your #1 Artist: {{ top_artist.name }}</h2>
-                    <img src="{{ top_artist.images.0.url }}" alt="{{ top_artist.name }}" width="100">
-                    <p><strong>Genres:</strong> {{ top_artist.genres|join:", " }}</p>
-                    <p><strong>Popularity:</strong> {{ top_artist.popularity }} / 100</p>
-                    <p><strong>Followers:</strong> {{ top_artist.followers.total|floatformat }}</p>
-                {% else %}
-                    <h2>No top artist available</h2>
-                    <p>It seems like you haven't listened to enough music recently to have a top artist.</p>
-                {% endif %}
+                <h2>Your #1 Artist: {{ top_artist.name }}</h2>
+                <img src="{{ top_artist.images.0.url }}" alt="{{ top_artist.name }}" width="100">
+                <p><strong>Genres:</strong> {{ top_artist.genres|join:", " }}</p>
+                <p><strong>Popularity:</strong> {{ top_artist.popularity }} / 100</p>
+                <p><strong>Followers:</strong> {{ top_artist.followers.total|floatformat }}</p>
             </section>
         </div>
+        {% endif %}
 
         <!-- Slide 8: Top Artists -->
         <div class="slides" id="slide8">
@@ -127,9 +122,8 @@
                 <ul>
                     {% for artist in artists %}
                         <li>
-                            <strong>{{ forloop.counter }}.</strong>
+                            <strong>{{ forloop.counter }}.</strong> {{ artist.name }}
                             <img src="{{ artist.images.0.url }}" alt="{{ artist.name }}" width="100">
-                            <p>{{ artist.name }}</p>
                         </li>
                     {% empty %}
                         <li>No top artists available.</li>
@@ -163,65 +157,15 @@
             </section>
         </div>
 
-        <!-- Slide 10: Save Wrap -->
+        <!-- Slide 10: Back to Library -->
         <div class="slides" id="slide10">
-            <section id="save-delete">
-                <h2>Save Wrap</h2>
-                <div class="options">
-                    <button onclick="saveWrap()">Save</button>
-                </div>
+            <section id="back-to-library">
+                <h2>Return to Library</h2>
                 <div class="back-home">
-                    <a href="{% url 'profile' %}" class="back-home-button">Back to Profile</a>
+                    <a href="{% url 'wraps_library' %}" class="back-home-button">Back to Library</a>
                 </div>
             </section>
         </div>
     </div>
-
-    <!-- JSON Script to pass data to JavaScript -->
-    <script type="application/json" id="wrap-data">
-        {{ wrap_data_json|safe }}
-    </script>
-
-    <script>
-        function getCSRFToken() {
-            const name = 'csrftoken';
-            const cookies = document.cookie.split(';');
-            for (let cookie of cookies) {
-                cookie = cookie.trim();
-                if (cookie.startsWith(name + '=')) {
-                    return cookie.substring(name.length + 1);
-                }
-            }
-            return '';
-        }
-    
-        function saveWrap() {
-            // Parse the JSON data from the script tag
-            const wrapData = JSON.parse(document.getElementById('wrap-data').textContent);
-    
-            fetch("{% url 'save_wrap' %}", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCSRFToken()
-                },
-                body: JSON.stringify(wrapData)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.message) {
-                    alert(data.message);
-                } else if (data.error) {
-                    alert("Error: " + data.error);
-                }
-            })
-            .catch(error => console.error('Error:', error));
-        }
-    </script>
 </body>
 </html>
