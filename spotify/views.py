@@ -31,8 +31,6 @@ SCOPE = "user-read-private user-read-email user-top-read"
 
 # Render the login page
 def loginPage(request):
-    if request.user.is_authenticated:
-        return redirect('profile')  # Redirect to a different page if the user is logged in
     request.session.clear()
     return render(request, 'spotify/login.html')
 
@@ -235,6 +233,7 @@ def save_wrap(request):
                 'user': request.user,
                 'title': data.get('title', 'My Spotify Wrapped'),
                 'time_range_label': data.get('time_range_label'),
+                'total_playback_minutes': '0',
                 'top_genres': data.get('top_genres'),
                 'top_tracks': data.get('top_tracks'),
                 'avg_danceability': float(data.get('avg_danceability', 0)),
@@ -286,16 +285,6 @@ def wrap_detail(request, wrap_id):
 @login_required
 def settings(request):
     return render(request, 'spotify/settings.html')
-
-
-
-
-
-
-
-
-
-
 
 # ========== Helper Functions ==========
 
