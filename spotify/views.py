@@ -287,16 +287,6 @@ def wrap_detail(request, wrap_id):
 def settings(request):
     return render(request, 'spotify/settings.html')
 
-
-
-
-
-
-
-
-
-
-
 # ========== Helper Functions ==========
 
 # Retrieve a valid access token, refreshing if necessary

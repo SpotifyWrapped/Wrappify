@@ -7,7 +7,6 @@ class SavedWrap(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     time_range_label = models.CharField(max_length=50)
-    total_playback_minutes = models.IntegerField()
     top_genres = models.JSONField()  # Store as JSON data
     top_tracks = models.JSONField()  # Store as JSON data
     avg_danceability = models.FloatField()
