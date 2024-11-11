@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="{% static 'spotify/wraps.css' %}">
     <!-- Linking the JavaScript for slideshow functionality -->
     <script src="{% static 'spotify/slideshow.js' %}" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Luckiest+Guy&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -34,11 +37,24 @@
             <section id="intro">
                 <h2>Welcome to Your Spotify Wrapped</h2>
                 <p>Let’s take a look at your music habits over {{ time_range_label }}!</p>
+                <div class="jagged-shape1"></div>
+                <div class="jagged-outline1"></div>
+                <div class="jagged-shape2"></div>
+                <div class="jagged-outline2"></div>
+                
+                
+                {% comment %} <div class="jagged-shape3"></div>
+                <div class="jagged-shape4"></div> {% endcomment %}
             </section>
         </div>
 
         <!-- Slide 2: Total Playback Time with Peak Day -->
         <div class="slides" id="slide2">
+            <div class="jagged-shape3"></div>
+            <div class="jagged-shape4"></div>
+            <div class="jagged-outline3"></div>
+            <div class="jagged-outline4"></div>
+            <img src="{% static 'images/clock-icon.png' %}" alt="Clock Icon" class="clock-image">
             <section id="total-playback-time">
                 <h2>My Minutes Listened</h2>
                 <p>You have listened to approximately {{ total_playback_minutes }} minutes in {{ time_range_label }}.</p>
@@ -50,6 +66,10 @@
 
         <!-- Slide 3: Top Genres -->
         <div class="slides" id="slide3">
+            <div class="jagged-shape1-1"></div>
+            <div class="jagged-shape2-1"></div>
+            <div class="jagged-outline1"></div>
+            <div class="jagged-outline2"></div>
             <section id="top-genres">
                 <h2>My Top Genres</h2>
                 <ul>
@@ -64,30 +84,37 @@
 
         <!-- Slide 4: Top Tracks -->
         <div class="slides" id="slide4">
-            <section id="top-tracks">
-                <h2>My Top Songs</h2>
-                <ul>
-                    {% for track in tracks %}
-                        <li>
-                            <strong>{{ forloop.counter }}.</strong>
-                            <img src="{{ track.album.images.0.url }}" alt="{{ track.name }}" width="100">
-                            <p>{{ track.name }} by {{ track.artists.0.name }}</p>
-                            {% if track.preview_url %}
-                                <audio controls>
-                                    <source src="{{ track.preview_url }}" type="audio/mpeg">
-                                    Your browser does not support the audio element.
-                                </audio>
-                            {% endif %}
-                        </li>
-                    {% empty %}
-                        <li>No top tracks available.</li>
-                    {% endfor %}
-                </ul>
-            </section>
+            <div class="jagged-shape5"></div>
+            <div class="jagged-shape6"></div>
+            <div class="jagged-outline5"></div>
+            <div class="jagged-outline6"></div>
+                <section id="top-tracks">
+                    <h2>My Top Songs</h2>
+                    <ul>
+                        {% for track in tracks %}
+                            <li>
+                                <strong>{{ forloop.counter }}.</strong>
+                                <img src="{{ track.album.images.0.url }}" alt="{{ track.name }}" width="100">
+                                <p>{{ track.name }} by {{ track.artists.0.name }}</p>
+                                {% if track.preview_url %}
+                                    <audio controls>
+                                        <source src="{{ track.preview_url }}" type="audio/mpeg">
+                                        Your browser does not support the audio element.
+                                    </audio>
+                                {% endif %}
+                            </li>
+                        {% empty %}
+                            <li>No top tracks available.</li>
+                        {% endfor %}
+                    </ul>
+                </section>
         </div>
 
         <!-- Slide 5: Mood Analysis (Vibe) -->
         <div class="slides" id="slide5">
+            <div class="jagged-shape7"></div>
+            <div class="jagged-shape4"></div>
+            <div class="jagged-shape8"></div>
             <section id="audio-mood">
                 <h2>My Vibe</h2>
                 <p><strong>Danceability:</strong> {{ avg_danceability }} (How much your tracks make you want to dance)</p>
@@ -119,6 +146,10 @@
 
         <!-- Slide 8: Top Artists -->
         <div class="slides" id="slide8">
+            <div class="jagged-shape5"></div>
+            <div class="jagged-shape6"></div>
+            <div class="jagged-outline5"></div>
+            <div class="jagged-outline6"></div>
             <section id="top-artists">
                 <h2>My Top Artists</h2>
                 <ul>
@@ -137,6 +168,8 @@
 
         <!-- Slide 9: Recommended Songs -->
         <div class="slides" id="slide9">
+            <div class="jagged-shape8"></div>
+
             <section id="recommendations">
                 <h2>Recommended Songs</h2>
                 <ul>

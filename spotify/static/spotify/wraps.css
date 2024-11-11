@@ -1,99 +1,308 @@
 /* General reset */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+box-sizing: border-box;
+margin: 0;
+padding: 0;
 }
 
 html, body {
-    height: 100%; /* Make body take full height of viewport */
-    overflow: hidden; /* Prevent scrolling */
+height: 100%; /* Make body take full height of viewport */
+overflow: hidden; /* Prevent scrolling */
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #333; /* Dark background */
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+font-family: "Bungee", sans-serif;
+font-style: normal;
+color: #ffffff;
+display: flex;
+justify-content: center;
+align-items: center;
+
 }
 
 /* Full-screen container */
 .container-full {
-    width: 100vw; /* Full width */
-    height: 100vh; /* Full height */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    background-color: #E0E7EF;
-    padding: 20px; /* Small padding around the content */
+position: relative;   
+width: 100vw; /* Full width */
+height: 100vh; /* Full height */
+display: flex;
+flex-direction: column;
+justify-content: center; /* Center content vertically */
+align-items: center; /* Center content horizontally */
+background-color: #0d131b;
+padding: 20px; /* Small padding around the content */
+z-index: 1;
 }
+
+/* Center the entire content, but align track list to the left */
+#top-tracks {
+    width: 100%; /* Full width for the section */
+    align-items: left; /* Align text to the left inside this section */
+  }
 
 /* Progress bars for each slide */
 .progress-bars {
-    display: flex;
-    justify-content: space-between;
-    width: 80%; /* Width of the progress bar */
-    height: 6px;
-    margin-bottom: 20px; /* Place bar at the top of container */
-    position: absolute;
-    top: 10px; /* Fix the bar at the top */
+display: flex;
+justify-content: space-between;
+width: 80%; /* Width of the progress bar */
+height: 6px;
+margin-bottom: 20px; /* Place bar at the top of container */
+position: absolute;
+top: 10px; /* Fix the bar at the top */
+z-index: 2;
 }
 
 .progress-bar {
-    background-color: #333;
-    height: 100%;
-    flex: 1;
-    margin: 0 5px;
+background-color: #333;
+height: 100%;
+flex: 1;
+margin: 0 5px;
 }
 
 .progress-bar.active {
-    background-color: #95B3D6; /* Spotify green for active state */
+background-color: #95B3D6; /* Spotify green for active state */
 }
 
 /* Slide Styles */
 .slides {
-    text-align: center;
-    display: none; /* Hide all slides by default */
+text-align: center;
+display: none; /* Hide all slides by default */
 }
 
 .slides.active {
-    display: block; /* Show the active slide */
+display: block; /* Show the active slide */
 }
 
 /* Images for tracks, artists, recommendations */
 img {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 10px;
+width: 100px;
+height: 100px;
+margin-bottom: 10px;
 }
 
 /* Text and headings */
-h2, p {
-    margin-bottom: 10px;
+h2 {
+text-align: center;
+margin-bottom: 30px;
+font-size: 50px;
+text-shadow: 5px 5px 5px #6095b6;
+}
+
+p {
+margin-bottom: 80px;
+font-size: 22px;
 }
 
 /* Audio player styling */
 audio {
-    max-width: 150px;
-    margin-top: 10px;
+max-width: 150px;
+margin-top: 10px;
 }
 
 /* List styling for items like tracks, artists, recommendations */
 ul {
-    list-style-type: none;
-    padding: 0;
+list-style-type: none;
+padding: 0;
+margin: 0;
 }
 
 li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 10px;
 }
 
 li p {
-    margin-left: 10px; /* Space between image and text */
+margin-left: 10px; /* Space between image and text */
+}
+
+
+
+
+/* Slide 1 Intro Styling */
+#slide1 {
+position: relative;
+}
+#slide1 #intro {
+position: relative;
+margin: 0 auto; /* Center within the slide */
+z-index: 1; /* Ensure text appears above jagged shapes */
+}
+
+/* Main Shapes */
+.jagged-shape1, .jagged-shape2, .jagged-shape1-1, .jagged-shape2-1 {
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+}
+
+.jagged-shape1 {
+height: 30vh;
+background-color: #446fac;
+clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
+z-index: 0;
+}
+
+.jagged-shape2 {
+height: 20vh;
+background-color: #234f77;
+clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
+z-index: 1;
+}
+
+.jagged-shape1-1 {
+    height: 30vh;
+    background-color: #5496D7;
+    clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
+    z-index: 0;
+}
+
+.jagged-shape2-1 {
+    height: 20vh;
+    background-color: #5496D794;
+    clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
+    z-index: 1;
+}
+
+.jagged-outline1, .jagged-outline2 {
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%; /* Make sure they stay behind the #intro content */
+}
+
+.jagged-outline1 {
+height: 31vh;
+background-color: #95B3D6;
+clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
+z-index: -1;
+}
+
+.jagged-outline2 {
+height: 21vh;
+background-color: #1d5fa1;
+clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
+z-index: 0;
+}
+
+
+
+/*Slide 2 Specific Slide*/
+.jagged-shape3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 50vh;
+    background-color: #5496d794;
+    z-index: 0;
+    clip-path: polygon(0 0, 76% 0, 78% 10%, 52% 24%, 61% 60%, 0 72%, 0% 70%, 0% 30%);
+}
+
+.jagged-shape4 {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 40%;
+    height: 50vh;
+    background-color: #5496D794;
+    clip-path: polygon(54% 14%, 100% 0, 100% 60%, 100% 100%, 14% 100%, 29% 60%, 55% 50%);
+    z-index: 0;
+}
+
+.clock-image {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 1;
+object-fit: cover;
+}
+
+
+/*Slide 4*/
+
+.jagged-shape5 {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 40%;
+    height: 100vh;
+    background-color: #426a98;
+    clip-path: polygon(9% 15%, 23% 29%, 10% 42%, 23% 60%, 11% 72%, 22% 100%, 0 100%, 0 0, 24% 0);
+    z-index: 1;
+}
+
+.jagged-outline5 {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 45%;
+    height: 100vh;
+    background-color: #BECBDA;
+    clip-path: polygon(9% 15%, 23% 29%, 10% 42%, 23% 60%, 11% 72%, 22% 100%, 0 100%, 0 0, 24% 0);
+    z-index: 0;
+}
+  
+  
+.jagged-shape6 {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 40%;
+    height: 100vh;
+    background-color: #426a98;
+    clip-path: polygon(89% 15%, 81% 29%, 92% 50%, 78% 65%, 90% 78%, 75% 100%, 100% 100%, 100% 0, 75% 0);
+    z-index: 1;
+}
+  
+.jagged-outline6 {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 45%;
+    height: 100vh;
+    background-color: #BECBDA;
+    clip-path: polygon(89% 15%, 81% 29%, 92% 50%, 78% 65%, 90% 78%, 75% 100%, 100% 100%, 100% 0, 75% 0);
+    z-index: 0;
+}
+
+/*Slide 5*/
+.jagged-shape7 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #426a98;
+    clip-path: polygon(20% 9%, 86% 0, 71% 40%, 0 33%, 0 17%);
+    z-index: -10;
+}
+
+.jagged-shape8 {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 80vh;
+    background-color: #95B3D6;
+    clip-path: polygon(6% 82%, 30% 76%, 27% 100%, 0 100%, 0 89%);
+    z-index: -10;
+}
+
+
+
+/* Slide rec. songs */
+.jagged-shape9 {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 80vh;
+    background-color: #95B3D6;
+    clip-path: polygon(6% 82%, 30% 76%, 27% 100%, 0 100%, 0 89%);
+    z-index: -10;
 }
