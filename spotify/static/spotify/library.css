@@ -91,6 +91,10 @@ body {
     color: black;
 }
 
+#back-to-profile {
+    align-items: center;
+}
+
 /* Responsive adjustments */
 @media (max-width: 900px) {
     .wrap-card {
