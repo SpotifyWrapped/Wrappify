@@ -111,6 +111,10 @@ body {
     transform: scale(1.1);
 }
 
+#back-to-profile {
+    align-items: center;
+}
+
 /* Responsive adjustments */
 @media (max-width: 900px) {
     .wrap-card {
