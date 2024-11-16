@@ -52,7 +52,7 @@
             <section id="top-tracks">
                 <h2>My Top Songs</h2>
                 <ul>
-                    {% for track in tracks %}
+                    {% for track in top_tracks %}
                         <li>
                             <strong>{{ forloop.counter }}.</strong>
                             <img src="{{ track.album.images.0.url }}" alt="{{ track.name }}" width="100">

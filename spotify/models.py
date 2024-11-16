@@ -17,6 +17,7 @@ class SavedWrap(models.Model):
     top_artists = models.JSONField()  # Store as JSON data
     recommendations = models.JSONField()  # Store as JSON data
     created_at = models.DateTimeField(auto_now_add=True)
+    completed_game = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.title} by {self.user.username}"

@@ -14,7 +14,8 @@ urlpatterns = [
     path('wrap/<int:wrap_id>/', views.wrap_detail, name='wrap_detail'),
     path('contact/', views.contactPage, name='contacts'),
     path('settings/', views.settings, name='settings'),
-
+    path('game/<int:wrap_id>/', views.game, name='game'),
+    path('complete-game/<int:wrap_id>/', views.complete_game, name='complete_game'),
 
 
 ]

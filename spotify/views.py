@@ -221,6 +221,8 @@ def wraps(request):
 @login_required
 def wraps_library(request):
     saved_wraps = SavedWrap.objects.filter(user=request.user)
+    for wrap in saved_wraps:
+        print(wrap.top_tracks)
     return render(request, 'spotify/wraps_library.html', {'saved_wraps': saved_wraps})
 
 # Save the current Spotify wrap data to the database
@@ -285,6 +287,38 @@ def wrap_detail(request, wrap_id):
 @login_required
 def settings(request):
     return render(request, 'spotify/settings.html')
+
+@login_required
+def game(request, wrap_id):
+    wrap = get_object_or_404(SavedWrap, id=wrap_id, user=request.user)
+    wrap_data = {
+        "title": wrap.title,
+        "time_range_label": wrap.time_range_label,
+        "top_genres": wrap.top_genres,
+        "top_tracks": wrap.top_tracks,
+        "top_artist": wrap.top_artist,
+        'avg_danceability': wrap.avg_danceability,
+        'avg_energy': wrap.avg_energy,
+        'avg_valence': wrap.avg_valence,
+        'recommendations': wrap.recommendations,
+    }
+    wrap_data_json = json.dumps(wrap_data, cls=DjangoJSONEncoder)
+    
+    return render(request, 'spotify/game.html', {
+        'wrap_data_json': wrap_data_json,
+        'wrap_id': wrap_id  # Pass wrap_id to template
+    })
+
+from django.shortcuts import redirect
+
+@login_required
+def complete_game(request, wrap_id):
+    # Fetch the specific wrap for the logged-in user
+    wrap = get_object_or_404(SavedWrap, id=wrap_id, user=request.user)
+    wrap.completed_game = True  # Mark the game as completed
+    wrap.save()  # Save changes to the database
+
+    return JsonResponse({'message': 'Game marked as completed.'}, status=200)
 
 # ========== Helper Functions ==========
 

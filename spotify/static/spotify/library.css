@@ -24,7 +24,6 @@ body {
     justify-content: center;
 }
 
-
 .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -34,7 +33,6 @@ body {
     max-width: 1200px;
     margin: 0 auto;
 }
-
 
 .wrap-card {
     background-color: #fff;
@@ -52,7 +50,6 @@ body {
     transform: scale(1.04);
 }
 
-
 .wrap-card img {
     width: 100%; 
     height: auto; 
@@ -65,23 +62,22 @@ body {
     margin: 10px 0;
 }
 
-.view-wrap-button {
+.view-wrap-button,
+.delete-wrap-button {
     background-color: #004AAD;
-    border: #004AAD;
+    border: none;
     height: 25px;
     border-radius: 4px;
     color: #ffffff;
+    padding: 0 10px;
+    cursor: pointer;
 }
 
 .delete-wrap-button {
     background-color: #AD0004;
-    border: #AD0004;
-    height: 25px;
-    border-radius: 4px;
-    color: #ffffff;
 }
 
-.view-wrap-button:hover{
+.view-wrap-button:hover {
     background-color: #E0E7EF;
     color: black;
 }
@@ -89,6 +85,30 @@ body {
 .delete-wrap-button:hover {
     background-color: #ffbfbf;
     color: black;
+}
+
+/* Container for aligning the buttons and the game image */
+.button-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center; /* Center-align buttons vertically */
+    margin-top: 10px;
+}
+
+/* Styling for the game button image */
+.game-button-image {
+    width: 50px !important; /* Force width to 25px */
+    height: 50px !important; /* Force height to 25px */
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
+    vertical-align: middle; /* Align the image vertically with buttons */
+    margin-top: 10px;
+}
+
+/* Hover effect for the game button image */
+.game-button-image:hover {
+    transform: scale(1.1);
 }
 
 /* Responsive adjustments */
