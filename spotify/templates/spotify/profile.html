@@ -12,10 +12,20 @@
 </head>
 <body>
     <div class="container">
-        <a href="{% url 'settings' %}">
-            <p class="settings-button">⚙️</p>
-        </a>
-        
+
+        <div>
+            <a href="{% url 'settings' %}" class="settings-button">
+                <img src="{% static 'images/settings.png' %}" class="settings-button">
+            </a>
+        </div>
+
+        <!-- Dark Mode Toggle -->
+        <div class="dark-mode-toggle">
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
 
         <div class="contact-us-button">
             <a href="{% url 'contacts' %}" class="contact-button">Contact The Developers</a>
@@ -38,23 +48,64 @@
             </div>
         </div>
         
-        <!-- Time Range Selection Buttons -->
+        <!-- Direct Links for Time Range Buttons -->
         <div id="time-range-buttons">
-            <a href="{% url 'profile' %}?time_range=short_term" {% if selected_time_range == 'short_term' %}class="active"{% endif %}>Last Month</a>
-            <a href="{% url 'profile' %}?time_range=medium_term" {% if selected_time_range == 'medium_term' %}class="active"{% endif %}>Last 6 Months</a>
-            <a href="{% url 'profile' %}?time_range=long_term" {% if selected_time_range == 'long_term' %}class="active"{% endif %}>All Time</a>
+            <a href="{% url 'wraps' %}?time_range=short_term" 
+               class="{% if selected_time_range == 'short_term' %}active{% endif %}">
+               Last Month
+            </a>
+            <a href="{% url 'wraps' %}?time_range=medium_term" 
+               class="{% if selected_time_range == 'medium_term' %}active{% endif %}">
+               Last 6 Months
+            </a>
+            <a href="{% url 'wraps' %}?time_range=long_term" 
+               class="{% if selected_time_range == 'long_term' %}active{% endif %}">
+               All Time
+            </a>
         </div>
-        
 
-    <!-- Link to Wrapped Page -->
+    <!-- Link to Library Page -->
     <div class="wrapped-link">
-        <a href="{% url 'wraps' %}?time_range={{ selected_time_range }}" class="wrapped-button">View Your Wraps</a>
-        <a href="{% url 'wraps_library' %}" class="wrapped-button library-button">Library</a>
+        <a href="{% url 'wraps_library' %}" class="wrapped-button library-button">Your Saved Library</a>
     </div>
 
-        <div class="logout">
-            <a href="{% url 'logout' %}">Logout</a>
-        </div>
+    <div class="logout">
+        <a href="{% url 'logout' %}">Logout</a>
     </div>
+
+    <script>
+        // JavaScript to toggle dark mode
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+
+        // Check if dark mode is already enabled
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.checked = true; // Make the toggle switch appear as 'on'
+        }
+
+        // Toggle dark mode on change of checkbox
+        darkModeToggle.addEventListener('change', () => {
+            body.classList.toggle('dark-mode');
+            // Save preference to localStorage
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('dark-mode', 'enabled');
+            } else {
+                localStorage.setItem('dark-mode', 'disabled');
+            }
+        });
+    </script>
+
+<script>
+    document.addEventListener("scroll", function() {
+        document.body.classList.add("scrolled");
+        clearTimeout(window.scrollTimer);
+        window.scrollTimer = setTimeout(function() {
+            document.body.classList.remove("scrolled");
+        }, 1000); // Buttons disappear after 1 second of no scroll
+    });
+    </script>
+    
+    
 </body>
 </html>

@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spotify Wrapped</title>
-    <!-- Linking the CSS file -->
     <link rel="stylesheet" href="{% static 'spotify/wraps.css' %}">
-    <!-- Linking the JavaScript for slideshow functionality -->
     <script src="{% static 'spotify/slideshow.js' %}" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,6 +29,7 @@
             <div class="progress-bar" onclick="goToSlide(6)"></div>
             <div class="progress-bar" onclick="goToSlide(7)"></div>
             <div class="progress-bar" onclick="goToSlide(8)"></div>
+            <div class="progress-bar" onclick="goToSlide(9)"></div>
         </div>
 
         <!-- Slide 1: Intro Slide -->
@@ -64,7 +63,7 @@
         </div> {% endcomment %}
 
         <!-- Slide 3: Top Genres -->
-        <div class="slides" id="slide3">
+        <div class="slides" id="slide2">
             <div class="jagged-shape3"></div>
             <div class="jagged-shape4"></div>
             <div class="jagged-outline3"></div>
@@ -83,8 +82,8 @@
             </div>
         </div>
 
-        <!-- Slide 4: Top Tracks -->
-        <div class="slides" id="slide4">
+        <!-- Slide 3: Top Tracks -->
+        <div class="slides" id="slide3">
             <div class="jagged-shape5"></div>
             <div class="jagged-shape6"></div>
             <div class="jagged-outline5"></div>
@@ -113,8 +112,8 @@
             </div>
         </div>
 
-        <!-- Slide 5: Mood Analysis (Vibe) -->
-        <div class="slides" id="slide5">
+        <!-- Slide 4: Mood Analysis (Vibe) -->
+        <div class="slides" id="slide4">
             <div class="jagged-shape7"></div>
             <div class="jagged-shape4"></div>
             <div class="jagged-shape8"></div>
@@ -123,17 +122,18 @@
                     <div class="content-container">
                         <h2>My Vibe</h2>
                         <li>
-                            <p><strong>Danceability:</strong> {{ avg_danceability }} (How much your tracks make you want to dance)</p>
-                            <p><strong>Energy:</strong> {{ avg_energy }} (How energetic and intense your music is)</p>
-                            <p><strong>Happiness (Valence):</strong> {{ avg_valence }} (How positive your tracks feel)</p>
+                            <p><strong>Danceability:</strong> {{ avg_danceability|floatformat:2 }} (How much your tracks make you want to dance)</p>
+                            <p><strong>Energy:</strong> {{ avg_energy|floatformat:2 }} (How energetic and intense your music is)</p>
+                            <p><strong>Happiness (Valence):</strong> {{ avg_valence|floatformat:2}} (How positive your tracks feel)</p>
                         </li>
                     </div>
                 </section>
             </div>
         </div>
 
-        <!-- Slide 6: Transition Slide (Who's your #1) -->
-        <div class="slides" id="slide6">
+
+        <!-- Slide 5: Transition Slide (Who's your #1) -->
+        <div class="slides" id="slide5">
             <div class="jagged-shape3-1"></div>
             <div class="jagged-shape4-1"></div>
             <section id="extra-slide">
@@ -142,9 +142,8 @@
             </section>
         </div>
 
-        <!-- Slide 7: #1 Artist Deep Dive -->
-        {% if top_artist %}
-        <div class="slides" id="slide7">
+        <!-- Slide 6: #1 Artist Deep Dive -->
+        <div class="slides" id="slide6">
             <div class="jagged-shape12"></div>
             <div class="jagged-outline12"></div>
             <div class="jagged-shape13"></div>
@@ -153,18 +152,22 @@
             <div class="blur-to-clear">
                 <div class="glowing-sun"></div>
                 <section id="top-artist-deep-dive">
-                    <h2>Your #1 Artist: {{ top_artist.name }}</h2>
-                    <img src="{{ top_artist.images.0.url }}" alt="{{ top_artist.name }}" width="100">
-                    <p><strong>Genres:</strong> {{ top_artist.genres|join:", " }}</p>
-                    <p><strong>Popularity:</strong> {{ top_artist.popularity }} / 100</p>
-                    <p><strong>Followers:</strong> {{ top_artist.followers.total|floatformat }}</p>
+                {% if top_artist %}
+                        <h2>Your #1 Artist: {{ top_artist.name }}</h2>
+                        <img src="{{ top_artist.images.0.url }}" alt="{{ top_artist.name }}" width="100">
+                        <p><strong>Genres:</strong> {{ top_artist.genres|join:", " }}</p>
+                        <p><strong>Popularity:</strong> {{ top_artist.popularity }} / 100</p>
+                        <p><strong>Followers:</strong> {{ top_artist.followers.total|floatformat }}</p>
+                {% else %}
+                    <h2>No top artist available</h2>
+                    <p>It seems like you haven't listened to enough music recently to have a top artist.</p>
+                {% endif %}
                 </section>
             </div>
         </div>
-        {% endif %}
 
-        <!-- Slide 8: Top Artists -->
-        <div class="slides" id="slide8">
+        <!-- Slide 7: Top Artists -->
+        <div class="slides" id="slide7">
             <div class="jagged-shape5"></div>
             <div class="jagged-shape6"></div>
             <div class="jagged-outline5"></div>
@@ -187,8 +190,8 @@
             </div>
         </div>
 
-        <!-- Slide 9: Recommended Songs -->
-        <div class="slides" id="slide9">
+        <!-- Slide 8: Recommended Songs -->
+        <div class="slides" id="slide8">
             <div class="jagged-shape8"></div>
             <div class="jagged-outline8"></div>
             <div class="jagged-shape10"></div>
@@ -220,8 +223,8 @@
             </div>
         </div>
 
-        <!-- Slide 10: Save Wrap -->
-        <div class="slides" id="slide10">
+        <!-- Slide 9: Save Wrap -->
+        <div class="slides" id="slide9">
             <div class="jagged-shape1"></div>
             <div class="jagged-outline1"></div>
             <div class="jagged-shape2"></div>
@@ -239,7 +242,7 @@
                         <button onclick="saveWrap()">Save</button>
                     </div>
                     <div class="back-home">
-                        <a href="{% url 'wraps_library' %}" class="back-home-button">Back to Library</a>
+                        <a href="{% url 'profile' %}" class="back-home-button">Back to Profile</a>
                     </div>
                 </section>
             </div>

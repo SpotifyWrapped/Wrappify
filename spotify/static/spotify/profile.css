@@ -16,6 +16,7 @@ body, html {
     font-weight: 400;
     font-style: normal;
     background-color: #E0E7EF;
+    overflow-x: hidden;
 }
 
 /* main container */
@@ -31,7 +32,7 @@ body, html {
 .user-info, .wrapped-link, .logout, .time-range-buttons {
     margin-bottom: 20px;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: 1px solid #ddd;
@@ -49,6 +50,7 @@ h1 {
 .profile-details {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .spotify-logo {
@@ -82,7 +84,7 @@ h1 {
     font-family: "Roboto", serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 20px;
+    font-size: 1.1em;
 }
 
 .spotify-link:hover {
@@ -90,7 +92,7 @@ h1 {
 }
 
 p {
-    font-size: 25px;
+    font-size: 1.1em;
     color: #555;
     margin-bottom: 10px;
     font-family: "Roboto", serif;
@@ -101,7 +103,7 @@ p {
 }
 
 button {
-    font-size: 16px;
+    font-size: 1em;
     color: #555;
     margin-bottom: 10px;
     font-family: "Roboto", serif;
@@ -173,6 +175,7 @@ ul li {
 
 #time-range-buttons {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 10px; /* Space between buttons */
     margin-bottom: 20px; /* Space below the button section */
@@ -235,6 +238,8 @@ ul li {
     top: 10px; /* Adjust the distance from the top */
     right: 10px; /* Adjust the distance from the right */
     z-index: 1000; /* Ensure it appears above other elements */
+    width: 50px; /* or any desired size */
+    height: auto; /* Keeps the aspect ratio */
 }
 
 .settings-button button {
@@ -361,4 +366,138 @@ ul li {
     font-weight: 100;
     font-style: normal;
   }
-  
+
+  /* Dark Mode Toggle Styles */
+.dark-mode-toggle {
+    position: fixed;
+    top: 20px; /* Distance from the top of the page */
+    left: 20px; /* Distance from the left of the page */
+    z-index: 1000; /* Ensure it is above other elements */
+}
+
+/* The switch - hide the checkbox */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide the default checkbox appearance */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider (round) */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+/* The slider before (circle) */
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+/* When checked, change the background color */
+input:checked + .slider {
+    background-color: #4e92d7e2; /* Darker green */
+}
+
+/* When checked, move the slider */
+input:checked + .slider:before {
+    transform: translateX(26px); /* Moves the circle to the right */
+}
+
+/* Optional: Add a hover effect */
+.slider:hover {
+    background-color: #76A1B6;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+        margin-right: 10px;
+    }
+
+    .profile-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .spotify-link, p, .wrapped-button {
+        font-size: 0.9em;
+    }
+
+    #time-range-buttons a {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .user-info, .wrapped-link, .logout, .time-range-buttons {
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .spotify-link, p, button {
+        font-size: 0.8em;
+    }
+
+    #time-range-buttons a {
+        padding: 10px 50px;
+        font-size: 0.8em;
+    }
+
+    .dark-mode-toggle, .settings-button, .contact-us-button {
+        width: 40px;
+    }
+    .profile-image {
+        width: 180px; /* Larger image size */
+        height: 180px;
+        margin-top: 15px;
+    }
+
+    .name-and-link {
+        align-items: center;
+        font-size: 1.5em;
+        margin-top: -2px;
+    }
+
+    .spotify-link {
+        font-size: 1em; /* Adjust font size for better readability */
+    }
+}

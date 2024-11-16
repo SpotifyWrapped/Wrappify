@@ -41,6 +41,12 @@
         {% endif %}
     </div>
 
+    <section id="back-to-profile">
+        <div class="back-home">
+            <a href="{% url 'profile' %}" class="back-home-button">Back to Profile</a>
+        </div>
+    </section>
+
     <script>
         function getCSRFToken() {
             const name = 'csrftoken';

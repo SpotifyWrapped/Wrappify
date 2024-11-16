@@ -31,8 +31,6 @@ SCOPE = "user-read-private user-read-email user-top-read"
 
 # Render the login page
 def loginPage(request):
-    if request.user.is_authenticated:
-        return redirect('profile')  # Redirect to a different page if the user is logged in
     request.session.clear()
     return render(request, 'spotify/login.html')
 
@@ -123,7 +121,7 @@ def spotify_callback(request):
 # Display the user's profile with Spotify data
 @login_required
 def profile(request):
-    time_range = request.GET.get('time_range', 'short_term')
+    time_range = request.GET.get('time_range')
     user_data = spotify_api_request(request, 'https://api.spotify.com/v1/me')
 
     if not user_data:
@@ -141,7 +139,8 @@ def profile(request):
 # Display Spotify wrapped data
 @login_required
 def wraps(request):
-    time_range = request.GET.get('time_range', 'short_term')
+    time_range = request.GET.get('time_range', None) or 'short_term'  # Default to 'short_term' if no parameter
+
     headers = {'Authorization': f'Bearer {get_valid_token(request)}'}
     user_data = spotify_api_request(request, 'https://api.spotify.com/v1/me')
 
@@ -150,7 +149,7 @@ def wraps(request):
 
     # Define human-readable labels for each time range
     time_range_labels = {
-        'short_term': 'Last 4 Weeks',
+        'short_term': 'Last Month',
         'medium_term': 'Last 6 Months',
         'long_term': 'All Time'
     }
@@ -169,7 +168,6 @@ def wraps(request):
     genres = [genre for artist in all_artists for genre in artist.get('genres', [])]
     top_genres = Counter(genres).most_common(5)
     top_5_tracks = all_tracks[:5]
-    total_playback_minutes = sum(track['duration_ms'] for track in all_tracks) / 60000
 
     track_ids = [track['id'] for track in all_tracks]
     avg_danceability = avg_energy = avg_valence = None
@@ -193,7 +191,6 @@ def wraps(request):
     wrap_data = {
         "title": "My Spotify Wrapped",
         "time_range_label": time_range_label,
-        "total_playback_minutes": int(total_playback_minutes),
         "top_genres": top_genres,
         "top_tracks": top_5_tracks,
         "avg_danceability": avg_danceability,
@@ -212,7 +209,6 @@ def wraps(request):
         'artists': top_5_artists,
         'tracks': top_5_tracks,
         'recommendations': recommendations_json.get('tracks', []) if recommendations_json else [],
-        'total_playback_minutes': total_playback_minutes,
         'top_genres': top_genres,
         'avg_danceability': avg_danceability,
         'avg_energy': avg_energy,
@@ -237,13 +233,13 @@ def save_wrap(request):
                 'user': request.user,
                 'title': data.get('title', 'My Spotify Wrapped'),
                 'time_range_label': data.get('time_range_label'),
-                'total_playback_minutes': int(data.get('total_playback_minutes', 0)),
+                'total_playback_minutes': '0',
                 'top_genres': data.get('top_genres'),
                 'top_tracks': data.get('top_tracks'),
                 'avg_danceability': float(data.get('avg_danceability', 0)),
                 'avg_energy': float(data.get('avg_energy', 0)),
                 'avg_valence': float(data.get('avg_valence', 0)),
-                'top_artist': data.get('top_artist'),
+                'top_artist': data.get('top_artist') or "No top artist available",  # Set default value
                 'top_artists': data.get('top_artists'),
                 'recommendations': data.get('recommendations')
             }
@@ -273,7 +269,6 @@ def wrap_detail(request, wrap_id):
     context = {
         'title': wrap.title,
         'time_range_label': wrap.time_range_label,
-        'total_playback_minutes': wrap.total_playback_minutes,
         'top_genres': wrap.top_genres,
         'top_tracks': wrap.top_tracks,
         'avg_danceability': wrap.avg_danceability,
@@ -290,16 +285,6 @@ def wrap_detail(request, wrap_id):
 @login_required
 def settings(request):
     return render(request, 'spotify/settings.html')
-
-
-
-
-
-
-
-
-
-
 
 # ========== Helper Functions ==========
 

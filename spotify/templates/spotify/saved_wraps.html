@@ -23,7 +23,6 @@
             <div class="progress-bar" onclick="goToSlide(6)"></div>
             <div class="progress-bar" onclick="goToSlide(7)"></div>
             <div class="progress-bar" onclick="goToSlide(8)"></div>
-            <div class="progress-bar" onclick="goToSlide(9)"></div>
         </div>
 
         <!-- Slide 1: Intro Slide -->
@@ -34,19 +33,8 @@
             </section>
         </div>
 
-        <!-- Slide 2: Total Playback Time -->
+        <!-- Slide 2: Top Genres -->
         <div class="slides" id="slide2">
-            <section id="total-playback-time">
-                <h2>My Minutes Listened</h2>
-                <p>You have listened to approximately {{ total_playback_minutes }} minutes in {{ time_range_label }}.</p>
-                {% if peak_day %}
-                    <p>Your peak listening day was <strong>{{ peak_day }}</strong> with <strong>{{ peak_minutes }}</strong> minutes listened.</p>
-                {% endif %}
-            </section>
-        </div>
-
-        <!-- Slide 3: Top Genres -->
-        <div class="slides" id="slide3">
             <section id="top-genres">
                 <h2>My Top Genres</h2>
                 <ul>
@@ -59,22 +47,21 @@
             </section>
         </div>
 
-        <!-- Slide 4: Top Tracks -->
-        <div class="slides" id="slide4">
+        <!-- Slide 3: Top Tracks -->
+        <div class="slides" id="slide3">
             <section id="top-tracks">
                 <h2>My Top Songs</h2>
                 <ul>
-                    {% for track in top_tracks %}
+                    {% for track in tracks %}
                         <li>
-                            <strong>{{ forloop.counter }}.</strong> {{ track.name }} by {{ track.artists.0.name }}
+                            <strong>{{ forloop.counter }}.</strong>
                             <img src="{{ track.album.images.0.url }}" alt="{{ track.name }}" width="100">
+                            <p>{{ track.name }} by {{ track.artists.0.name }}</p>
                             {% if track.preview_url %}
                                 <audio controls>
                                     <source src="{{ track.preview_url }}" type="audio/mpeg">
                                     Your browser does not support the audio element.
                                 </audio>
-                            {% else %}
-                                <p>No preview available</p>
                             {% endif %}
                         </li>
                     {% empty %}
@@ -84,46 +71,51 @@
             </section>
         </div>
 
-        <!-- Slide 5: Mood Analysis (Vibe) -->
-        <div class="slides" id="slide5">
+        <!-- Slide 4: Mood Analysis (Vibe) -->
+        <div class="slides" id="slide4">
             <section id="audio-mood">
                 <h2>My Vibe</h2>
-                <p><strong>Danceability:</strong> {{ avg_danceability }} (How much your tracks make you want to dance)</p>
-                <p><strong>Energy:</strong> {{ avg_energy }} (How energetic and intense your music is)</p>
-                <p><strong>Happiness (Valence):</strong> {{ avg_valence }} (How positive your tracks feel)</p>
+                <p><strong>Danceability:</strong> {{ avg_danceability|floatformat:2 }} (How much your tracks make you want to dance)</p>
+                <p><strong>Energy:</strong> {{ avg_energy|floatformat:2 }} (How energetic and intense your music is)</p>
+                <p><strong>Happiness (Valence):</strong> {{ avg_valence|floatformat:2}} (How positive your tracks feel)</p>
             </section>
         </div>
 
-        <!-- Slide 6: Transition Slide (Who's your #1) -->
-        <div class="slides" id="slide6">
+
+        <!-- Slide 5: Transition Slide (Who's your #1) -->
+        <div class="slides" id="slide5">
             <section id="extra-slide">
                 <h2>HMM... Who's that special someone?</h2>
                 <p>Someone you just can't stop listening to...</p>
             </section>
         </div>
 
-        <!-- Slide 7: #1 Artist Deep Dive -->
-        {% if top_artist %}
-        <div class="slides" id="slide7">
+        <!-- Slide 6: #1 Artist Deep Dive -->
+        <div class="slides" id="slide6">
             <section id="top-artist-deep-dive">
-                <h2>Your #1 Artist: {{ top_artist.name }}</h2>
-                <img src="{{ top_artist.images.0.url }}" alt="{{ top_artist.name }}" width="100">
-                <p><strong>Genres:</strong> {{ top_artist.genres|join:", " }}</p>
-                <p><strong>Popularity:</strong> {{ top_artist.popularity }} / 100</p>
-                <p><strong>Followers:</strong> {{ top_artist.followers.total|floatformat }}</p>
+                {% if top_artist %}
+                    <h2>Your #1 Artist: {{ top_artist.name }}</h2>
+                    <img src="{{ top_artist.images.0.url }}" alt="{{ top_artist.name }}" width="100">
+                    <p><strong>Genres:</strong> {{ top_artist.genres|join:", " }}</p>
+                    <p><strong>Popularity:</strong> {{ top_artist.popularity }} / 100</p>
+                    <p><strong>Followers:</strong> {{ top_artist.followers.total|floatformat }}</p>
+                {% else %}
+                    <h2>No top artist available</h2>
+                    <p>It seems like you haven't listened to enough music recently to have a top artist.</p>
+                {% endif %}
             </section>
         </div>
-        {% endif %}
 
-        <!-- Slide 8: Top Artists -->
-        <div class="slides" id="slide8">
+        <!-- Slide 7: Top Artists -->
+        <div class="slides" id="slide7">
             <section id="top-artists">
                 <h2>My Top Artists</h2>
                 <ul>
                     {% for artist in artists %}
                         <li>
-                            <strong>{{ forloop.counter }}.</strong> {{ artist.name }}
+                            <strong>{{ forloop.counter }}.</strong>
                             <img src="{{ artist.images.0.url }}" alt="{{ artist.name }}" width="100">
+                            <p>{{ artist.name }}</p>
                         </li>
                     {% empty %}
                         <li>No top artists available.</li>
@@ -132,8 +124,8 @@
             </section>
         </div>
 
-        <!-- Slide 9: Recommended Songs -->
-        <div class="slides" id="slide9">
+        <!-- Slide 8: Recommended Songs -->
+        <div class="slides" id="slide8">
             <section id="recommendations">
                 <h2>Recommended Songs</h2>
                 <ul>
@@ -157,7 +149,7 @@
             </section>
         </div>
 
-        <!-- Slide 10: Back to Library -->
+        <!-- Slide 9: Back to Library -->
         <div class="slides" id="slide10">
             <section id="back-to-library">
                 <h2>Return to Library</h2>
