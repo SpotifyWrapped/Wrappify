@@ -29,7 +29,6 @@
             <div class="progress-bar" onclick="goToSlide(6)"></div>
             <div class="progress-bar" onclick="goToSlide(7)"></div>
             <div class="progress-bar" onclick="goToSlide(8)"></div>
-            <div class="progress-bar" onclick="goToSlide(9)"></div>
         </div>
 
         <!-- Slide 1: Intro Slide -->
@@ -63,7 +62,7 @@
         </div> {% endcomment %}
 
         <!-- Slide 3: Top Genres -->
-        <div class="slides" id="slide2">
+        <div class="slides" id="slide3">
             <div class="jagged-shape3"></div>
             <div class="jagged-shape4"></div>
             <div class="jagged-outline3"></div>
@@ -83,7 +82,7 @@
         </div>
 
         <!-- Slide 3: Top Tracks -->
-        <div class="slides" id="slide3">
+        <div class="slides" id="slide4">
             <div class="jagged-shape5"></div>
             <div class="jagged-shape6"></div>
             <div class="jagged-outline5"></div>
@@ -113,7 +112,7 @@
         </div>
 
         <!-- Slide 4: Mood Analysis (Vibe) -->
-        <div class="slides" id="slide4">
+        <div class="slides" id="slide5">
             <div class="jagged-shape7"></div>
             <div class="jagged-shape4"></div>
             <div class="jagged-shape8"></div>
@@ -133,7 +132,7 @@
 
 
         <!-- Slide 5: Transition Slide (Who's your #1) -->
-        <div class="slides" id="slide5">
+        <div class="slides" id="slide6">
             <div class="jagged-shape3-1"></div>
             <div class="jagged-shape4-1"></div>
             <section id="extra-slide">
@@ -143,7 +142,7 @@
         </div>
 
         <!-- Slide 6: #1 Artist Deep Dive -->
-        <div class="slides" id="slide6">
+        <div class="slides" id="slide7">
             <div class="jagged-shape12"></div>
             <div class="jagged-outline12"></div>
             <div class="jagged-shape13"></div>
@@ -167,7 +166,7 @@
         </div>
 
         <!-- Slide 7: Top Artists -->
-        <div class="slides" id="slide7">
+        <div class="slides" id="slide8">
             <div class="jagged-shape5"></div>
             <div class="jagged-shape6"></div>
             <div class="jagged-outline5"></div>
@@ -191,7 +190,7 @@
         </div>
 
         <!-- Slide 8: Recommended Songs -->
-        <div class="slides" id="slide8">
+        <div class="slides" id="slide9">
             <div class="jagged-shape8"></div>
             <div class="jagged-outline8"></div>
             <div class="jagged-shape10"></div>
@@ -200,31 +199,33 @@
             <div class="jagged-outline11"></div>
             <div class="slide-left">
                 <section id="recommendations">
-                    <h2>Recommended Songs</h2>
-                    <ul>
-                        {% for rec in recommendations %}
-                            <li>
-                                <img src="{{ rec.album.images.0.url }}" alt="{{ rec.name }}" width="100">
-                                <p>{{ rec.name }} by {{ rec.artists.0.name }}</p>
-                                {% if rec.preview_url %}
-                                    <audio controls>
-                                        <source src="{{ rec.preview_url }}" type="audio/mpeg">
-                                        Your browser does not support the audio element.
-                                    </audio>
-                                {% else %}
-                                    <p>No preview available</p>
-                                {% endif %}
-                            </li>
-                        {% empty %}
-                            <p>No recommendations available.</p>
-                        {% endfor %}
-                    </ul>
+                    <div class="content-container1">
+                        <h2>Recommended Songs</h2>
+                        <ul>
+                            {% for rec in recommendations %}
+                                <li>
+                                    <img src="{{ rec.album.images.0.url }}" alt="{{ rec.name }}" width="100">
+                                    <p>{{ rec.name }} by {{ rec.artists.0.name }}</p>
+                                    {% if rec.preview_url %}
+                                        <audio controls>
+                                            <source src="{{ rec.preview_url }}" type="audio/mpeg">
+                                            Your browser does not support the audio element.
+                                        </audio>
+                                    {% else %}
+                                        <p>No preview available</p>
+                                    {% endif %}
+                                </li>
+                            {% empty %}
+                                <p>No recommendations available.</p>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </section>
             </div>
         </div>
 
         <!-- Slide 9: Save Wrap -->
-        <div class="slides" id="slide9">
+        <div class="slides" id="slide10">
             <div class="jagged-shape1"></div>
             <div class="jagged-outline1"></div>
             <div class="jagged-shape2"></div>

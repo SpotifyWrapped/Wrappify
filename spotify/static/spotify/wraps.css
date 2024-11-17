@@ -555,8 +555,8 @@ object-fit: cover;
     position: absolute;
     top: 44.5%;
     left: 50%;
-    width: 200px; /* Adjust size for desired shine */
-    height: 200px;
+    width: 10vw; /* Adjust size for desired shine */
+    height: 10vw;
     background-color: transparent;
     border-radius: 0%;  /* round percentage */
     transform: translate(-50%, -50%);
