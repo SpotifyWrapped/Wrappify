@@ -378,3 +378,9 @@ def spotify_api_request(request, url, params=None):
 
 def contactPage(request):
     return render(request, 'spotify/contact.html')
+
+def accountPage(request):
+    return render(request, 'spotify/account.html')
+
+def preferencePage(request):
+    return render(request, 'spotify/preference.html')

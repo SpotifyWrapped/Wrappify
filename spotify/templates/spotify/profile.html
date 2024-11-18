@@ -19,15 +19,13 @@
             </label>
             <aside class="sidebar">
                 <ul class="menu-list">
-                  <li><a href="#account">Account</a></li>
-                  <li><a href="#theme">Theme</a></li>
-                  <li><a href="#language">Language</a></li>
+                  <li><a href="{% url 'account' %}">Account</a></li>
+                  <li><a href="{% url 'preference' %}">Preference</a></li>
                   <li><a href="{% url 'contacts' %}">Contact</a></li>
                 </ul>
                 <hr class="divider" /> <!-- Thin line -->
                 <ul class="menu-list">
-                  <li><a href="#logout">Log Out</a></li>
-                  <li><a href="#light-mode">Light Mode</a></li>
+                  <li><a href="{% url 'logout' %}">Logout</a></li>
                 </ul>
               </aside>
           </body>
@@ -84,10 +82,6 @@
     <!-- Link to Library Page -->
     <div class="wrapped-link">
         <a href="{% url 'wraps_library' %}" class="wrapped-button library-button">Your Saved Library</a>
-    </div>
-
-    <div class="logout">
-        <a href="{% url 'logout' %}">Logout</a>
     </div>
 
     <script>
