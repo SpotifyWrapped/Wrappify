@@ -31,7 +31,6 @@ SCOPE = "user-read-private user-read-email user-top-read"
 
 # Render the login page
 def loginPage(request):
-    request.session.clear()
     return render(request, 'spotify/login.html')
 
 # Log out from both Spotify and Django sessions
