@@ -13,11 +13,30 @@
 <body>
     <div class="container">
 
-        <div>
+        <body>
+            <label class="hamburger-menu">
+              <input type="checkbox" />
+            </label>
+            <aside class="sidebar">
+                <ul class="menu-list">
+                  <li><a href="{% url 'account' %}">Account</a></li>
+                  <li><a href="{% url 'preference' %}">Preference</a></li>
+                  <li><a href="{% url 'contacts' %}">Contact</a></li>
+                </ul>
+                <hr class="divider" /> <!-- Thin line -->
+                <ul class="menu-list">
+                  <li><a href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+              </aside>
+          </body>
+         
+        <!--
+          <div>
             <a href="{% url 'settings' %}" class="settings-button">
                 <img src="{% static 'images/settings.png' %}" class="settings-button">
             </a>
-        </div>
+        </div> 
+        -->
 
         <!-- Dark Mode Toggle -->
         <div class="dark-mode-toggle">
@@ -25,10 +44,6 @@
                 <input type="checkbox" id="dark-mode-toggle">
                 <span class="slider"></span>
             </label>
-        </div>
-
-        <div class="contact-us-button">
-            <a href="{% url 'contacts' %}" class="contact-button">Contact The Developers</a>
         </div>
 
         <!-- User Information Section -->
@@ -67,10 +82,6 @@
     <!-- Link to Library Page -->
     <div class="wrapped-link">
         <a href="{% url 'wraps_library' %}" class="wrapped-button library-button">Your Saved Library</a>
-    </div>
-
-    <div class="logout">
-        <a href="{% url 'logout' %}">Logout</a>
     </div>
 
     <script>
