@@ -95,6 +95,25 @@
             background-color: #003080;
         }
 
+        .dropdown {
+            background-color: #004aad;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        .dropdown:hover {
+            background-color: #003080;
+        }
+
+        #themeSelector {
+            font-size: 10px;
+        }
+
         /* Modal styling */
         #questionModal {
             position: fixed;
@@ -189,7 +208,7 @@
                     <div id="playerHealth" style="position: absolute; background: #004aad; top: 0; right: 0; bottom: 0; width: 100%;"></div>
                 </div>
                 <!-- timer -->
-                <div id="timer" style="background-color: white; height: 50px; width: 50px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">10</div>
+                <div id="timer" style="background-color: white; height: 50px; width: 50px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;"></div>
                 <!-- enemy health -->
                 <div style="position: relative; height: 30px; width: 100%;">
                     <div style="background-color: white; height: 30px;"></div>
@@ -197,7 +216,7 @@
                 </div>
             </div>
 
-            <div id="displayText" style="position: absolute; color: white; align-items: center; justify-content: center; top: 0; right: 0; bottom: 0; left: 0; display: none;">Tie</div>
+            <div id="displayText" style="position: absolute; color: white; align-items: center; justify-content: center; top: 0; right: 0; bottom: 0; left: 0; display: none; font-size: 30px">Tie</div>
 
             <canvas></canvas>
         </div>
@@ -207,6 +226,18 @@
     <footer>
         <a href="{% url 'wraps_library' %}" class="back-button">Back to Library</a>
         <button class="play-again-button" onclick="restartGame()">Play Again</button>
+        <div class="dropdown">
+            <label for="themeSelector">Choose Theme:</label>
+            <select id="themeSelector"> Choose Theme
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+                <option value="lightHalloween">Light Halloween</option>
+                <option value="darkHalloween">Dark Halloween</option>
+                <option value="lightChristmas">Light Christmas</option>
+                <option value="darkChristmas">Dark Christmas</option>
+            </select>
+
+        </div>
     </footer>
     
 
@@ -216,6 +247,9 @@
     console.log("Wrap ID:", wrapId); // Debugging log to confirm the value of wrapId
         
         const backgroundImageSrc = "{% static 'spotify/images/lightbg.png' %}";
+        const darkbg = "{% static 'spotify/images/darkbg.png' %}";
+
+        
         const shopImg = "{% static 'spotify/images/shop.png' %}";
         const playerIdle = "{% static 'spotify/images/playerIdle.png' %}";
         const playerRun = "{% static 'spotify/images/playerRun.png' %}";

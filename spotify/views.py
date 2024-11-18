@@ -221,8 +221,8 @@ def wraps(request):
 @login_required
 def wraps_library(request):
     saved_wraps = SavedWrap.objects.filter(user=request.user)
-    for wrap in saved_wraps:
-        print(wrap.top_tracks)
+    # for wrap in saved_wraps:
+    #     print(wrap.top_tracks)
     return render(request, 'spotify/wraps_library.html', {'saved_wraps': saved_wraps})
 
 # Save the current Spotify wrap data to the database
