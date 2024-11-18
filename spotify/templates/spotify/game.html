@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="{% static 'spotify/game.css' %}">
+    <script src="{% static 'spotify/game.js' %}" defer></script>
+</head>
+<body>
+
+    <!-- Header with logo -->
+    <header>
+        <div class="logo">
+            <a href="{% url 'wraps_library' %}">
+                <img src="{% static 'spotify/images/game.png' %}" class="logo">
+            </a>
+        </div>
+    </header>
+
+    <!-- Game container to center the canvas -->
+    <div class="game-container">
+        <div style="position: relative; display: inline-block;">
+            <div id="backHealth" style="position: absolute; display: flex; width: 100%; align-items: center; padding: 20px;">
+                <!-- player health -->
+                <div style="position: relative; height: 30px; width: 100%; display: flex; justify-content: flex-end">
+                    <div style="background-color: white; height: 30px; width: 100%;"></div>
+                    <div id="playerHealth" style="position: absolute; background: #004aad; top: 0; right: 0; bottom: 0; width: 100%;"></div>
+                </div>
+                <!-- timer -->
+                <div id="timer" style="background-color: white; height: 50px; width: 50px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;"></div>
+                <!-- enemy health -->
+                <div style="position: relative; height: 30px; width: 100%;">
+                    <div style="background-color: white; height: 30px;"></div>
+                    <div id="enemyHealth" style="position: absolute; background: #004aad; top: 0; right: 0; bottom: 0; left: 0;"></div>
+                </div>
+            </div>
+
+            <div id="displayText" style="position: absolute; color: white; align-items: center; justify-content: center; top: 0; right: 0; bottom: 0; left: 0; display: none; font-size: 20px">Tie</div>
+
+            <canvas></canvas>
+        </div>
+    </div>
+    
+    <!-- Footer with Back to Library button -->
+    <footer>
+        <a href="{% url 'wraps_library' %}" class="back-button">Back to Library</a>
+        <button class="play-again-button" onclick="restartGame()">Play Again</button>
+        <div class="dropdown">
+            <label for="themeSelector">Choose Theme:</label>
+            <select id="themeSelector"> Choose Theme
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+                <option value="lightHalloween">Light Halloween</option>
+                <option value="darkHalloween">Dark Halloween</option>
+                <option value="lightChristmas">Light Christmas</option>
+                <option value="darkChristmas">Dark Christmas</option>
+            </select>
+
+        </div>
+    </footer>
+    
+
+    <script>
+    const wrapData = JSON.parse('{{ wrap_data_json|escapejs }}');
+    const wrapId = "{{ wrap_id }}";  // Wrap the ID in quotes to make it a string in JavaScript
+    console.log("Wrap ID:", wrapId); // Debugging log to confirm the value of wrapId
+        
+        const backgroundImageSrc = "{% static 'spotify/images/lightbg.png' %}";
+        const darkbg = "{% static 'spotify/images/darkbg.png' %}";
+
+        
+        const shopImg = "{% static 'spotify/images/shop.png' %}";
+        const playerIdle = "{% static 'spotify/images/playerIdle.png' %}";
+        const playerRun = "{% static 'spotify/images/playerRun.png' %}";
+        const playerJump = "{% static 'spotify/images/playerJump.png' %}";
+        const playerFall = "{% static 'spotify/images/playerFall.png' %}";
+        const playerAttack1 = "{% static 'spotify/images/playerAttack1.png' %}";
+        const enemyIdle = "{% static 'spotify/images/enemyIdle.png' %}";
+        const enemyRun = "{% static 'spotify/images/enemyRun.png' %}";
+        const enemyAttack1 = "{% static 'spotify/images/enemyAttack1.png' %}";
+        const enemyJump = "{% static 'spotify/images/enemyJump.png' %}";
+        const enemyFall = "{% static 'spotify/images/enemyFall.png' %}";
+        const enemyHit = "{% static 'spotify/images/enemyHit.png' %}";
+        const playerHit = "{% static 'spotify/images/playerHit.png' %}";
+        const playerDeath = "{% static 'spotify/images/playerDeath.png' %}";
+        const enemyDeath = "{% static 'spotify/images/enemyDeath.png' %}";
+    </script>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+
+
+<!-- Question Modal -->
+<div id="questionModal" style="display: none;">
+    <div id="questionContent">
+        <h2 id="questionText">Question</h2>
+        <ul id="optionsList">
+            <!-- Options will be generated dynamically here -->
+        </ul>
+        <p style="font-size: 12px; color: #666; margin-top: 10px;">Select or use Keyboard</p>
+    </div>
+</div>
+
+</body>
+</html>

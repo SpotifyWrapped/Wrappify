@@ -112,6 +112,17 @@
             }
         });
     </script>
+
+<script>
+    document.addEventListener("scroll", function() {
+        document.body.classList.add("scrolled");
+        clearTimeout(window.scrollTimer);
+        window.scrollTimer = setTimeout(function() {
+            document.body.classList.remove("scrolled");
+        }, 1000); // Buttons disappear after 1 second of no scroll
+    });
+    </script>
+    
     
 </body>
 </html>

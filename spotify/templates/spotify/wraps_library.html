@@ -21,25 +21,42 @@
                 {% for wrap in saved_wraps %}
                     <!-- Card for each wrap -->
                     <div class="wrap-card" id="wrap-card-{{ wrap.id }}">
-                    <!-- Display the first track’s album image if it exists, else use a default image -->
-                    {% if wrap.top_tracks.0 %}
-                        <img src="{{ wrap.top_tracks.0.album.images.0.url }}" alt="{{ wrap.top_tracks.0.name }}" class="wrap-image">
-                    {% else %}
-                        <img src="path/to/default_image.jpg" alt="Default Image" class="wrap-image">
-                    {% endif %}
+                        <!-- Display the first track’s album image if it exists, else use a default image -->
+                        {% if wrap.top_tracks.0 %}
+                            <img src="{{ wrap.top_tracks.0.album.images.0.url }}" alt="{{ wrap.top_tracks.0.name }}" class="wrap-image">
+                        {% else %}
+                            <img src="path/to/default_image.jpg" alt="Default Image" class="wrap-image">
+                        {% endif %}
                         <h3>My {{ wrap.created_at|date:"F j, Y" }} Wrap</h3>
                         <p>Duration: {{ wrap.time_range_label }}</p>
-
-                        <!-- Details button with data-url attribute -->
-                        <button class="view-wrap-button" data-url="{% url 'wrap_detail' wrap.id %}">View Wrap</button>
-                        
-                        <!-- Delete button with data-url attribute -->
-                        <button class="delete-wrap-button" data-url="{% url 'delete_wrap' wrap.id %}">Delete</button>
-                    </div>
+                    
+                        <!-- Button container for View, Delete, and Play Game buttons -->
+                        <div class="button-container">
+                            <!-- View Wrap button -->
+                            <button class="view-wrap-button" data-url="{% url 'wrap_detail' wrap.id %}">View Wrap</button>
+                            
+                            <!-- Delete button -->
+                            <button class="delete-wrap-button" data-url="{% url 'delete_wrap' wrap.id %}">Delete</button>
+                    
+                            <!-- Play Game button as an image link -->
+                            <!-- Play Game button as an image link -->
+                            <a href="{% url 'game' wrap.id %}">
+                                {% if wrap.completed_game %}
+                                    <img src="{% static 'spotify/images/colorcontroller.png' %}" alt="Game Completed" class="game-button-image">
+                                {% else %}
+                                    <img src="{% static 'spotify/images/greycontroller.png' %}" alt="Play Game" class="game-button-image">
+                                {% endif %}
+                            </a>
+                        </div>
+                    </div>                    
                 {% endfor %}
             </div>
         {% endif %}
     </div>
+
+    <footer>
+        <a href="{% url 'profile' %}" class="back-button">Back to Profile</a>
+    </footer>
 
     <script>
         function getCSRFToken() {

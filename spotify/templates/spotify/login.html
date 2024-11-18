@@ -8,17 +8,30 @@
     <link rel="stylesheet" href="{% static 'spotify/login.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="jagged-shape1"></div>
+    <div class="jagged-outline1"></div>
     <div class="jagged-shape2"></div>
+    <div class="jagged-outline2"></div>
     <div class="container">
+        <!-- Left Content -->
+        <div class="content-left">
+            <img src="{% static 'spotify/images/logo.png' %}" alt="Logo" class="logo">
+            <h1 class="main-heading">Your Music,<br>Your Wrapped.</h1>
+            <p class="description">
+                Tired of waiting to discover your Spotify Wrapped? <br>
+                Wrappify allows you to make your own CUSTOM Spotify Wrapped, save it, and even quiz you on it!
+                <br>Connect your Spotify account to start!
+            </p>
+            <a href="{% url 'redirect' %}" class="connect-button">Login with Spotify</a>
+        </div>
 
-        <h1 class="main-heading">Welcome to Spotify Wrapped</h1>
-        <p>Get started by connecting your Spotify account</p>
-        <a href="{% url 'redirect' %}" class="connect-button">Click Here to Login</a>
+        <!-- Right Image -->
+        <div class="content-right">
+            <img src="{% static 'spotify/images/phone.png' %}" alt="Phone" class="phone-image">
+        </div>
     </div>
-
 </body>
 </html>

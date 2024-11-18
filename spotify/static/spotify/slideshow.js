@@ -19,6 +19,11 @@ document.addEventListener("DOMContentLoaded", function () {
         showSlide(currentSlide);
     }
 
+    function previousSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length; // Cycle backward
+        showSlide(currentSlide);
+    }
+
     function goToSlide(index) {
         currentSlide = index; // Set currentSlide to the clicked index
         showSlide(currentSlide);
@@ -34,4 +39,14 @@ document.addEventListener("DOMContentLoaded", function () {
     progressBars.forEach((bar, index) => {
         bar.addEventListener('click', () => goToSlide(index));
     });
+
+    // Add keydown event listener for the right and left arrow keys
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'ArrowRight') {
+            nextSlide();
+        } else if (event.key === 'ArrowLeft') {
+            previousSlide();
+        }
+    });
+
 });
