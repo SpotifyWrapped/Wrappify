@@ -111,8 +111,29 @@ body {
     transform: scale(1.1);
 }
 
-#back-to-profile {
-    align-items: center;
+/* Footer styling */
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background-color: #E0E7EF;
+}
+
+/* Back button styling */
+.back-button {
+    background-color: #004aad;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    background-color: #003080;
 }
 
 /* Responsive adjustments */

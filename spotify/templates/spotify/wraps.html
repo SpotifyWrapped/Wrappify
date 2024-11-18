@@ -72,7 +72,9 @@
                     <h2>My Top Genres</h2>
                     <ul>
                         {% for genre, count in top_genres %}
-                            <li>{{ genre }} ({{ count }} times)</li>
+                            <li>
+                                <strong>{{ forloop.counter }}.</strong> {{ genre }}
+                            </li>
                         {% empty %}
                             <li>No top genres available.</li>
                         {% endfor %}
@@ -80,6 +82,7 @@
                 </section>
             </div>
         </div>
+
 
         <!-- Slide 3: Top Tracks -->
         <div class="slides" id="slide4">

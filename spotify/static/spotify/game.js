@@ -739,7 +739,7 @@ function decreaseTimer() {
 }
 decreaseTimer()
 
-const enableQuestionPrompt = true; // Set to `false` to disable questions and deal direct damage
+const enableQuestionPrompt = false; // Set to `false` to disable questions and deal direct damage
 
 
 // Add this function to prompt a question when player attacks
@@ -1029,78 +1029,6 @@ function restartGame() {
     location.reload(); // Reloads the page to restart the game
 }
 
-
-
-const themes = {
-    light: {
-        bodyBackground: '#E0E7EF',
-        canvasImage: backgroundImageSrc,
-        headerBackground: '#E0E7EF',
-        footerBackground: '#E0E7EF',
-    },
-    dark: {
-        bodyBackground: '#333333',
-        canvasImage: darkbg,
-        headerBackground: '#333333',
-        footerBackground: '#333333',
-    },
-    forest: {
-        bodyBackground: '#228B22',
-        canvasImage: "{% static 'spotify/images/forest.jpg' %}",
-        headerBackground: '#2E8B57',
-        footerBackground: '#2E8B57',
-    },
-    beach: {
-        bodyBackground: '#87CEEB',
-        canvasImage: "{% static 'spotify/images/beach.jpg' %}",
-        headerBackground: '#4682B4',
-        footerBackground: '#4682B4',
-    },
-};
-
-  
-function applyTheme(theme) {
-    // Update body styles
-    document.body.style.backgroundColor = themes[theme].bodyBackground;
-    document.body.style.color = themes[theme].bodyColor;
-
-    // Update header styles
-    const header = document.querySelector('header');
-    header.style.backgroundColor = themes[theme].headerBackground;
-    header.style.color = themes[theme].headerColor;
-
-    // Update footer styles
-    const footer = document.querySelector('footer');
-    footer.style.backgroundColor = themes[theme].footerBackground;
-    footer.style.color = themes[theme].footerColor;
-
-    // Update canvas background
-    if (themes[theme].canvasImage) {
-        const backgroundImage = new Image();
-        backgroundImage.src = themes[theme].canvasImage;
-
-        backgroundImage.onload = () => {
-            c.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
-            c.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height); // Draw the new image
-        };
-
-        backgroundImage.onerror = () => {
-            console.error('Failed to load image:', themes[theme].canvasImage);
-            c.fillStyle = themes[theme].bodyBackground; // Fallback color
-            c.fillRect(0, 0, canvas.width, canvas.height);
-        };
-    } else {
-        // Clear canvas if no image is provided
-        c.clearRect(0, 0, canvas.width, canvas.height);
-        c.fillStyle = themes[theme].bodyBackground; // Match body background
-        c.fillRect(0, 0, canvas.width, canvas.height);
-    }
-}
-
-  
-  // Initialize with default theme
-  applyTheme('light');
-  
   // Event listener for the dropdown
   document.getElementById('themeSelector').addEventListener('change', (event) => {
     const selectedTheme = event.target.value;

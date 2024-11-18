@@ -135,6 +135,7 @@ margin-left: 10px; /* Space between image and text */
     list-style: none;
     display: block;           /* Change from flex to block to remove flex styles */
     justify-content: initial; /* Reset justify-content */
+    text-align: left;
 }
 
 /* Slide 1 Intro Styling */
