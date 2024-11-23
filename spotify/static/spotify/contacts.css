@@ -1,50 +1,92 @@
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     min-height: 100vh;
     font-family: "Roboto", serif;
     font-weight: 400;
-    font-style: normal;
     background-color: #E0E7EF;
+    margin: 0;
 }
 
 .container {
-    margin-top: -700px; /* Adjust this value as needed */
-    position: relative;
     text-align: center;
-    padding: 10px 1px;
+    padding: 25px;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: 1px solid #ddd;
-    width: 30%;
-    max-width: 1100px;
+    width: 60%;
+    max-width: 450px;
+    margin-top: 30px;
 }
 
 .main-heading {
     font-size: 40px;
     color: #333;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin: 0;
+}
+
+.developer-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px 0;
+    padding: 0 20px;
+}
+
+.card {
+    width: 280px;
+    height: 450px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
 }
 
 .home {
-    position: fixed; /* Fix the position relative to the viewport */
-    bottom: 10px; /* Adjust the distance from the bottom */
-    left: 10px; /* Adjust the distance from the left */
-    z-index: 1000; /* Ensure it appears above other elements */
-  }
-  
-.home-button {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #88A3C1;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-      outline: none;
-      border: none;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 1000;
 }
+
+.home-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #88A3C1;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    outline: none;
+    border: none;
+}
+
+.home-button:hover {
+    background-color: #6789a8;
+}
+
+.contact-us {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.contact-link {
+    font-size: 16px;
+    font-weight: bold;
+    color: #88A3C1;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: #6789a8;
+}
+

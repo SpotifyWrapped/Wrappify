@@ -18,6 +18,6 @@ urlpatterns = [
     path('settings/', views.settings, name='settings'),
     path('game/<int:wrap_id>/', views.game, name='game'),
     path('complete-game/<int:wrap_id>/', views.complete_game, name='complete_game'),
-
+    path('delete-account/', views.delete_account, name='delete_account'),
 
 ]
