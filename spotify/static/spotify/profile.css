@@ -19,6 +19,52 @@ body, html {
     overflow-x: hidden;
 }
 
+.logo {
+  position: fixed;
+  top: -80px; /* Adjust the distance from the top */
+  left: 20px; /* Adjust the distance from the left */
+  z-index: 1002; /* Ensure it stays above other elements */
+  width: 350px; /* Adjust the size as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.jagged-shape1, .jagged-outline1, .jagged-shape2, .jagged-outline2 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.jagged-outline1 {
+  height: 26.5vh; /* Slightly larger than the jagged-shape1 */
+  background-color: #000000; /* Black outline */
+  clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
+  z-index: 0; /* Place the outline behind the main shape */
+}
+
+.jagged-shape1 {
+  height: 26vh;
+  background-color: #95B3D6; /* Main shape color */
+  clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
+  z-index: 1; /* Place the shape above the outline */
+}
+
+.jagged-outline2 {
+  height: 15.5vh; /* Slightly larger than the jagged-shape2 */
+  background-color: #000000; /* Black outline */
+  clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
+  z-index: 1; /* Place the outline behind the main shape */
+}
+
+.jagged-shape2 {
+  height: 15vh;
+  background-color: #5496D7; /* Main shape color */
+  clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
+  z-index: 2; /* Place the shape above the outline */
+}
+
+
+
 /* main container */
 .container {
     position: relative;
@@ -29,7 +75,7 @@ body, html {
     /* padding: 20px; */
 }
 
-.user-info, .wrapped-link, .logout, .time-range-buttons {
+.user-info, .wrapped-link, .time-range-buttons {
     margin-bottom: 20px;
     padding: 20px;
     background-color: #FFFFFF;
@@ -233,28 +279,6 @@ ul li {
     transform: translateY(-2px); /* Lift effect on hover */
 }
 
-.settings-button {
-    position: fixed; /* Fix the position relative to the viewport */
-    top: 10px; /* Adjust the distance from the top */
-    right: 10px; /* Adjust the distance from the right */
-    z-index: 1000; /* Ensure it appears above other elements */
-    width: 50px; /* or any desired size */
-    height: auto; /* Keeps the aspect ratio */
-} 
-
-.settings-button button {
-    padding: 10px; /* Padding for the button */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Change cursor on hover */
-    font-size: 18px; /* Font size */
-    font-weight: 400;
-    font-style: normal;
-}
-
-.settings-button button:hover {
-    background-color: #76A1B6; 
-}
-
 /* menu */
 *,
 *::after,
@@ -287,7 +311,7 @@ body {
   position: fixed; 
   top: 25px; 
   right: 25px; 
-  z-index: 1000; 
+  z-index: 1001; 
   cursor: pointer;
 }
 
@@ -345,7 +369,7 @@ body {
 .sidebar {
   transition: translate var(--animation-timing);
   translate: 100%;
-  padding: 0.5rem 2rem; /* Ensure the whole sidebar has padding */
+  padding: 0.5rem 2rem;
   padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
   background-color: var(--foreground);
   color: var(--background);
@@ -354,6 +378,7 @@ body {
   position: fixed;
   top: 0;
   right: 0;
+  z-index: 1000;
 }
 
 .hamburger-menu:has(input:checked) + .sidebar {
@@ -361,22 +386,24 @@ body {
 }
 
 .menu-list {
-  list-style-type: none; /* Remove bullets */
-  padding: 0; /* Reset padding */
+  list-style-type: none;
+  padding: 0;
   margin: 0;
-  width: 100%; /* Ensure full width for items */
+  width: 100%;
 }
 
 .menu-list li {
-  margin: 1.5rem 0; /* Add vertical spacing */
+  margin: 1.5rem 0;
 }
 
 .menu-list a {
-  display: block; /* Ensure each link is treated as a block element */
+  justify-content: flex-start; /* Align items to the left */
+  display: flex;
+  align-items: center;
   color: white;
   text-decoration: none;
   font-size: 1.5rem;
-  padding: 0.5rem 1rem; /* Padding for spacing */
+  padding: 0.5rem 1rem;
   transition: color 0.2s;
 }
 
@@ -384,12 +411,19 @@ body {
   color: lightgray;
 }
 
+.icon {
+  width: 30px;
+  height: 30px; 
+  margin-right: 0.5rem;
+  filter: brightness(0) invert(1); 
+}
+
 .divider {
-  width: 90%; /* Make the line span most of the width */
-  border: none; /* Remove default border style */
-  border-top: 1px solid #ffffff; /* White line for visibility */
-  margin: 2rem auto; /* Center the divider with spacing around it */
-  opacity: 0.5; /* Slight transparency for subtle look */
+  width: 90%;
+  border: none;
+  border-top: 1px solid #ffffff;
+  margin: 2rem auto;
+  opacity: 0.5;
 }
 
 .roboto-black-italic {
@@ -465,15 +499,34 @@ body {
   }
 
   /* Dark Mode Toggle Styles */
-.dark-mode-toggle {
-    position: fixed;
-    top: 20px; /* Distance from the top of the page */
-    left: 20px; /* Distance from the left of the page */
-    z-index: 1000; /* Ensure it is above other elements */
+
+.logout {
+  display: inline-flex;
+  align-items: center;
 }
 
-/* The switch - hide the checkbox */
+.dark-mode-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+}
+
+.dark-mode-text {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.dark-mode-toggle {
+  display: inline-block;
+  vertical-align: middle;
+  align-items: center;
+  margin-left: 0.5rem;
+  font-size: 1em;
+}
+
 .switch {
+    margin-left: 20px;
     position: relative;
     display: inline-block;
     width: 60px;
@@ -553,6 +606,23 @@ input:checked + .slider:before {
         padding: 10px 20px;
         font-size: 0.9em;
     }
+
+      /* Adjust jagged shapes for mobile */
+  .jagged-shape1 {
+    height: 15vh; /* Scale shape smaller */
+  }
+
+  .jagged-outline1 {
+    height: 15.5vh; /* Increase height for a larger outline */
+  }
+
+  .jagged-shape2 {
+    height: 10vh; /* Scale shape smaller */
+  }
+
+  .jagged-outline2 {
+    height: 10.5vh; /* Increase height for a larger outline */
+  }
 }
 
 @media (max-width: 480px) {
