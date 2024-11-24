@@ -378,3 +378,32 @@ def spotify_api_request(request, url, params=None):
 
 def contactPage(request):
     return render(request, 'spotify/contact.html')
+
+@login_required
+def accountPage(request):
+    time_range = request.GET.get('time_range')
+    user_data = spotify_api_request(request, 'https://api.spotify.com/v1/me')
+
+    if not user_data:
+        return render(request, 'spotify/error.html', {'message': "Error fetching user data from Spotify API."})
+
+    profile_image_url = user_data.get('images', [{}])[0].get('url') if user_data.get('images') else None
+    
+    context = {
+        'user_data': user_data,
+        'selected_time_range': time_range,
+        'profile_image_url': profile_image_url  # Pass the profile image URL to the template
+    }
+    return render(request, 'spotify/account.html', context)
+
+def preferencePage(request):
+    return render(request, 'spotify/preference.html')
+
+@login_required
+@require_POST
+def delete_account(request):
+    user = request.user
+    user.delete()
+    logout(request)
+    request.session.flush()
+    return JsonResponse({'message': 'Account successfully deleted'}, status=200)

@@ -11,25 +11,54 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="jagged-shape1"></div>
+    <div class="jagged-outline1"></div>
+    <div class="jagged-shape2"></div>
+    <div class="jagged-outline2"></div>
+    <a href="{% url 'profile' %}">
+        <img src="{% static 'spotify/images/logo.png' %}" alt="Logo" class="logo">
+    </a>
     <div class="container">
 
-        <div>
-            <a href="{% url 'settings' %}" class="settings-button">
-                <img src="{% static 'images/settings.png' %}" class="settings-button">
-            </a>
-        </div>
-
-        <!-- Dark Mode Toggle -->
-        <div class="dark-mode-toggle">
-            <label class="switch">
-                <input type="checkbox" id="dark-mode-toggle">
-                <span class="slider"></span>
+        <body>
+            <label class="hamburger-menu">
+              <input type="checkbox" />
             </label>
-        </div>
-
-        <div class="contact-us-button">
-            <a href="{% url 'contacts' %}" class="contact-button">Contact The Developers</a>
-        </div>
+            <aside class="sidebar">
+                <ul class="menu-list">
+                    <li><a href="{% url 'account' %}"><img src="{% static 'images/account.png' %}" alt="Account Icon" class="icon" />Account</a></li>
+                    <li><a href="{% url 'preference' %}"><img src="{% static 'images/preference.png' %}" alt="Preference Icon" class="icon" />Settings</a></li>
+                    <li><a href="{% url 'contacts' %}"><img src="{% static 'images/contact.png' %}" alt="Contact Icon" class="icon" />Contact</a></li>
+                </ul>
+                <hr class="divider" /> 
+                <ul class="menu-list">
+                    <li><a href="{% url 'logout' %}"><img src="{% static 'images/logout.png' %}" alt="Logout Icon" class="icon" />Logout</a></li>
+                    <li class="dark-mode-item">
+                        <img src="{% static 'images/darkmode.png' %}" alt="Dark Mode Icon" class="icon" id="dark-mode-icon" />
+                        <span class="dark-mode-text" id="dark-mode-text">Dark Mode</span>
+                        <label class="switch">
+                            <input type="checkbox" id="dark-mode-toggle">
+                            <span class="slider"></span>
+                        </label>
+                        <script>
+                            const toggle = document.getElementById('dark-mode-toggle');
+                            const text = document.getElementById('dark-mode-text');
+                            const icon = document.getElementById('dark-mode-icon');
+                        
+                            toggle.addEventListener('change', () => {
+                                if (toggle.checked) {
+                                    text.textContent = 'Light Mode';
+                                    icon.src = "{% static 'images/lightmode.png' %}";
+                                } else {
+                                    text.textContent = 'Dark Mode';
+                                    icon.src = "{% static 'images/darkmode.png' %}";
+                                }
+                            });
+                        </script>
+                    </li>
+                </ul>
+            </aside>
+          </body>
 
         <!-- User Information Section -->
         <div class="user-info">
@@ -67,10 +96,6 @@
     <!-- Link to Library Page -->
     <div class="wrapped-link">
         <a href="{% url 'wraps_library' %}" class="wrapped-button library-button">Your Saved Library</a>
-    </div>
-
-    <div class="logout">
-        <a href="{% url 'logout' %}">Logout</a>
     </div>
 
     <script>
