@@ -23,7 +23,7 @@ body, html {
   position: fixed;
   top: -80px; /* Adjust the distance from the top */
   left: 20px; /* Adjust the distance from the left */
-  z-index: 1002; /* Ensure it stays above other elements */
+  z-index: 999;; /* Ensure it stays above other elements */
   width: 350px; /* Adjust the size as needed */
   height: auto; /* Maintain aspect ratio */
 }
@@ -390,25 +390,30 @@ body {
   padding: 0;
   margin: 0;
   width: 100%;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
 }
 
 .menu-list li {
-  margin: 1.5rem 0;
+  margin: 0; /* Remove margin between items */
+  width: 100%; /* Make items take up full sidebar width */
 }
 
 .menu-list a {
-  justify-content: flex-start; /* Align items to the left */
   display: flex;
+  justify-content: center;
   align-items: center;
+  height: 60px; /* Uniform height */
+  width: 100%; /* Full sidebar width */
   color: white;
   text-decoration: none;
-  font-size: 1.5rem;
-  padding: 0.5rem 1rem;
-  transition: color 0.2s;
+  font-size: 1.2rem; /* Font size */
+  transition: background-color 0.2s;
 }
 
 .menu-list a:hover {
-  color: lightgray;
+  background-color: lightgray;
+  color: #333; /* Change text color on hover */
 }
 
 .icon {
@@ -509,12 +514,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin-top: 20px;
 
 }
 
 .dark-mode-text {
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  margin-top: 10px;
 }
 
 .dark-mode-toggle {
@@ -522,7 +529,8 @@ body {
   vertical-align: middle;
   align-items: center;
   margin-left: 0.5rem;
-  font-size: 1em;
+  font-size: .7em;
+  margin-top: 25px;
 }
 
 .switch {
@@ -583,31 +591,118 @@ input:checked + .slider:before {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2em;
-    }
+  h1 {
+    font-size: 1.5rem;
+  }
 
-    .profile-image {
-        width: 120px;
-        height: 120px;
-        margin-right: 10px;
-    }
+  .profile-image {
+    margin: auto;
+  }
 
-    .profile-details {
-        flex-direction: column;
-        align-items: center;
-    }
+  .wrapped-button {
+    width: 100%;
+    text-align: center;
+  }
 
-    .spotify-link, p, .wrapped-button {
-        font-size: 0.9em;
-    }
+  .profile-details {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    #time-range-buttons a {
-        padding: 10px 20px;
-        font-size: 0.9em;
-    }
+  .spotify-link, p, .wrapped-button {
+    font-size: 0.9em;
+  }
 
-      /* Adjust jagged shapes for mobile */
+  #time-range-buttons a {
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+
+  /* Hamburger Menu */
+  .hamburger-menu {
+    top: 15px; /* Position closer to the top */
+    right: 15px; /* Position closer to the edge */
+  }
+
+  .menu-list a {
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center; /* Vertically center text and icon */
+    gap: 10px; /* Space between icon and text */
+    height: 60px; /* Uniform height */
+    width: 100%; /* Full sidebar width */
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem; /* Font size for text */
+    line-height: 1; /* Prevents extra spacing around text */
+    transition: background-color 0.2s;
+  }
+  
+  .menu-list a:hover {
+    background-color: lightgray;
+    color: #333; /* Change text color on hover */
+  }
+  
+  .menu-list a .icon {
+    width: 25px; /* Consistent icon size */
+    height: 25px;
+    vertical-align: middle; /* Align icon with text baseline */
+  }
+  
+  .menu-list li {
+    margin: 0; /* Remove extra margin between list items */
+  }
+  
+
+  /* Back Home Button */
+  .back-home-button {
+    font-size: 0.9em; /* Scale font size */
+    padding: 8px 16px; /* Reduce padding */
+  }
+
+  /* Logo Adjustments */
+.logo {
+  position: absolute;
+  width: 50%; /* Resize logo */
+  top: -45px; /* Adjust position */
+  left: 15px;
+  z-index: 100; /* Default z-index */
+  width: 200px;
+  height: auto;
+  opacity: 1; /* Default visibility */
+  transition: opacity 0.3s ease, z-index 0.3s ease; /* Smooth fade when sidebar opens */
+}
+
+/* Hide logo when the sidebar is open */
+.hamburger-menu input:checked ~ .sidebar ~ .logo {
+  opacity: 0; /* Hide the logo */
+  z-index: -1; /* Push it behind the sidebar */
+}
+
+/* Sidebar Styles */
+.sidebar {
+  transition: translate 0.3s ease, z-index 0.3s ease; /* Smooth sidebar open/close */
+  translate: 100%; /* Initially off-screen */
+  padding: 0.5rem 2rem;
+  padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
+  background-color: var(--foreground);
+  color: var(--background);
+  max-width: 20rem;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 200; /* Higher z-index than the logo */
+}
+
+/* Sidebar active state */
+.hamburger-menu input:checked + .sidebar {
+  translate: 0; /* Slide into view */
+  z-index: 200; /* Ensure it appears above the logo */
+}
+
+
+  /* Adjust jagged shapes for mobile */
   .jagged-shape1 {
     height: 15vh; /* Scale shape smaller */
   }
@@ -626,45 +721,46 @@ input:checked + .slider:before {
 }
 
 @media (max-width: 480px) {
-    .container {
-        width: 95%;
-        padding: 10px;
-    }
+  .container {
+    width: 95%;
+    padding: 10px;
+  }
 
-    .user-info, .wrapped-link, .logout, .time-range-buttons {
-        padding: 15px;
-        margin-bottom: 10px;
-    }
+  .user-info, .wrapped-link, .logout, .time-range-buttons {
+    padding: 15px;
+    margin-bottom: 10px;
+  }
 
-    h1 {
-        font-size: 1.5em;
-    }
+  h1 {
+    font-size: 1.5em;
+  }
 
-    .spotify-link, p, button {
-        font-size: 0.8em;
-    }
+  .spotify-link, p, button {
+    font-size: 0.8em;
+  }
 
-    #time-range-buttons a {
-        padding: 10px 50px;
-        font-size: 0.8em;
-    }
+  #time-range-buttons a {
+    padding: 10px 50px;
+    font-size: 0.8em;
+  }
 
-    .dark-mode-toggle, .settings-button, .contact-us-button {
-        width: 40px;
-    }
-    .profile-image {
-        width: 180px; /* Larger image size */
-        height: 180px;
-        margin-top: 15px;
-    }
+  .dark-mode-toggle, .settings-button, .contact-us-button {
+    width: 10px;
+  }
 
-    .name-and-link {
-        align-items: center;
-        font-size: 1.5em;
-        margin-top: -2px;
-    }
+  .profile-image {
+    width: 180px; /* Larger image size */
+    height: 180px;
+    margin-top: 15px;
+  }
 
-    .spotify-link {
-        font-size: 1em; /* Adjust font size for better readability */
-    }
+  .name-and-link {
+    align-items: center;
+    font-size: 1.5em;
+    margin-top: -2px;
+  }
+
+  .spotify-link {
+    font-size: 1em; /* Adjust font size for better readability */
+  }
 }
