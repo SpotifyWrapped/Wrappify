@@ -148,6 +148,19 @@
     z-index: 1; /* Ensure text appears above jagged shapes */
     }
     
+    .top-artists-container {
+        position: relative; /* Prevent interference with fixed elements */
+        z-index: 1; /* Ensure content appears above floating designs */
+        margin: 0 auto;
+        max-width: 1200px; /* Optional: Constrain maximum width */
+        padding: 20px; /* Add padding for breathing space */
+    }
+    
+    /* Allow wider content for top artists */
+    .top-artists-container.wide {
+        max-width: none; /* Remove width constraint for wide layouts */
+        width: 100%; /* Use full viewport width */
+    }
     
     #top-artist-deep-dive h2 {
         margin-bottom: 50px;  /* Space between the h2 and the next element (img) */
@@ -737,10 +750,12 @@
 
     li strong {
         font-size: 1rem; /* Adjust font size for numbers */
+        margin-left: -20px;
+        align-content: center;
     }
 
     li p {
-        font-size: 0.6rem; /* Reduce text size */
+        font-size: 1rem; /* Reduce text size */
         text-align: left; /* Left-align text */
         flex-grow: 1; /* Allow text to grow */
         margin-left:0px; /* Add spacing between image and text */
@@ -755,7 +770,10 @@
 
     .container-full {
         padding: 20px 10px; /* Adjust container padding */
-        overflow-y: scroll; /* Allow scrolling on mobile */
+    }
+
+    .falling-emoji, .floating-icon, .falling-star {
+        font-size: 8px; /* Smaller size for emojis */
     }
 }
 
@@ -901,5 +919,6 @@
         opacity: 0; /* Fade out at the end */
     }
 }
+
 
 
