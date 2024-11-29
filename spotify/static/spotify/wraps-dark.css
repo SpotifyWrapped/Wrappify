@@ -716,48 +716,189 @@ object-fit: cover;
     }
 }
 
-@media (max-width: 768px) {
-    ul {
-        gap: 5px; /* Reduce spacing between items */
-        padding: 0 15px; /* Add padding to avoid edges clipping */
+/* General Styles */
+#top-tracks, #top-artists {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  #top-tracks h2, #top-artists h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  #top-tracks ul, #top-artists ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    max-height: 500px;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  
+  /* Webkit (Chrome, Safari) scrollbar styling */
+  #top-tracks ul::-webkit-scrollbar, 
+  #top-artists ul::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Webkit-based browsers */
+  }
+  
+  #top-tracks li, #top-artists li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0.5rem;
+    width: 200px;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  
+  #top-tracks li .item-content, #top-artists li .item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  #top-tracks li strong, #top-artists li strong {
+    font-size: 1.2rem;
+    position: absolute;
+    top: 10px; /* Space from the top */
+    left: 15px; /* Space from the left */
+  }
+  
+  #top-tracks li img, #top-artists li img {
+    width: 80px;
+    height: 80px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    object-fit: contain;
+  }
+  
+  #top-tracks li p, #top-artists li p {
+    margin: 0;
+    font-size: 1rem;
+    word-wrap: break-word;
+    max-width: 100%;
+  }
+  
+  /* Height-based Responsiveness */
+  @media (max-height: 700px) {
+    #top-tracks h2, #top-artists h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
-
-    li {
-        flex-direction: row; /* Align items horizontally */
-        align-items: center; /* Vertically align content */
-        justify-content: space-between; /* Spread items */
-        gap: 10px; /* Add spacing between elements */
+    
+    #top-tracks ul, #top-artists ul {
+      max-height: 300px;
+      gap: 0.5rem;
     }
-
-    li img {
-        width: 60px; /* Further reduce image size */
-        height: 60px;
-        flex-shrink: 0; /* Prevent shrinking */
+    
+    #top-tracks li, #top-artists li {
+      width: 180px;
+      padding: 0.3rem;
+      margin-bottom: 0.5rem;
     }
-
-    li strong {
-        font-size: 1rem; /* Adjust font size for numbers */
+    
+    #top-tracks li img, #top-artists li img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 0.3rem;
     }
-
-    li p {
-        font-size: 0.6rem; /* Reduce text size */
-        text-align: left; /* Left-align text */
-        flex-grow: 1; /* Allow text to grow */
-        margin-left:0px; /* Add spacing between image and text */
-        margin-top: 20px;
+    
+    #top-tracks li p, #top-artists li p {
+      font-size: 0.8rem;
     }
-
-    h2 {
-        font-size: 1.5rem; /* Slightly smaller header for mobile */
-        margin: 20px 0; /* Adjust spacing */
-        text-align: center; /* Center header */
+  }
+  
+  @media (max-height: 500px) {
+    #top-tracks h2, #top-artists h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
     }
-
-    .container-full {
-        padding: 20px 10px; /* Adjust container padding */
-        overflow-y: scroll; /* Allow scrolling on mobile */
+    
+    #top-tracks ul, #top-artists ul {
+      max-height: 200px;
+      gap: 0.3rem;
     }
-}
+    
+    #top-tracks li, #top-artists li {
+      width: 150px;
+      padding: 0.2rem;
+      margin-bottom: 0.3rem;
+    }
+    
+    #top-tracks li img, #top-artists li img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 0.2rem;
+    }
+    
+    #top-tracks li p, #top-artists li p {
+      font-size: 0.7rem;
+    }
+  }
+  
+  /* Existing Responsive Styles */
+  @media (max-width: 1024px) {
+    #top-tracks ul, #top-artists ul {
+      max-height: 400px;
+    }
+    #top-tracks li, #top-artists li {
+      width: 180px;
+    }
+    #top-tracks li img, #top-artists li img {
+      width: 70px;
+      height: 70px;
+    }
+    #top-tracks li p, #top-artists li p {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    #top-tracks ul, #top-artists ul {
+      max-height: 300px;
+    }
+    #top-tracks li, #top-artists li {
+      width: 150px;
+    }
+    #top-tracks li img, #top-artists li img {
+      width: 60px;
+      height: 60px;
+    }
+    #top-tracks li p, #top-artists li p {
+      font-size: 0.8rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #top-tracks ul, #top-artists ul {
+      flex-direction: column;
+      align-items: center;
+      max-height: 250px;
+    }
+    #top-tracks li, #top-artists li {
+      width: 100%;
+      max-width: 250px;
+    }
+    #top-tracks li img, #top-artists li img {
+      width: 50px;
+      height: 50px;
+    }
+    #top-tracks li p, #top-artists li p {
+      font-size: 0.7rem;
+    }
+  }
 
 .floating-icon {
     position: absolute;
@@ -903,3 +1044,28 @@ object-fit: cover;
 }
 
 
+/* Hover effect for images inside #top-tracks */
+#top-tracks img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth scaling and shadow effect */
+}
+
+#top-tracks img:hover {
+    transform: scale(1.1); /* Slightly enlarge the image */
+    box-shadow: 0 4px 8px white; /* Add shadow for depth */
+}
+
+/* Hover effect for images inside #top-artists */
+#top-artists img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth scaling and shadow effect */
+}
+
+#top-artists img:hover {
+    transform: scale(1.1); /* Slightly enlarge the image */
+    box-shadow: 0 4px 8px white
+}
