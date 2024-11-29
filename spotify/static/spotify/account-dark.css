@@ -95,7 +95,7 @@ body {
 }
 
 .spotify-account {
-    background-color: #234f77;
+    background-color: #52709b;
     border-radius: 10px;
     padding: 20px 30px;
     max-width: 1000px;
@@ -135,7 +135,7 @@ body {
 }
 
 .delete-account {
-    background-color: #234f77;
+    background-color: #52709b;
     border-radius: 10px;
     padding: 20px 30px;
     max-width: 1000px; 
@@ -178,7 +178,7 @@ body {
 
 /* Style for Settings Boxes (Language and Theme Sections) */
 .settings-box {
-    background-color: #234f77;
+    background-color: #52709b;
     border-radius: 10px;
     padding: 20px 30px;
     max-width: 1000px;

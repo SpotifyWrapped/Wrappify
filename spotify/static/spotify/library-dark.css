@@ -35,8 +35,8 @@ body {
 }
 
 .wrap-card {
-    background-color: #234f77;
-    border: 1px solid #234f77;
+    background-color: #52709b;
+    /* border: 1px solid #fdfdfd; */
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 8px rgb(255 255 255 / 10%);
@@ -48,6 +48,8 @@ body {
 
 .wrap-card:hover {
     transform: scale(1.04);
+    box-shadow: 0 4px 20px rgb(255, 255, 255);
+    border: 1px solid #fdfdfd;
 }
 
 .wrap-card img {

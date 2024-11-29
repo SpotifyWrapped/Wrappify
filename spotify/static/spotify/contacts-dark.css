@@ -27,13 +27,14 @@ body {
 .container {
     text-align: center;
     padding: 20px;
-    background-color: #234f77;
+    /*#4e92d7e2;*/
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgb(255 255 255 / 10%);
+    box-shadow: 0 4px 8px rgb(255, 255, 255);
     border: 1px solid #ddd;
     width: 60%;
     max-width: 390px;
     margin-top: 110px;  /* Adjust to avoid overlap with the logo */
+    margin-bottom: 20px;
 }
 
 /* Main Heading Styling */
