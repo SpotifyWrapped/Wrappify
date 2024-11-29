@@ -13,7 +13,9 @@
 <body data-page="account">
 
     <div class="top-section">
-        <img src="{% static 'spotify/images/wwlogo.png' %}" alt="Logo" class="logo">
+        <a href="{% url 'profile' %}">
+            <img src="{% static 'spotify/images/wwlogo.png' %}" alt="Logo" class="logo">
+        </a>
         {% if profile_image_url %}
             <img src="{{ profile_image_url }}" alt="Profile Picture" class="profile-image">
         {% else %}

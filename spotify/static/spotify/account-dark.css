@@ -13,7 +13,7 @@ body {
     height: auto;
     position: absolute;  /* Position it outside of the container */
     top: -30px;           /* Adjust the vertical position */
-    left: 50%;           /* Position it horizontally */
+    left: 46%;           /* Position it horizontally */
     transform: translateX(-99%); /* Center the logo horizontally */
     z-index: 10;         /* Ensure it appears above other content */
     width: 150px;
