@@ -112,71 +112,80 @@ body, html {
   margin-top: 80px;
 }
 
-/* General Reset for Smaller Screens */
+/* Media Queries for Mobile Responsiveness */
 @media (max-width: 768px) {
-  /* Adjust main container for better alignment */
   .container {
-    flex-direction: column; /* Stack content vertically */
-    text-align: left;
-    height: auto; /* Allow flexible height */
+    flex-direction: column; /* Stack elements vertically */
+    height: auto;
+  }
+
+  .content-left {
+    text-align: center;
     padding: 20px;
   }
 
-  /* Adjust left content */
-  .content-left {
-    flex: none; /* Remove flex-shrink or flex-grow */
-    padding: 10px;
-  }
-
-  .logo {
-    width: 250px; /* Smaller logo size */
-    margin-bottom: 20px;
-  }
-
   .main-heading {
-    font-size: 2rem; /* Smaller heading size */
-    margin-top: -100px;
-    margin-bottom: -10px;
+    font-size: 2rem; /* Adjust font size for smaller screens */
+    margin-top: -60px;
   }
 
   .description {
-    font-size: 1rem; /* Adjust text size for readability */
-    margin-bottom: 20px;
+    font-size: 1rem;
   }
 
   .connect-button {
-    font-size: 0.9rem; /* Reduce button size */
     padding: 10px 20px;
+    font-size: 0.9rem;
   }
 
-  /* Adjust right content (phone image) */
   .content-right {
-    justify-content: center; /* Center-align the image */
-    display: flex; /* Ensure the container uses flexbox */
-    align-items: center; /* Vertically center the image */
-    margin-top: 20px; /* Add spacing between sections */
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .logo {
+    width: 300px; /* Resize logo */
+    margin-bottom: -20px;
+    margin-top: -40px;
   }
 
   .phone-image {
-    max-width: 300px; /* Scale down the image */
-    margin-right: 50px; /* Horizontally center the image */
-    margin-top: -20px;
+    max-width: 80%; /* Adjust image size */
+    margin-top: -10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-heading {
+    font-size: 1.8rem;
   }
 
-  /* Adjust jagged shapes for mobile */
+  .description {
+    font-size: 0.9rem;
+  }
+
+  .connect-button {
+    padding: 8px 15px;
+    font-size: 0.8rem;
+  }
+
+  .phone-image {
+    max-width: 70%; /* Further adjust image size */
+  }
+    /* Adjust jagged shapes for mobile */
   .jagged-shape1 {
-    height: 15vh; /* Scale shape smaller */
+    height: 12vh; /* Scale shape smaller */
   }
 
   .jagged-outline1 {
-    height: 15.5vh; /* Increase height for a larger outline */
+    height: 12.5vh; /* Increase height for a larger outline */
   }
 
   .jagged-shape2 {
-    height: 10vh; /* Scale shape smaller */
+    height: 6vh; /* Scale shape smaller */
   }
 
   .jagged-outline2 {
-    height: 10.5vh; /* Increase height for a larger outline */
+    height: 6.5vh; /* Increase height for a larger outline */
   }
 }

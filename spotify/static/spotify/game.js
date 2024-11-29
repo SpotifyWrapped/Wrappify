@@ -694,22 +694,72 @@ function markGameAsCompleted(wrapId) {
     .catch(error => console.error('Error:', error));
 }
 
-// Ensure this function is called when the game is completed
-function determineWinner({ player, enemy, timerId }) {
-    clearTimeout(timerId);
-    document.querySelector('#displayText').style.display = 'flex';
-    
-    if (player.health == enemy.health) {
-        document.querySelector('#displayText').innerHTML = 'Tie';
-    } else if (player.health > enemy.health) {
-        document.querySelector('#displayText').innerHTML = 'WINNER';
 
-        // Mark the game as completed by calling `markGameAsCompleted`
-        markGameAsCompleted(wrapId); // Pass `wrapId` to the function
+
+
+
+
+
+
+
+
+
+
+
+function determineWinner({ player, enemy, timerId }) {
+    clearTimeout(timerId); // Stop the timer
+    const displayText = document.querySelector('#displayText');
+    displayText.style.display = 'flex';
+
+    // Helper function to force death animation
+    function forceDeathAnimation(character) {
+        character.dead = true; // Mark as dead
+        character.switchSprites('death'); // Trigger death sprite
+
+        // Ensure death animation plays fully
+        const deathInterval = setInterval(() => {
+            if (character.framesCurrent < character.sprites.death.framesMax - 1) {
+                character.framesCurrent++; // Advance the frame
+            } else {
+                clearInterval(deathInterval); // Stop when animation completes
+            }
+        }, 100); // Adjust for smooth animation based on frame rate
+    }
+
+    if (player.health === enemy.health) {
+        displayText.innerHTML = 'TIE';
+
+        player.health = 0;
+        enemy.health = 0;
+
+        gsap.to('#playerHealth', { width: `${player.health}%` });
+        gsap.to('#enemyHealth', { width: `${enemy.health}%` });
+
+        forceDeathAnimation(player);
+        forceDeathAnimation(enemy);
     } else if (player.health < enemy.health) {
-        document.querySelector('#displayText').innerHTML = 'LOSER';
+        displayText.innerHTML = 'LOSER';
+
+        player.health = 0;
+        gsap.to('#playerHealth', { width: `${player.health}%` });
+
+        forceDeathAnimation(player);
+    } else if (enemy.health < player.health) {
+        displayText.innerHTML = 'WINNER';
+
+        enemy.health = 0;
+        gsap.to('#enemyHealth', { width: `${enemy.health}%` });
+
+        forceDeathAnimation(enemy);
+
+        // Mark the game as completed if player wins
+        console.log('Player won, marking game as completed...');
+        markGameAsCompleted(wrapId);
     }
 }
+
+
+
 
 // CSRF Token Helper Function
 function getCSRFToken() {
@@ -739,7 +789,7 @@ function decreaseTimer() {
 }
 decreaseTimer()
 
-const enableQuestionPrompt = false; // Set to `false` to disable questions and deal direct damage
+const enableQuestionPrompt = true; // Set to `false` to disable questions and deal direct damage
 
 
 // Add this function to prompt a question when player attacks
@@ -747,7 +797,7 @@ function promptQuestion() {
     if (!wrapData) return;
 
     // Define question types and select one randomly
-    const questionTypes = ["top_track", "top_genre", "top_artist", "avg_danceability", "avg_energy", "avg_valence"];
+    const questionTypes = ["top_track", "top_genre", "top_artist"];
     const selectedQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
 
     let question = "";
@@ -767,18 +817,18 @@ function promptQuestion() {
         question = "Who is your top artist?";
         correctAnswer = wrapData.top_artist.name;
         options = [wrapData.top_artist.name, ...wrapData.top_artists.map(artist => artist.name)];
-    } else if (selectedQuestionType === "avg_danceability" && wrapData.avg_danceability != null) {
-        question = "What is your average danceability score?";
-        correctAnswer = wrapData.avg_danceability.toFixed(2);
-        options = generateOptions(wrapData.avg_danceability);
-    } else if (selectedQuestionType === "avg_energy" && wrapData.avg_energy != null) {
-        question = "What is your average energy score?";
-        correctAnswer = wrapData.avg_energy.toFixed(2);
-        options = generateOptions(wrapData.avg_energy);
-    } else if (selectedQuestionType === "avg_valence" && wrapData.avg_valence != null) {
-        question = "What is your average happiness (valence) score?";
-        correctAnswer = wrapData.avg_valence.toFixed(2);
-        options = generateOptions(wrapData.avg_valence);
+    // } else if (selectedQuestionType === "avg_danceability" && wrapData.avg_danceability != null) {
+    //     question = "What is your average danceability score?";
+    //     correctAnswer = wrapData.avg_danceability.toFixed(2);
+    //     options = generateOptions(wrapData.avg_danceability);
+    // } else if (selectedQuestionType === "avg_energy" && wrapData.avg_energy != null) {
+    //     question = "What is your average energy score?";
+    //     correctAnswer = wrapData.avg_energy.toFixed(2);
+    //     options = generateOptions(wrapData.avg_energy);
+    // } else if (selectedQuestionType === "avg_valence" && wrapData.avg_valence != null) {
+    //     question = "What is your average happiness (valence) score?";
+    //     correctAnswer = wrapData.avg_valence.toFixed(2);
+    //     options = generateOptions(wrapData.avg_valence);
     } else {
         console.log("Insufficient data for generating a question.");
         return; // Exit if data is missing
@@ -1029,12 +1079,6 @@ function restartGame() {
     location.reload(); // Reloads the page to restart the game
 }
 
-  // Event listener for the dropdown
-  document.getElementById('themeSelector').addEventListener('change', (event) => {
-    const selectedTheme = event.target.value;
-    applyTheme(selectedTheme);
-  });
-
 // EVENT LISTENER
 
 window.addEventListener('keydown', (event) => {
@@ -1098,3 +1142,45 @@ window.addEventListener('keyup', (event) => {
     //         break
     // }
 })
+
+// Helper function to handle both mouse and touch events
+function addGamepadListeners(buttonId, onPress, onRelease) {
+    const button = document.getElementById(buttonId);
+
+    // Press event (mousedown + touchstart)
+    button.addEventListener('mousedown', onPress);
+    button.addEventListener('touchstart', (event) => {
+        event.preventDefault(); // Prevent default touch behavior
+        onPress(event);
+    });
+
+    // Release event (mouseup + touchend)
+    button.addEventListener('mouseup', onRelease);
+    button.addEventListener('touchend', (event) => {
+        event.preventDefault(); // Prevent default touch behavior
+        onRelease(event);
+    });
+}
+
+// Add gamepad functionality
+addGamepadListeners('left', () => {
+    keys.a.pressed = true;
+    player.lastKey = 'a'; // Move left
+}, () => {
+    keys.a.pressed = false;
+});
+
+addGamepadListeners('right', () => {
+    keys.d.pressed = true;
+    player.lastKey = 'd'; // Move right
+}, () => {
+    keys.d.pressed = false;
+});
+
+addGamepadListeners('up', () => {
+    if (!player.dead) player.velocity.y = -10; // Jump
+}, () => {}); // No action on release
+
+addGamepadListeners('down', () => {
+    if (!player.dead) player.attack(); // Attack
+}, () => {}); // No action on release

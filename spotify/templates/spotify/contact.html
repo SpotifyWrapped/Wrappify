@@ -5,65 +5,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
-    <link rel="stylesheet" href="{% static 'spotify/contacts.css' %}">
+    <link id="theme-style" rel="stylesheet" href="{% static 'spotify/contacts-light.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class = 'container'>
+<body data-page="contacts">
+    <div class="container">
         <h1 class="main-heading">Meet the Developers</h1>
+        <img src="{% static 'spotify/images/logo.png' %}" alt="Logo" class="logo">
+
     </div>
 
     <div class="developer-cards">
         <div class="card">
-            <div class="card-developer-name">Marc Anthony Banda</div>
-            <div class="card-image-container"></div>
-            <div class="card-social-links">
-                <p class="social-link"><strong>LinkedIn:</strong> <a href="#">Link Here</a></p>
-                <p class="social-link"><strong>Contact:</strong> <a href="mailto:example@email.com">Email Here</a></p>
+            <img src="{% static 'spotify/images/hung.jpg' %}" alt="Developer 1">
+            <h2>Hung</h2>
+            <div class="description">
+                <p>HIYO! My name is Hung and I am one of the developers of Wrappify! I hope you have had the chance to explore our website and enjoyed all it had to offer. Hopefully you didn't struggle too much with the game because I know I did even though I was the one that built it LOL. Anyways if you have any more questions feel free to ask through the link below! </p>
             </div>
         </div>
         <div class="card">
-            <div class="card-developer-name">Hung Nguyen</div>
-            <div class="card-image-container"></div>
-            <div class="card-social-links">
-                <p class="social-link"><strong>LinkedIn:</strong> <a href="#">Link Here</a></p>
-                <p class="social-link"><strong>Contact:</strong> <a href="mailto:example@email.com">Email Here</a></p>
+            <img src="{% static 'spotify/images/d2.jpg' %}" alt="Developer 2">
+            <h2>Developer 2</h2>
+            <div class="description">
+                <p>Hi, I'm Developer 2.</p>
             </div>
         </div>
         <div class="card">
-            <div class="card-developer-name">Alvyn Kwon</div>
-            <div class="card-image-container"></div>
-            <div class="card-social-links">
-                <p class="social-link"><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/alvynkwon/" target="_blank">Alvyn Kwon</a></p>
-                <p class="social-link"><strong>Contact:</strong> <a href="mailto:alvyn.kwon@gmail.com">alvyn.kwon@gmail.com</a></p>
+            <img src="{% static 'spotify/images/d3.jpg' %}" alt="Developer 3">
+            <h2>Developer 3</h2>
+            <div class="description">
+                <p>I'm Developer 3.</p>
             </div>
         </div>
         <div class="card">
-            <div class="card-developer-name">Tracy Xie</div>
-            <div class="card-image-container"></div>
-            <div class="card-social-links">
-                <p class="social-link"><strong>LinkedIn:</strong> <a href="#">Link Here</a></p>
-                <p class="social-link"><strong>Contact:</strong> <a href="mailto:example@email.com">Email Here</a></p>
+            <img src="{% static 'spotify/images/d4.jpg' %}" alt="Developer 4">
+            <h2>Developer 4</h2>
+            <div class="description">
+                <p>Hi there! I'm Developer 4.</p>
             </div>
         </div>
         <div class="card">
-            <div class="card-developer-name">Shinyoung Park</div>
-            <div class="card-image-container"></div>
-            <div class="card-social-links">
-                <p class="social-link"><strong>LinkedIn:</strong> <a href="#">Link Here</a></p>
-                <p class="social-link"><strong>Contact:</strong> <a href="mailto:example@email.com">Email Here</a></p>
+            <img src="{% static 'spotify/images/d5.jpg' %}" alt="Developer 5">
+            <h2>Developer 5</h2>
+            <div class="description">
+                <p>Hi there! I'm Developer 5.</p>
             </div>
         </div>
     </div>
-
-    <div class="contact-us">
-        <a href="mailto:alvyn.kwon@gmail.com" class="contact-link">Questions? Contact Us</a>
-    </div>
-
-    <div class="home">
+    
+    <!-- Footer Section -->
+    <footer>
         <a href="{% url 'profile' %}" class="home-button">Back Home</a>
-    </div>
+        <a href="mailto:alvyn.kwon@gmail.com" class="contact-link">Questions? Contact Us</a>
+    </footer>
+
+    <script>
+        // Paths to your light and dark CSS files by page
+        const themePaths = {
+            profile: {
+                light: "{% static 'spotify/profile-light.css' %}",
+                dark: "{% static 'spotify/profile-dark.css' %}",
+            },
+            wraps: {
+                light: "{% static 'spotify/wraps-light.css' %}",
+                dark: "{% static 'spotify/wraps-dark.css' %}",
+            },
+            wraps_library: {
+                light: "{% static 'spotify/library-light.css' %}",
+                dark: "{% static 'spotify/library-dark.css' %}",
+            },
+            game: {
+                light: "{% static 'spotify/game-light.css' %}",
+                dark: "{% static 'spotify/game-dark.css' %}",
+            },
+            account: {
+                light: "{% static 'spotify/account-light.css' %}",
+                dark: "{% static 'spotify/account-dark.css' %}",
+            },
+            contacts: {
+            light: "{% static 'spotify/contacts-light.css' %}",
+            dark: "{% static 'spotify/contacts-dark.css' %}",
+            },
+        };
+    
+        // Get references to elements
+        const themeStyle = document.getElementById('theme-style');
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const darkModeText = document.getElementById('dark-mode-text');
+        const darkModeIcon = document.getElementById('dark-mode-icon');
+        const currentPage = document.body.dataset.page;
+    
+        // Function to apply the theme
+        function applyTheme(theme) {
+            if (currentPage && themePaths[currentPage]) {
+                themeStyle.setAttribute('href', theme === 'dark' ? themePaths[currentPage].dark : themePaths[currentPage].light);
+            }
+            if (darkModeText) {
+                darkModeText.textContent = theme === 'dark' ? 'Dark Mode' : 'Light Mode'; // Update text dynamically
+            }
+            if (darkModeIcon) {
+                darkModeIcon.src = theme === 'dark' ? "{% static 'images/darkmode.png' %}" : "{% static 'images/lightmode.png' %}";
+            }
+            if (darkModeToggle) {
+                darkModeToggle.checked = theme === 'dark';
+            }
+        }
+    
+        // Initialize theme from localStorage
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+    
+        // Listen for toggle changes and update theme dynamically
+        if (darkModeToggle) {
+            darkModeToggle.addEventListener('change', () => {
+                const newTheme = darkModeToggle.checked ? 'dark' : 'light';
+                localStorage.setItem('theme', newTheme); // Save theme to localStorage
+                applyTheme(newTheme); // Apply theme to current page
+            });
+        }
+    
+        // Listen for theme changes across tabs
+        window.addEventListener('storage', (event) => {
+            if (event.key === 'theme') {
+                applyTheme(event.newValue); // Apply the new theme when detected
+            }
+        });
+    </script>
+
 </body>
 </html>

@@ -136,17 +136,85 @@ footer {
     background-color: #003080;
 }
 
-/* Responsive adjustments */
-@media (max-width: 900px) {
+
+@media (max-width: 768px) {
+    .card-container {
+        flex-direction: column; /* Stack cards vertically */
+        align-items: center;
+        gap: 15px; /* Reduce spacing between cards */
+    }
+
     .wrap-card {
-        flex: 1 1 calc(50% - 20px);
-        max-width: calc(50% - 20px);
+        flex: 1 1 100%; /* Take full width on small screens */
+        max-width: 100%; /* Remove the width limitation */
+    }
+
+    .header {
+        flex-direction: row; /* Keep elements in a row */
+        justify-content: center;
+        align-items: center;
+        height: auto; /* Allow height to shrink dynamically */
+        padding: 10px 20px; /* Adjust padding for readability */
+    }
+
+    .logo {
+        max-height: 300px; /* Scale down logo */
+        height: auto; /* Maintain aspect ratio */
+        margin-top: -70px;
+        margin-bottom: -50px;
+    }
+
+    .button-container {
+        flex-direction: row; /* Align buttons horizontally */
+        justify-content: center; /* Center-align the buttons */
+        gap: 10px; /* Maintain spacing between buttons */
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
+    body {
+        padding: 10px; /* Add some padding for smaller screens */
+    }
+
     .wrap-card {
-        flex: 1 1 100%;
-        max-width: 100%;
+        padding: 15px; /* Reduce padding for smaller cards */
+        font-size: 0.9rem; /* Reduce text size */
+    }
+
+    .wrap-card h3 {
+        font-size: 1rem; /* Adjust heading size */
+    }
+
+    .wrap-card p {
+        font-size: 0.8rem; /* Adjust paragraph size */
+    }
+
+    .view-wrap-button,
+    .delete-wrap-button {
+        padding: 5px 8px; /* Adjust button padding */
+        font-size: 0.8rem; /* Adjust button font size */
+    }
+
+    .game-button-image {
+        width: 40px !important; /* Reduce size for smaller screens */
+        height: 40px !important;
+    }
+
+    .button-container {
+        flex-direction: row; /* Align buttons horizontally */
+        justify-content: center; /* Center-align buttons */
+        gap: 10px; /* Maintain spacing */
+    }
+
+    footer {
+        padding: 15px 0; /* Reduce footer padding */
+    }
+
+    .back-button {
+        padding: 8px 15px; /* Adjust button padding */
+        font-size: 0.9rem; /* Adjust font size */
     }
 }
+
+
+  

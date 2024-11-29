@@ -1,0 +1,771 @@
+/* spotify/profile.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-style: normal;
+  background-color: #E0E7EF;
+  overflow-x: hidden;
+}
+
+.logo {
+position: fixed;
+top: -30px; /* Adjust the distance from the top */
+left: 10px; /* Adjust the distance from the left */
+z-index: 999;; /* Ensure it stays above other elements */
+width: 150px; /* Adjust the size as needed */
+height: auto; /* Maintain aspect ratio */
+}
+
+.jagged-shape1, .jagged-outline1, .jagged-shape2, .jagged-outline2 {
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+}
+
+.jagged-outline1 {
+height: 12.5vh; /* Slightly larger than the jagged-shape1 */
+background-color: #000000; /* Black outline */
+clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
+z-index: 0; /* Place the outline behind the main shape */
+}
+
+.jagged-shape1 {
+height: 12vh;
+background-color: #95B3D6; /* Main shape color */
+clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
+z-index: 1; /* Place the shape above the outline */
+}
+
+.jagged-outline2 {
+height: 8.5vh; /* Slightly larger than the jagged-shape2 */
+background-color: #000000; /* Black outline */
+clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
+z-index: 1; /* Place the outline behind the main shape */
+}
+
+.jagged-shape2 {
+height: 8vh;
+background-color: #5496D7; /* Main shape color */
+clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
+z-index: 2; /* Place the shape above the outline */
+}
+
+
+
+
+/* main container */
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+  margin: auto;
+  /* padding: 20px; */
+}
+
+.user-info, .wrapped-link, .time-range-buttons {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+
+h1 {
+  font-size: 80px;
+  margin-bottom: 10px;
+  color: #333;
+  font-family: "Roboto", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.profile-details {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.spotify-logo {
+  width: 25px;
+  height: 25px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.profile-image {
+  width: 200px; /* Adjust size as needed */
+  height: 200px; /* Match width for a perfect circle */
+  border-radius: 50%; /* This makes the image circular */
+  object-fit: cover; /* Ensures the image fills the circle */
+  margin-right: 30px;
+  
+}
+
+.name-and-link {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 50px;
+}
+
+
+.spotify-link {
+  color: #666; /* Light grey color */
+  text-decoration: none; /* Remove underline */
+  font-weight: bold; /* Optional: make it bold for better visibility */
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.1em;
+}
+
+.spotify-link:hover {
+  color: #333; /* Darker grey on hover */
+}
+
+p {
+  font-size: 1.1em;
+  color: #555;
+  margin-bottom: 10px;
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Use the parent's text color */
+}
+
+button {
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 10px;
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.wrapped-link {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Space between buttons */
+}
+
+.wrapped-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #88A3C1;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.wrapped-button:hover {
+  background-color: #76A1B6;
+}
+
+.logout a {
+  color: #88A3C1;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.logout a:hover {
+  color: #76A1B6;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+}
+
+h1, h2 {
+  font-family: "Roboto", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+button {
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  display: inline-block;
+  margin: 20px;
+}
+
+#time-range-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px; /* Space between buttons */
+  margin-bottom: 20px; /* Space below the button section */
+}
+
+#time-range-buttons a {
+  display: inline-block;
+  padding: 12px 82px; /* Button padding */
+  background-color: #88A3C1; /* Spotify green color */
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-style: normal;
+  white-space: nowrap; /* Prevent text from wrapping */
+  font-size: 19px;
+}
+
+#time-range-buttons a:hover {
+  background-color: #76A1B6; /* Darker green on hover */
+}
+
+#time-range-buttons a.active {
+  background-color: #4e92d7e2; /* Even darker green for active button */
+  pointer-events: none; /* Disable clicking on the active button */
+}
+
+.back-home {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.back-home-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #3b5998;  /* Button background color */
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.back-home-button:hover {
+  background-color: #2a4374; /* Darker on hover */
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+
+
+
+
+
+/* menu */
+*,
+*::after,
+*::before {
+box-sizing: border-box;
+}
+
+body {
+margin: 0;
+}
+
+:root {
+--bar-width: 60px;
+--bar-height: 8px;
+--hamburger-gap: 6px;
+--foreground: #333;
+--background: white;
+--hamburger-margin: 10px;
+--animation-timing: 200ms ease-in-out;
+--hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+}
+
+.hamburger-menu {
+--x-width: calc(var(--hamburger-height) * 1.41421356237);
+
+display: flex;
+flex-direction: column;
+gap: var(--hamburger-gap);
+width: max-content;
+position: fixed; 
+top: 25px; 
+right: 25px; 
+z-index: 1001; 
+cursor: pointer;
+}
+
+.hamburger-menu:has(input:checked) {
+--foreground: white;
+--background: #333;
+}
+
+.hamburger-menu:has(input:focus-visible)::before,
+.hamburger-menu:has(input:focus-visible)::after,
+.hamburger-menu input:focus-visible {
+border: 1px solid var(--background);
+box-shadow: 0 0 0 1px var(--foreground);
+}
+
+.hamburger-menu::before,
+.hamburger-menu::after,
+.hamburger-menu input {
+content: "";
+width: var(--bar-width);
+height: var(--bar-height);
+background-color: var(--foreground);
+border-radius: 9999px;
+transform-origin: left center;
+transition: opacity var(--animation-timing), width var(--animation-timing),
+  rotate var(--animation-timing), translate var(--animation-timing),
+  background-color var(--animation-timing);
+}
+
+.hamburger-menu input {
+appearance: none;
+padding: 0;
+margin: 0;
+outline: none;
+pointer-events: none;
+}
+
+.hamburger-menu:has(input:checked)::before {
+rotate: 45deg;
+width: var(--x-width);
+translate: 0 calc(var(--bar-height) / -2);
+}
+
+.hamburger-menu:has(input:checked)::after {
+rotate: -45deg;
+width: var(--x-width);
+translate: 0 calc(var(--bar-height) / 2);
+}
+
+.hamburger-menu input:checked {
+opacity: 0;
+width: 0;
+}
+
+.sidebar {
+transition: translate var(--animation-timing);
+translate: 100%;
+padding: 0.5rem 2rem;
+padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
+background-color: var(--foreground);
+color: var(--background);
+max-width: 20rem;
+min-height: 100vh;
+position: fixed;
+top: 0;
+right: 0;
+z-index: 1000;
+}
+
+.hamburger-menu:has(input:checked) + .sidebar {
+translate: 0;
+}
+
+.menu-list {
+list-style-type: none;
+padding: 0;
+margin: 0;
+width: 100%;
+display: flex;
+flex-direction: column; /* Stack items vertically */
+margin-top: 20px;
+}
+
+.menu-list li {
+margin: 0; /* Remove margin between items */
+width: 100%; /* Make items take up full sidebar width */
+}
+
+.menu-list a {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 60px; /* Uniform height */
+width: 100%; /* Full sidebar width */
+color: white;
+text-decoration: none;
+font-size: 1.2rem; /* Font size */
+transition: background-color 0.2s;
+}
+
+.menu-list a:hover {
+background-color: lightgray;
+color: #333; /* Change text color on hover */
+}
+
+.icon {
+width: 30px;
+height: 30px; 
+margin-right: 0.5rem;
+filter: brightness(0) invert(1); 
+}
+
+.divider {
+width: 90%;
+border: none;
+border-top: 1px solid #ffffff;
+margin: 2rem auto;
+opacity: 0.5;
+}
+
+.roboto-black-italic {
+  font-family: "Roboto", serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.roboto-black {
+  font-family: "Roboto", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-bold-italic {
+  font-family: "Roboto", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.roboto-bold {
+  font-family: "Roboto", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-medium-italic {
+  font-family: "Roboto", serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.roboto-medium {
+  font-family: "Roboto", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-regular-italic {
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.roboto-regular {
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-light-italic {
+  font-family: "Roboto", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.roboto-light {
+  font-family: "Roboto", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-thin-italic {
+  font-family: "Roboto", serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.roboto-thin {
+  font-family: "Roboto", serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+/* Dark Mode Toggle Styles */
+
+.logout {
+display: inline-flex;
+align-items: center;
+}
+
+.dark-mode-item {
+  padding-top: 20px; /* Adjust for spacing */
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Align items vertically */
+  justify-content: space-between; /* Ensure proper spacing between items */
+  gap: 10px; /* Optional: Adjust spacing between icon, text, and slider */
+}
+
+.dark-mode-text {
+color: white;
+font-size: 1.2rem;
+}
+
+.dark-mode-toggle {
+display: inline-block;
+vertical-align: middle;
+align-items: center;
+margin-left: 0.5rem;
+font-size: .7em;
+margin-top: 55px;
+}
+
+.switch {
+  margin-left: 20px;
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide the default checkbox appearance */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider (round) */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+/* The slider before (circle) */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+/* When checked, change the background color */
+input:checked + .slider {
+  background-color: #4e92d7e2; /* Darker green */
+}
+
+/* When checked, move the slider */
+input:checked + .slider:before {
+  transform: translateX(26px); /* Moves the circle to the right */
+}
+
+/* Optional: Add a hover effect */
+.slider:hover {
+  background-color: #76A1B6;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+h1 {
+  font-size: 1.5rem;
+}
+
+.profile-image {
+  margin: auto;
+}
+
+.wrapped-button {
+  width: 100%;
+  text-align: center;
+}
+
+.profile-details {
+  flex-direction: column;
+  align-items: center;
+}
+
+.spotify-link, p, .wrapped-button {
+  font-size: 0.9em;
+}
+
+#time-range-buttons a {
+  padding: 10px 20px;
+  font-size: 0.9em;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+  top: 15px; /* Position closer to the top */
+  right: 15px; /* Position closer to the edge */
+}
+
+.menu-list a {
+  display: flex;
+  justify-content: flex-start; /* Align items to the left */
+  align-items: center; /* Vertically center text and icon */
+  gap: 10px; /* Space between icon and text */
+  height: 60px; /* Uniform height */
+  width: 100%; /* Full sidebar width */
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem; /* Font size for text */
+  line-height: 1; /* Prevents extra spacing around text */
+  transition: background-color 0.2s;
+}
+
+.menu-list a:hover {
+  background-color: lightgray;
+  color: #333; /* Change text color on hover */
+}
+
+.menu-list a .icon {
+  width: 25px; /* Consistent icon size */
+  height: 25px;
+  vertical-align: middle; /* Align icon with text baseline */
+}
+
+.menu-list li {
+  margin: 0; /* Remove extra margin between list items */
+}
+
+
+/* Back Home Button */
+.back-home-button {
+  font-size: 0.9em; /* Scale font size */
+  padding: 8px 16px; /* Reduce padding */
+}
+
+/* Logo Adjustments */
+.logo {
+position: absolute;
+width: 50%; /* Resize logo */
+top: -30px; /* Adjust position */
+left: 10px;
+z-index: 100; /* Default z-index */
+width: 150px;
+height: auto;
+opacity: 1; /* Default visibility */
+transition: opacity 0.3s ease, z-index 0.3s ease; /* Smooth fade when sidebar opens */
+}
+
+/* Hide logo when the sidebar is open */
+.hamburger-menu input:checked ~ .sidebar ~ .logo {
+opacity: 0; /* Hide the logo */
+z-index: -1; /* Push it behind the sidebar */
+}
+
+/* Sidebar Styles */
+.sidebar {
+transition: translate 0.3s ease, z-index 0.3s ease; /* Smooth sidebar open/close */
+translate: 100%; /* Initially off-screen */
+padding: 0.5rem 2rem;
+padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
+background-color: var(--foreground);
+color: var(--background);
+max-width: 20rem;
+min-height: 100vh;
+position: fixed;
+top: 0;
+right: 0;
+z-index: 200; /* Higher z-index than the logo */
+}
+
+/* Sidebar active state */
+.hamburger-menu input:checked + .sidebar {
+translate: 0; /* Slide into view */
+z-index: 200; /* Ensure it appears above the logo */
+}
+
+
+/* Adjust jagged shapes for mobile */
+.jagged-shape1 {
+  height: 12vh; /* Scale shape smaller */
+}
+
+.jagged-outline1 {
+  height: 12.5vh; /* Increase height for a larger outline */
+}
+
+.jagged-shape2 {
+  height: 6vh; /* Scale shape smaller */
+}
+
+.jagged-outline2 {
+  height: 6.5vh; /* Increase height for a larger outline */
+}
+}
+
+@media (max-width: 480px) {
+.container {
+  width: 95%;
+  padding: 10px;
+}
+
+.user-info, .wrapped-link, .logout, .time-range-buttons {
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 1.5em;
+}
+
+.spotify-link, p, button {
+  font-size: 0.8em;
+}
+
+#time-range-buttons a {
+  padding: 10px 50px;
+  font-size: 0.8em;
+}
+
+.dark-mode-toggle, .settings-button, .contact-us-button {
+  width: 10px;
+}
+
+.profile-image {
+  width: 180px; /* Larger image size */
+  height: 180px;
+  margin-top: 15px;
+}
+
+.name-and-link {
+  align-items: center;
+  font-size: 1.5em;
+  margin-top: -2px;
+}
+
+.spotify-link {
+  font-size: 1em; /* Adjust font size for better readability */
+}
+}

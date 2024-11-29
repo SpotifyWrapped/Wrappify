@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game</title>
-    <link rel="stylesheet" href="{% static 'spotify/game.css' %}">
+    <link id="theme-style" rel="stylesheet" href="{% static 'spotify/game-light.css' %}">
     <script src="{% static 'spotify/game.js' %}" defer></script>
 </head>
-<body>
+<body data-page="game">
 
     <!-- Header with logo -->
     <header>
@@ -25,14 +25,14 @@
             <div id="backHealth" style="position: absolute; display: flex; width: 100%; align-items: center; padding: 20px;">
                 <!-- player health -->
                 <div style="position: relative; height: 30px; width: 100%; display: flex; justify-content: flex-end">
-                    <div style="background-color: white; height: 30px; width: 100%;"></div>
+                    <div style="background-color: #AD0004; height: 30px; width: 100%;"></div>
                     <div id="playerHealth" style="position: absolute; background: #004aad; top: 0; right: 0; bottom: 0; width: 100%;"></div>
                 </div>
                 <!-- timer -->
-                <div id="timer" style="background-color: white; height: 50px; width: 50px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;"></div>
+                <div id="timer" style="background-color: white; height: 50px; width: 50px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">Tie</div>
                 <!-- enemy health -->
                 <div style="position: relative; height: 30px; width: 100%;">
-                    <div style="background-color: white; height: 30px;"></div>
+                    <div style="background-color: #AD0004; height: 30px;"></div>
                     <div id="enemyHealth" style="position: absolute; background: #004aad; top: 0; right: 0; bottom: 0; left: 0;"></div>
                 </div>
             </div>
@@ -42,35 +42,43 @@
             <canvas></canvas>
         </div>
     </div>
+
+    <!-- On-Screen Gamepad -->
+    <div class="gamepad">
+        <!-- D-Pad Container -->
+        <div class="d-pad">
+            <!-- Up Button -->
+            <button id="up" class="gamepad-button">▲</button>
+            
+            <!-- Horizontal Buttons Container -->
+            <div class="horizontal-buttons">
+                <!-- Left Button -->
+                <button id="left" class="gamepad-button">◀</button>
+                
+                <!-- Right Button -->
+                <button id="right" class="gamepad-button">▶</button>
+            </div>
+            
+            <!-- Down Button -->
+            <button id="down" class="gamepad-button">▼</button>
+        </div>
+    </div>
+
+    
     
     <!-- Footer with Back to Library button -->
     <footer>
         <a href="{% url 'wraps_library' %}" class="back-button">Back to Library</a>
         <button class="play-again-button" onclick="restartGame()">Play Again</button>
-        <div class="dropdown">
-            <label for="themeSelector">Choose Theme:</label>
-            <select id="themeSelector"> Choose Theme
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-                <option value="lightHalloween">Light Halloween</option>
-                <option value="darkHalloween">Dark Halloween</option>
-                <option value="lightChristmas">Light Christmas</option>
-                <option value="darkChristmas">Dark Christmas</option>
-            </select>
-
-        </div>
     </footer>
     
 
     <script>
-    const wrapData = JSON.parse('{{ wrap_data_json|escapejs }}');
-    const wrapId = "{{ wrap_id }}";  // Wrap the ID in quotes to make it a string in JavaScript
-    console.log("Wrap ID:", wrapId); // Debugging log to confirm the value of wrapId
-        
-        const backgroundImageSrc = "{% static 'spotify/images/lightbg.png' %}";
-        const darkbg = "{% static 'spotify/images/darkbg.png' %}";
-
-        
+        const wrapData = JSON.parse('{{ wrap_data_json|escapejs }}');
+        const wrapId = "{{ wrap_id }}";  // Wrap the ID in quotes to make it a string in JavaScript
+        console.log("Wrap ID:", wrapId); // Debugging log to confirm the value of wrapId
+    
+        // Paths for game assets
         const shopImg = "{% static 'spotify/images/shop.png' %}";
         const playerIdle = "{% static 'spotify/images/playerIdle.png' %}";
         const playerRun = "{% static 'spotify/images/playerRun.png' %}";
@@ -86,23 +94,121 @@
         const playerHit = "{% static 'spotify/images/playerHit.png' %}";
         const playerDeath = "{% static 'spotify/images/playerDeath.png' %}";
         const enemyDeath = "{% static 'spotify/images/enemyDeath.png' %}";
+    
+        // Background image paths for light and dark themes
+        const backgroundPaths = {
+            light: "{% static 'spotify/images/lightbg.png' %}",
+            dark: "{% static 'spotify/images/darkbg.png' %}"
+        };
+    
+        // Paths to light and dark CSS files for each page
+        const themePaths = {
+            profile: {
+                light: "{% static 'spotify/profile-light.css' %}",
+                dark: "{% static 'spotify/profile-dark.css' %}"
+            },
+            wraps: {
+                light: "{% static 'spotify/wraps-light.css' %}",
+                dark: "{% static 'spotify/wraps-dark.css' %}"
+            },
+            wraps_library: {
+                light: "{% static 'spotify/library-light.css' %}",
+                dark: "{% static 'spotify/library-dark.css' %}"
+            },
+            game: {
+                light: "{% static 'spotify/game-light.css' %}",
+                dark: "{% static 'spotify/game-dark.css' %}"
+            }
+        };
+    
+        // Get references to elements
+        const themeStyle = document.getElementById('theme-style');
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const darkModeText = document.getElementById('dark-mode-text');
+        const darkModeIcon = document.getElementById('dark-mode-icon');
+        const currentPage = document.body.dataset.page; // Determines the current page
+    
+        // Determine the theme from localStorage
+        let theme = localStorage.getItem('theme') || 'light';
+    
+        // Set the background image dynamically based on the theme
+        let backgroundImageSrc = theme === 'dark' ? backgroundPaths.dark : backgroundPaths.light;
+    
+        // Function to update the background image when the theme changes
+        function updateBackgroundImage(newTheme) {
+            backgroundImageSrc = newTheme === 'dark' ? backgroundPaths.dark : backgroundPaths.light;
+    
+            // If you already have a background sprite instance, update its image source
+            if (typeof background !== 'undefined') {
+                background.image.src = backgroundImageSrc;
+            }
+        }
+    
+        // Function to apply the theme
+        function applyTheme(theme) {
+            // Update CSS files based on the page
+            if (currentPage && themePaths[currentPage]) {
+                themeStyle.setAttribute('href', theme === 'dark' ? themePaths[currentPage].dark : themePaths[currentPage].light);
+            }
+    
+            // Update dark mode toggle text/icon
+            if (darkModeText) {
+                darkModeText.textContent = theme === 'dark' ? 'Dark Mode' : 'Light Mode';
+            }
+            if (darkModeIcon) {
+                darkModeIcon.src = theme === 'dark'
+                    ? "{% static 'images/darkmode.png' %}"
+                    : "{% static 'images/lightmode.png' %}";
+            }
+            if (darkModeToggle) {
+                darkModeToggle.checked = theme === 'dark';
+            }
+    
+            // Update the canvas background image
+            updateBackgroundImage(theme);
+    
+            // Save theme to localStorage
+            localStorage.setItem('theme', theme);
+        }
+    
+        // Initialize the theme and update the background on page load
+        applyTheme(theme);
+    
+        // Add event listener for dark mode toggle
+        if (darkModeToggle) {
+            darkModeToggle.checked = theme === 'dark';
+            darkModeToggle.addEventListener('change', () => {
+                const newTheme = darkModeToggle.checked ? 'dark' : 'light';
+                applyTheme(newTheme);
+            });
+        }
+    
+        // Listen for theme changes across tabs
+        window.addEventListener('storage', (event) => {
+            if (event.key === 'theme') {
+                applyTheme(event.newValue); // Apply the new theme when detected
+            }
+        });
     </script>
+    
+    
+
     
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
 
 
-<!-- Question Modal -->
-<div id="questionModal" style="display: none;">
-    <div id="questionContent">
-        <h2 id="questionText">Question</h2>
-        <ul id="optionsList">
-            <!-- Options will be generated dynamically here -->
-        </ul>
-        <p style="font-size: 12px; color: #666; margin-top: 10px;">Select or use Keyboard</p>
+    <!-- Question Modal -->
+    <div id="questionModal" style="display: none;">
+        <div id="questionContent">
+            <h2 id="questionText">Question</h2>
+            <ul id="optionsList">
+                <!-- Options will be generated dynamically here -->
+            </ul>
+            <p style="font-size: 12px; color: #666; margin-top: 10px;">Select or use Keyboard</p>
+        </div>
     </div>
-</div>
 
 </body>
 </html>

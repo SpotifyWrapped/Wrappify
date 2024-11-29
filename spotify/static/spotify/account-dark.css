@@ -1,0 +1,276 @@
+body {
+    margin: 0;
+    font-family: "Roboto", serif;
+    background-color: #0d131b; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Larger Logo without affecting container size */
+.logo {
+    width: 100px; /* Adjust the size as needed */
+    height: auto;
+    position: absolute;  /* Position it outside of the container */
+    top: -30px;           /* Adjust the vertical position */
+    left: 50%;           /* Position it horizontally */
+    transform: translateX(-99%); /* Center the logo horizontally */
+    z-index: 10;         /* Ensure it appears above other content */
+    width: 150px;
+}
+
+.top-section {
+    height: 35vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #0d131b;
+    box-shadow: 0 2px 4px rgb(255 255 255 / 10%);
+}
+
+.profile-image {
+    width: 180px; 
+    height: 180px;
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 5px solid white; 
+}
+
+.content {
+    flex: 1; 
+    padding: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+}
+
+.username {
+    color: #fff;
+    font-size: 60px; 
+    font-weight: bold; 
+    margin: 0; 
+}
+
+.name-and-link {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 50px;
+    margin-left: 15px;
+}
+
+.spotify-link {
+    color: #E0E7EF; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+}
+
+.home {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 1000;
+}
+
+.home-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #003080;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    outline: none;
+    border: none;
+}
+
+.home-button:hover {
+    background-color: #004aad;
+}
+
+.spotify-account {
+    background-color: #234f77;
+    border-radius: 10px;
+    padding: 20px 30px;
+    max-width: 1000px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    text-align: left;
+    color: #fff;
+    font-family: "Roboto", sans-serif;
+}
+
+.account-title{
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.account-description {
+    font-size: 14px; 
+    color: #fff; 
+    margin-bottom: 20px; 
+}
+
+.account-details {
+    font-size: 16px; 
+}
+
+.field-title {
+    font-weight: bold; 
+    color: #fff; 
+}
+
+.field-value {
+    font-weight: normal; 
+    color: #fff; 
+    margin-left: 10px; 
+}
+
+.delete-account {
+    background-color: #234f77;
+    border-radius: 10px;
+    padding: 20px 30px;
+    max-width: 1000px; 
+    margin: 30px auto; 
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); 
+    text-align: left; 
+    color: #fff;
+    font-family: "Roboto", sans-serif;
+}
+
+.delete-title {
+    font-size: 24px; 
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.delete-description {
+    font-size: 14px; 
+    color: #fff;
+    margin-bottom: 20px; 
+}
+
+.delete-button {
+    padding: 10px 20px;
+    background-color: #8e0004; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #AD0004; 
+}
+
+/* Style for Settings Boxes (Language and Theme Sections) */
+.settings-box {
+    background-color: #234f77;
+    border-radius: 10px;
+    padding: 20px 30px;
+    max-width: 1000px;
+    margin: 30px auto;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    text-align: left;
+    color: #fff;
+}
+
+.settings-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.settings-box select, 
+.settings-box input[type="radio"] {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* Footer styling */
+footer {
+    width: 100%;
+    background-color: #0d131b;
+    text-align: center;
+    padding: 15px 0;
+    position: relative;
+    margin-top: -30px;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        width: 100px; /* Adjust the size as needed */
+        height: auto;
+        position: absolute;  /* Position it outside of the container */
+        top: -15px;           /* Adjust the vertical position */
+        left: 50%;           /* Position it horizontally */
+        transform: translateX(-125%); /* Center the logo horizontally */
+        z-index: 10;         /* Ensure it appears above other content */
+        width: 100px;
+    }
+
+    .top-section {
+        height: 20vh;
+    }
+
+    .profile-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .spotify-account,
+    .delete-account {
+        max-width: 100%; 
+        padding: 10px; 
+    }
+
+    .account-title,
+    .delete-title {
+        font-size: 16px;
+    }
+
+    .account-description,
+    .delete-description {
+        font-size: 10px;
+    }
+
+    .delete-button {
+        font-size: 10px;
+    }
+
+    .home {
+        bottom: 15px; 
+        left: 15px;
+    }
+
+    .home-button {
+        font-size: 10px;
+    }
+
+    .settings-box {
+        padding: 10px;
+    }
+
+    .settings-title {
+        font-size: 18px;
+    }
+
+    .settings-box select,
+    .settings-box input[type="radio"] {
+        font-size: 14px;
+    }
+}
