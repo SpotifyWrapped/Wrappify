@@ -4,9 +4,19 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  }
+
+  canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
-body, html {
+  
+  body, html {
     height: 100%;
     display: flex;
     justify-content: center;
@@ -15,129 +25,130 @@ body, html {
     font-family: "Roboto", serif;
     font-weight: 400;
     font-style: normal;
-    background-color: #E0E7EF;
+    background-color: #0d131b;
     overflow-x: hidden;
-}
-
-.logo {
+  }
+  
+  .logo {
   position: fixed;
-  top: -80px; /* Adjust the distance from the top */
-  left: 20px; /* Adjust the distance from the left */
+  top: -30px; /* Adjust the distance from the top */
+  left: 10px; /* Adjust the distance from the left */
   z-index: 999;; /* Ensure it stays above other elements */
-  width: 350px; /* Adjust the size as needed */
+  width: 150px; /* Adjust the size as needed */
   height: auto; /* Maintain aspect ratio */
-}
-
-.jagged-shape1, .jagged-outline1, .jagged-shape2, .jagged-outline2 {
+  }
+  
+  .jagged-shape1, .jagged-outline1, .jagged-shape2, .jagged-outline2 {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-}
-
-.jagged-outline1 {
-  height: 26.5vh; /* Slightly larger than the jagged-shape1 */
-  background-color: #000000; /* Black outline */
+  }
+  
+  .jagged-outline1 {
+  height: 12.5vh; /* Slightly larger than the jagged-shape1 */
+  background-color: #95B3D6; /* Black outline */
   clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
   z-index: 0; /* Place the outline behind the main shape */
-}
-
-.jagged-shape1 {
-  height: 26vh;
-  background-color: #95B3D6; /* Main shape color */
+  }
+  
+  .jagged-shape1 {
+  height: 12vh;
+  background-color: #446fac; /* Main shape color */
   clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
   z-index: 1; /* Place the shape above the outline */
-}
-
-.jagged-outline2 {
-  height: 15.5vh; /* Slightly larger than the jagged-shape2 */
-  background-color: #000000; /* Black outline */
+  }
+  
+  .jagged-outline2 {
+  height: 8.5vh; /* Slightly larger than the jagged-shape2 */
+  background-color: #1d5fa1; /* Black outline */
   clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
   z-index: 1; /* Place the outline behind the main shape */
-}
-
-.jagged-shape2 {
-  height: 15vh;
-  background-color: #5496D7; /* Main shape color */
+  }
+  
+  .jagged-shape2 {
+  height: 8vh;
+  background-color: #234f77; /* Main shape color */
   clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
   z-index: 2; /* Place the shape above the outline */
-}
-
-
-
-/* main container */
-.container {
+  }
+  
+  
+  
+  
+  /* main container */
+  .container {
     position: relative;
     width: 100%;
     max-width: 800px;
     text-align: center;
     margin: auto;
     /* padding: 20px; */
-}
-
-.user-info, .wrapped-link, .time-range-buttons {
+  }
+  
+  .user-info, .wrapped-link, .time-range-buttons {
     margin-bottom: 20px;
     padding: 20px;
-    background-color: #FFFFFF;
+    background-color: #5c738e48;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: 1px solid #ddd;
-}
-
-h1 {
+  }
+  
+  h1 {
     font-size: 80px;
     margin-bottom: 10px;
-    color: #333;
+    color: #fff;
     font-family: "Roboto", serif;
     font-weight: 500;
     font-style: normal;
-}
-
-.profile-details {
+  }
+  
+  .profile-details {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-}
-
-.spotify-logo {
+  }
+  
+  .spotify-logo {
     width: 25px;
     height: 25px;
     margin-left: 8px;
     vertical-align: middle;
-}
-
-.profile-image {
+  }
+  
+  .profile-image {
     width: 200px; /* Adjust size as needed */
     height: 200px; /* Match width for a perfect circle */
     border-radius: 50%; /* This makes the image circular */
     object-fit: cover; /* Ensures the image fills the circle */
     margin-right: 30px;
     
-}
-
-.name-and-link {
+  }
+  
+  .name-and-link {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-top: 50px;
-}
-
-
-.spotify-link {
-    color: #666; /* Light grey color */
+  }
+  
+  
+  .spotify-link {
+    color: #fff; /* Light grey color */
     text-decoration: none; /* Remove underline */
     font-weight: bold; /* Optional: make it bold for better visibility */
     font-family: "Roboto", serif;
     font-weight: 400;
     font-style: normal;
     font-size: 1.1em;
-}
-
-.spotify-link:hover {
-    color: #333; /* Darker grey on hover */
-}
-
-p {
+  }
+  
+  .spotify-link:hover {
+    color: #d3d1d1; /* Darker grey on hover */
+  }
+  
+  p {
     font-size: 1.1em;
     color: #555;
     margin-bottom: 10px;
@@ -146,38 +157,38 @@ p {
     font-style: normal;
     text-decoration: none; /* Remove underline */
     color: inherit; /* Use the parent's text color */
-}
-
-button {
+  }
+  
+  button {
     font-size: 1em;
     color: #555;
     margin-bottom: 10px;
     font-family: "Roboto", serif;
     font-weight: 400;
     font-style: normal;
-}
-
-.wrapped-link {
+  }
+  
+  .wrapped-link {
     display: flex;
     justify-content: center;
     gap: 10px; /* Space between buttons */
-}
-
-.wrapped-button {
+  }
+  
+  .wrapped-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #88A3C1;
+    background-color: #234f77;
     color: white;
     text-decoration: none;
     border-radius: 4px;
     transition: background-color 0.3s ease;
-}
-
-.wrapped-button:hover {
-    background-color: #76A1B6;
-}
-
-.logout a {
+  }
+  
+  .wrapped-button:hover {
+    background-color: #446fac;
+  }
+  
+  .logout a {
     color: #88A3C1;
     text-decoration: none;
     font-weight: bold;
@@ -185,52 +196,52 @@ button {
     font-family: "Roboto", serif;
     font-weight: 400;
     font-style: normal;
-}
-
-.logout a:hover {
+  }
+  
+  .logout a:hover {
     color: #76A1B6;
-}
-
-.container {
+  }
+  
+  .container {
     max-width: 800px;
     margin: auto;
     text-align: center;
-}
-
-h1, h2 {
+  }
+  
+  h1, h2 {
     font-family: "Roboto", serif;
     font-weight: 700;
     font-style: normal;
-}
-
-button {
+  }
+  
+  button {
     font-family: "Roboto", serif;
     font-weight: 400;
     font-style: normal;
-}
-
-ul {
+  }
+  
+  ul {
     list-style-type: none;
     padding: 0;
-}
-
-ul li {
+  }
+  
+  ul li {
     display: inline-block;
     margin: 20px;
-}
-
-#time-range-buttons {
+  }
+  
+  #time-range-buttons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px; /* Space between buttons */
     margin-bottom: 20px; /* Space below the button section */
-}
-
-#time-range-buttons a {
+  }
+  
+  #time-range-buttons a {
     display: inline-block;
     padding: 12px 82px; /* Button padding */
-    background-color: #88A3C1; /* Spotify green color */
+    background-color: #234f77; /* Spotify green color */
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -241,23 +252,23 @@ ul li {
     font-style: normal;
     white-space: nowrap; /* Prevent text from wrapping */
     font-size: 19px;
-}
-
-#time-range-buttons a:hover {
-    background-color: #76A1B6; /* Darker green on hover */
-}
-
-#time-range-buttons a.active {
+  }
+  
+  #time-range-buttons a:hover {
+    background-color: #446fac; /* Darker green on hover */
+  }
+  
+  #time-range-buttons a.active {
     background-color: #4e92d7e2; /* Even darker green for active button */
     pointer-events: none; /* Disable clicking on the active button */
-}
-
-.back-home {
+  }
+  
+  .back-home {
     text-align: center;
     margin-top: 20px;
-}
-
-.back-home-button {
+  }
+  
+  .back-home-button {
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
@@ -272,25 +283,29 @@ ul li {
     font-family: "Roboto", serif;
     font-weight: 400;
     font-style: normal;
-}
-
-.back-home-button:hover {
+  }
+  
+  .back-home-button:hover {
     background-color: #2a4374; /* Darker on hover */
     transform: translateY(-2px); /* Lift effect on hover */
-}
-
-/* menu */
-*,
-*::after,
-*::before {
+  }
+  
+  
+  
+  
+  
+  /* menu */
+  *,
+  *::after,
+  *::before {
   box-sizing: border-box;
-}
-
-body {
+  }
+  
+  body {
   margin: 0;
-}
-
-:root {
+  }
+  
+  :root {
   --bar-width: 60px;
   --bar-height: 8px;
   --hamburger-gap: 6px;
@@ -299,11 +314,11 @@ body {
   --hamburger-margin: 10px;
   --animation-timing: 200ms ease-in-out;
   --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
-}
-
-.hamburger-menu {
+  }
+  
+  .hamburger-menu {
   --x-width: calc(var(--hamburger-height) * 1.41421356237);
-
+  
   display: flex;
   flex-direction: column;
   gap: var(--hamburger-gap);
@@ -313,23 +328,23 @@ body {
   right: 25px; 
   z-index: 1001; 
   cursor: pointer;
-}
-
-.hamburger-menu:has(input:checked) {
+  }
+  
+  .hamburger-menu:has(input:checked) {
   --foreground: white;
   --background: #333;
-}
-
-.hamburger-menu:has(input:focus-visible)::before,
-.hamburger-menu:has(input:focus-visible)::after,
-.hamburger-menu input:focus-visible {
+  }
+  
+  .hamburger-menu:has(input:focus-visible)::before,
+  .hamburger-menu:has(input:focus-visible)::after,
+  .hamburger-menu input:focus-visible {
   border: 1px solid var(--background);
   box-shadow: 0 0 0 1px var(--foreground);
-}
-
-.hamburger-menu::before,
-.hamburger-menu::after,
-.hamburger-menu input {
+  }
+  
+  .hamburger-menu::before,
+  .hamburger-menu::after,
+  .hamburger-menu input {
   content: "";
   width: var(--bar-width);
   height: var(--bar-height);
@@ -339,34 +354,34 @@ body {
   transition: opacity var(--animation-timing), width var(--animation-timing),
     rotate var(--animation-timing), translate var(--animation-timing),
     background-color var(--animation-timing);
-}
-
-.hamburger-menu input {
+  }
+  
+  .hamburger-menu input {
   appearance: none;
   padding: 0;
   margin: 0;
   outline: none;
   pointer-events: none;
-}
-
-.hamburger-menu:has(input:checked)::before {
+  }
+  
+  .hamburger-menu:has(input:checked)::before {
   rotate: 45deg;
   width: var(--x-width);
   translate: 0 calc(var(--bar-height) / -2);
-}
-
-.hamburger-menu:has(input:checked)::after {
+  }
+  
+  .hamburger-menu:has(input:checked)::after {
   rotate: -45deg;
   width: var(--x-width);
   translate: 0 calc(var(--bar-height) / 2);
-}
-
-.hamburger-menu input:checked {
+  }
+  
+  .hamburger-menu input:checked {
   opacity: 0;
   width: 0;
-}
-
-.sidebar {
+  }
+  
+  .sidebar {
   transition: translate var(--animation-timing);
   translate: 100%;
   padding: 0.5rem 2rem;
@@ -379,27 +394,28 @@ body {
   top: 0;
   right: 0;
   z-index: 1000;
-}
-
-.hamburger-menu:has(input:checked) + .sidebar {
+  }
+  
+  .hamburger-menu:has(input:checked) + .sidebar {
   translate: 0;
-}
-
-.menu-list {
+  }
+  
+  .menu-list {
   list-style-type: none;
   padding: 0;
   margin: 0;
   width: 100%;
   display: flex;
   flex-direction: column; /* Stack items vertically */
-}
-
-.menu-list li {
+  margin-top: 20px;
+  }
+  
+  .menu-list li {
   margin: 0; /* Remove margin between items */
   width: 100%; /* Make items take up full sidebar width */
-}
-
-.menu-list a {
+  }
+  
+  .menu-list a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -409,29 +425,29 @@ body {
   text-decoration: none;
   font-size: 1.2rem; /* Font size */
   transition: background-color 0.2s;
-}
-
-.menu-list a:hover {
+  }
+  
+  .menu-list a:hover {
   background-color: lightgray;
   color: #333; /* Change text color on hover */
-}
-
-.icon {
+  }
+  
+  .icon {
   width: 30px;
   height: 30px; 
   margin-right: 0.5rem;
   filter: brightness(0) invert(1); 
-}
-
-.divider {
+  }
+  
+  .divider {
   width: 90%;
   border: none;
   border-top: 1px solid #ffffff;
   margin: 2rem auto;
   opacity: 0.5;
-}
-
-.roboto-black-italic {
+  }
+  
+  .roboto-black-italic {
     font-family: "Roboto", serif;
     font-weight: 900;
     font-style: italic;
@@ -502,54 +518,53 @@ body {
     font-weight: 100;
     font-style: normal;
   }
-
+  
   /* Dark Mode Toggle Styles */
-
-.logout {
+  
+  .logout {
   display: inline-flex;
   align-items: center;
-}
-
-.dark-mode-item {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-top: 20px;
-
-}
-
-.dark-mode-text {
+  }
+  
+  .dark-mode-item {
+    padding-top: 20px; /* Adjust for spacing */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Ensure proper spacing between items */
+    gap: 10px; /* Optional: Adjust spacing between icon, text, and slider */
+  }
+  
+  .dark-mode-text {
   color: white;
   font-size: 1.2rem;
-  margin-top: 10px;
-}
-
-.dark-mode-toggle {
+  }
+  
+  .dark-mode-toggle {
   display: inline-block;
   vertical-align: middle;
   align-items: center;
   margin-left: 0.5rem;
   font-size: .7em;
-  margin-top: 25px;
-}
-
-.switch {
+  margin-top: 55px;
+  }
+  
+  .switch {
     margin-left: 20px;
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
-}
-
-/* Hide the default checkbox appearance */
-.switch input {
+  }
+  
+  /* Hide the default checkbox appearance */
+  .switch input {
     opacity: 0;
     width: 0;
     height: 0;
-}
-
-/* The slider (round) */
-.slider {
+  }
+  
+  /* The slider (round) */
+  .slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -559,10 +574,10 @@ body {
     background-color: #ccc;
     transition: 0.4s;
     border-radius: 34px;
-}
-
-/* The slider before (circle) */
-.slider:before {
+  }
+  
+  /* The slider before (circle) */
+  .slider:before {
     position: absolute;
     content: "";
     height: 26px;
@@ -572,58 +587,58 @@ body {
     bottom: 4px;
     background-color: white;
     transition: 0.4s;
-}
-
-/* When checked, change the background color */
-input:checked + .slider {
+  }
+  
+  /* When checked, change the background color */
+  input:checked + .slider {
     background-color: #4e92d7e2; /* Darker green */
-}
-
-/* When checked, move the slider */
-input:checked + .slider:before {
+  }
+  
+  /* When checked, move the slider */
+  input:checked + .slider:before {
     transform: translateX(26px); /* Moves the circle to the right */
-}
-
-/* Optional: Add a hover effect */
-.slider:hover {
+  }
+  
+  /* Optional: Add a hover effect */
+  .slider:hover {
     background-color: #76A1B6;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
   h1 {
     font-size: 1.5rem;
   }
-
+  
   .profile-image {
     margin: auto;
   }
-
+  
   .wrapped-button {
     width: 100%;
     text-align: center;
   }
-
+  
   .profile-details {
     flex-direction: column;
     align-items: center;
   }
-
+  
   .spotify-link, p, .wrapped-button {
     font-size: 0.9em;
   }
-
+  
   #time-range-buttons a {
     padding: 10px 20px;
     font-size: 0.9em;
   }
-
+  
   /* Hamburger Menu */
   .hamburger-menu {
     top: 15px; /* Position closer to the top */
     right: 15px; /* Position closer to the edge */
   }
-
+  
   .menu-list a {
     display: flex;
     justify-content: flex-start; /* Align items to the left */
@@ -653,34 +668,34 @@ input:checked + .slider:before {
     margin: 0; /* Remove extra margin between list items */
   }
   
-
+  
   /* Back Home Button */
   .back-home-button {
     font-size: 0.9em; /* Scale font size */
     padding: 8px 16px; /* Reduce padding */
   }
-
+  
   /* Logo Adjustments */
-.logo {
+  .logo {
   position: absolute;
   width: 50%; /* Resize logo */
-  top: -45px; /* Adjust position */
-  left: 15px;
+  top: -30px; /* Adjust position */
+  left: 10px;
   z-index: 100; /* Default z-index */
-  width: 200px;
+  width: 150px;
   height: auto;
   opacity: 1; /* Default visibility */
   transition: opacity 0.3s ease, z-index 0.3s ease; /* Smooth fade when sidebar opens */
-}
-
-/* Hide logo when the sidebar is open */
-.hamburger-menu input:checked ~ .sidebar ~ .logo {
+  }
+  
+  /* Hide logo when the sidebar is open */
+  .hamburger-menu input:checked ~ .sidebar ~ .logo {
   opacity: 0; /* Hide the logo */
   z-index: -1; /* Push it behind the sidebar */
-}
-
-/* Sidebar Styles */
-.sidebar {
+  }
+  
+  /* Sidebar Styles */
+  .sidebar {
   transition: translate 0.3s ease, z-index 0.3s ease; /* Smooth sidebar open/close */
   translate: 100%; /* Initially off-screen */
   padding: 0.5rem 2rem;
@@ -693,74 +708,75 @@ input:checked + .slider:before {
   top: 0;
   right: 0;
   z-index: 200; /* Higher z-index than the logo */
-}
-
-/* Sidebar active state */
-.hamburger-menu input:checked + .sidebar {
+  }
+  
+  /* Sidebar active state */
+  .hamburger-menu input:checked + .sidebar {
   translate: 0; /* Slide into view */
   z-index: 200; /* Ensure it appears above the logo */
-}
-
-
+  }
+  
+  
   /* Adjust jagged shapes for mobile */
   .jagged-shape1 {
-    height: 15vh; /* Scale shape smaller */
+    height: 12vh; /* Scale shape smaller */
   }
-
+  
   .jagged-outline1 {
-    height: 15.5vh; /* Increase height for a larger outline */
+    height: 12.5vh; /* Increase height for a larger outline */
   }
-
+  
   .jagged-shape2 {
-    height: 10vh; /* Scale shape smaller */
+    height: 6vh; /* Scale shape smaller */
   }
-
+  
   .jagged-outline2 {
-    height: 10.5vh; /* Increase height for a larger outline */
+    height: 6.5vh; /* Increase height for a larger outline */
   }
-}
-
-@media (max-width: 480px) {
+  }
+  
+  @media (max-width: 480px) {
   .container {
     width: 95%;
     padding: 10px;
   }
-
+  
   .user-info, .wrapped-link, .logout, .time-range-buttons {
     padding: 15px;
     margin-bottom: 10px;
   }
-
+  
   h1 {
     font-size: 1.5em;
   }
-
+  
   .spotify-link, p, button {
     font-size: 0.8em;
   }
-
+  
   #time-range-buttons a {
     padding: 10px 50px;
     font-size: 0.8em;
   }
-
+  
   .dark-mode-toggle, .settings-button, .contact-us-button {
     width: 10px;
   }
-
+  
   .profile-image {
     width: 180px; /* Larger image size */
     height: 180px;
     margin-top: 15px;
   }
-
+  
   .name-and-link {
     align-items: center;
     font-size: 1.5em;
     margin-top: -2px;
   }
-
+  
   .spotify-link {
     font-size: 1em; /* Adjust font size for better readability */
   }
-}
+  }
+  

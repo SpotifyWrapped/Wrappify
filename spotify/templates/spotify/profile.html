@@ -5,60 +5,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <link rel="stylesheet" href="{% static 'spotify/profile.css' %}?v={{ STATIC_VERSION }}">
+    <link id="theme-style" rel="stylesheet" href="{% static 'spotify/profile-light.css' %}?v={{ STATIC_VERSION }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body data-page="profile">
     <div class="jagged-shape1"></div>
     <div class="jagged-outline1"></div>
     <div class="jagged-shape2"></div>
     <div class="jagged-outline2"></div>
-    <a href="{% url 'profile' %}">
-        <img src="{% static 'spotify/images/logo.png' %}" alt="Logo" class="logo">
-    </a>
-    <div class="container">
 
-        <body>
-            <label class="hamburger-menu">
-              <input type="checkbox" />
-            </label>
-            <aside class="sidebar">
-                <ul class="menu-list">
-                    <li><a href="{% url 'account' %}"><img src="{% static 'images/account.png' %}" alt="Account Icon" class="icon" />Account</a></li>
-                    <li><a href="{% url 'preference' %}"><img src="{% static 'images/preference.png' %}" alt="Preference Icon" class="icon" />Settings</a></li>
-                    <li><a href="{% url 'contacts' %}"><img src="{% static 'images/contact.png' %}" alt="Contact Icon" class="icon" />Contact</a></li>
-                </ul>
-                <hr class="divider" /> 
-                <ul class="menu-list">
-                    <li><a href="{% url 'logout' %}"><img src="{% static 'images/logout.png' %}" alt="Logout Icon" class="icon" />Logout</a></li>
-                    <li class="dark-mode-item">
-                        <img src="{% static 'images/darkmode.png' %}" alt="Dark Mode Icon" class="icon" id="dark-mode-icon" />
-                        <span class="dark-mode-text" id="dark-mode-text">Dark Mode</span>
-                        <label class="switch">
-                            <input type="checkbox" id="dark-mode-toggle">
-                            <span class="slider"></span>
-                        </label>
-                        <script>
-                            const toggle = document.getElementById('dark-mode-toggle');
-                            const text = document.getElementById('dark-mode-text');
-                            const icon = document.getElementById('dark-mode-icon');
-                        
-                            toggle.addEventListener('change', () => {
-                                if (toggle.checked) {
-                                    text.textContent = 'Light Mode';
-                                    icon.src = "{% static 'images/lightmode.png' %}";
-                                } else {
-                                    text.textContent = 'Dark Mode';
-                                    icon.src = "{% static 'images/darkmode.png' %}";
-                                }
-                            });
-                        </script>
-                    </li>
-                </ul>
-            </aside>
-          </body>
+    <img src="{% static 'spotify/images/logo.png' %}" alt="Logo" class="logo">
+
+    <body>
+        <label class="hamburger-menu">
+          <input type="checkbox" />
+        </label>
+        <aside class="sidebar">
+            <ul class="menu-list">
+                <li><a href="{% url 'account' %}"><img src="{% static 'images/account.png' %}" alt="Account Icon" class="icon" />Account</a></li>
+                <li><a href="{% url 'contacts' %}"><img src="{% static 'images/contact.png' %}" alt="Contact Icon" class="icon" />Contact</a></li>
+            </ul>
+            <hr class="divider" /> 
+            <ul class="menu-list">
+                <li><a href="{% url 'logout' %}"><img src="{% static 'images/logout.png' %}" alt="Logout Icon" class="icon" />Logout</a></li>
+                <li class="dark-mode-item">
+                    <img src="{% static 'images/darkmode.png' %}" alt="Dark Mode Icon" class="icon" id="dark-mode-icon" />
+                    <span class="dark-mode-text" id="dark-mode-text">Light Mode</span>
+                    <label class="switch">
+                        <input type="checkbox" id="dark-mode-toggle">
+                        <span class="slider"></span>
+                    </label>
+                    <script>
+                        const toggle = document.getElementById('dark-mode-toggle');
+                        const text = document.getElementById('dark-mode-text');
+                        const icon = document.getElementById('dark-mode-icon');
+                    
+                        toggle.addEventListener('change', () => {
+                            if (toggle.checked) {
+                                text.textContent = 'Light Mode';
+                                icon.src = "{% static 'images/lightmode.png' %}";
+                            } else {
+                                text.textContent = 'Dark Mode';
+                                icon.src = "{% static 'images/darkmode.png' %}";
+                            }
+                        });
+                    </script>
+                </li>
+            </ul>
+        </aside>
+      </body>
+
+    <div class="container">
 
         <!-- User Information Section -->
         <div class="user-info">
@@ -77,49 +76,106 @@
             </div>
         </div>
         
-        <!-- Direct Links for Time Range Buttons -->
-        <div id="time-range-buttons">
-            <a href="{% url 'wraps' %}?time_range=short_term" 
-               class="{% if selected_time_range == 'short_term' %}active{% endif %}">
-               Last Month
-            </a>
-            <a href="{% url 'wraps' %}?time_range=medium_term" 
-               class="{% if selected_time_range == 'medium_term' %}active{% endif %}">
-               Last 6 Months
-            </a>
-            <a href="{% url 'wraps' %}?time_range=long_term" 
-               class="{% if selected_time_range == 'long_term' %}active{% endif %}">
-               All Time
-            </a>
-        </div>
+<!-- Time Range Buttons -->
+<div id="time-range-buttons">
+  <a href="{% url 'wraps' %}?time_range=short_term" class="{% if selected_time_range == 'short_term' %}active{% endif %}">
+    Last Month
+  </a>
+  <a href="{% url 'wraps' %}?time_range=medium_term" class="{% if selected_time_range == 'medium_term' %}active{% endif %}">
+    Last 6 Months
+  </a>
+  <a href="{% url 'wraps' %}?time_range=long_term" class="{% if selected_time_range == 'long_term' %}active{% endif %}">
+    All Time
+  </a>
+</div>
 
-    <!-- Link to Library Page -->
-    <div class="wrapped-link">
-        <a href="{% url 'wraps_library' %}" class="wrapped-button library-button">Your Saved Library</a>
-    </div>
+<!-- Wrapped Library Button -->
+<div class="wrapped-link">
+  <a href="{% url 'wraps_library' %}" class="wrapped-button">
+    Explore Your Library
+  </a>
+</div>
 
-    <script>
-        // JavaScript to toggle dark mode
-        const darkModeToggle = document.getElementById('dark-mode-toggle');
-        const body = document.body;
+<script>
+    // Paths to your light and dark CSS files by page
+    const themePaths = {
+        profile: {
+            light: "{% static 'spotify/profile-light.css' %}",
+            dark: "{% static 'spotify/profile-dark.css' %}",
+        },
+        wraps: {
+            light: "{% static 'spotify/wraps-light.css' %}",
+            dark: "{% static 'spotify/wraps-dark.css' %}",
+        },
+        wraps_library: {
+            light: "{% static 'spotify/library-light.css' %}",
+            dark: "{% static 'spotify/library-dark.css' %}",
+        },
+        game: {
+            light: "{% static 'spotify/game-light.css' %}",
+            dark: "{% static 'spotify/game-dark.css' %}",
+        },
+        account: {
+            light: "{% static 'spotify/account-light.css' %}",
+            dark: "{% static 'spotify/account-dark.css' %}",
+        },
+        contacts: {
+            light: "{% static 'spotify/contacts-light.css' %}",
+            dark: "{% static 'spotify/contacts-dark.css' %}",
+        },
+        login: {
+            light: "{% static 'spotify/login-light.css' %}",
+            dark: "{% static 'spotify/login-dark.css' %}",
+        },
+    };
 
-        // Check if dark mode is already enabled
-        if (localStorage.getItem('dark-mode') === 'enabled') {
-            body.classList.add('dark-mode');
-            darkModeToggle.checked = true; // Make the toggle switch appear as 'on'
+    // Get references to elements
+    const themeStyle = document.getElementById('theme-style');
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const darkModeText = document.getElementById('dark-mode-text');
+    const darkModeIcon = document.getElementById('dark-mode-icon');
+    const currentPage = document.body.dataset.page;
+
+    // Function to apply the theme
+    function applyTheme(theme) {
+        if (currentPage && themePaths[currentPage]) {
+            themeStyle.setAttribute('href', theme === 'dark' ? themePaths[currentPage].dark : themePaths[currentPage].light);
         }
+        if (darkModeText) {
+            darkModeText.textContent = theme === 'dark' ? 'Dark Mode' : 'Light Mode'; // Update text dynamically
+        }
+        if (darkModeIcon) {
+            darkModeIcon.src = theme === 'dark' ? "{% static 'images/darkmode.png' %}" : "{% static 'images/lightmode.png' %}";
+        }
+        if (darkModeToggle) {
+            darkModeToggle.checked = theme === 'dark';
+        }
+    }
 
-        // Toggle dark mode on change of checkbox
+    // Initialize theme from localStorage
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    applyTheme(savedTheme);
+
+    // Listen for toggle changes and update theme dynamically
+    if (darkModeToggle) {
         darkModeToggle.addEventListener('change', () => {
-            body.classList.toggle('dark-mode');
-            // Save preference to localStorage
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('dark-mode', 'enabled');
-            } else {
-                localStorage.setItem('dark-mode', 'disabled');
-            }
+            const newTheme = darkModeToggle.checked ? 'dark' : 'light';
+            localStorage.setItem('theme', newTheme); // Save theme to localStorage
+            applyTheme(newTheme); // Apply theme to current page
         });
-    </script>
+    }
+
+    // Listen for theme changes across tabs
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'theme') {
+            applyTheme(event.newValue); // Apply the new theme when detected
+        }
+    });
+</script>
+
+
+
+
 
 <script>
     document.addEventListener("scroll", function() {
@@ -129,7 +185,26 @@
             document.body.classList.remove("scrolled");
         }, 1000); // Buttons disappear after 1 second of no scroll
     });
-    </script>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     
 </body>

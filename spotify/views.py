@@ -168,23 +168,25 @@ def wraps(request):
     top_genres = Counter(genres).most_common(5)
     top_5_tracks = all_tracks[:5]
 
-    track_ids = [track['id'] for track in all_tracks]
-    avg_danceability = avg_energy = avg_valence = None
+    # these spotify calls do not work anymore
 
-    if track_ids:
-        audio_features_json = spotify_api_request(request, 'https://api.spotify.com/v1/audio-features', params={'ids': ','.join(track_ids)})
-        valid_features = [f for f in audio_features_json.get('audio_features', []) if f]
-        if valid_features:
-            avg_danceability = sum(f['danceability'] for f in valid_features) / len(valid_features)
-            avg_energy = sum(f['energy'] for f in valid_features) / len(valid_features)
-            avg_valence = sum(f['valence'] for f in valid_features) / len(valid_features)
+    # track_ids = [track['id'] for track in all_tracks]
+    # avg_danceability = avg_energy = avg_valence = None
 
-    recommend_params = {
-        'seed_artists': ','.join([artist['id'] for artist in all_artists[:2]]) if all_artists else '',
-        'seed_tracks': ','.join([track['id'] for track in all_tracks[:2]]) if all_tracks else '',
-        'limit': 5
-    }
-    recommendations_json = spotify_api_request(request, 'https://api.spotify.com/v1/recommendations', params=recommend_params)
+    # if track_ids:
+    #     audio_features_json = spotify_api_request(request, 'https://api.spotify.com/v1/audio-features', params={'ids': ','.join(track_ids)})
+    #     valid_features = [f for f in audio_features_json.get('audio_features', []) if f]
+    #     if valid_features:
+    #         avg_danceability = sum(f['danceability'] for f in valid_features) / len(valid_features)
+    #         avg_energy = sum(f['energy'] for f in valid_features) / len(valid_features)
+    #         avg_valence = sum(f['valence'] for f in valid_features) / len(valid_features)
+
+    # recommend_params = {
+    #     'seed_artists': ','.join([artist['id'] for artist in all_artists[:2]]) if all_artists else '',
+    #     'seed_tracks': ','.join([track['id'] for track in all_tracks[:2]]) if all_tracks else '',
+    #     'limit': 5
+    # }
+    # recommendations_json = spotify_api_request(request, 'https://api.spotify.com/v1/recommendations', params=recommend_params)
 
     # wrap_data is the JSON object we will pass to the template
     wrap_data = {
@@ -192,12 +194,12 @@ def wraps(request):
         "time_range_label": time_range_label,
         "top_genres": top_genres,
         "top_tracks": top_5_tracks,
-        "avg_danceability": avg_danceability,
-        "avg_energy": avg_energy,
-        "avg_valence": avg_valence,
+        # "avg_danceability": avg_danceability,
+        # "avg_energy": avg_energy,
+        # "avg_valence": avg_valence,
         "top_artist": top_artist,
         "top_artists": top_5_artists,
-        "recommendations": recommendations_json.get('tracks', []) if recommendations_json else []
+        # "recommendations": recommendations_json.get('tracks', []) if recommendations_json else []
     }
     wrap_data_json = json.dumps(wrap_data, cls=DjangoJSONEncoder)
 
@@ -207,11 +209,11 @@ def wraps(request):
         'top_artist': top_artist,
         'artists': top_5_artists,
         'tracks': top_5_tracks,
-        'recommendations': recommendations_json.get('tracks', []) if recommendations_json else [],
+        # 'recommendations': recommendations_json.get('tracks', []) if recommendations_json else [],
         'top_genres': top_genres,
-        'avg_danceability': avg_danceability,
-        'avg_energy': avg_energy,
-        'avg_valence': avg_valence,
+        # 'avg_danceability': avg_danceability,
+        # 'avg_energy': avg_energy,
+        # 'avg_valence': avg_valence,
         'selected_time_range': time_range,
         'time_range_label': time_range_label
     })
@@ -237,12 +239,12 @@ def save_wrap(request):
                 'total_playback_minutes': '0',
                 'top_genres': data.get('top_genres'),
                 'top_tracks': data.get('top_tracks'),
-                'avg_danceability': float(data.get('avg_danceability', 0)),
-                'avg_energy': float(data.get('avg_energy', 0)),
-                'avg_valence': float(data.get('avg_valence', 0)),
+                # 'avg_danceability': float(data.get('avg_danceability', 0)),
+                # 'avg_energy': float(data.get('avg_energy', 0)),
+                # 'avg_valence': float(data.get('avg_valence', 0)),
                 'top_artist': data.get('top_artist') or "No top artist available",  # Set default value
                 'top_artists': data.get('top_artists'),
-                'recommendations': data.get('recommendations')
+                # 'recommendations': data.get('recommendations')
             }
             SavedWrap.objects.create(**wrap_data)
             return JsonResponse({'message': 'Wrap saved successfully'}, status=200)
@@ -272,12 +274,12 @@ def wrap_detail(request, wrap_id):
         'time_range_label': wrap.time_range_label,
         'top_genres': wrap.top_genres,
         'top_tracks': wrap.top_tracks,
-        'avg_danceability': wrap.avg_danceability,
-        'avg_energy': wrap.avg_energy,
-        'avg_valence': wrap.avg_valence,
+        # 'avg_danceability': wrap.avg_danceability,
+        # 'avg_energy': wrap.avg_energy,
+        # 'avg_valence': wrap.avg_valence,
         'top_artist': wrap.top_artist,
         'artists': wrap.top_artists,
-        'recommendations': wrap.recommendations,
+        # 'recommendations': wrap.recommendations,
         'created_at': wrap.created_at,
     }
     return render(request, 'spotify/saved_wraps.html', context)
@@ -296,10 +298,10 @@ def game(request, wrap_id):
         "top_genres": wrap.top_genres,
         "top_tracks": wrap.top_tracks,
         "top_artist": wrap.top_artist,
-        'avg_danceability': wrap.avg_danceability,
-        'avg_energy': wrap.avg_energy,
-        'avg_valence': wrap.avg_valence,
-        'recommendations': wrap.recommendations,
+        # 'avg_danceability': wrap.avg_danceability,
+        # 'avg_energy': wrap.avg_energy,
+        # 'avg_valence': wrap.avg_valence,
+        # 'recommendations': wrap.recommendations,
     }
     wrap_data_json = json.dumps(wrap_data, cls=DjangoJSONEncoder)
     
