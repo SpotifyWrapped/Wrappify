@@ -10,12 +10,12 @@ class SavedWrap(models.Model):
     total_playback_minutes = models.IntegerField()
     top_genres = models.JSONField()  # Store as JSON data
     top_tracks = models.JSONField()  # Store as JSON data
-    avg_danceability = models.FloatField()
-    avg_energy = models.FloatField()
-    avg_valence = models.FloatField()
+    # avg_danceability = models.FloatField()
+    # avg_energy = models.FloatField()
+    # avg_valence = models.FloatField()
     top_artist = models.JSONField(default=dict)  # Uses an empty JSON object as default
     top_artists = models.JSONField()  # Store as JSON data
-    recommendations = models.JSONField()  # Store as JSON data
+    # recommendations = models.JSONField()  # Store as JSON data
     created_at = models.DateTimeField(auto_now_add=True)
     completed_game = models.BooleanField(default=False)
 

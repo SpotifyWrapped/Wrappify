@@ -172,4 +172,20 @@ body, html {
   .phone-image {
     max-width: 70%; /* Further adjust image size */
   }
+    /* Adjust jagged shapes for mobile */
+  .jagged-shape1 {
+    height: 12vh; /* Scale shape smaller */
+  }
+
+  .jagged-outline1 {
+    height: 12.5vh; /* Increase height for a larger outline */
+  }
+
+  .jagged-shape2 {
+    height: 6vh; /* Scale shape smaller */
+  }
+
+  .jagged-outline2 {
+    height: 6.5vh; /* Increase height for a larger outline */
+  }
 }
