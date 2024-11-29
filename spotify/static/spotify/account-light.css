@@ -13,7 +13,7 @@ body {
     height: auto;
     position: absolute;  /* Position it outside of the container */
     top: -30px;           /* Adjust the vertical position */
-    left: 46%;           /* Position it horizontally */
+    left: 50%;           /* Position it horizontally */
     transform: translateX(-99%); /* Center the logo horizontally */
     z-index: 10;         /* Ensure it appears above other content */
     width: 150px;
@@ -61,7 +61,7 @@ body {
 }
 
 .spotify-link {
-    color: #666; 
+    color: #E0E7EF; 
     text-decoration: none; 
     font-weight: bold; 
     font-family: "Roboto", serif;
@@ -161,7 +161,7 @@ body {
 
 .delete-button {
     padding: 10px 20px;
-    background-color: #FF5C5C; 
+    background-color: #AD0004; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -173,7 +173,7 @@ body {
 }
 
 .delete-button:hover {
-    background-color: #D64545; 
+    background-color: #ffbfbf; 
 }
 
 /* Style for Settings Boxes (Language and Theme Sections) */
