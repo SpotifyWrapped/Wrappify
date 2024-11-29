@@ -13,7 +13,9 @@
 <body data-page="contacts">
     <div class="container">
         <h1 class="main-heading">Meet the Developers</h1>
-        <img src="{% static 'spotify/images/logo.png' %}" alt="Logo" class="logo">
+        <a href="{% url 'profile' %}">
+            <img src="{% static 'spotify/images/logo.png' %}" alt="Logo" class="logo">
+        </a>
 
     </div>
 
@@ -26,17 +28,17 @@
             </div>
         </div>
         <div class="card">
-            <img src="{% static 'spotify/images/d2.jpg' %}" alt="Developer 2">
-            <h2>Developer 2</h2>
+            <img src="{% static 'spotify/images/alvyn.jpg' %}" alt="Developer 2">
+            <h2>Alvyn</h2>
             <div class="description">
-                <p>Hi, I'm Developer 2.</p>
+                <p>Hi! My name is Alvyn and I'm a full-stack developer for Wrappify! I focused mainly on some of the UI as well as the back-end portion of our website. I hope you enjoyed taking a look back on some of your music highlights and feel free to contact us for any feedback.</p>
             </div>
         </div>
         <div class="card">
-            <img src="{% static 'spotify/images/d3.jpg' %}" alt="Developer 3">
+            <img src="{% static 'spotify/images/tracy.jpg' %}" alt="Developer 3">
             <h2>Developer 3</h2>
             <div class="description">
-                <p>I'm Developer 3.</p>
+                <p>Hello! My name is Tracy and I'm a full-stack developer for Wrappify! I worked a lot with the Spotify API and making the entire website mobile friendly. Hopefully you enjoy taking a look at your listening history!</p>
             </div>
         </div>
         <div class="card">
