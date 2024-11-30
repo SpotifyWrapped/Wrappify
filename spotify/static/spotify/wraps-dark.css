@@ -716,7 +716,7 @@ object-fit: cover;
     }
 }
 
-/* General Styles */
+/* General Styles
 #top-tracks, #top-artists {
     width: 100%;
     max-width: 1200px;
@@ -741,10 +741,10 @@ object-fit: cover;
     scrollbar-width: none;
 }
 
-/* Webkit (Chrome, Safari) scrollbar styling */
+/* Webkit (Chrome, Safari) scrollbar styling 
 #top-tracks ul::-webkit-scrollbar,
 #top-artists ul::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for Webkit-based browsers */
+    display: none; /* Hide scrollbar for Webkit-based browsers 
 }
 
 #top-tracks li, #top-artists li {
@@ -778,7 +778,7 @@ object-fit: cover;
     text-align: center;
 }
   
-  /* Height-based Responsiveness */
+  /* Height-based Responsiveness 
   @media (max-height: 700px) {
     #top-tracks h2, #top-artists h2 {
       font-size: 2rem;
@@ -835,7 +835,7 @@ object-fit: cover;
     }
   }
   
-  /* Existing Responsive Styles */
+  /* Existing Responsive Styles 
   @media (max-width: 1024px) {
     #top-tracks ul, #top-artists ul {
       max-height: 400px;
@@ -885,7 +885,51 @@ object-fit: cover;
     #top-tracks li p, #top-artists li p {
       font-size: 0.7rem;
     }
-  }
+  } */
+
+  @media (max-width: 768px) {
+    ul {
+        gap: 5px; /* Reduce spacing between items */
+        padding: 0 15px; /* Add padding to avoid edges clipping */
+    }
+
+    li {
+        flex-direction: row; /* Align items horizontally */
+        align-items: center; /* Vertically align content */
+        justify-content: space-between; /* Spread items */
+        gap: 10px; /* Add spacing between elements */
+    }
+
+    li img {
+        width: 60px; /* Further reduce image size */
+        height: 60px;
+        flex-shrink: 0; /* Prevent shrinking */
+    }
+
+    li strong {
+        font-size: 1rem; /* Adjust font size for numbers */
+    }
+
+    li p {
+        font-size: 0.6rem; /* Reduce text size */
+        text-align: left; /* Left-align text */
+        flex-grow: 1; /* Allow text to grow */
+        margin-left:0px; /* Add spacing between image and text */
+        margin-top: 20px;
+    }
+
+    h2 {
+        font-size: 1.5rem; /* Slightly smaller header for mobile */
+        margin: 20px 0; /* Adjust spacing */
+        text-align: center; /* Center header */
+    }
+
+    .container-full {
+        padding: 20px 10px; /* Adjust container padding */
+        overflow-y: scroll; /* Allow scrolling on mobile */
+    }
+}
+
 
 .floating-icon {
     position: absolute;
