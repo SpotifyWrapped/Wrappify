@@ -513,6 +513,12 @@
     #save-delete .back-home .back-home-button:hover {
         background-color: #5a5a5a;
     }
+
+    @media (max-width: 768px) {
+        #top-tracks li p {
+            font-size: 0.5rem; /* Optional: Adjust font size for smaller screens */
+        }
+    }
     
 
 

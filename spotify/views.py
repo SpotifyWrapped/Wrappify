@@ -422,8 +422,11 @@ def preferencePage(request):
 @login_required
 @require_POST
 def delete_account(request):
-    user = request.user
-    user.delete()
-    logout(request)
-    request.session.flush()
-    return JsonResponse({'message': 'Account successfully deleted'}, status=200)
+    try:
+        user = request.user
+        user.delete()
+        logout(request)
+        request.session.flush()
+        return JsonResponse({'message': 'Account successfully deleted'}, status=200)
+    except Exception as e:
+        return JsonResponse({'message': 'Failed to delete account'}, status=400)

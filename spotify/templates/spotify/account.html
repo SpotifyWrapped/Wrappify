@@ -42,11 +42,42 @@
         <div class="delete-account">
             <h1 class="delete-title">Delete Wrappify Account</h1>
             <p class="delete-description">This will permanently delete your account.</p>
-            <form action="{% url 'delete_account' %}" method="POST" id="delete-account-form" class="delete-account-form">
+            <form id="delete-account-form" class="delete-account-form">
                 {% csrf_token %}
                 <button type="button" class="delete-button" onclick="confirmDelete()">Delete Account</button>
             </form>
         </div>
+        
+        <script>
+        function confirmDelete() {
+            if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+                const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                
+                fetch('{% url "delete_account" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken
+                    },
+                    credentials: 'same-origin'
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Account deletion failed');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert(data.message);
+                    window.location.href = "{% url 'login' %}";
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to delete account. Please try again.');
+                });
+            }
+        }
+        </script>
 
         <!-- Language Selection Box -->
         <div class="settings-box">
