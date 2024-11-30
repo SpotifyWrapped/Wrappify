@@ -299,70 +299,219 @@
     </script>
 
 <script>
-    // Paths to your light and dark CSS files by page
     const themePaths = {
+        account: {
+            default: {
+                light: "{% static 'spotify/account-light.css' %}",
+                dark: "{% static 'spotify/account-dark.css' %}",
+            },
+            halloween: {
+                light: "{% static 'spotify/account-light-halloween.css' %}",
+                dark: "{% static 'spotify/account-dark-halloween.css' %}",
+            },
+            christmas: {
+                light: "{% static 'spotify/account-light-christmas.css' %}",
+                dark: "{% static 'spotify/account-dark-christmas.css' %}",
+            },
+            wicked: {
+                light: "{% static 'spotify/account-light-wicked.css' %}",
+                dark: "{% static 'spotify/account-dark-wicked.css' %}",
+            },
+        },
         profile: {
-            light: "{% static 'spotify/profile-light.css' %}",
-            dark: "{% static 'spotify/profile-dark.css' %}",
+            default: {
+                light: "{% static 'spotify/profile-light.css' %}",
+                dark: "{% static 'spotify/profile-dark.css' %}",
+            },
+            halloween: {
+                light: "{% static 'spotify/profile-light-halloween.css' %}",
+                dark: "{% static 'spotify/profile-dark-halloween.css' %}",
+            },
+            christmas: {
+                light: "{% static 'spotify/profile-light-christmas.css' %}",
+                dark: "{% static 'spotify/profile-dark-christmas.css' %}",
+            },
+            wicked: {
+                light: "{% static 'spotify/profile-light-wicked.css' %}",
+                dark: "{% static 'spotify/profile-dark-wicked.css' %}",
+            },
         },
         wraps: {
-            light: "{% static 'spotify/wraps-light.css' %}",
-            dark: "{% static 'spotify/wraps-dark.css' %}",
+            default: {
+                light: "{% static 'spotify/wraps-light.css' %}",
+                dark: "{% static 'spotify/wraps-dark.css' %}",
+            },
+            halloween: {
+                light: "{% static 'spotify/wraps-light-halloween.css' %}",
+                dark: "{% static 'spotify/wraps-dark-halloween.css' %}",
+            },
+            christmas: {
+                light: "{% static 'spotify/wraps-light-christmas.css' %}",
+                dark: "{% static 'spotify/wraps-dark-christmas.css' %}",
+            },
+            wicked: {
+                light: "{% static 'spotify/wraps-light-wicked.css' %}",
+                dark: "{% static 'spotify/wraps-dark-wicked.css' %}",
+            },
         },
         wraps_library: {
-            light: "{% static 'spotify/library-light.css' %}",
-            dark: "{% static 'spotify/library-dark.css' %}",
+            default: {
+                light: "{% static 'spotify/library-light.css' %}",
+                dark: "{% static 'spotify/library-dark.css' %}",
+            },
+            halloween: {
+                light: "{% static 'spotify/library-light-halloween.css' %}",
+                dark: "{% static 'spotify/library-dark-halloween.css' %}",
+            },
+            christmas: {
+                light: "{% static 'spotify/library-light-christmas.css' %}",
+                dark: "{% static 'spotify/library-dark-christmas.css' %}",
+            },
+            wicked: {
+                light: "{% static 'spotify/library-light-wicked.css' %}",
+                dark: "{% static 'spotify/library-dark-wicked.css' %}",
+            },
         },
         game: {
-            light: "{% static 'spotify/game-light.css' %}",
-            dark: "{% static 'spotify/game-dark.css' %}",
+            default: {
+                light: "{% static 'spotify/game-light.css' %}",
+                dark: "{% static 'spotify/game-dark.css' %}",
+            },
+            halloween: {
+                light: "{% static 'spotify/game-light-halloween.css' %}",
+                dark: "{% static 'spotify/game-dark-halloween.css' %}",
+            },
+            christmas: {
+                light: "{% static 'spotify/game-light-christmas.css' %}",
+                dark: "{% static 'spotify/game-dark-christmas.css' %}",
+            },
+            wicked: {
+                light: "{% static 'spotify/game-light-wicked.css' %}",
+                dark: "{% static 'spotify/game-dark-wicked.css' %}",
+            },
+        },
+        contacts: {
+            default: {
+                light: "{% static 'spotify/contacts-light.css' %}",
+                dark: "{% static 'spotify/contacts-dark.css' %}",
+            },
+            halloween: {
+                light: "{% static 'spotify/contacts-light-halloween.css' %}",
+                dark: "{% static 'spotify/contacts-dark-halloween.css' %}",
+            },
+            christmas: {
+                light: "{% static 'spotify/contacts-light-christmas.css' %}",
+                dark: "{% static 'spotify/contacts-dark-christmas.css' %}",
+            },
+            wicked: {
+                light: "{% static 'spotify/contacts-light-wicked.css' %}",
+                dark: "{% static 'spotify/contacts-dark-wicked.css' %}",
+            },
+        },
+        login: {
+            default: {
+                light: "{% static 'spotify/login-light.css' %}",
+                dark: "{% static 'spotify/login-dark.css' %}",
+            },
+            halloween: {
+                light: "{% static 'spotify/login-light-halloween.css' %}",
+                dark: "{% static 'spotify/login-dark-halloween.css' %}",
+            },
+            christmas: {
+                light: "{% static 'spotify/login-light-christmas.css' %}",
+                dark: "{% static 'spotify/login-dark-christmas.css' %}",
+            },
+            wicked: {
+                light: "{% static 'spotify/login-light-wicked.css' %}",
+                dark: "{% static 'spotify/login-dark-wicked.css' %}",
+            },
         },
     };
 
-    // Get references to elements
-    const themeStyle = document.getElementById('theme-style');
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
-    const darkModeText = document.getElementById('dark-mode-text');
-    const darkModeIcon = document.getElementById('dark-mode-icon');
-    const currentPage = document.body.dataset.page;
+    // Check if a theme is allowed
+    function isThemeAllowed(theme) {
+        const holidayRestrictionEnabled = false;
+        const holidayMonths = { halloween: 9, christmas: 11 };
+        if (!holidayRestrictionEnabled) return true;
+        const currentMonth = new Date().getMonth();
+        return holidayMonths[theme] === undefined || holidayMonths[theme] === currentMonth;
+    }
 
-    // Function to apply the theme
-    function applyTheme(theme) {
-        if (currentPage && themePaths[currentPage]) {
-            themeStyle.setAttribute('href', theme === 'dark' ? themePaths[currentPage].dark : themePaths[currentPage].light);
-        }
-        if (darkModeText) {
-            darkModeText.textContent = theme === 'dark' ? 'Dark Mode' : 'Light Mode'; // Update text dynamically
-        }
-        if (darkModeIcon) {
-            darkModeIcon.src = theme === 'dark' ? "{% static 'images/darkmode.png' %}" : "{% static 'images/lightmode.png' %}";
-        }
-        if (darkModeToggle) {
-            darkModeToggle.checked = theme === 'dark';
+    // Populate theme dropdown dynamically
+    function populateThemeDropdown() {
+        const themeDropdown = document.getElementById("theme-dropdown");
+        const allThemes = {
+            default: "Default",
+            halloween: "Halloween",
+            christmas: "Christmas",
+            wicked: "Wicked",
+        };
+        themeDropdown.innerHTML = ""; // Clear existing options
+        for (const [themeKey, themeName] of Object.entries(allThemes)) {
+            if (isThemeAllowed(themeKey)) {
+                const option = document.createElement("option");
+                option.value = themeKey;
+                option.textContent = themeName;
+                themeDropdown.appendChild(option);
+            }
         }
     }
 
-    // Initialize theme from localStorage
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    applyTheme(savedTheme);
+    // Apply theme dynamically
+    function applyTheme(theme, mode) {
+        const currentPage = document.body.dataset.page;
+        const themeKey = theme || "default";
+        const modeKey = mode === "dark" ? "dark" : "light";
 
-    // Listen for toggle changes and update theme dynamically
-    if (darkModeToggle) {
-        darkModeToggle.addEventListener('change', () => {
-            const newTheme = darkModeToggle.checked ? 'dark' : 'light';
-            localStorage.setItem('theme', newTheme); // Save theme to localStorage
-            applyTheme(newTheme); // Apply theme to current page
+        if (currentPage && themePaths[currentPage] && themePaths[currentPage][themeKey]) {
+            const themeStyle = document.getElementById("theme-style");
+            themeStyle.setAttribute("href", themePaths[currentPage][themeKey][modeKey]);
+        }
+
+        const darkModeText = document.getElementById("dark-mode-text");
+        const darkModeIcon = document.getElementById("dark-mode-icon");
+        if (darkModeText) darkModeText.textContent = mode === "dark" ? "Dark Mode" : "Light Mode";
+        if (darkModeIcon) darkModeIcon.src = mode === "dark"
+            ? "{% static 'images/lightmode.png' %}"
+            : "{% static 'images/darkmode.png' %}";
+
+        localStorage.setItem("theme", themeKey);
+        localStorage.setItem("mode", modeKey);
+    }
+
+    function initializeTheme() {
+        const themeDropdown = document.getElementById("theme-dropdown");
+        const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+        const savedTheme = localStorage.getItem("theme") || "default";
+        const savedMode = localStorage.getItem("mode") || "light";
+
+        if (themeDropdown) {
+            populateThemeDropdown();
+            themeDropdown.value = savedTheme;
+            themeDropdown.addEventListener("change", () => {
+                applyTheme(themeDropdown.value, darkModeToggle.checked ? "dark" : "light");
+            });
+        }
+
+        if (darkModeToggle) {
+            darkModeToggle.checked = savedMode === "dark";
+            darkModeToggle.addEventListener("change", () => {
+                applyTheme(savedTheme, darkModeToggle.checked ? "dark" : "light");
+            });
+        }
+
+        applyTheme(savedTheme, savedMode);
+
+        window.addEventListener("storage", () => {
+            const updatedTheme = localStorage.getItem("theme") || "default";
+            const updatedMode = localStorage.getItem("mode") || "light";
+            applyTheme(updatedTheme, updatedMode);
         });
     }
 
-    // Listen for theme changes across tabs
-    window.addEventListener('storage', (event) => {
-        if (event.key === 'theme') {
-            applyTheme(event.newValue); // Apply the new theme when detected
-        }
-    });
+    initializeTheme();
 </script>
-
 
 </body>
 </html>

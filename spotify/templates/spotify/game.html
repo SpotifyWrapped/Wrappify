@@ -97,99 +97,97 @@
     
         // Background image paths for light and dark themes
         const backgroundPaths = {
-            light: "{% static 'spotify/images/lightbg.png' %}",
-            dark: "{% static 'spotify/images/darkbg.png' %}"
+            default: {
+                light: "{% static 'spotify/images/lightbg.png' %}",
+                dark: "{% static 'spotify/images/darkbg.png' %}"
+            },
+            halloween: {
+                light: "{% static 'spotify/images/halloweenlight.png' %}",
+                dark: "{% static 'spotify/images/halloweendark.png' %}"
+            },
+            christmas: {
+                light: "{% static 'spotify/images/christmaslight.png' %}",
+                dark: "{% static 'spotify/images/christmasdark.png' %}"
+            },
+            wicked: {
+                light: "{% static 'spotify/images/wickedlight.png' %}",
+                dark: "{% static 'spotify/images/wickeddark.png' %}"
+            }
         };
     
-        // Paths to light and dark CSS files for each page
+        // CSS theme paths for light and dark modes
         const themePaths = {
-            profile: {
-                light: "{% static 'spotify/profile-light.css' %}",
-                dark: "{% static 'spotify/profile-dark.css' %}"
-            },
-            wraps: {
-                light: "{% static 'spotify/wraps-light.css' %}",
-                dark: "{% static 'spotify/wraps-dark.css' %}"
-            },
-            wraps_library: {
-                light: "{% static 'spotify/library-light.css' %}",
-                dark: "{% static 'spotify/library-dark.css' %}"
-            },
             game: {
-                light: "{% static 'spotify/game-light.css' %}",
-                dark: "{% static 'spotify/game-dark.css' %}"
+                default: { light: "{% static 'spotify/game-light.css' %}", dark: "{% static 'spotify/game-dark.css' %}" },
+                halloween: { light: "{% static 'spotify/game-light-halloween.css' %}", dark: "{% static 'spotify/game-dark-halloween.css' %}" },
+                christmas: { light: "{% static 'spotify/game-light-christmas.css' %}", dark: "{% static 'spotify/game-dark-christmas.css' %}" },
+                wicked: { light: "{% static 'spotify/game-light-wicked.css' %}", dark: "{% static 'spotify/game-dark-wicked.css' %}" }
             }
         };
     
-        // Get references to elements
-        const themeStyle = document.getElementById('theme-style');
-        const darkModeToggle = document.getElementById('dark-mode-toggle');
-        const darkModeText = document.getElementById('dark-mode-text');
-        const darkModeIcon = document.getElementById('dark-mode-icon');
-        const currentPage = document.body.dataset.page; // Determines the current page
+        // Get theme references
+        const themeStyle = document.getElementById("theme-style");
+        let backgroundImageSrc = backgroundPaths.default.light; // Initial value
     
-        // Determine the theme from localStorage
-        let theme = localStorage.getItem('theme') || 'light';
+        // Function to update background image based on theme and mode
+        function updateCanvasBackground(theme, mode) {
+            const canvas = document.querySelector("canvas");
+            const ctx = canvas.getContext("2d");
     
-        // Set the background image dynamically based on the theme
-        let backgroundImageSrc = theme === 'dark' ? backgroundPaths.dark : backgroundPaths.light;
+            // Determine background image
+            backgroundImageSrc =
+                backgroundPaths[theme] && backgroundPaths[theme][mode]
+                    ? backgroundPaths[theme][mode]
+                    : backgroundPaths.default.light;
     
-        // Function to update the background image when the theme changes
-        function updateBackgroundImage(newTheme) {
-            backgroundImageSrc = newTheme === 'dark' ? backgroundPaths.dark : backgroundPaths.light;
-    
-            // If you already have a background sprite instance, update its image source
-            if (typeof background !== 'undefined') {
-                background.image.src = backgroundImageSrc;
-            }
+            // Update the canvas
+            const backgroundImage = new Image();
+            backgroundImage.src = backgroundImageSrc;
+            backgroundImage.onload = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+                ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height); // Draw new background
+            };
         }
     
         // Function to apply the theme
-        function applyTheme(theme) {
-            // Update CSS files based on the page
-            if (currentPage && themePaths[currentPage]) {
-                themeStyle.setAttribute('href', theme === 'dark' ? themePaths[currentPage].dark : themePaths[currentPage].light);
+        function applyTheme(theme, mode) {
+            const currentPage = document.body.dataset.page; // Get current page
+            const modeKey = mode === "dark" ? "dark" : "light";
+            const themeKey = theme || "default";
+    
+            // Update the theme's CSS
+            if (currentPage && themePaths[currentPage] && themePaths[currentPage][themeKey]) {
+                themeStyle.setAttribute("href", themePaths[currentPage][themeKey][modeKey]);
             }
     
-            // Update dark mode toggle text/icon
-            if (darkModeText) {
-                darkModeText.textContent = theme === 'dark' ? 'Dark Mode' : 'Light Mode';
-            }
-            if (darkModeIcon) {
-                darkModeIcon.src = theme === 'dark'
-                    ? "{% static 'images/darkmode.png' %}"
-                    : "{% static 'images/lightmode.png' %}";
-            }
-            if (darkModeToggle) {
-                darkModeToggle.checked = theme === 'dark';
-            }
+            // Update the canvas background
+            updateCanvasBackground(themeKey, modeKey);
     
-            // Update the canvas background image
-            updateBackgroundImage(theme);
-    
-            // Save theme to localStorage
-            localStorage.setItem('theme', theme);
+            // Save the theme and mode to localStorage
+            localStorage.setItem("theme", themeKey);
+            localStorage.setItem("mode", modeKey);
         }
     
-        // Initialize the theme and update the background on page load
-        applyTheme(theme);
+        // Initialize the theme on page load
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem("theme") || "default";
+            const savedMode = localStorage.getItem("mode") || "light";
     
-        // Add event listener for dark mode toggle
-        if (darkModeToggle) {
-            darkModeToggle.checked = theme === 'dark';
-            darkModeToggle.addEventListener('change', () => {
-                const newTheme = darkModeToggle.checked ? 'dark' : 'light';
-                applyTheme(newTheme);
+            applyTheme(savedTheme, savedMode);
+    
+            // Sync theme changes across tabs
+            window.addEventListener("storage", (event) => {
+                if (event.key === "theme" || event.key === "mode") {
+                    const updatedTheme = localStorage.getItem("theme") || "default";
+                    const updatedMode = localStorage.getItem("mode") || "light";
+                    applyTheme(updatedTheme, updatedMode);
+                }
             });
         }
     
-        // Listen for theme changes across tabs
-        window.addEventListener('storage', (event) => {
-            if (event.key === 'theme') {
-                applyTheme(event.newValue); // Apply the new theme when detected
-            }
-        });
+        initializeTheme();
     </script>
+    
     
     
 
@@ -206,7 +204,7 @@
             <ul id="optionsList">
                 <!-- Options will be generated dynamically here -->
             </ul>
-            <p style="font-size: 12px; color: #666; margin-top: 10px;">Select or use Keyboard</p>
+            <p style="font-size: 12px; margin-top: 10px;">Select or use Keyboard</p>
         </div>
     </div>
 
