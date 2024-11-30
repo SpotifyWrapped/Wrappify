@@ -169,7 +169,7 @@
   .wrapped-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #103c67;
+    background-color: #234f77;
     color: white;
     /* border: 0.5px solid #ffffffd7; */
     text-decoration: none;
@@ -586,7 +586,7 @@
   
   /* When checked, change the background color */
   input:checked + .slider {
-    background-color: #4e92d7e2; /* Darker green */
+    background-color: #4e92d7e2; 
   }
   
   /* When checked, move the slider */
