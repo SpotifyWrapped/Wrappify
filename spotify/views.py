@@ -135,6 +135,17 @@ def profile(request):
     }
     return render(request, 'spotify/profile.html', context)
 
+
+
+# Helper function to fetch data from Spotify API
+def fetch_spotify_data(url, headers):
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        return response.json().get('items', [])
+    return []
+
+
+
 # Display Spotify wrapped data
 @login_required
 def wraps(request):
@@ -155,12 +166,10 @@ def wraps(request):
     time_range_label = time_range_labels.get(time_range, 'Last Month')
 
     # Fetch user's top artists based on the selected time range
-    artists_response = requests.get(f'https://api.spotify.com/v1/me/top/artists?limit=10&time_range={time_range}', headers=headers)
-    all_artists = artists_response.json().get('items', []) if artists_response.status_code == 200 else []
+    all_artists = fetch_spotify_data(f'https://api.spotify.com/v1/me/top/artists?limit=10&time_range={time_range}', headers);
 
     # Fetch user's top tracks based on the selected time range
-    tracks_response = requests.get(f'https://api.spotify.com/v1/me/top/tracks?limit=10&time_range={time_range}', headers=headers)
-    all_tracks = tracks_response.json().get('items', []) if tracks_response.status_code == 200 else []
+    all_tracks = fetch_spotify_data(f'https://api.spotify.com/v1/me/top/tracks?limit=10&time_range={time_range}', headers);
 
     top_artist = all_artists[0] if all_artists else None
     top_5_artists = all_artists[:5]
@@ -226,26 +235,35 @@ def wraps_library(request):
     #     print(wrap.top_tracks)
     return render(request, 'spotify/wraps_library.html', {'saved_wraps': saved_wraps})
 
+
+# Default values
+DEFAULT_TITLE = 'My Spotify Wrapped'
+DEFAULT_TOP_ARTIST = 'No top artist available'
+
+# Helper function to create the wrap data dictionary
+def create_wrap_data(user, data):
+    return {
+        'user': user,
+        'title': data.get('title', DEFAULT_TITLE),
+        'time_range_label': data.get('time_range_label'),
+        'total_playback_minutes': '0',
+        'top_genres': data.get('top_genres'),
+        'top_tracks': data.get('top_tracks'),
+        # 'avg_danceability': float(data.get('avg_danceability', 0)),
+        # 'avg_energy': float(data.get('avg_energy', 0)),
+        # 'avg_valence': float(data.get('avg_valence', 0)),
+        'top_artist': data.get('top_artist') or DEFAULT_TOP_ARTIST,  # Use fallback
+        'top_artists': data.get('top_artists'),
+        # 'recommendations': data.get('recommendations'),
+    }
+
 # Save the current Spotify wrap data to the database
 @login_required
 def save_wrap(request):
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
-            wrap_data = {
-                'user': request.user,
-                'title': data.get('title', 'My Spotify Wrapped'),
-                'time_range_label': data.get('time_range_label'),
-                'total_playback_minutes': '0',
-                'top_genres': data.get('top_genres'),
-                'top_tracks': data.get('top_tracks'),
-                # 'avg_danceability': float(data.get('avg_danceability', 0)),
-                # 'avg_energy': float(data.get('avg_energy', 0)),
-                # 'avg_valence': float(data.get('avg_valence', 0)),
-                'top_artist': data.get('top_artist') or "No top artist available",  # Set default value
-                'top_artists': data.get('top_artists'),
-                # 'recommendations': data.get('recommendations')
-            }
+            wrap_data = create_wrap_data(request.user, data)
             SavedWrap.objects.create(**wrap_data)
             return JsonResponse({'message': 'Wrap saved successfully'}, status=200)
         except json.JSONDecodeError:
