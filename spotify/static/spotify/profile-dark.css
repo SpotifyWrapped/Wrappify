@@ -80,9 +80,10 @@
   .user-info, .wrapped-link, .time-range-buttons {
     margin-bottom: 20px;
     padding: 20px;
-    background-color: #5c738e48;
+    /* background-color: #52709b;   */
+    /*#52709bca;*/
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgb(255, 255, 255);
     border: 1px solid #ddd;
   }
   
@@ -168,8 +169,9 @@
   .wrapped-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #234f77;
+    background-color: #103c67;
     color: white;
+    /* border: 0.5px solid #ffffffd7; */
     text-decoration: none;
     border-radius: 4px;
     transition: background-color 0.3s ease;
@@ -177,6 +179,7 @@
   
   .wrapped-button:hover {
     background-color: #446fac;
+    box-shadow: 0 4px 4px rgb(255, 255, 255);
   }
   
   .logout a {
@@ -247,6 +250,7 @@
   
   #time-range-buttons a:hover {
     background-color: #446fac; /* Darker green on hover */
+    box-shadow: 0 4px 4px rgb(255, 255, 255);
   }
   
   #time-range-buttons a.active {
