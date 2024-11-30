@@ -1,0 +1,146 @@
+/* halloween.css */
+
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #1a1a1a; /* Spooky black background */
+    background-image: url('/static/spotify/images/halloween_bg.png'); /* Halloween pattern */
+    background-size: cover;
+    background-position: center;
+    color: #ff9800; /* Pumpkin orange text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Full-screen container */
+.container-full {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+    border: 2px solid #ff5722; /* Bright orange border */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Progress bars for each slide */
+.progress-bars {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    height: 6px;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 10px;
+}
+
+.progress-bar {
+    background-color: #4a4a4a; /* Dark grey for inactive */
+    height: 100%;
+    flex: 1;
+    margin: 0 5px;
+}
+
+.progress-bar.active {
+    background-color: #ff9800; /* Pumpkin orange for active state */
+}
+
+/* Slide Styles */
+.slides {
+    text-align: center;
+    display: none;
+}
+
+.slides.active {
+    display: block;
+}
+
+/* Images for tracks, artists, recommendations */
+img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 2px solid #ff9800; /* Pumpkin orange border */
+}
+
+/* Text and headings */
+h2 {
+    color: #ff5722; /* Bright orange */
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+p {
+    color: #ffcc80; /* Light orange text */
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Audio player styling */
+audio {
+    max-width: 150px;
+    margin-top: 10px;
+}
+
+/* List styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+li p {
+    margin-left: 10px;
+}
+
+/* Save/Delete Button */
+button {
+    background-color: #ff9800; /* Pumpkin orange buttons */
+    color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #e65100; /* Darker orange on hover */
+}
+
+.back-home-button {
+    background-color: #ff5722; /* Orange back home button */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.back-home-button:hover {
+    background-color: #bf360c; /* Darker red-orange */
+}

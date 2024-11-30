@@ -8,9 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% trans "Spotify Wrapped" %}</title>
     <!-- Linking the CSS file -->
-    <link rel="stylesheet" href="{% static 'spotify/wraps.css' %}">
+    <link rel="stylesheet" id="theme-css" href="{% static 'spotify/wraps.css' %}">
     <!-- Linking the JavaScript for slideshow functionality -->
     <script src="{% static 'spotify/slideshow.js' %}" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentDate = new Date();
+            const themeCSS = document.getElementById('theme-css');
+            if (currentDate.getMonth() === 10 && currentDate.getDate() === 30) { // Halloween
+                themeCSS.href = "{% static 'spotify/halloween_wraps.css' %}";
+            } else if (currentDate.getMonth() === 10 && currentDate.getDate() === 31) { // Christmas
+                themeCSS.href = "{% static 'spotify/christmas_wraps.css' %}";
+            }
+        });
+    </script>
 </head>
 <body>
 
@@ -184,222 +195,5 @@
     </div>
 
     <script src="{% static 'js/main.js' %}"></script>
-</body>
-</html>
-
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify Wrapped</title>
-    <!-- Linking the CSS file -->
-    <link rel="stylesheet" href="{% static 'spotify/wraps.css' %}">
-    <!-- Linking the JavaScript for slideshow functionality -->
-    <script src="{% static 'spotify/slideshow.js' %}" defer></script>
-</head>
-<body>
-
-    <!-- Full-screen slideshow container -->
-    <div class="container-full">
-
-        <!-- Thin Progress bars for each slide -->
-        <div class="progress-bars">
-            <div class="progress-bar" onclick="goToSlide(0)"></div>
-            <div class="progress-bar" onclick="goToSlide(1)"></div>
-            <div class="progress-bar" onclick="goToSlide(2)"></div>
-            <div class="progress-bar" onclick="goToSlide(3)"></div>
-            <div class="progress-bar" onclick="goToSlide(4)"></div>
-            <div class="progress-bar" onclick="goToSlide(5)"></div>
-            <div class="progress-bar" onclick="goToSlide(6)"></div>
-            <div class="progress-bar" onclick="goToSlide(7)"></div>
-            <div class="progress-bar" onclick="goToSlide(8)"></div>
-        </div>
-
-        <!-- Slide 1: Intro Slide -->
-        <div class="slides active" id="slide1">
-            <section id="intro">
-                <h2>Welcome to Your Spotify Wrapped</h2>
-                <p>Let’s take a look at your music habits over {{ time_range_label }}!</p>
-            </section>
-        </div>
-
-        <!-- Slide 2: Top Genres -->
-        <div class="slides" id="slide2">
-            <section id="top-genres">
-                <h2>My Top Genres</h2>
-                <ul>
-                    {% for genre, count in top_genres %}
-                        <li>{{ genre }} ({{ count }} times)</li>
-                    {% empty %}
-                        <li>No top genres available.</li>
-                    {% endfor %}
-                </ul>
-            </section>
-        </div>
-
-        <!-- Slide 3: Top Tracks -->
-        <div class="slides" id="slide3">
-            <section id="top-tracks">
-                <h2>My Top Songs</h2>
-                <ul>
-                    {% for track in tracks %}
-                        <li>
-                            <strong>{{ forloop.counter }}.</strong>
-                            <img src="{{ track.album.images.0.url }}" alt="{{ track.name }}" width="100">
-                            <p>{{ track.name }} by {{ track.artists.0.name }}</p>
-                            {% if track.preview_url %}
-                                <audio controls>
-                                    <source src="{{ track.preview_url }}" type="audio/mpeg">
-                                    Your browser does not support the audio element.
-                                </audio>
-                            {% endif %}
-                        </li>
-                    {% empty %}
-                        <li>No top tracks available.</li>
-                    {% endfor %}
-                </ul>
-            </section>
-        </div>
-
-        <!-- Slide 4: Mood Analysis (Vibe) -->
-        <div class="slides" id="slide4">
-            <section id="audio-mood">
-                <h2>My Vibe</h2>
-                <p><strong>Danceability:</strong> {{ avg_danceability|floatformat:2 }} (How much your tracks make you want to dance)</p>
-                <p><strong>Energy:</strong> {{ avg_energy|floatformat:2 }} (How energetic and intense your music is)</p>
-                <p><strong>Happiness (Valence):</strong> {{ avg_valence|floatformat:2}} (How positive your tracks feel)</p>
-            </section>
-        </div>
-
-
-        <!-- Slide 5: Transition Slide (Who's your #1) -->
-        <div class="slides" id="slide5">
-            <section id="extra-slide">
-                <h2>HMM... Who's that special someone?</h2>
-                <p>Someone you just can't stop listening to...</p>
-            </section>
-        </div>
-
-        <!-- Slide 6: #1 Artist Deep Dive -->
-        <div class="slides" id="slide6">
-            <section id="top-artist-deep-dive">
-                {% if top_artist %}
-                    <h2>Your #1 Artist: {{ top_artist.name }}</h2>
-                    <img src="{{ top_artist.images.0.url }}" alt="{{ top_artist.name }}" width="100">
-                    <p><strong>Genres:</strong> {{ top_artist.genres|join:", " }}</p>
-                    <p><strong>Popularity:</strong> {{ top_artist.popularity }} / 100</p>
-                    <p><strong>Followers:</strong> {{ top_artist.followers.total|floatformat }}</p>
-                {% else %}
-                    <h2>No top artist available</h2>
-                    <p>It seems like you haven't listened to enough music recently to have a top artist.</p>
-                {% endif %}
-            </section>
-        </div>
-
-        <!-- Slide 7: Top Artists -->
-        <div class="slides" id="slide7">
-            <section id="top-artists">
-                <h2>My Top Artists</h2>
-                <ul>
-                    {% for artist in artists %}
-                        <li>
-                            <strong>{{ forloop.counter }}.</strong>
-                            <img src="{{ artist.images.0.url }}" alt="{{ artist.name }}" width="100">
-                            <p>{{ artist.name }}</p>
-                        </li>
-                    {% empty %}
-                        <li>No top artists available.</li>
-                    {% endfor %}
-                </ul>
-            </section>
-        </div>
-
-        <!-- Slide 8: Recommended Songs -->
-        <div class="slides" id="slide8">
-            <section id="recommendations">
-                <h2>Recommended Songs</h2>
-                <ul>
-                    {% for rec in recommendations %}
-                        <li>
-                            <img src="{{ rec.album.images.0.url }}" alt="{{ rec.name }}" width="100">
-                            <p>{{ rec.name }} by {{ rec.artists.0.name }}</p>
-                            {% if rec.preview_url %}
-                                <audio controls>
-                                    <source src="{{ rec.preview_url }}" type="audio/mpeg">
-                                    Your browser does not support the audio element.
-                                </audio>
-                            {% else %}
-                                <p>No preview available</p>
-                            {% endif %}
-                        </li>
-                    {% empty %}
-                        <li>No recommendations available.</li>
-                    {% endfor %}
-                </ul>
-            </section>
-        </div>
-
-        <!-- Slide 9: Save Wrap -->
-        <div class="slides" id="slide9">
-            <section id="save-delete">
-                <h2>Save Wrap</h2>
-                <div class="options">
-                    <button onclick="saveWrap()">Save</button>
-                </div>
-                <div class="back-home">
-                    <a href="{% url 'profile' %}" class="back-home-button">Back to Profile</a>
-                </div>
-            </section>
-        </div>
-    </div>
-
-    <!-- JSON Script to pass data to JavaScript -->
-    <script type="application/json" id="wrap-data">
-        {{ wrap_data_json|safe }}
-    </script>
-
-    <script>
-        function getCSRFToken() {
-            const name = 'csrftoken';
-            const cookies = document.cookie.split(';');
-            for (let cookie of cookies) {
-                cookie = cookie.trim();
-                if (cookie.startsWith(name + '=')) {
-                    return cookie.substring(name.length + 1);
-                }
-            }
-            return '';
-        }
-    
-        function saveWrap() {
-            // Parse the JSON data from the script tag
-            const wrapData = JSON.parse(document.getElementById('wrap-data').textContent);
-    
-            fetch("{% url 'save_wrap' %}", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCSRFToken()
-                },
-                body: JSON.stringify(wrapData)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.message) {
-                    alert(data.message);
-                } else if (data.error) {
-                    alert("Error: " + data.error);
-                }
-            })
-            .catch(error => console.error('Error:', error));
-        }
-    </script>
 </body>
 </html>

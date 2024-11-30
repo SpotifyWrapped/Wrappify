@@ -1,0 +1,107 @@
+/* Set body background and text styling */
+body {
+    background-color: #E0E7EF;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px; 
+    padding: 0 30px; 
+    background-color: #E0E7EF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; 
+}
+
+.logo {
+    max-height: 300%; 
+    width: auto; 
+    height: 300px;
+    justify-content: center;
+}
+
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+.wrap-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    flex: 1 1 calc(33.333% - 20px); /* Three cards per row */
+    max-width: calc(33.333% - 20px);
+    box-sizing: border-box;
+}
+
+.wrap-card:hover {
+    transform: scale(1.04);
+}
+
+
+.wrap-card img {
+    width: 100%; 
+    height: auto; 
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.wrap-card h3, 
+.wrap-card p {
+    margin: 10px 0;
+}
+
+.view-wrap-button {
+    background-color: #004AAD;
+    border: #004AAD;
+    height: 25px;
+    border-radius: 4px;
+    color: #ffffff;
+}
+
+.delete-wrap-button {
+    background-color: #AD0004;
+    border: #AD0004;
+    height: 25px;
+    border-radius: 4px;
+    color: #ffffff;
+}
+
+.view-wrap-button:hover{
+    background-color: #E0E7EF;
+    color: black;
+}
+
+.delete-wrap-button:hover {
+    background-color: #ffbfbf;
+    color: black;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .wrap-card {
+        flex: 1 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 600px) {
+    .wrap-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}

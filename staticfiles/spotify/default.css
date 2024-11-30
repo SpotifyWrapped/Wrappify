@@ -1,0 +1,60 @@
+body {
+    background-color: #ffffff; /* Neutral white background */
+    color: #333333; /* Standard dark text */
+    font-family: 'Roboto', sans-serif; /* Clean and professional font */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.jagged-shape1, .jagged-shape2 {
+    background-color: #f4f4f4; /* Subtle grey decorative shapes */
+    height: 100px;
+    width: 100%;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fafafa; /* Light container background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-heading {
+    font-size: 2.5rem;
+    color: #1db954; /* Spotify's green theme */
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+p {
+    font-size: 1rem;
+    color: #555555;
+}
+
+.connect-button {
+    display: inline-block;
+    background-color: #1db954;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.connect-button:hover {
+    background-color: #14833b; /* Darker green for hover effect */
+}
+
+a {
+    color: #1db954;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

@@ -171,23 +171,23 @@ def wraps(request):
     top_genres = Counter(genres).most_common(5)
     top_5_tracks = all_tracks[:5]
 
-    track_ids = [track['id'] for track in all_tracks]
-    avg_danceability = avg_energy = avg_valence = None
+    # track_ids = [track['id'] for track in all_tracks]
+    # avg_danceability = avg_energy = avg_valence = None
 
-    if track_ids:
-        audio_features_json = spotify_api_request(request, 'https://api.spotify.com/v1/audio-features', params={'ids': ','.join(track_ids)})
-        valid_features = [f for f in audio_features_json.get('audio_features', []) if f]
-        if valid_features:
-            avg_danceability = sum(f['danceability'] for f in valid_features) / len(valid_features)
-            avg_energy = sum(f['energy'] for f in valid_features) / len(valid_features)
-            avg_valence = sum(f['valence'] for f in valid_features) / len(valid_features)
+    # if track_ids:
+    #     audio_features_json = spotify_api_request(request, 'https://api.spotify.com/v1/audio-features', params={'ids': ','.join(track_ids)})
+    #     valid_features = [f for f in audio_features_json.get('audio_features', []) if f]
+    #     if valid_features:
+    #         avg_danceability = sum(f['danceability'] for f in valid_features) / len(valid_features)
+    #         avg_energy = sum(f['energy'] for f in valid_features) / len(valid_features)
+    #         avg_valence = sum(f['valence'] for f in valid_features) / len(valid_features)
 
-    recommend_params = {
-        'seed_artists': ','.join([artist['id'] for artist in all_artists[:2]]) if all_artists else '',
-        'seed_tracks': ','.join([track['id'] for track in all_tracks[:2]]) if all_tracks else '',
-        'limit': 5
-    }
-    recommendations_json = spotify_api_request(request, 'https://api.spotify.com/v1/recommendations', params=recommend_params)
+    # recommend_params = {
+    #     'seed_artists': ','.join([artist['id'] for artist in all_artists[:2]]) if all_artists else '',
+    #     'seed_tracks': ','.join([track['id'] for track in all_tracks[:2]]) if all_tracks else '',
+    #     'limit': 5
+    # }
+    # recommendations_json = spotify_api_request(request, 'https://api.spotify.com/v1/recommendations', params=recommend_params)
 
     # wrap_data is the JSON object we will pass to the template
     wrap_data = {
@@ -195,12 +195,12 @@ def wraps(request):
         "time_range_label": time_range_label,
         "top_genres": top_genres,
         "top_tracks": top_5_tracks,
-        "avg_danceability": avg_danceability,
-        "avg_energy": avg_energy,
-        "avg_valence": avg_valence,
+        # "avg_danceability": avg_danceability,
+        # "avg_energy": avg_energy,
+        # "avg_valence": avg_valence,
         "top_artist": top_artist,
         "top_artists": top_5_artists,
-        "recommendations": recommendations_json.get('tracks', []) if recommendations_json else []
+        # "recommendations": recommendations_json.get('tracks', []) if recommendations_json else []
     }
     wrap_data_json = json.dumps(wrap_data, cls=DjangoJSONEncoder)
 
@@ -210,11 +210,11 @@ def wraps(request):
         'top_artist': top_artist,
         'artists': top_5_artists,
         'tracks': top_5_tracks,
-        'recommendations': recommendations_json.get('tracks', []) if recommendations_json else [],
+        # 'recommendations': recommendations_json.get('tracks', []) if recommendations_json else [],
         'top_genres': top_genres,
-        'avg_danceability': avg_danceability,
-        'avg_energy': avg_energy,
-        'avg_valence': avg_valence,
+        # 'avg_danceability': avg_danceability,
+        # 'avg_energy': avg_energy,
+        # 'avg_valence': avg_valence,
         'selected_time_range': time_range,
         'time_range_label': time_range_label
     })

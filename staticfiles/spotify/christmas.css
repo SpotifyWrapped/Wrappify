@@ -1,0 +1,44 @@
+/* christmas.css */
+body {
+    background: url("{% static 'spotify/images/Christmas_bg.png' %}") no-repeat center center fixed;
+    background-size: cover;
+    color: #e63946; /* Christmas red */
+    font-family: 'Roboto', sans-serif;
+}
+
+.jagged-shape1, .jagged-shape2 {
+    background: url("{% static 'images/christmas_snowflakes.png' %}") no-repeat center;
+    background-size: cover;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 2px solid #2a9d8f;
+    box-shadow: 0 0 10px 2px #2a9d8f;
+    border-radius: 10px;
+}
+
+.main-heading {
+    font-size: 2.5rem;
+    color: #e63946;
+    text-shadow: 2px 2px 5px #2a9d8f;
+}
+
+.connect-button {
+    display: inline-block;
+    background-color: #e63946;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 0 5px 2px #2a9d8f;
+}
+
+.connect-button:hover {
+    background-color: #2a9d8f;
+    color: #ffffff;
+    box-shadow: 0 0 10px 3px #e63946;
+}

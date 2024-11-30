@@ -1,0 +1,81 @@
+/* Base Styles */
+body {
+    font-family: 'Poppins', 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #000000;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* Halloween Theme */
+body.halloween {
+    background-color: #1e1b18;
+    color: #ff7518;
+}
+
+.halloween .profile-image {
+    border: 3px solid #ff7518;
+}
+
+.halloween a {
+    color: #ffae42;
+}
+
+.halloween .wrapped-button {
+    background-color: #ff7518;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+.halloween .wrapped-button:hover {
+    background-color: #ffae42;
+    color: #1e1b18;
+}
+
+/* Christmas Theme */
+body.christmas {
+    background-color: #004d40;
+    color: #e0f7fa;
+}
+
+.christmas .profile-image {
+    border: 3px solid #e57373;
+}
+
+.christmas a {
+    color: #e57373;
+}
+
+.christmas .wrapped-button {
+    background-color: #e57373;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+.christmas .wrapped-button:hover {
+    background-color: #ffb74d;
+    color: #004d40;
+}
+
+/* General Button Styles */
+.wrapped-button {
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+/* Adjust for Other Content */
+.container {
+    padding: 20px;
+}

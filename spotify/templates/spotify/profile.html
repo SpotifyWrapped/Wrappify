@@ -7,51 +7,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% trans "User Profile" %}</title>
-    <link rel="stylesheet" href="{% static 'spotify/profile.css' %}?v={{ STATIC_VERSION }}">
+    <link rel="stylesheet" id="theme-css" href="{% static 'spotify/profile.css' %}?v={{ STATIC_VERSION }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentDate = new Date();
+            const themeCSS = document.getElementById('theme-css');
+            if (currentDate.getMonth() === 10 && currentDate.getDate() === 30) { // Halloween
+                themeCSS.href = "{% static 'spotify/halloween_profile.css' %}";
+            } else if (currentDate.getMonth() === 8 && currentDate.getDate() === 30) { // Christmas
+                themeCSS.href = "{% static 'spotify/christmas_profile.css' %}";
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="container">
 
-        <h1>{% trans "Welcome," %} {{ user_data.display_name }}</h1>
-        {% if user_data.email %}
-            <p>{% trans "Email:" %} {{ user_data.email }}</p>d
-        {% endif %}
-        {% if user_data.country %}
-            <p>{% trans "Country:" %} {{ user_data.country }}</p>
-        {% endif %}
-        {% if user_data.external_urls and user_data.external_urls.spotify %}
-            <p>{% trans "Spotify URL:" %} <a href="{{ user_data.external_urls.spotify }}">{{ user_data.external_urls.spotify }}</a></p>
-        {% endif %}
-        <!-- Display Top Artists -->
-        <section id="top-artists">
-            <h2>{% trans "Top Artists" %}</h2>
-            <ul>
-                {% for artist in artists %}
-                    <li>
-                        <img src="{{ artist.images.0.url }}" alt="{{ artist.name }}" width="100">
-                        <p>{{ artist.name }}</p>
-                    </li>
-                {% empty %}
-                    <li>{% trans "No top artists available." %}</li>
-                {% endfor %}
-            </ul>
-        </section>
-
         <!-- Display Top Tracks -->
         <section id="top-tracks">
-            <h2>{% trans "Top Tracks" %}</h2>
-            <ul>
-                {% for track in tracks %}
-                    <li>
-                        <img src="{{ track.album.images.0.url }}" alt="{{ track.name }}" width="100">
-                        <p>{{ track.name }} by {{ track.artists.0.name }}</p>
-                    </li>
-                {% empty %}
-                    <li>{% trans "No top tracks available." %}</li>
-                {% endfor %}
                 <a href="/en/spotify/profile/" role="button">{% trans "English" %}</a> |
                 <a href="/es/spotify/profile/" role="button">{% trans "Spanish" %} </a> |
                 <a href="/nl/spotify/profile/" role="button">{% trans "Dutch" %} </a>
@@ -72,7 +49,7 @@
         </div>
 
         <div class="contact-us-button">
-            <a href="{% url 'contacts' %}" class="contact-button">Contact The Developers</a>
+            <a href="{% url 'contacts' %}" class="contact-button">{% trans "Contact The Developers" %}</a>
         </div>
 
         <!-- User Information Section -->
@@ -86,7 +63,7 @@
                 <div class="name-and-link">
                     <h1 class="username">{{ request.user.first_name }}</h1>
                     {% if user_data.external_urls and user_data.external_urls.spotify %}
-                        <p><a href="{{ user_data.external_urls.spotify }}" class="spotify-link">Open in Spotify</a></p>
+                        <p><a href="{{ user_data.external_urls.spotify }}" class="spotify-link">{% trans "Open in Spotify" %}</a></p>
                     {% endif %}
                 </div>
             </div>
@@ -96,25 +73,25 @@
         <div id="time-range-buttons">
             <a href="{% url 'wraps' %}?time_range=short_term" 
                class="{% if selected_time_range == 'short_term' %}active{% endif %}">
-               Last Month
+               {% trans "Last Month" %}
             </a>
             <a href="{% url 'wraps' %}?time_range=medium_term" 
                class="{% if selected_time_range == 'medium_term' %}active{% endif %}">
-               Last 6 Months
+               {% trans "Last 6 Months" %}
             </a>
             <a href="{% url 'wraps' %}?time_range=long_term" 
                class="{% if selected_time_range == 'long_term' %}active{% endif %}">
-               All Time
+               {% trans "All Time" %}
             </a>
         </div>
 
     <!-- Link to Library Page -->
     <div class="wrapped-link">
-        <a href="{% url 'wraps_library' %}" class="wrapped-button library-button">Your Saved Library</a>
+        <a href="{% url 'wraps_library' %}" class="wrapped-button library-button">{% trans "Your Saved Library" %}</a>
     </div>
 
     <div class="logout">
-        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'logout' %}">{% trans "Logout" %}</a>
     </div>
 
     <script>
@@ -140,5 +117,42 @@
         });
     </script>
     
+
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}?v={{ STATIC_VERSION }}">
+   
+    <script>
+        // Detect the current date
+        const today = new Date();
+        const month = today.getMonth() + 1; // Months are 0-based
+        const date = today.getDate();
+ 
+        // // Halloween (October 31)
+        // if (month === 10 && date === 29) {
+        //     themeCSS.href = "{% static 'spotify/halloween_profile.css' %}";
+        // }
+        // // Christmas (December 25)
+        // else if (month === 11 && date === 25) {
+        //     themeCSS.href = "{% static 'spotify/christmass_profile.css' %}";
+        // }
+    
+        // Dark Mode settings remain the same
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+    
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
+    
+        darkModeToggle.addEventListener('change', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('dark-mode', 'enabled');
+            } else {
+                localStorage.setItem('dark-mode', 'disabled');
+            }
+        });
+    </script>
+
+
 </body>
 </html>

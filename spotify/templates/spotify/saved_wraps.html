@@ -1,3 +1,5 @@
+{% load i18n %}
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -5,8 +7,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spotify Wrapped - Saved</title>
-    <link rel="stylesheet" href="{% static 'spotify/wraps.css' %}">
+    <link rel="stylesheet" id="theme-css" href="{% static 'spotify/wraps.css' %}">
     <script src="{% static 'spotify/slideshow.js' %}" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentDate = new Date();
+            const themeCSS = document.getElementById('theme-css');
+            if (currentDate.getMonth() === 9 && currentDate.getDate() === 31) { // Halloween
+                themeCSS.href = "{% static 'spotify/halloween.css' %}";
+            } else if (currentDate.getMonth() === 11 && currentDate.getDate() === 25) { // Christmas
+                themeCSS.href = "{% static 'spotify/christmas.css' %}";
+            }
+        });
+    </script>
 </head>
 <body>
 
@@ -37,10 +50,10 @@
         <!-- Slide 2: Total Playback Time -->
         <div class="slides" id="slide2">
             <section id="total-playback-time">
-                <h2>My Minutes Listened</h2>
-                <p>You have listened to approximately {{ total_playback_minutes }} minutes in {{ time_range_label }}.</p>
+                <h2>{% trans "My Minutes Listened" %}</h2>
+                <p>{% trans "You have listened to approximately" %} {{ total_playback_minutes }} minutes in {{ time_range_label }}.</p>
                 {% if peak_day %}
-                    <p>Your peak listening day was <strong>{{ peak_day }}</strong> with <strong>{{ peak_minutes }}</strong> minutes listened.</p>
+                    <p>{% trans "Your peak listening day was" %} <strong>{{ peak_day }}</strong> with <strong>{{ peak_minutes }}</strong> minutes listened.</p>
                 {% endif %}
             </section>
         </div>
@@ -48,12 +61,12 @@
         <!-- Slide 3: Top Genres -->
         <div class="slides" id="slide3">
             <section id="top-genres">
-                <h2>My Top Genres</h2>
+                <h2>{% trans "My Top Genres" %}</h2>
                 <ul>
                     {% for genre, count in top_genres %}
                         <li>{{ genre }} ({{ count }} times)</li>
                     {% empty %}
-                        <li>No top genres available.</li>
+                        <li>{% trans "No top genres available." %}</li>
                     {% endfor %}
                 </ul>
             </section>
@@ -62,7 +75,7 @@
         <!-- Slide 4: Top Tracks -->
         <div class="slides" id="slide4">
             <section id="top-tracks">
-                <h2>My Top Songs</h2>
+                <h2>{% trans "My Top Songs" %}</h2>
                 <ul>
                     {% for track in top_tracks %}
                         <li>

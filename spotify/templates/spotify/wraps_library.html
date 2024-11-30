@@ -1,3 +1,5 @@
+{% load i18n %}
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -5,7 +7,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
-    <link rel="stylesheet" href="{% static 'spotify/library.css' %}">
+    <link rel="stylesheet" id="theme-css" href="{% static 'spotify/library.css' %}">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentDate = new Date();
+            const themeCSS = document.getElementById('theme-css');
+            if (currentDate.getMonth() === 9 && currentDate.getDate() === 31) { // Halloween
+                themeCSS.href = "{% static 'spotify/halloween.css' %}";
+            } else if (currentDate.getMonth() === 11 && currentDate.getDate() === 25) { // Christmas
+                themeCSS.href = "{% static 'spotify/christmas.css' %}";
+            }
+        });
+    </script>
 </head>
 <body>
 
@@ -27,14 +40,14 @@
                     {% else %}
                         <img src="path/to/default_image.jpg" alt="Default Image" class="wrap-image">
                     {% endif %}
-                        <h3>My {{ wrap.created_at|date:"F j, Y" }} Wrap</h3>
-                        <p>Duration: {{ wrap.time_range_label }}</p>
+                        <h3>{% trans "My" %} {{ wrap.created_at|date:"F j, Y" }} Wrap</h3>
+                        <p>{% trans "Duration:" %}" {{ wrap.time_range_label }}</p>
 
                         <!-- Details button with data-url attribute -->
-                        <button class="view-wrap-button" data-url="{% url 'wrap_detail' wrap.id %}">View Wrap</button>
+                        <button class="view-wrap-button" data-url="{% url 'wrap_detail' wrap.id %}">{% trans "View Wrap" %}</button>
                         
                         <!-- Delete button with data-url attribute -->
-                        <button class="delete-wrap-button" data-url="{% url 'delete_wrap' wrap.id %}">Delete</button>
+                        <button class="delete-wrap-button" data-url="{% url 'delete_wrap' wrap.id %}">{% trans "Delete" %}</button>
                     </div>
                 {% endfor %}
             </div>

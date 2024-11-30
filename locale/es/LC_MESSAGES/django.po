@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-06 16:33-0500\n"
-"PO-Revision-Date: 2024-11-06 16:12+0000\n"
-"Last-Translator:   <mbanda3@gatech.edu>\n"
+"POT-Creation-Date: 2024-11-13 16:09-0500\n"
+"PO-Revision-Date: 2024-11-13 15:46-0500\n"
+"Last-Translator: marineranger  <mabanda229@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -20,13 +20,33 @@ msgstr ""
 "1 : 2;\n"
 "X-Translated-Using: django-rosetta 0.10.1\n"
 
-#: .\spotify\models.py:7
-msgid "title"
-msgstr "título"
+#: .\spotify\templates\spotify\contact.html:9
+msgid "Contacts"
+msgstr "Contactos"
 
-#: .\spotify\models.py:8
-msgid "content"
-msgstr "contenido"
+#: .\spotify\templates\spotify\contact.html:17
+msgid "Meet the Developers"
+msgstr "Póngase en contacto con los Desarrolladores"
+
+#: .\spotify\templates\spotify\contact.html:21
+msgid "Back Home"
+msgstr "Volver a casa"
+
+#: .\spotify\templates\spotify\duo.html:4
+msgid "Duo Wrapped"
+msgstr "Tu Spotify envuelto"
+
+#: .\spotify\templates\spotify\duo.html:7
+msgid "Shared Top Songs"
+msgstr "Mis Mejores Canciones"
+
+#: .\spotify\templates\spotify\duo.html:14
+msgid "Shared Top Artists"
+msgstr "Mejores Artistas"
+
+#: .\spotify\templates\spotify\duo.html:21
+msgid "Common Genres"
+msgstr "Mis Géneros Principales"
 
 #: .\spotify\templates\spotify\error.html:8
 #: .\spotify\templates\spotify\error.html:11
@@ -34,68 +54,106 @@ msgid "Error"
 msgstr "error"
 
 #: .\spotify\templates\spotify\login.html:9
-#: .\spotify\templates\spotify\login.html:14
 msgid "Your Spotify Wrapped"
 msgstr "Tu Spotify envuelto"
 
-#: .\spotify\templates\spotify\login.html:15
+#: .\spotify\templates\spotify\login.html:20
+msgid "Welcome to Spotify Wrapped"
+msgstr "Tu Spotify envuelto"
+
+#: .\spotify\templates\spotify\login.html:21
 msgid "Get started by connecting your Spotify account"
 msgstr "Comience conectando su cuenta de Spotify"
 
-#: .\spotify\templates\spotify\login.html:16
-msgid "Click Here"
+#: .\spotify\templates\spotify\login.html:22
+msgid "Click Here to Login"
 msgstr "Haga Clic Aquí"
 
 #: .\spotify\templates\spotify\profile.html:9
-#: .\spotify\templates\spotify\wraps.html:9
-msgid "Spotify Wrapped"
-msgstr "Tu Spotify envuelto"
+msgid "User Profile"
+msgstr "Perfil de Usuario"
 
-#: .\spotify\templates\spotify\profile.html:19
-msgid "Welcome,"
-msgstr "Bienvenido,"
-
-#: .\spotify\templates\spotify\profile.html:21
-msgid "Email:"
-msgstr "Correo Electrónico:"
-
-#: .\spotify\templates\spotify\profile.html:24
-msgid "Country:"
-msgstr "País:"
-
-#: .\spotify\templates\spotify\profile.html:27
-msgid "Spotify URL:"
-msgstr "URL de Spotify:"
-
-#: .\spotify\templates\spotify\profile.html:31
-msgid "Top Artists"
-msgstr "Mejores Artistas"
-
-#: .\spotify\templates\spotify\profile.html:39
-#: .\spotify\templates\spotify\wraps.html:137
-msgid "No top artists available."
-msgstr "No hay artistas destacados disponibles."
-
-#: .\spotify\templates\spotify\profile.html:46
-msgid "Top Tracks"
-msgstr "Pistas principales"
-
-#: .\spotify\templates\spotify\profile.html:54
-#: .\spotify\templates\spotify\wraps.html:88
-msgid "No top tracks available."
-msgstr "No hay pistas principales disponibles"
-
-#: .\spotify\templates\spotify\profile.html:56 .\spotify_wrapped\settings.py:42
+#: .\spotify\templates\spotify\profile.html:20 .\spotify_wrapped\settings.py:38
 msgid "English"
 msgstr "inglés"
 
-#: .\spotify\templates\spotify\profile.html:57 .\spotify_wrapped\settings.py:43
+#: .\spotify\templates\spotify\profile.html:21 .\spotify_wrapped\settings.py:39
 msgid "Spanish"
 msgstr "espanol"
 
-#: .\spotify\templates\spotify\profile.html:58 .\spotify_wrapped\settings.py:44
+#: .\spotify\templates\spotify\profile.html:22 .\spotify_wrapped\settings.py:40
 msgid "Dutch"
 msgstr "holandes"
+
+#: .\spotify\templates\spotify\profile.html:40
+msgid "Contact The Developers"
+msgstr "Póngase en contacto con los Desarrolladores"
+
+#: .\spotify\templates\spotify\profile.html:54
+msgid "Open in Spotify"
+msgstr "Abierto en Spotify"
+
+#: .\spotify\templates\spotify\profile.html:64
+msgid "Last Month"
+msgstr "Mes Pasado"
+
+#: .\spotify\templates\spotify\profile.html:68
+msgid "Last 6 Months"
+msgstr "Últimos 6 Meses"
+
+#: .\spotify\templates\spotify\profile.html:72
+msgid "All Time"
+msgstr "Todo el Tiempo"
+
+#: .\spotify\templates\spotify\profile.html:78
+msgid "Your Saved Library"
+msgstr "Tu Biblioteca Guardada"
+
+#: .\spotify\templates\spotify\profile.html:82
+msgid "Logout"
+msgstr "Cerrar sesión"
+
+#: .\spotify\templates\spotify\saved_wraps.html:42
+#: .\spotify\templates\spotify\wraps.html:47
+msgid "My Minutes Listened"
+msgstr "Mis Minutos Escuchados"
+
+#: .\spotify\templates\spotify\saved_wraps.html:43
+#: .\spotify\templates\spotify\wraps.html:48
+msgid "You have listened to approximately"
+msgstr "Has escuchado aproximadamente"
+
+#: .\spotify\templates\spotify\saved_wraps.html:45
+#: .\spotify\templates\spotify\wraps.html:50
+msgid "Your peak listening day was"
+msgstr "Tu día de mayor escucha fue"
+
+#: .\spotify\templates\spotify\saved_wraps.html:53
+#: .\spotify\templates\spotify\wraps.html:59
+msgid "My Top Genres"
+msgstr "Mis Géneros Principales"
+
+#: .\spotify\templates\spotify\saved_wraps.html:58
+#: .\spotify\templates\spotify\wraps.html:64
+msgid "No top genres available."
+msgstr "No hay pistas principales disponibles"
+
+#: .\spotify\templates\spotify\saved_wraps.html:67
+#: .\spotify\templates\spotify\wraps.html:73
+msgid "My Top Songs"
+msgstr "Mis Mejores Canciones"
+
+#: .\spotify\templates\spotify\settings.html:8
+msgid "Settings"
+msgstr "Ajustes"
+
+#: .\spotify\templates\spotify\settings.html:11
+msgid "settings page"
+msgstr "Página de configuración"
+
+#: .\spotify\templates\spotify\wraps.html:9
+msgid "Spotify Wrapped"
+msgstr "Tu Spotify envuelto"
 
 #: .\spotify\templates\spotify\wraps.html:39
 msgid "Welcome to Your Spotify Wrapped"
@@ -105,21 +163,9 @@ msgstr "Tu Spotify envuelto"
 msgid "Let’s take a look at your music habits over"
 msgstr "Echemos un vistazo a tus hábitos musicales."
 
-#: .\spotify\templates\spotify\wraps.html:47
-msgid "My Minutes Listened"
-msgstr "Mis Minutos Escuchados"
-
-#: .\spotify\templates\spotify\wraps.html:48
-msgid "You have listened to approximately"
-msgstr "Has escuchado aproximadamente"
-
 #: .\spotify\templates\spotify\wraps.html:48
 msgid "minutes in"
 msgstr "minutos en"
-
-#: .\spotify\templates\spotify\wraps.html:50
-msgid "Your peak listening day was"
-msgstr "Tu día de mayor escucha fue"
 
 #: .\spotify\templates\spotify\wraps.html:50
 msgid "with"
@@ -129,22 +175,14 @@ msgstr "con "
 msgid "minutes listened."
 msgstr "minutos escuchados"
 
-#: .\spotify\templates\spotify\wraps.html:59
-msgid "My Top Genres"
-msgstr "Mis Géneros Principales"
-
-#: .\spotify\templates\spotify\wraps.html:64
-msgid "No top genres available."
-msgstr "No hay pistas principales disponibles"
-
-#: .\spotify\templates\spotify\wraps.html:73
-msgid "My Top Songs"
-msgstr "Mis Mejores Canciones"
-
 #: .\spotify\templates\spotify\wraps.html:83
 #: .\spotify\templates\spotify\wraps.html:155
 msgid "Your browser does not support the audio element."
 msgstr "Su navegador no soporta el elemento de audio."
+
+#: .\spotify\templates\spotify\wraps.html:88
+msgid "No top tracks available."
+msgstr "No hay pistas principales disponibles"
 
 #: .\spotify\templates\spotify\wraps.html:98
 msgid "Danceability:"
@@ -198,6 +236,10 @@ msgstr "Seguidores:"
 msgid "My Top Artists"
 msgstr "Mis Mejores Artistas"
 
+#: .\spotify\templates\spotify\wraps.html:137
+msgid "No top artists available."
+msgstr "No hay artistas destacados disponibles."
+
 #: .\spotify\templates\spotify\wraps.html:146
 msgid "Recommended Songs"
 msgstr "Canciones Recomendadas"
@@ -223,6 +265,7 @@ msgid "Save"
 msgstr "Ahorrar"
 
 #: .\spotify\templates\spotify\wraps.html:175
+#: .\spotify\templates\spotify\wraps_library.html:39
 msgid "Delete"
 msgstr "Borrar"
 
@@ -230,12 +273,48 @@ msgstr "Borrar"
 msgid "Go Back to Home"
 msgstr "Volver a casa"
 
+#: .\spotify\templates\spotify\wraps_library.html:32
+msgid "My"
+msgstr "Mi"
+
+#: .\spotify\templates\spotify\wraps_library.html:33
+msgid "Duration:"
+msgstr "Duración:"
+
+#: .\spotify\templates\spotify\wraps_library.html:36
+msgid "View Wrap"
+msgstr "Envoltura Guardada"
+
 #: .\spotify_wrapped\urls.py:23
 msgid "admin/"
 msgstr "administración/"
 
 #~ msgid "Language"
 #~ msgstr "Idioma"
+
+#~ msgid "Welcome,"
+#~ msgstr "Bienvenido,"
+
+#~ msgid "Email:"
+#~ msgstr "Correo Electrónico:"
+
+#~ msgid "Country:"
+#~ msgstr "País:"
+
+#~ msgid "Spotify URL:"
+#~ msgstr "URL de Spotify:"
+
+#~ msgid "Top Artists"
+#~ msgstr "Mejores Artistas"
+
+#~ msgid "Top Tracks"
+#~ msgstr "Pistas principales"
+
+#~ msgid "title"
+#~ msgstr "título"
+
+#~ msgid "content"
+#~ msgstr "contenido"
 
 #~ msgid "Hello world! This is an HTML5 Boilerplate."
 #~ msgstr "¡Hola Mundo! Este es un texto estándar HTML5."
