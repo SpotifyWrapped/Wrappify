@@ -5,16 +5,7 @@
     padding: 0;
     box-sizing: border-box;
   }
-
-  canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
+  
   
   body, html {
     height: 100%;
@@ -89,9 +80,10 @@
   .user-info, .wrapped-link, .time-range-buttons {
     margin-bottom: 20px;
     padding: 20px;
-    background-color: #5c738e48;
+    /* background-color: #52709b;   */
+    /*#52709bca;*/
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgb(255, 255, 255);
     border: 1px solid #ddd;
   }
   
@@ -179,6 +171,7 @@
     padding: 10px 20px;
     background-color: #234f77;
     color: white;
+    /* border: 0.5px solid #ffffffd7; */
     text-decoration: none;
     border-radius: 4px;
     transition: background-color 0.3s ease;
@@ -186,6 +179,7 @@
   
   .wrapped-button:hover {
     background-color: #446fac;
+    box-shadow: 0 4px 4px rgb(255, 255, 255);
   }
   
   .logout a {
@@ -256,6 +250,7 @@
   
   #time-range-buttons a:hover {
     background-color: #446fac; /* Darker green on hover */
+    box-shadow: 0 4px 4px rgb(255, 255, 255);
   }
   
   #time-range-buttons a.active {
@@ -591,7 +586,7 @@
   
   /* When checked, change the background color */
   input:checked + .slider {
-    background-color: #4e92d7e2; /* Darker green */
+    background-color: #4e92d7e2; 
   }
   
   /* When checked, move the slider */

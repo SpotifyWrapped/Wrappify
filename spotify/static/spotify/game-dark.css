@@ -7,13 +7,13 @@
   padding: 0;
 }
 
-/* Set body background */
 body {
   background-color: #0d131b;
-  overflow: hidden;
+  overflow-y: auto; /* Allow vertical scrolling */
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%; /* Ensure body takes full height */
 }
 
 /* Header styling */
@@ -75,11 +75,11 @@ header {
 }
 
 .gamepad-button {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   background-color: #004aad;
   color: white;
-  font-size: 24px;
+  font-size: 20px;
   border: none;
   border-radius: 8px;
   margin: 5px;
@@ -181,7 +181,7 @@ footer {
 }
 
 #questionContent {
-  background: white;
+  background: #34383e;
   padding: 40px; /* Increase padding for a larger feel */
   border-radius: 8px;
   width: 1000px; /* Increase width to make the modal larger */
@@ -206,7 +206,7 @@ footer {
   margin: 5px 0;
   cursor: pointer;
   padding: 8px;
-  background: #f0f0f0;
+  background: #051d40;
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -232,9 +232,18 @@ footer {
 /* Note for users */
 #questionContent p {
   font-size: 12px;
-  color: #666;
+  color: black;
   margin-top: 10px;
 }
+
+canvas {
+  max-width: 100%; /* Ensure canvas resizes to fit the screen */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Prevent inline spacing issues */
+  margin: 0 auto; /* Center canvas horizontally */
+  box-shadow: 0 4px 8px rgb(255, 255, 255);
+}
+
 
 /* Mobile Styling */
 @media (max-width: 768px) {

@@ -52,160 +52,119 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const genreIconsContainer = document.querySelector('.floating-icons-container');
+    const topArtistsContainer = document.querySelector('.top-artists-container');
 
-    // Map genres to emojis
-    const genres = {
-        rock: '🎸',
-        pop: '🎤',
-        jazz: '🎷',
-        'hip-hop': '🤘',
-        classical: '🎻',
-        reggae: '🥁',
-        edm: '💽',
-        disco: '🪩'
-    };
-
-    const totalIcons = 30; // Number of icons to display
-
-    // Generate floating icons
-    for (let i = 0; i < totalIcons; i++) {
-        const icon = document.createElement('div');
-        icon.className = 'floating-icon';
-
-        // Randomly pick a genre
-        const genre = Object.keys(genres)[Math.floor(Math.random() * Object.keys(genres).length)];
-
-        // Set the emoji as the content
-        icon.textContent = genres[genre];
-
-        // Random positioning
-        icon.style.top = `${Math.random() * 90}%`; // Ensure no icons go too close to the edges
-        icon.style.left = `${Math.random() * 90}%`;
-
-        // Random animation delay
-        icon.style.animationDelay = `${Math.random() * 5}s`;
-
-        // Append to the container
-        genreIconsContainer.appendChild(icon);
+    // Allow the container to expand if needed for wider designs
+    if (topArtistsContainer) {
+        topArtistsContainer.classList.add('wide'); // Apply "wide" layout
     }
-});
+    
+    // Utility: Calculate dynamic element count based on screen size
+    function getDynamicCount(baseCount) {
+        const screenWidth = window.innerWidth;
+        if (screenWidth <= 480) return Math.ceil(baseCount * 0.5); // 30% for small screens
+        if (screenWidth <= 768) return Math.ceil(baseCount * 0.8); // 60% for medium screens
+        return baseCount; // Default for larger screens
+    }
 
-document.addEventListener('DOMContentLoaded', () => {
+    // Floating Icons
+    const genreIconsContainer = document.querySelector('.floating-icons-container');
+    const genres = {
+        rock: '🎸', pop: '🎤', jazz: '🎷', 'hip-hop': '🤘', classical: '🎻', reggae: '🥁', edm: '💽', disco: '🪩'
+    };
+    let totalIcons = getDynamicCount(20);
+
+    function generateIcons() {
+        genreIconsContainer.innerHTML = ''; // Clear previous icons
+        for (let i = 0; i < totalIcons; i++) {
+            const icon = document.createElement('div');
+            icon.className = 'floating-icon';
+            const genre = Object.keys(genres)[Math.floor(Math.random() * Object.keys(genres).length)];
+            icon.textContent = genres[genre];
+            icon.style.top = `${Math.random() * 90}%`;
+            icon.style.left = `${Math.random() * 90}%`;
+            icon.style.animationDelay = `${Math.random() * 5}s`;
+            genreIconsContainer.appendChild(icon);
+        }
+    }
+    generateIcons();
+
+    // Falling Emojis
     const emojisContainer = document.getElementById('falling-emojis-container');
-    const emojis = ['🔥', '💎', '❤️', '🌈', '👑', '☕',]; // Array of emojis
-    const totalEmojis = 30; // Maximum number of emojis visible at once
+    const emojis = ['🔥', '💎', '❤️', '🌈', '👑'];
+    let totalEmojis = getDynamicCount(30);
 
     function createFallingEmoji() {
         const emoji = document.createElement('div');
         emoji.className = 'falling-emoji';
-        emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)]; // Randomly pick an emoji
-
-        // Random horizontal position
+        emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
         emoji.style.left = `${Math.random() * 100}%`;
-
-        // Random size for variation
-        const size = 20 + Math.random() * 20; // Size between 20px and 40px
-        emoji.style.fontSize = `${size}px`;
-
-        // Random animation duration (falling speed)
-        const duration = 3 + Math.random() * 5; // Between 3s and 8s
+        emoji.style.fontSize = `${20 + Math.random() * 20}px`;
+        const duration = 3 + Math.random() * 5;
         emoji.style.animationDuration = `${duration}s`;
-
-        // Append the emoji to the container
         emojisContainer.appendChild(emoji);
-
-        // Remove the emoji after the animation completes
-        setTimeout(() => {
-            emoji.remove();
-        }, duration * 1000); // Match removal time to animation duration
+        setTimeout(() => emoji.remove(), duration * 1000);
     }
 
-    // Generate emojis at intervals
     setInterval(() => {
         if (document.querySelectorAll('.falling-emoji').length < totalEmojis) {
             createFallingEmoji();
         }
-    }, 200); // Adjust interval for emoji frequency
-});
+    }, 200);
 
-
-document.addEventListener('DOMContentLoaded', () => {
+    // Floating Hearts
     const heartsContainer = document.getElementById('floating-hearts-container');
-    const hearts = ['❤️', '💖', '💜', '💕', '💛', '🩷','💙', '💓', '❤️‍🔥', '🤎', '🩵', '🤍']; // Array of heart emojis
-    const maxHearts = 20; // Maximum number of hearts visible at once
+    const hearts = ['❤️', '💖', '💜', '💕', '💛', '🩷', '💙', '💓', '❤️‍🔥', '🤎', '🩵', '🤍'];
+    let maxHearts = getDynamicCount(20);
 
     function createRandomHeart() {
         const heart = document.createElement('div');
         heart.className = 'floating-heart';
-        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)]; // Random heart emoji
-
-        // Random position on the screen
-        heart.style.top = `${Math.random() * 100}%`; // Random vertical position
-        heart.style.left = `${Math.random() * 100}%`; // Random horizontal position
-
-        // Random size for the heart
-        const size = 20 + Math.random() * 40; // Size between 20px and 60px
-        heart.style.fontSize = `${size}px`;
-
-        // Random animation duration
-        const duration = 4 + Math.random() * 3; // Duration between 4-7 seconds
+        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.style.top = `${Math.random() * 100}%`;
+        heart.style.left = `${Math.random() * 100}%`;
+        heart.style.fontSize = `${20 + Math.random() * 40}px`;
+        const duration = 4 + Math.random() * 3;
         heart.style.animationDuration = `${duration}s`;
-
-        // Append the heart to the container
         heartsContainer.appendChild(heart);
-
-        // Remove the heart after the animation ends
-        setTimeout(() => {
-            heart.remove();
-        }, duration * 1000);
+        setTimeout(() => heart.remove(), duration * 1000);
     }
 
-    // Generate hearts at intervals
     setInterval(() => {
         if (document.querySelectorAll('.floating-heart').length < maxHearts) {
             createRandomHeart();
         }
-    }, 300); // Creates a new heart every 300ms
-});
+    }, 300);
 
-document.addEventListener('DOMContentLoaded', () => {
+    // Falling Stars
     const starsContainer = document.getElementById('falling-stars-container');
-    const emojis = ['✨', '⭐', '🌟', '💫']; // Array of star-related emojis
-    const totalStars = 20; // Maximum number of stars visible at once
+    const stars = ['✨', '⭐', '🌟', '💫'];
+    let totalStars = getDynamicCount(20);
 
     function createFallingStar() {
         const star = document.createElement('div');
         star.className = 'falling-star';
-        star.textContent = emojis[Math.floor(Math.random() * emojis.length)]; // Randomly pick a star emoji
-
-        // Random horizontal position
+        star.textContent = stars[Math.floor(Math.random() * stars.length)];
         star.style.left = `${Math.random() * 100}%`;
-
-        // Random size for variation
-        const size = 20 + Math.random() * 10; // Between 20px and 50px
-        star.style.fontSize = `${size}px`;
-
-        // Random animation duration (falling speed)
-        const duration = 3 + Math.random() * 4; // Between 3s and 7s
+        star.style.fontSize = `${20 + Math.random() * 10}px`;
+        const duration = 3 + Math.random() * 4;
         star.style.animationDuration = `${duration}s`;
-
-        // Append the star to the container
         starsContainer.appendChild(star);
-
-        // Remove the star after the animation completes
-        setTimeout(() => {
-            star.remove();
-        }, duration * 1000);
+        setTimeout(() => star.remove(), duration * 1000);
     }
 
-    // Create stars at intervals
     setInterval(() => {
         if (document.querySelectorAll('.falling-star').length < totalStars) {
             createFallingStar();
         }
-    }, 200); // Adjust interval for star frequency
+    }, 200);
+
+    // Recalculate counts on resize
+    window.addEventListener('resize', () => {
+        totalIcons = getDynamicCount(20);
+        totalEmojis = getDynamicCount(30);
+        maxHearts = getDynamicCount(20);
+        totalStars = getDynamicCount(20);
+        generateIcons();
+    });
 });
-
-
-

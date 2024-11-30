@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Press Start 2P', cursive;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Set body background */
+body {
+  background-color: #E32750;
+  overflow-y: auto; /* Allow vertical scrolling */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%; /* Ensure body takes full height */
+}
+
+
+/* Header styling */
+header {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #3B8F40;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+
+.logo img {
+  max-height: 300%; 
+  width: auto; 
+  height: 300px;
+  justify-content: center;
+}
+
+/* Container for the game content */
+.game-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  width: 100%;
+  margin-top: 200px; /* Adjust margin to create space below header */
+}
+
+/* Gamepad Styling */
+.gamepad {
+  position: fixed;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
+  user-select: none; /* Disable text selection */
+}
+
+.d-pad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.horizontal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 5px;
+}
+
+.gamepad-button {
+  width: 60px;
+  height: 60px;
+  background-color: #3B8F40;
+  color: #FFFFFA;
+  font-size: 24px;
+  border: none;
+  border-radius: 8px;
+  margin: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gamepad-button:active {
+  background-color: #C6F1FB;
+}
+
+/* Hide gamepad by default */
+.gamepad {
+  display: none;
+}
+
+/* Show gamepad only on mobile devices */
+@media (max-width: 768px) {
+  .gamepad {
+      display: flex; /* Show the gamepad on screens narrower than 768px */
+  }
+}
+
+
+/* Footer styling */
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  background-color: #E32750;
+}
+
+/* Back button styling */
+.back-button {
+  background-color: #3B8F40;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  background-color: #C6F1FB;
+}
+
+.play-again-button {
+  background-color: #3B8F40;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  margin-left: 10px; /* Add some space between the buttons */
+}
+
+.play-again-button:hover {
+  background-color: #C6F1FB;
+}
+
+/* Modal styling */
+#questionModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+#questionContent {
+  background: #3B8F40;
+  padding: 40px; /* Increase padding for a larger feel */
+  border-radius: 8px;
+  width: 1000px; /* Increase width to make the modal larger */
+  max-width: 80%; /* Optional: makes the modal responsive */
+  overflow-y: auto; /* Adds scrolling if content exceeds max-height */
+  text-align: center;
+  color: white;
+}
+
+#questionContent h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: white;
+}
+
+/* Styling for options list */
+#optionsList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  color: white;
+}
+
+#optionsList li {
+  margin: 5px 0;
+  cursor: pointer;
+  padding: 8px;
+  background: #3B8F40;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#optionsList li:hover {
+  background: #FCE43C;
+}
+
+#optionsList li .option-number {
+  font-weight: bold;
+  width: 20px;
+  text-align: right;
+  margin-right: 8px;
+}
+
+#optionsList li .option-text {
+  flex-grow: 1;
+  text-align: left;
+}
+
+/* Note for users */
+#questionContent p {
+  font-size: 12px;
+  color: white;
+  margin-top: 10px;
+}
+
+canvas {
+  max-width: 100%; /* Ensure canvas resizes to fit the screen */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Prevent inline spacing issues */
+  margin: 0 auto; /* Center canvas horizontally */
+}
+
+
+/* Mobile Styling */
+@media (max-width: 768px) {
+  /* General body adjustments */
+  body {
+    padding: 0 10px; /* Add some padding for smaller screens */
+  }
+
+  /* Header adjustments */
+  header {
+    height: 150px; /* Reduce header height */
+    padding: 5px 0;
+  }
+
+  .logo img {
+    height: 300px; /* Scale down logo size */
+    width: auto;
+  }
+
+  /* Game container adjustments */
+  .game-container {
+    margin-top: 230px; /* Adjust spacing for smaller screens */
+    padding: 10px; /* Add padding around game container */
+  }
+
+  canvas {
+    width: 100%; /* Make the canvas responsive */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  /* Footer adjustments */
+  footer {
+    flex-direction: column; /* Stack footer buttons vertically */
+    align-items: center; /* Center align buttons */
+    padding: 10px;
+  }
+
+  .back-button,
+  .play-again-button,
+  .dropdown {
+    font-size: 0.9rem; /* Reduce font size for buttons */
+    padding: 8px 15px; /* Adjust padding */
+    margin: 5px 0; /* Add space between buttons */
+  }
+
+  .dropdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #themeSelector {
+    font-size: 0.8rem; /* Adjust font size for dropdown */
+    margin-top: 5px;
+  }
+
+  /* Modal adjustments */
+  #questionModal {
+    padding: 10px; /* Add padding for smaller screens */
+  }
+
+  #questionContent {
+    width: 90%; /* Reduce modal width */
+    padding: 10px; /* Adjust padding inside modal */
+  }
+
+  #questionContent h2 {
+    font-size: 16px; /* Adjust heading size */
+  }
+
+  #optionsList li {
+    padding: 6px; /* Adjust padding for list items */
+    font-size: 14px; /* Smaller font size for options */
+  }
+
+  #questionContent p {
+    font-size: 12px; /* Adjust font size for footer note */
+  }
+
+  #backHealth {
+    margin-top: -80px;
+  }
+}

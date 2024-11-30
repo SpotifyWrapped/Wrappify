@@ -514,6 +514,12 @@
     #save-delete .back-home .back-home-button:hover {
         background-color: #5a5a5a;
     }
+
+    @media (max-width: 768px) {
+        #top-tracks li p {
+            font-size: 0.5rem; /* Optional: Adjust font size for smaller screens */
+        }
+    }
     
     
     
@@ -715,191 +721,216 @@
             transform: translateX(0);
         }
     }
-
-@media (max-width: 768px) {
-    ul {
-        gap: 5px; /* Reduce spacing between items */
-        padding: 0 15px; /* Add padding to avoid edges clipping */
+    
+    @media (max-width: 768px) {
+        ul {
+            gap: 5px; /* Reduce spacing between items */
+            padding: 0 15px; /* Add padding to avoid edges clipping */
+        }
+    
+        li {
+            flex-direction: row; /* Align items horizontally */
+            align-items: center; /* Vertically align content */
+            justify-content: space-between; /* Spread items */
+            gap: 10px; /* Add spacing between elements */
+        }
+    
+        li img {
+            width: 60px; /* Further reduce image size */
+            height: 60px;
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+    
+        li strong {
+            font-size: 1rem; /* Adjust font size for numbers */
+        }
+    
+        li p {
+            font-size: 0.6rem; /* Reduce text size */
+            text-align: left; /* Left-align text */
+            flex-grow: 1; /* Allow text to grow */
+            margin-left:0px; /* Add spacing between image and text */
+            margin-top: 20px;
+        }
+    
+        h2 {
+            font-size: 1.5rem; /* Slightly smaller header for mobile */
+            margin: 20px 0; /* Adjust spacing */
+            text-align: center; /* Center header */
+        }
+    
+        .container-full {
+            padding: 20px 10px; /* Adjust container padding */
+            overflow-y: scroll; /* Allow scrolling on mobile */
+        }
     }
-
-    li {
-        flex-direction: row; /* Align items horizontally */
-        align-items: center; /* Vertically align content */
-        justify-content: space-between; /* Spread items */
-        gap: 10px; /* Add spacing between elements */
+    
+    .floating-icon {
+        position: absolute;
+        font-size: 30px; /* Size of the emoji */
+        animation: float 10s infinite ease-in-out;
+        opacity: 0.9;
+        pointer-events: none; /* Prevent interaction */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Optional: Add shadow for better visibility */
     }
-
-    li img {
-        width: 60px; /* Further reduce image size */
-        height: 60px;
-        flex-shrink: 0; /* Prevent shrinking */
+    
+    /* Floating animation */
+    @keyframes float {
+        0% {
+            transform: translate(0, 0);
+        }
+        25% {
+            transform: translate(-20px, -30px);
+        }
+        50% {
+            transform: translate(30px, 20px);
+        }
+        75% {
+            transform: translate(-15px, 10px);
+        }
+        100% {
+            transform: translate(0, 0);
+        }
     }
-
-    li strong {
-        font-size: 1rem; /* Adjust font size for numbers */
+    
+    /* Container for the floating emojis */
+    #falling-emojis-container {
+        position: fixed; /* Fixed positioning to cover the entire screen */
+        top: 0;
+        left: 0;
+        width: 100vw; /* Full width of the viewport */
+        height: 100vh; /* Full height of the viewport */
+        overflow: hidden; /* Prevent emojis from overflowing outside the screen */
+        z-index: 999; /* Ensure emojis appear above other content */
+        pointer-events: none; /* Prevent interaction with the emojis */
     }
-
-    li p {
-        font-size: 0.6rem; /* Reduce text size */
-        text-align: left; /* Left-align text */
-        flex-grow: 1; /* Allow text to grow */
-        margin-left:0px; /* Add spacing between image and text */
-        margin-top: 20px;
+    
+    /* Individual emojis */
+    .falling-emoji {
+        position: absolute;
+        top: -10%; /* Start slightly above the viewport */
+        font-size: 20px; /* Default size, varies via JavaScript */
+        opacity: 0.8; /* Slight transparency */
+        animation: fallDown linear infinite; /* Infinite falling animation */
+        pointer-events: none; /* Prevent interaction */
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add shadow for better visibility */
     }
-
-    h2 {
-        font-size: 1.5rem; /* Slightly smaller header for mobile */
-        margin: 20px 0; /* Adjust spacing */
-        text-align: center; /* Center header */
+    
+    /* Falling animation for emojis */
+    @keyframes fallDown {
+        0% {
+            transform: translateY(0) rotate(0deg); /* Start at the top with no rotation */
+            opacity: 1; /* Fully visible */
+        }
+        80% {
+            opacity: 1; /* Remain visible while falling */
+        }
+        100% {
+            transform: translateY(100vh) rotate(360deg); /* End at the bottom with full rotation */
+            opacity: 0; /* Fade out at the end */
+        }
     }
-
-    .container-full {
-        padding: 20px 10px; /* Adjust container padding */
-        overflow-y: scroll; /* Allow scrolling on mobile */
+    
+    
+    /* Container for the floating hearts */
+    #floating-hearts-container {
+        position: fixed; /* Fix to the viewport */
+        top: 0;
+        left: 0;
+        width: 100%; /* Full width of the screen */
+        height: 100%; /* Full height of the screen */
+        pointer-events: none; /* Prevent interaction with hearts */
+        overflow: hidden; /* Prevent overflow */
+        z-index: 999; /* Ensure the hearts are above all other content */
     }
+    
+    /* Floating Heart Styling */
+    .floating-heart {
+        position: absolute;
+        font-size: 20px; /* Default size for hearts, adjusted dynamically in JS */
+        color: #ff69b4; /* Default heart color */
+        animation: floatAndFade 5s ease-in-out infinite; /* Combine floating and fading animations */
+        pointer-events: none; /* Prevent interaction */
+        opacity: 0; /* Start transparent */
+    }
+    
+    /* Animation for floating hearts */
+    @keyframes floatAndFade {
+        0% {
+            transform: scale(0.8) translateY(0);
+            opacity: 1; /* Fully visible */
+        }
+        50% {
+            opacity: 1; /* Stay visible */
+            transform: scale(1.2) translateY(-20px); /* Slight scaling */
+        }
+        100% {
+            transform: scale(1) translateY(-100vh); /* Move upwards */
+            opacity: 0; /* Fade out */
+        }
+    }
+    
+    /* Container for falling stars */
+    #falling-stars-container {
+        position: fixed; /* Fixed positioning to cover the entire screen */
+        top: 0;
+        left: 0;
+        width: 100vw; /* Full width of the viewport */
+        height: 100vh; /* Full height of the viewport */
+        overflow: hidden; /* Prevent stars from overflowing outside the screen */
+        z-index: 999; /* Ensure stars appear above other content */
+        pointer-events: none; /* Prevent interaction with the stars */
+    }
+    
+    /* Individual stars */
+    .falling-star {
+        position: absolute;
+        top: -10%; /* Start slightly above the viewport */
+        font-size: 20px; /* Default size, varies via JavaScript */
+        opacity: 0.8; /* Slight transparency */
+        animation: fall linear infinite; /* Infinite falling animation */
+        pointer-events: none; /* Prevent interaction */
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add shadow for visibility */
+    }
+    
+    /* Falling animation */
+    @keyframes fall {
+        0% {
+            transform: translateY(0) rotate(0deg); /* Start at the top */
+            opacity: 1; /* Fully visible */
+        }
+        80% {
+            opacity: 1; /* Remain visible while falling */
+        }
+        100% {
+            transform: translateY(100vh) rotate(360deg); /* End at the bottom with full rotation */
+            opacity: 0; /* Fade out at the end */
+        }
+    }
+    
+    
+    /* Hover effect for images inside #top-tracks */
+#top-tracks img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth scaling and shadow effect */
 }
 
-.floating-icon {
-    position: absolute;
-    font-size: 30px; /* Size of the emoji */
-    animation: float 10s infinite ease-in-out;
-    opacity: 0.9;
-    pointer-events: none; /* Prevent interaction */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Optional: Add shadow for better visibility */
+#top-tracks img:hover {
+    transform: scale(1.1); /* Slightly enlarge the image */
+    box-shadow: 0 4px 8px black; /* Add shadow for depth */
 }
 
-/* Floating animation */
-@keyframes float {
-    0% {
-        transform: translate(0, 0);
-    }
-    25% {
-        transform: translate(-20px, -30px);
-    }
-    50% {
-        transform: translate(30px, 20px);
-    }
-    75% {
-        transform: translate(-15px, 10px);
-    }
-    100% {
-        transform: translate(0, 0);
-    }
+/* Hover effect for images inside #top-artists */
+#top-artists img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth scaling and shadow effect */
 }
 
-/* Container for the floating emojis */
-#falling-emojis-container {
-    position: fixed; /* Fixed positioning to cover the entire screen */
-    top: 0;
-    left: 0;
-    width: 100vw; /* Full width of the viewport */
-    height: 100vh; /* Full height of the viewport */
-    overflow: hidden; /* Prevent emojis from overflowing outside the screen */
-    z-index: 999; /* Ensure emojis appear above other content */
-    pointer-events: none; /* Prevent interaction with the emojis */
+#top-artists img:hover {
+    transform: scale(1.1); /* Slightly enlarge the image */
+    box-shadow: 0 4px 8px black
 }
-
-/* Individual emojis */
-.falling-emoji {
-    position: absolute;
-    top: -10%; /* Start slightly above the viewport */
-    font-size: 20px; /* Default size, varies via JavaScript */
-    opacity: 0.8; /* Slight transparency */
-    animation: fallDown linear infinite; /* Infinite falling animation */
-    pointer-events: none; /* Prevent interaction */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add shadow for better visibility */
-}
-
-/* Falling animation for emojis */
-@keyframes fallDown {
-    0% {
-        transform: translateY(0) rotate(0deg); /* Start at the top with no rotation */
-        opacity: 1; /* Fully visible */
-    }
-    80% {
-        opacity: 1; /* Remain visible while falling */
-    }
-    100% {
-        transform: translateY(100vh) rotate(360deg); /* End at the bottom with full rotation */
-        opacity: 0; /* Fade out at the end */
-    }
-}
-
-
-/* Container for the floating hearts */
-#floating-hearts-container {
-    position: fixed; /* Fix to the viewport */
-    top: 0;
-    left: 0;
-    width: 100%; /* Full width of the screen */
-    height: 100%; /* Full height of the screen */
-    pointer-events: none; /* Prevent interaction with hearts */
-    overflow: hidden; /* Prevent overflow */
-    z-index: 999; /* Ensure the hearts are above all other content */
-}
-
-/* Floating Heart Styling */
-.floating-heart {
-    position: absolute;
-    font-size: 20px; /* Default size for hearts, adjusted dynamically in JS */
-    color: #ff69b4; /* Default heart color */
-    animation: floatAndFade 5s ease-in-out infinite; /* Combine floating and fading animations */
-    pointer-events: none; /* Prevent interaction */
-    opacity: 0; /* Start transparent */
-}
-
-/* Animation for floating hearts */
-@keyframes floatAndFade {
-    0% {
-        transform: scale(0.8) translateY(0);
-        opacity: 1; /* Fully visible */
-    }
-    50% {
-        opacity: 1; /* Stay visible */
-        transform: scale(1.2) translateY(-20px); /* Slight scaling */
-    }
-    100% {
-        transform: scale(1) translateY(-100vh); /* Move upwards */
-        opacity: 0; /* Fade out */
-    }
-}
-
-/* Container for falling stars */
-#falling-stars-container {
-    position: fixed; /* Fixed positioning to cover the entire screen */
-    top: 0;
-    left: 0;
-    width: 100vw; /* Full width of the viewport */
-    height: 100vh; /* Full height of the viewport */
-    overflow: hidden; /* Prevent stars from overflowing outside the screen */
-    z-index: 999; /* Ensure stars appear above other content */
-    pointer-events: none; /* Prevent interaction with the stars */
-}
-
-/* Individual stars */
-.falling-star {
-    position: absolute;
-    top: -10%; /* Start slightly above the viewport */
-    font-size: 20px; /* Default size, varies via JavaScript */
-    opacity: 0.8; /* Slight transparency */
-    animation: fall linear infinite; /* Infinite falling animation */
-    pointer-events: none; /* Prevent interaction */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add shadow for visibility */
-}
-
-/* Falling animation */
-@keyframes fall {
-    0% {
-        transform: translateY(0) rotate(0deg); /* Start at the top */
-        opacity: 1; /* Fully visible */
-    }
-    80% {
-        opacity: 1; /* Remain visible while falling */
-    }
-    100% {
-        transform: translateY(100vh) rotate(360deg); /* End at the bottom with full rotation */
-        opacity: 0; /* Fade out at the end */
-    }
-}
-
-

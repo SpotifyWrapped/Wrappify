@@ -1,0 +1,221 @@
+/* Set body background and text styling */
+body {
+    background-color: #F178b5;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px; 
+    padding: 0 30px; 
+    background-color: #F178b5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; 
+}
+
+.logo {
+    max-height: 300%; 
+    width: auto; 
+    height: 300px;
+    justify-content: center;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.wrap-card {
+    background-color: #3FAA48;
+    border: 1px solid #3FAA48;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    flex: 1 1 calc(33.333% - 20px); /* Three cards per row */
+    max-width: calc(33.333% - 20px);
+    box-sizing: border-box;
+    color: white;
+}
+
+.wrap-card:hover {
+    transform: scale(1.04);
+}
+
+.wrap-card img {
+    width: 100%; 
+    height: auto; 
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.wrap-card h3, 
+.wrap-card p {
+    margin: 10px 0;
+}
+
+.view-wrap-button,
+.delete-wrap-button {
+    background-color: #FFB8D7;
+    border: none;
+    height: 20px;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.delete-wrap-button {
+    background-color: #AD0004;
+}
+
+.view-wrap-button:hover {
+    background-color: #ffcde3;
+    color: white;
+}
+
+.delete-wrap-button:hover {
+    background-color: #ffbfbf;
+    color: white;
+}
+
+/* Container for aligning the buttons and the game image */
+.button-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center; /* Center-align buttons vertically */
+    margin-top: 10px;
+}
+
+/* Styling for the game button image */
+.game-button-image {
+    width: 50px !important; /* Force width to 25px */
+    height: 50px !important; /* Force height to 25px */
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
+    vertical-align: middle; /* Align the image vertically with buttons */
+    margin-top: 10px;
+}
+
+/* Hover effect for the game button image */
+.game-button-image:hover {
+    transform: scale(1.1);
+}
+
+/* Footer styling */
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background-color: #F178b5;
+}
+
+/* Back button styling */
+.back-button {
+    background-color: #FFB8D7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    background-color: #ffcde3;
+}
+
+
+@media (max-width: 768px) {
+    .card-container {
+        flex-direction: column; /* Stack cards vertically */
+        align-items: center;
+        gap: 15px; /* Reduce spacing between cards */
+    }
+
+    .wrap-card {
+        flex: 1 1 100%; /* Take full width on small screens */
+        max-width: 100%; /* Remove the width limitation */
+    }
+
+    .header {
+        flex-direction: row; /* Keep elements in a row */
+        justify-content: center;
+        align-items: center;
+        height: auto; /* Allow height to shrink dynamically */
+        padding: 10px 20px; /* Adjust padding for readability */
+    }
+
+    .logo {
+        max-height: 300px; /* Scale down logo */
+        height: auto; /* Maintain aspect ratio */
+        margin-top: -70px;
+        margin-bottom: -50px;
+    }
+
+    .button-container {
+        flex-direction: row; /* Align buttons horizontally */
+        justify-content: center; /* Center-align the buttons */
+        gap: 10px; /* Maintain spacing between buttons */
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px; /* Add some padding for smaller screens */
+    }
+
+    .wrap-card {
+        padding: 15px; /* Reduce padding for smaller cards */
+        font-size: 0.9rem; /* Reduce text size */
+    }
+
+    .wrap-card h3 {
+        font-size: 1rem; /* Adjust heading size */
+    }
+
+    .wrap-card p {
+        font-size: 0.8rem; /* Adjust paragraph size */
+    }
+
+    .view-wrap-button,
+    .delete-wrap-button {
+        padding: 5px 8px; /* Adjust button padding */
+        font-size: 0.8rem; /* Adjust button font size */
+    }
+
+    .game-button-image {
+        width: 40px !important; /* Reduce size for smaller screens */
+        height: 40px !important;
+    }
+
+    .button-container {
+        flex-direction: row; /* Align buttons horizontally */
+        justify-content: center; /* Center-align buttons */
+        gap: 10px; /* Maintain spacing */
+    }
+
+    footer {
+        padding: 15px 0; /* Reduce footer padding */
+    }
+
+    .back-button {
+        padding: 8px 15px; /* Adjust button padding */
+        font-size: 0.9rem; /* Adjust font size */
+    }
+}
+
+
+  
