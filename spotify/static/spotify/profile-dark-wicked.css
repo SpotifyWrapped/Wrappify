@@ -6,7 +6,6 @@
     box-sizing: border-box;
   }
   
-  
   body, html {
     height: 100%;
     display: flex;
@@ -16,7 +15,7 @@
     font-family: "Roboto", serif;
     font-weight: 400;
     font-style: normal;
-    background-color: #0d131b;
+    background-color: #033220;
     overflow-x: hidden;
   }
   
@@ -38,28 +37,28 @@
   
   .jagged-outline1 {
   height: 12.5vh; /* Slightly larger than the jagged-shape1 */
-  background-color: #95B3D6; /* Black outline */
+  background-color: #000; /* Black outline */
   clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
   z-index: 0; /* Place the outline behind the main shape */
   }
   
   .jagged-shape1 {
   height: 12vh;
-  background-color: #446fac; /* Main shape color */
+  background-color: #E78FAC; /* Main shape color */
   clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
   z-index: 1; /* Place the shape above the outline */
   }
   
   .jagged-outline2 {
   height: 8.5vh; /* Slightly larger than the jagged-shape2 */
-  background-color: #1d5fa1; /* Black outline */
+  background-color: #000; /* Black outline */
   clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
   z-index: 1; /* Place the outline behind the main shape */
   }
   
   .jagged-shape2 {
   height: 8vh;
-  background-color: #234f77; /* Main shape color */
+  background-color: #024818; /* Main shape color */
   clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
   z-index: 2; /* Place the shape above the outline */
   }
@@ -80,17 +79,16 @@
   .user-info, .wrapped-link, .time-range-buttons {
     margin-bottom: 20px;
     padding: 20px;
-    /* background-color: #52709b;   */
-    /*#52709bca;*/
+    background-color: #D7789F;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgb(255, 255, 255);
-    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #D7789F;
   }
   
   h1 {
     font-size: 80px;
     margin-bottom: 10px;
-    color: #fff;
+    color: #000;
     font-family: "Roboto", serif;
     font-weight: 500;
     font-style: normal;
@@ -127,7 +125,7 @@
   
   
   .spotify-link {
-    color: #fff; /* Light grey color */
+    color: #000; /* Light grey color */
     text-decoration: none; /* Remove underline */
     font-weight: bold; /* Optional: make it bold for better visibility */
     font-family: "Roboto", serif;
@@ -169,17 +167,15 @@
   .wrapped-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #103c67;
-    color: white;
-    /* border: 0.5px solid #ffffffd7; */
+    background-color: #E78FAC;
+    color: #000;
     text-decoration: none;
     border-radius: 4px;
     transition: background-color 0.3s ease;
   }
   
   .wrapped-button:hover {
-    background-color: #446fac;
-    box-shadow: 0 4px 4px rgb(255, 255, 255);
+    background-color: #E78FAC;
   }
   
   .logout a {
@@ -235,8 +231,8 @@
   #time-range-buttons a {
     display: inline-block;
     padding: 12px 82px; /* Button padding */
-    background-color: #234f77; /* Spotify green color */
-    color: white;
+    background-color: #E78FAC; /* Spotify green color */
+    color: #000;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
@@ -249,8 +245,7 @@
   }
   
   #time-range-buttons a:hover {
-    background-color: #446fac; /* Darker green on hover */
-    box-shadow: 0 4px 4px rgb(255, 255, 255);
+    background-color: #E78FAC; /* Darker green on hover */
   }
   
   #time-range-buttons a.active {
@@ -304,8 +299,8 @@
   --bar-width: 60px;
   --bar-height: 8px;
   --hamburger-gap: 6px;
-  --foreground: #333;
-  --background: white;
+  --foreground: #024818;
+  --background: #000;
   --hamburger-margin: 10px;
   --animation-timing: 200ms ease-in-out;
   --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
@@ -326,8 +321,8 @@
   }
   
   .hamburger-menu:has(input:checked) {
-  --foreground: white;
-  --background: #333;
+  --foreground: #E78FAC;
+  --background: #E78FAC;
   }
   
   .hamburger-menu:has(input:focus-visible)::before,
@@ -416,14 +411,14 @@
   align-items: center;
   height: 60px; /* Uniform height */
   width: 100%; /* Full sidebar width */
-  color: white;
+  color: #fff;
   text-decoration: none;
   font-size: 1.2rem; /* Font size */
   transition: background-color 0.2s;
   }
   
   .menu-list a:hover {
-  background-color: lightgray;
+  background-color: #E78FAC;
   color: #333; /* Change text color on hover */
   }
   
@@ -437,7 +432,7 @@
   .divider {
   width: 90%;
   border: none;
-  border-top: 1px solid #ffffff;
+  border-top: 1px solid #fff;
   margin: 2rem auto;
   opacity: 0.5;
   }
@@ -566,7 +561,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: #033220;
     transition: 0.4s;
     border-radius: 34px;
   }
@@ -580,13 +575,13 @@
     border-radius: 50%;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: #000;
     transition: 0.4s;
   }
   
   /* When checked, change the background color */
   input:checked + .slider {
-    background-color: #4e92d7e2; /* Darker green */
+    background-color: #E78FAC /* Darker green */
   }
   
   /* When checked, move the slider */

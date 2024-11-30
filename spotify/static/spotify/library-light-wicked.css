@@ -1,6 +1,6 @@
 /* Set body background and text styling */
 body {
-    background-color: #0d131b;
+    background-color: #F178b5;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
     padding: 0;
@@ -12,8 +12,8 @@ body {
     justify-content: center;
     height: 150px; 
     padding: 0 30px; 
-    background-color: #0d131b;
-    box-shadow: 0 2px 4px rgb(255 255 255 / 10%);
+    background-color: #F178b5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     box-sizing: border-box; 
 }
 
@@ -35,21 +35,20 @@ body {
 }
 
 .wrap-card {
-    background-color: #52709b;
-    /* border: 1px solid #fdfdfd; */
+    background-color: #3FAA48;
+    border: 1px solid #3FAA48;
     padding: 20px;
     text-align: center;
-    box-shadow: 0 4px 8px rgb(255 255 255 / 10%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     flex: 1 1 calc(33.333% - 20px); /* Three cards per row */
     max-width: calc(33.333% - 20px);
     box-sizing: border-box;
+    color: white;
 }
 
 .wrap-card:hover {
     transform: scale(1.04);
-    box-shadow: 0 4px 20px rgb(255, 255, 255);
-    border: 1px solid #fdfdfd;
 }
 
 .wrap-card img {
@@ -62,12 +61,11 @@ body {
 .wrap-card h3, 
 .wrap-card p {
     margin: 10px 0;
-    color: #fff;
 }
 
 .view-wrap-button,
 .delete-wrap-button {
-    background-color: #003080;
+    background-color: #FFB8D7;
     border: none;
     height: 20px;
     border-radius: 4px;
@@ -77,16 +75,16 @@ body {
 }
 
 .delete-wrap-button {
-    background-color: #8e0004;
+    background-color: #AD0004;
 }
 
 .view-wrap-button:hover {
-    background-color: #004AAD;
+    background-color: #ffcde3;
     color: white;
 }
 
 .delete-wrap-button:hover {
-    background-color: #AD0004;
+    background-color: #ffbfbf;
     color: white;
 }
 
@@ -120,12 +118,12 @@ footer {
     display: flex;
     justify-content: center;
     padding: 20px 0;
-    background-color: #0d131b;
+    background-color: #F178b5;
 }
 
 /* Back button styling */
 .back-button {
-    background-color: #003080;
+    background-color: #FFB8D7;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -136,7 +134,7 @@ footer {
 }
 
 .back-button:hover {
-    background-color: #004aad;
+    background-color: #ffcde3;
 }
 
 

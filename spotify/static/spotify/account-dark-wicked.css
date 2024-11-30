@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: "Roboto", serif;
-    background-color: #0d131b;
+    background-color: #033220;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -26,8 +26,8 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: #0d131b;
-    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+    background-color: #033220;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
 }
 
 /* Profile Image */
@@ -36,7 +36,7 @@ body {
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid white;
+    border: 4px solid #D7789F;
 }
 
 /* Content */
@@ -50,7 +50,7 @@ body {
 
 /* Username */
 .username {
-    color: #fff;
+    color: #D7789F;
     font-size: 36px;
     font-weight: bold;
     margin: 10px 0;
@@ -58,7 +58,7 @@ body {
 
 /* Spotify Link */
 .spotify-link {
-    color: #E0E7EF;
+    color: #D7789F;
     text-decoration: none;
     font-weight: bold;
     font-family: "Roboto", serif;
@@ -76,8 +76,8 @@ body {
 .home-button {
     display: inline-block;
     padding: 10px 15px;
-    background-color: #003080;
-    color: white;
+    background-color: #D7789F;
+    color: #000;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
@@ -86,20 +86,20 @@ body {
 }
 
 .home-button:hover {
-    background-color: #004aad;
+    background-color: #E78FAC;
 }
 
 /* Spotify Account Section */
 .spotify-account,
 .delete-account,
 .settings-box {
-    background-color: #234f77;
+    background-color: #D7789F;
     border-radius: 10px;
     padding: 15px;
     margin: 15px auto;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
     text-align: left;
-    color: #fff;
+    color: #000;
     font-family: "Roboto", sans-serif;
     max-width: 90%; /* Shrink content for smaller screens */
 }
@@ -123,12 +123,12 @@ body {
 /* Field Values */
 .field-title {
     font-weight: bold;
-    color: #fff;
+    color: #000;
 }
 
 .field-value {
     font-weight: normal;
-    color: #fff;
+    color: #333;
     margin-left: 5px;
 }
 
@@ -136,7 +136,7 @@ body {
 .delete-button {
     padding: 8px 15px;
     background-color: #8e0004;
-    color: white;
+    color: #000;
     border: none;
     border-radius: 5px;
     font-weight: bold;
@@ -166,6 +166,8 @@ body {
     font-size: 14px;
     padding: 5px;
     cursor: pointer;
+    background-color: #E78FAC;
+    color: #000;
 }
 
 /* Dark Mode Toggle */
@@ -198,7 +200,7 @@ label {
     position: relative;
     width: 40px;
     height: 20px;
-    background-color: #ccc;
+    background-color: #fff;
     border-radius: 20px;
     transition: 0.4s;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -212,7 +214,7 @@ label {
     width: 16px;
     left: 2px;
     bottom: 2px;
-    background-color: white;
+    background-color: #000;
     border-radius: 50%; /* Circle thumb */
     transition: 0.4s;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -220,7 +222,7 @@ label {
 
 /* Checked state: toggle moves and changes color */
 input:checked + .slider {
-    background-color: #0d131b; /* Green for dark mode */
+    background-color: #033220; /* Green for dark mode */
 }
 
 input:checked + .slider:before {
@@ -230,7 +232,7 @@ input:checked + .slider:before {
 /* Footer styling */
 footer {
     width: 100%;
-    background-color: #0d131b;
+    background-color: #033220;
     text-align: center;
     padding: 10px 0;
     font-size: 12px;
