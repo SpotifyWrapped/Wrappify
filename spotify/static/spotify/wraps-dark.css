@@ -722,74 +722,61 @@ object-fit: cover;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-  }
-  
-  #top-tracks h2, #top-artists h2 {
+}
+
+#top-tracks h2, #top-artists h2 {
     font-size: 3rem;
     margin-bottom: 2rem;
-    text-align: center;
-  }
-  
-  #top-tracks ul, #top-artists ul {
+}
+
+#top-tracks ul, #top-artists ul {
     list-style-type: none;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
+    gap: 2rem;
     max-height: 500px;
     overflow-y: auto;
     scrollbar-width: none;
-  }
-  
-  /* Webkit (Chrome, Safari) scrollbar styling */
-  #top-tracks ul::-webkit-scrollbar, 
-  #top-artists ul::-webkit-scrollbar {
+}
+
+/* Webkit (Chrome, Safari) scrollbar styling */
+#top-tracks ul::-webkit-scrollbar,
+#top-artists ul::-webkit-scrollbar {
     display: none; /* Hide scrollbar for Webkit-based browsers */
-  }
-  
-  #top-tracks li, #top-artists li {
+}
+
+#top-tracks li, #top-artists li {
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 0.5rem;
-    width: 200px;
-    box-sizing: border-box;
-    margin-bottom: 1rem;
+    padding: 1rem;
+    width: 300px;
     position: relative;
-  }
-  
-  #top-tracks li .item-content, #top-artists li .item-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  #top-tracks li strong, #top-artists li strong {
+}
+
+#top-tracks li strong, #top-artists li strong {
     font-size: 1.2rem;
     position: absolute;
-    top: 10px; /* Space from the top */
-    left: 15px; /* Space from the left */
-  }
-  
-  #top-tracks li img, #top-artists li img {
-    width: 80px;
-    height: 80px;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    top: 10px;
+    left: 15px;
+}
+
+#top-tracks li img, #top-artists li img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1rem;
     object-fit: contain;
-  }
-  
-  #top-tracks li p, #top-artists li p {
+}
+
+#top-tracks li p, #top-artists li p {
     margin: 0;
-    font-size: 1rem;
-    word-wrap: break-word;
-    max-width: 100%;
-  }
+    font-size: 1.2rem;
+    text-align: center;
+}
   
   /* Height-based Responsiveness */
   @media (max-height: 700px) {
