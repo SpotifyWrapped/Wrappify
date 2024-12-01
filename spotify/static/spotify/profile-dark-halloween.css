@@ -1,526 +1,579 @@
-/* profile-dark-halloween.css */
-
+/* spotify/profile.css */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body, html {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-family: "Roboto", serif;
-    font-weight: 400;
-    font-style: normal;
-    background: url("/static/images/Halloween_background.png"); /* Darker spooky background */
-    overflow-x: hidden;
-}
-
-/* Logo */
-.logo {
-    position: fixed;
-    top: -30px;
-    left: 10px;
-    z-index: 999;
-    width: 150px;
-    height: auto;
-    filter: drop-shadow(0 0 15px #FF6347); /* Fiery red glow */
-}
-
-/* Jagged Shapes - Halloween Terrain */
-.jagged-shape1, .jagged-outline1, .jagged-shape2, .jagged-outline2 {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-}
-
-/* Outline for Shape 1 */
-.jagged-outline1 {
-    height: 12.5vh;
-    background-color: #1A1A1A; /* Pitch black outline */
-    clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
-    z-index: 0;
-}
-
-/* Shape 1 - Spooky Purple Terrain */
-.jagged-shape1 {
-    height: 12vh;
-    background-color: #2A0037; /* Dark eerie purple */
-    clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
-    z-index: 1;
-}
-
-/* Outline for Shape 2 */
-.jagged-outline2 {
-    height: 8.5vh;
-    background-color: #1A1A1A; /* Black outline */
-    clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
-    z-index: 1;
-}
-
-/* Shape 2 - Fiery Red Accent */
-.jagged-shape2 {
-    height: 8vh;
-    background-color: #FF6347; /* Fiery red */
-    clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
-    z-index: 2;
-}
-
-/* Main Container */
-.container {
+  }
+  
+  body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-style: normal;
+  background: url("/static/images/DarkHalloween_background.png") no-repeat center center fixed; /* Ensure it covers the screen */
+  background-size: cover; /* Make the image cover the full screen */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  
+  .logo {
+  position: fixed;
+  top: -30px; /* Adjust the distance from the top */
+  left: 10px; /* Adjust the distance from the left */
+  z-index: 999;; /* Ensure it stays above other elements */
+  width: 150px; /* Adjust the size as needed */
+  height: auto; /* Maintain aspect ratio */
+  filter: drop-shadow(0 0 10px #000000); /* Pumpkin orange glow */
+  
+  
+  }
+  
+  .jagged-shape1, .jagged-outline1, .jagged-shape2, .jagged-outline2 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  }
+  
+  .jagged-outline1 {
+  height: 12.5vh; /* Slightly larger than the jagged-shape1 */
+  background-color: #000000; /* Black outline */
+  clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
+  z-index: 0; /* Place the outline behind the main shape */
+  }
+  
+  .jagged-shape1 {
+  height: 12vh;
+  background-color: #3e4044; /* Main shape color */
+  clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
+  z-index: 1; /* Place the shape above the outline */
+  }
+  
+  .jagged-outline2 {
+  height: 8.5vh; /* Slightly larger than the jagged-shape2 */
+  background-color: #000000; /* Black outline */
+  clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
+  z-index: 1; /* Place the outline behind the main shape */
+  }
+  
+  .jagged-shape2 {
+  height: 8vh;
+  background-color: #2A0037; /* Main shape color */
+  clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
+  z-index: 2; /* Place the shape above the outline */
+  }
+  
+  
+  
+  
+  /* main container */
+  .container {
     position: relative;
     width: 100%;
     max-width: 800px;
     text-align: center;
     margin: auto;
-    background-color: #1A1A1A; /* Dark background */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
-    color: #FFFFFF; /* White text for high contrast */
-}
-
-/* Sections: User Info, Wrapped Links, Buttons */
-.user-info, .wrapped-link, .time-range-buttons {
+    /* padding: 20px; */
+  }
+  
+  .user-info, .wrapped-link, .time-range-buttons {
     margin-bottom: 20px;
     padding: 20px;
-    background-color: #2A2A2A; /* Dark grey background */
+    background-color: #2A0037;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
-    border: 1px solid #444;
-    color: #FF6347; /* Fiery red text */
-}
-
-/* Header */
-h1 {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #2A0037;
+  }
+  
+  h1 {
     font-size: 80px;
     margin-bottom: 10px;
-    color: #FF6347; /* Fiery red */
-    text-shadow: 0 0 12px #FF4500, 0 0 18px #FF6347; /* Stronger glow effect */
+    color: #fff;
     font-family: "Roboto", serif;
     font-weight: 500;
-}
-
-/* Profile Details */
-.profile-details {
+    font-style: normal;
+  }
+  
+  .profile-details {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-}
-
-/* Spotify Logo */
-.spotify-logo {
+  }
+  
+  .spotify-logo {
     width: 25px;
     height: 25px;
     margin-left: 8px;
     vertical-align: middle;
-    filter: brightness(0.9); /* Subtle eerie style */
-}
-
-/* Profile Image */
-.profile-image {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
+  }
+  
+  .profile-image {
+    width: 200px; /* Adjust size as needed */
+    height: 200px; /* Match width for a perfect circle */
+    border-radius: 50%; /* This makes the image circular */
+    object-fit: cover; /* Ensures the image fills the circle */
     margin-right: 30px;
-    border: 3px solid #FF6347; /* Fiery red border */
-    box-shadow: 0 0 15px #FF4500; /* Enhanced glow effect */
-}
-
-/* Name and Links */
-.name-and-link {
+    
+  }
+  
+  .name-and-link {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-top: 50px;
-}
-
-.spotify-link {
-    color: #FF6347; /* Fiery red */
-    text-decoration: none;
-    font-weight: bold;
+  }
+  
+  
+  .spotify-link {
+    color: #fff; /* Light grey color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Optional: make it bold for better visibility */
     font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
     font-size: 1.1em;
-}
-
-.spotify-link:hover {
-    text-shadow: 0 0 5px #FF4500; /* Enhanced glow on hover */
-}
-
-/* Text and Paragraphs */
-p {
+  }
+  
+  .spotify-link:hover {
+    color: #d3d1d1; /* Darker grey on hover */
+  }
+  
+  p {
     font-size: 1.1em;
-    color: #FFFFFF; /* White text */
+    color: #555;
     margin-bottom: 10px;
-}
-
-/* Buttons */
-button {
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Use the parent's text color */
+  }
+  
+  button {
     font-size: 1em;
-    color: #FFFFFF;
-    background-color: #FF6347; /* Fiery red */
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-button:hover {
-    background-color: #BB351A; /* Darker fiery red */
-    transform: translateY(-2px);
-}
-
-/* Wrapped Links */
-.wrapped-link {
+    color: #555;
+    margin-bottom: 10px;
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .wrapped-link {
     display: flex;
     justify-content: center;
-    gap: 10px;
-}
-
-.wrapped-button {
+    gap: 10px; /* Space between buttons */
+  }
+  
+  .wrapped-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #FF6347; /* Fiery red */
-    color: #FFFFFF;
+    background-color: #bb540e;
+    color: white;
+    text-decoration: none;
     border-radius: 4px;
     transition: background-color 0.3s ease;
-}
-
-.wrapped-button:hover {
-    background-color: #BB351A; /* Darker fiery red */
-}
-
-/* Logout Links */
-.logout a {
-    color: #FF6347; /* Fiery red */
+  }
+  
+  .wrapped-button:hover {
+    background-color: #692f07;
+  }
+  
+  .logout a {
+    color: #88A3C1;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
-}
-
-.logout a:hover {
-    color: #BB351A; /* Darker fiery red */
-}
-
-/* Time Range Buttons */
-#time-range-buttons a {
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .logout a:hover {
+    color: #76A1B6;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  h1, h2 {
+    font-family: "Roboto", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  button {
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  ul li {
     display: inline-block;
-    padding: 12px 82px;
-    background-color: #FF6347; /* Fiery red */
-    color: #FFFFFF;
+    margin: 20px;
+  }
+  
+  #time-range-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px; /* Space between buttons */
+    margin-bottom: 20px; /* Space below the button section */
+  }
+  
+  #time-range-buttons a {
+    display: inline-block;
+    padding: 12px 82px; /* Button padding */
+    background-color: #bb540e; /* Spotify green color */
+    color: white;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+    white-space: nowrap; /* Prevent text from wrapping */
     font-size: 19px;
-    transition: background-color 0.3s ease;
-}
-
-#time-range-buttons a:hover {
-    background-color: #BB351A; /* Darker fiery red */
-}
-
-#time-range-buttons a.active {
-    background-color: #BB351A;
-    pointer-events: none;
-}
-
-/* Back Home Button */
-.back-home {
+  }
+  
+  #time-range-buttons a:hover {
+    background-color: #692f07; /* Darker green on hover */
+  }
+  
+  #time-range-buttons a.active {
+    background-color: #444; /* Even darker green for active button */
+    pointer-events: none; /* Disable clicking on the active button */
+  }
+  
+  .back-home {
     text-align: center;
     margin-top: 20px;
-}
-
-.back-home-button {
+  }
+  
+  .back-home-button {
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
-    background-color: #FF6347; /* Fiery red */
-    color: #FFFFFF;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.back-home-button:hover {
-    background-color: #BB351A; /* Darker fiery red */
-    transform: translateY(-2px);
-}
-
-/* Responsive Styling */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 1.5rem;
-        color: #FF6347;
-    }
-
-    .profile-image {
-        margin: auto;
-    }
-
-    .wrapped-button {
-        width: 100%;
-        text-align: center;
-    }
-
-    .profile-details {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-
-
-
-/* Root Variables for Dark Halloween Theme */
-:root {
-    --bar-width: 60px;
-    --bar-height: 8px;
-    --hamburger-gap: 6px;
-    --foreground: #BB551A; /* Darker pumpkin orange */
-    --background: #0D0D0D; /* Pitch black spooky background */
-    --hamburger-margin: 10px;
-    --animation-timing: 200ms ease-in-out;
-    --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
-}
-
-/* Hamburger Menu */
-.hamburger-menu {
-    --x-width: calc(var(--hamburger-height) * 1.41421356237);
-    display: flex;
-    flex-direction: column;
-    gap: var(--hamburger-gap);
-    width: max-content;
-    position: fixed;
-    top: 25px;
-    right: 25px;
-    z-index: 1001;
-    cursor: pointer;
-}
-
-.hamburger-menu:has(input:checked) {
-    --foreground: #0D0D0D; /* Black foreground when active */
-    --background: #FF7518; /* Bright pumpkin orange background */
-}
-
-.hamburger-menu:has(input:focus-visible)::before,
-.hamburger-menu:has(input:focus-visible)::after,
-.hamburger-menu input:focus-visible {
-    border: 1px solid var(--background);
-    box-shadow: 0 0 0 1px var(--foreground);
-}
-
-.hamburger-menu::before,
-.hamburger-menu::after,
-.hamburger-menu input {
-    content: "";
-    width: var(--bar-width);
-    height: var(--bar-height);
-    background-color: var(--foreground);
-    border-radius: 9999px;
-    transform-origin: left center;
-    transition: opacity var(--animation-timing), width var(--animation-timing),
-        rotate var(--animation-timing), translate var(--animation-timing),
-        background-color var(--animation-timing);
-}
-
-.hamburger-menu input {
-    appearance: none;
-    padding: 0;
-    margin: 0;
-    outline: none;
-    pointer-events: none;
-}
-
-.hamburger-menu:has(input:checked)::before {
-    rotate: 45deg;
-    width: var(--x-width);
-    translate: 0 calc(var(--bar-height) / -2);
-}
-
-.hamburger-menu:has(input:checked)::after {
-    rotate: -45deg;
-    width: var(--x-width);
-    translate: 0 calc(var(--bar-height) / 2);
-}
-
-.hamburger-menu input:checked {
-    opacity: 0;
-    width: 0;
-}
-
-/* Sidebar */
-.sidebar {
-    transition: translate var(--animation-timing);
-    translate: 100%;
-    padding: 0.5rem 2rem;
-    padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
-    background-color: var(--foreground);
-    color: var(--background);
-    max-width: 20rem;
-    min-height: 100vh;
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 1000;
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.9);
-}
-
-.hamburger-menu:has(input:checked) + .sidebar {
-    translate: 0;
-}
-
-/* Menu List */
-.menu-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-}
-
-.menu-list li {
-    margin: 0;
-    width: 100%;
-}
-
-.menu-list a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 60px;
-    width: 100%;
-    color: #FFFFFF; /* White text for contrast */
+    background-color: #3b5998;  /* Button background color */
+    color: white;
+    text-align: center;
     text-decoration: none;
-    font-size: 1.2rem;
-    background-color: #BB551A; /* Darker pumpkin orange */
     border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
-}
-
-.menu-list a:hover {
-    background-color: #FF7518; /* Bright pumpkin orange on hover */
-    transform: translateY(-3px); /* Lift effect */
-}
-
-/* Icons */
-.icon {
-    width: 30px;
-    height: 30px;
-    margin-right: 0.5rem;
-    filter: brightness(1) invert(1); /* Inverted spooky style */
-}
-
-/* Divider */
-.divider {
-    width: 90%;
-    border: none;
-    border-top: 1px solid #FFFFFF; /* White divider */
-    margin: 2rem auto;
-    opacity: 0.3;
-}
-
-/* Fonts */
-.roboto-black-italic {
-    font-family: "Roboto", serif;
-    font-weight: 900;
-    font-style: italic;
-    color: #FF7518; /* Bright pumpkin orange */
-}
-
-.roboto-black, .roboto-bold {
-    font-family: "Roboto", serif;
-    font-weight: 700;
-    font-style: normal;
-    color: #FF7518;
-}
-
-.roboto-medium, .roboto-regular {
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     font-family: "Roboto", serif;
     font-weight: 400;
     font-style: normal;
-    color: #FFFFFF; /* White text for readability */
-}
-
-/* Logout Container */
-.logout {
-    display: inline-flex;
-    align-items: center;
-    background-color: #1A1A1A; /* Dark container */
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
-}
-
-/* Dark Mode Item */
-.dark-mode-item {
-    padding-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    background-color: #2A2A2A; /* Dim gray background */
-    border-radius: 5px;
-    padding: 10px;
-}
-
-/* Dark Mode Text */
-.dark-mode-text {
-    color: #FF7518; /* Bright pumpkin orange */
-    font-size: 1.2rem;
-    text-shadow: 0 0 10px #FF7518; /* Glowing text effect */
-}
-
-/* Dark Mode Toggle */
-.dark-mode-toggle {
-    display: inline-block;
-    vertical-align: middle;
-    align-items: center;
-    margin-left: 0.5rem;
-    font-size: 0.7em;
-    margin-top: 55px;
-}
-
-/* Switch */
-.switch {
+  }
+  
+  .back-home-button:hover {
+    background-color: #2a4374; /* Darker on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+  }
+  
+  
+  
+  
+  
+  /* menu */
+  *,
+  *::after,
+  *::before {
+  box-sizing: border-box;
+  }
+  
+  body {
+  margin: 0;
+  }
+  
+  :root {
+  --bar-width: 60px;
+  --bar-height: 8px;
+  --hamburger-gap: 6px;
+  --foreground: #2A0037;
+  --background: white;
+  --hamburger-margin: 10px;
+  --animation-timing: 200ms ease-in-out;
+  --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+  }
+  
+  .hamburger-menu {
+  --x-width: calc(var(--hamburger-height) * 1.41421356237);
+  
+  display: flex;
+  flex-direction: column;
+  gap: var(--hamburger-gap);
+  width: max-content;
+  position: fixed; 
+  top: 25px; 
+  right: 25px; 
+  z-index: 1001; 
+  cursor: pointer;
+  }
+  
+  .hamburger-menu:has(input:checked) {
+  --foreground: #3e4044;
+  --background: #3e4044;
+  }
+  
+  .hamburger-menu:has(input:focus-visible)::before,
+  .hamburger-menu:has(input:focus-visible)::after,
+  .hamburger-menu input:focus-visible {
+  border: 1px solid var(--background);
+  box-shadow: 0 0 0 1px var(--foreground);
+  }
+  
+  .hamburger-menu::before,
+  .hamburger-menu::after,
+  .hamburger-menu input {
+  content: "";
+  width: var(--bar-width);
+  height: var(--bar-height);
+  background-color: var(--foreground);
+  border-radius: 9999px;
+  transform-origin: left center;
+  transition: opacity var(--animation-timing), width var(--animation-timing),
+    rotate var(--animation-timing), translate var(--animation-timing),
+    background-color var(--animation-timing);
+  }
+  
+  .hamburger-menu input {
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  pointer-events: none;
+  }
+  
+  .hamburger-menu:has(input:checked)::before {
+  rotate: 45deg;
+  width: var(--x-width);
+  translate: 0 calc(var(--bar-height) / -2);
+  }
+  
+  .hamburger-menu:has(input:checked)::after {
+  rotate: -45deg;
+  width: var(--x-width);
+  translate: 0 calc(var(--bar-height) / 2);
+  }
+  
+  .hamburger-menu input:checked {
+  opacity: 0;
+  width: 0;
+  }
+  
+  .sidebar {
+  transition: translate var(--animation-timing);
+  translate: 100%;
+  padding: 0.5rem 2rem;
+  padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
+  background-color: var(--foreground);
+  color: var(--background);
+  max-width: 20rem;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  }
+  
+  .hamburger-menu:has(input:checked) + .sidebar {
+  translate: 0;
+  }
+  
+  .menu-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  margin-top: 20px;
+  }
+  
+  .menu-list li {
+  margin: 0; /* Remove margin between items */
+  width: 100%; /* Make items take up full sidebar width */
+  }
+  
+  .menu-list a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px; /* Uniform height */
+  width: 100%; /* Full sidebar width */
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem; /* Font size */
+  transition: background-color 0.2s;
+  }
+  
+  .menu-list a:hover {
+  background-color: #3e4044;
+  color: #fff; /* Change text color on hover */
+  }
+  
+  .icon {
+  width: 30px;
+  height: 30px; 
+  margin-right: 0.5rem;
+  filter: brightness(0) invert(1); 
+  }
+  
+  .divider {
+  width: 90%;
+  border: none;
+  border-top: 1px solid #ffffff;
+  margin: 2rem auto;
+  opacity: 0.5;
+  }
+  
+  .roboto-black-italic {
+    font-family: "Roboto", serif;
+    font-weight: 900;
+    font-style: italic;
+  }
+  
+  .roboto-black {
+    font-family: "Roboto", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .roboto-bold-italic {
+    font-family: "Roboto", serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+  .roboto-bold {
+    font-family: "Roboto", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .roboto-medium-italic {
+    font-family: "Roboto", serif;
+    font-weight: 500;
+    font-style: italic;
+  }
+  
+  .roboto-medium {
+    font-family: "Roboto", serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .roboto-regular-italic {
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  .roboto-regular {
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .roboto-light-italic {
+    font-family: "Roboto", serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  .roboto-light {
+    font-family: "Roboto", serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .roboto-thin-italic {
+    font-family: "Roboto", serif;
+    font-weight: 100;
+    font-style: italic;
+  }
+  
+  .roboto-thin {
+    font-family: "Roboto", serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+  
+  /* Dark Mode Toggle Styles */
+  
+  .logout {
+  display: inline-flex;
+  align-items: center;
+  }
+  
+  .dark-mode-item {
+    padding-top: 20px; /* Adjust for spacing */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Ensure proper spacing between items */
+    gap: 10px; /* Optional: Adjust spacing between icon, text, and slider */
+  }
+  
+  .dark-mode-text {
+  color: white;
+  font-size: 1.2rem;
+  }
+  
+  .dark-mode-toggle {
+  display: inline-block;
+  vertical-align: middle;
+  align-items: center;
+  margin-left: 0.5rem;
+  font-size: .7em;
+  margin-top: 55px;
+  }
+  
+  .switch {
     margin-left: 20px;
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
-}
-
-/* Hide the default checkbox */
-.switch input {
+  }
+  
+  /* Hide the default checkbox appearance */
+  .switch input {
     opacity: 0;
     width: 0;
     height: 0;
-}
-
-/* Slider (Halloween Colors) */
-.slider {
+  }
+  
+  /* The slider (round) */
+  .slider {
     position: absolute;
     cursor: pointer;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #2A2A2A; /* Dim gray */
+    background-color: #FF7518;
     transition: 0.4s;
     border-radius: 34px;
-    box-shadow: 0 0 10px #FF7518; /* Orange glow */
-}
-
-/* Circle on the slider */
-.slider:before {
+  }
+  
+  /* The slider before (circle) */
+  .slider:before {
     position: absolute;
     content: "";
     height: 26px;
@@ -530,166 +583,196 @@ button:hover {
     bottom: 4px;
     background-color: white;
     transition: 0.4s;
-}
-
-/* When checked, change slider background */
-input:checked + .slider {
-    background-color: #FF7518; /* Bright pumpkin orange */
-}
-
-/* When checked, move the slider circle */
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-
-/* Hover Effect */
-.slider:hover {
-    background-color: #BB551A; /* Darker pumpkin orange */
-}
-
-
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 1.5rem;
-        color: #FF6347; /* Fiery orange-red */
-    }
-
-    .profile-image {
-        margin: auto;
-        border: 2px solid #BB551A; /* Darker pumpkin orange */
-    }
-
-    .wrapped-button {
-        width: 100%;
-        text-align: center;
-    }
-
-    .dark-mode-item {
-        gap: 5px; /* Adjust spacing */
-    }
-
-    .slider {
-        width: 50px;
-        height: 30px;
-    }
-
-    .slider:before {
-        width: 22px;
-        height: 22px;
-    }
-}
-
-/* Back Home Button */
-.back-home-button {
+  }
+  
+  /* When checked, change the background color */
+  input:checked + .slider {
+    background-color: #3e4044; /* Darker green */
+  }
+  
+  /* When checked, move the slider */
+  input:checked + .slider:before {
+    transform: translateX(26px); /* Moves the circle to the right */
+  }
+  
+  /* Optional: Add a hover effect */
+  .slider:hover {
+    background-color: #3e4044;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  .profile-image {
+    margin: auto;
+  }
+  
+  .wrapped-button {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .profile-details {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .spotify-link, p, .wrapped-button {
     font-size: 0.9em;
-    padding: 8px 16px;
-    background-color: #BB551A; /* Darker pumpkin orange */
+  }
+  
+  #time-range-buttons a {
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+  
+  /* Hamburger Menu */
+  .hamburger-menu {
+    top: 15px; /* Position closer to the top */
+    right: 15px; /* Position closer to the edge */
+  }
+  
+  .menu-list a {
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center; /* Vertically center text and icon */
+    gap: 10px; /* Space between icon and text */
+    height: 60px; /* Uniform height */
+    width: 100%; /* Full sidebar width */
     color: white;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
-}
-
-.back-home-button:hover {
-    background-color: #FF7518; /* Bright pumpkin orange */
-    transform: translateY(-2px);
-}
-
-/* Sidebar */
-.sidebar {
-    transition: translate 0.3s ease, z-index 0.3s ease;
-    translate: 100%;
-    padding: 0.5rem 2rem;
-    padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
-    background-color: #0D0D0D; /* Dark spooky background */
-    color: #FFFFFF; /* Light text for contrast */
-    max-width: 20rem;
-    min-height: 100vh;
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 200;
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.9);
-}
-
-/* Sidebar active state */
-.hamburger-menu input:checked + .sidebar {
-    translate: 0;
-    background-color: #BB551A; /* Darker pumpkin orange */
-}
-
-/* Adjust jagged shapes for mobile */
-.jagged-shape1 {
-    height: 12vh;
-    background-color: #1A1A1A; /* Deep black */
-}
-
-.jagged-outline1 {
-    height: 12.5vh;
-    background-color: #0D0D0D; /* Slightly lighter black outline */
-}
-
-.jagged-shape2 {
-    height: 6vh;
-    background-color: #BB551A; /* Darker pumpkin orange */
-}
-
-.jagged-outline2 {
-    height: 6.5vh;
-    background-color: #0D0D0D; /* Dark outline */
-}
-
-@media (max-width: 480px) {
-    .container {
-        width: 95%;
-        padding: 10px;
-        background-color: #1A1A1A; /* Dark container */
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.9);
-    }
-
-    .user-info, .wrapped-link, .logout, .time-range-buttons {
-        padding: 15px;
-        margin-bottom: 10px;
-        background-color: #2A2A2A; /* Dim grey for Halloween */
-        border-radius: 5px;
-        border: 1px solid #444;
-    }
-
-    h1 {
-        font-size: 1.5em;
-        color: #FF6347; /* Fiery orange-red */
-    }
-
-    .spotify-link, p, button {
-        font-size: 0.8em;
-        color: #FF7518; /* Bright pumpkin orange */
-    }
-
-    #time-range-buttons a {
-        padding: 10px 50px;
-        font-size: 0.8em;
-        background-color: #BB551A; /* Darker orange */
-        border-radius: 5px;
-    }
-
-    #time-range-buttons a:hover {
-        background-color: #FF7518; /* Bright orange on hover */
-    }
-
-    .dark-mode-toggle, .settings-button, .contact-us-button {
-        width: 10px;
-        height: 10px;
-        background-color: #BB551A; /* Darker pumpkin orange */
-        border-radius: 50%;
-        box-shadow: 0 0 5px #FF7518; /* Glowing effect */
-    }
-
-    .dark-mode-toggle:hover, .settings-button:hover, .contact-us-button:hover {
-        background-color: #FF7518; /* Bright orange on hover */
-    }
-}
-
-
+    text-decoration: none;
+    font-size: 1.2rem; /* Font size for text */
+    line-height: 1; /* Prevents extra spacing around text */
+    transition: background-color 0.2s;
+  }
+  
+  .menu-list a:hover {
+    background-color: lightgray;
+    color: #333; /* Change text color on hover */
+  }
+  
+  .menu-list a .icon {
+    width: 25px; /* Consistent icon size */
+    height: 25px;
+    vertical-align: middle; /* Align icon with text baseline */
+  }
+  
+  .menu-list li {
+    margin: 0; /* Remove extra margin between list items */
+  }
+  
+  
+  /* Back Home Button */
+  .back-home-button {
+    font-size: 0.9em; /* Scale font size */
+    padding: 8px 16px; /* Reduce padding */
+  }
+  
+  /* Logo Adjustments */
+  .logo {
+  position: absolute;
+  width: 50%; /* Resize logo */
+  top: -30px; /* Adjust position */
+  left: 10px;
+  z-index: 100; /* Default z-index */
+  width: 150px;
+  height: auto;
+  opacity: 1; /* Default visibility */
+  transition: opacity 0.3s ease, z-index 0.3s ease; /* Smooth fade when sidebar opens */
+  }
+  
+  /* Hide logo when the sidebar is open */
+  .hamburger-menu input:checked ~ .sidebar ~ .logo {
+  opacity: 0; /* Hide the logo */
+  z-index: -1; /* Push it behind the sidebar */
+  }
+  
+  /* Sidebar Styles */
+  .sidebar {
+  transition: translate 0.3s ease, z-index 0.3s ease; /* Smooth sidebar open/close */
+  translate: 100%; /* Initially off-screen */
+  padding: 0.5rem 2rem;
+  padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
+  background-color: var(--foreground);
+  color: var(--background);
+  max-width: 20rem;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 200; /* Higher z-index than the logo */
+  }
+  
+  /* Sidebar active state */
+  .hamburger-menu input:checked + .sidebar {
+  translate: 0; /* Slide into view */
+  z-index: 200; /* Ensure it appears above the logo */
+  }
+  
+  
+  /* Adjust jagged shapes for mobile */
+  .jagged-shape1 {
+    height: 12vh; /* Scale shape smaller */
+  }
+  
+  .jagged-outline1 {
+    height: 12.5vh; /* Increase height for a larger outline */
+  }
+  
+  .jagged-shape2 {
+    height: 6vh; /* Scale shape smaller */
+  }
+  
+  .jagged-outline2 {
+    height: 6.5vh; /* Increase height for a larger outline */
+  }
+  }
+  
+  @media (max-width: 480px) {
+  .container {
+    width: 95%;
+    padding: 10px;
+  }
+  
+  .user-info, .wrapped-link, .logout, .time-range-buttons {
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+  
+  h1 {
+    font-size: 1.5em;
+  }
+  
+  .spotify-link, p, button {
+    font-size: 0.8em;
+  }
+  
+  #time-range-buttons a {
+    padding: 10px 50px;
+    font-size: 0.8em;
+  }
+  
+  .dark-mode-toggle, .settings-button, .contact-us-button {
+    width: 10px;
+  }
+  
+  .profile-image {
+    width: 180px; /* Larger image size */
+    height: 180px;
+    margin-top: 15px;
+  }
+  
+  .name-and-link {
+    align-items: center;
+    font-size: 1.5em;
+    margin-top: -2px;
+  }
+  
+  .spotify-link {
+    font-size: 1em; /* Adjust font size for better readability */
+  }
+  }
+  

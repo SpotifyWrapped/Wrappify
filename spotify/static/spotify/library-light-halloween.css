@@ -1,31 +1,27 @@
-/* library-light-halloween.css */
-
-/* General Body Styling */
+/* Set body background and text styling */
 body {
-    background-color: #1E1E2F; /* Dark purple for Halloween */
+    background-color: #1E1E2F;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
     padding: 0;
-    color: #F5F5F5; /* Light grey text for contrast */
 }
 
 .header {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 150px;
-    padding: 0 30px;
-    background-color: #2C2C3E; /* Dark grey header */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
-    box-sizing: border-box;
+    height: 150px; 
+    padding: 0 30px; 
+    background-color: #1E1E2F;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; 
 }
 
 .logo {
-    max-height: 300%;
-    width: auto;
+    max-height: 300%; 
+    width: auto; 
     height: 300px;
     justify-content: center;
-    filter: drop-shadow(0 0 10px #FF7518); /* Pumpkin orange glow */
 }
 
 .card-container {
@@ -39,59 +35,59 @@ body {
 }
 
 .wrap-card {
-    background-color: #2C2C3E; /* Dark grey for contrast */
-    border: 1px solid #FF7518; /* Pumpkin orange border */
+    background-color: #2C2C3E;
+    border: 1px solid #FF7518;
     padding: 20px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     flex: 1 1 calc(33.333% - 20px); /* Three cards per row */
     max-width: calc(33.333% - 20px);
     box-sizing: border-box;
-    color: #F5F5F5; /* White text for readability */
+    color: #F5F5F5;
 }
 
 .wrap-card:hover {
     transform: scale(1.04);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.9); /* Stronger shadow on hover */
+
 }
 
 .wrap-card img {
-    width: 100%;
-    height: auto;
+    width: 100%; 
+    height: auto; 
     border-radius: 4px;
     margin-bottom: 10px;
-    border: 2px solid #FF7518; /* Pumpkin orange border */
 }
 
-.wrap-card h3,
+.wrap-card h3, 
 .wrap-card p {
     margin: 10px 0;
 }
 
 .view-wrap-button,
 .delete-wrap-button {
-    background-color: #FF7518; /* Pumpkin orange */
+    background-color: #FF7518;
     border: none;
     height: 20px;
     border-radius: 4px;
-    color: #1E1E2F; /* Dark purple text for contrast */
+    color: #1E1E2F;
     padding: 0 10px;
     cursor: pointer;
 }
 
 .delete-wrap-button {
-    background-color: #8E0004; /* Blood red */
+    background-color: #AD0004;
 }
 
 .view-wrap-button:hover {
-    background-color: #FFA64D; /* Lighter orange on hover */
+    background-color: #FFA64D;
     color: #1E1E2F;
 }
 
 .delete-wrap-button:hover {
-    background-color: #C62828; /* Darker red on hover */
-    color: #FFF;
+    background-color: #C62828;
+    color: white;
 }
 
 /* Container for aligning the buttons and the game image */
@@ -99,26 +95,23 @@ body {
     display: flex;
     gap: 10px;
     justify-content: center;
-    align-items: center;
+    align-items: center; /* Center-align buttons vertically */
     margin-top: 10px;
 }
 
 /* Styling for the game button image */
 .game-button-image {
-    width: 50px !important;
-    height: 50px !important;
+    width: 50px !important; /* Force width to 25px */
+    height: 50px !important; /* Force height to 25px */
     cursor: pointer;
     transition: transform 0.2s, filter 0.2s;
-    vertical-align: middle;
+    vertical-align: middle; /* Align the image vertically with buttons */
     margin-top: 10px;
-    border: 2px solid #FF7518; /* Pumpkin orange border */
-    border-radius: 50%; /* Round like a Halloween pumpkin */
 }
 
 /* Hover effect for the game button image */
 .game-button-image:hover {
     transform: scale(1.1);
-    filter: brightness(1.2); /* Slight glow on hover */
 }
 
 /* Footer styling */
@@ -127,13 +120,14 @@ footer {
     display: flex;
     justify-content: center;
     padding: 20px 0;
-    background-color: #2C2C3E; /* Dark grey footer */
+    background-color: #1E1E2F;
     color: #FF7518; /* Pumpkin orange text */
+
 }
 
 /* Back button styling */
 .back-button {
-    background-color: #8E0004; /* Blood red */
+    background-color: #8E0004;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -144,10 +138,10 @@ footer {
 }
 
 .back-button:hover {
-    background-color: #C62828; /* Darker red on hover */
+    background-color: #C62828;
 }
 
-/* Media Queries */
+
 @media (max-width: 768px) {
     .card-container {
         flex-direction: column; /* Stack cards vertically */
@@ -156,73 +150,76 @@ footer {
     }
 
     .wrap-card {
-        flex: 1 1 100%; /* Full width on small screens */
-        max-width: 100%;
+        flex: 1 1 100%; /* Take full width on small screens */
+        max-width: 100%; /* Remove the width limitation */
     }
 
     .header {
-        flex-direction: row;
+        flex-direction: row; /* Keep elements in a row */
         justify-content: center;
         align-items: center;
-        height: auto;
-        padding: 10px 20px;
+        height: auto; /* Allow height to shrink dynamically */
+        padding: 10px 20px; /* Adjust padding for readability */
     }
 
     .logo {
-        max-height: 300px;
-        height: auto;
+        max-height: 300px; /* Scale down logo */
+        height: auto; /* Maintain aspect ratio */
         margin-top: -70px;
         margin-bottom: -50px;
     }
 
     .button-container {
-        flex-direction: row;
-        justify-content: center;
-        gap: 10px;
+        flex-direction: row; /* Align buttons horizontally */
+        justify-content: center; /* Center-align the buttons */
+        gap: 10px; /* Maintain spacing between buttons */
     }
 }
 
 @media (max-width: 480px) {
     body {
-        padding: 10px;
+        padding: 10px; /* Add some padding for smaller screens */
     }
 
     .wrap-card {
-        padding: 15px;
-        font-size: 0.9rem;
+        padding: 15px; /* Reduce padding for smaller cards */
+        font-size: 0.9rem; /* Reduce text size */
     }
 
     .wrap-card h3 {
-        font-size: 1rem;
+        font-size: 1rem; /* Adjust heading size */
     }
 
     .wrap-card p {
-        font-size: 0.8rem;
+        font-size: 0.8rem; /* Adjust paragraph size */
     }
 
     .view-wrap-button,
     .delete-wrap-button {
-        padding: 5px 8px;
-        font-size: 0.8rem;
+        padding: 5px 8px; /* Adjust button padding */
+        font-size: 0.8rem; /* Adjust button font size */
     }
 
     .game-button-image {
-        width: 40px !important;
+        width: 40px !important; /* Reduce size for smaller screens */
         height: 40px !important;
     }
 
     .button-container {
-        flex-direction: row;
-        justify-content: center;
-        gap: 10px;
+        flex-direction: row; /* Align buttons horizontally */
+        justify-content: center; /* Center-align buttons */
+        gap: 10px; /* Maintain spacing */
     }
 
     footer {
-        padding: 15px 0;
+        padding: 15px 0; /* Reduce footer padding */
     }
 
     .back-button {
-        padding: 8px 15px;
-        font-size: 0.9rem;
+        padding: 8px 15px; /* Adjust button padding */
+        font-size: 0.9rem; /* Adjust font size */
     }
 }
+
+
+  
