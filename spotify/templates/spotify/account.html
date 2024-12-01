@@ -118,7 +118,7 @@
                 <span class="slider"></span>
                 <span class="dark-mode-label">{% trans "Enable Dark Mode" %}</span>
             </label>
-        </div>          
+        </div>       
         
         
 
@@ -273,10 +273,10 @@
         function populateThemeDropdown() {
             const themeDropdown = document.getElementById("theme-dropdown");
             const allThemes = {
-                default: gettext("Default"),
-                halloween: gettext("Halloween"),
-                christmas: gettext("Christmas"),
-                wicked: gettext("Wicked"),
+                default: "Default",
+                halloween: "Halloween",
+                christmas: "Christmas",
+                wicked: "Wicked",
             };
             themeDropdown.innerHTML = ""; // Clear existing options
             for (const [themeKey, themeName] of Object.entries(allThemes)) {
