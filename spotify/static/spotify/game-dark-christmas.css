@@ -7,17 +7,14 @@
   padding: 0;
 }
 
-
-/* Set body background */
 body {
-  background-color: #1f400a;
+  background-color: #052c40;
   overflow-y: auto; /* Allow vertical scrolling */
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100%; /* Ensure body takes full height */
 }
-
 
 /* Header styling */
 header {
@@ -26,8 +23,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #a11029;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #052c40;
+  box-shadow: 0 2px 4px rgb(255 255 255 / 10%);
   padding: 10px 0;
   position: fixed;
   top: 0;
@@ -78,11 +75,11 @@ header {
 }
 
 .gamepad-button {
-  width: 60px;
-  height: 60px;
-  background-color: #a11029;
-  color: #000;
-  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  background-color: #1C3C0D;
+  color: white;
+  font-size: 20px;
   border: none;
   border-radius: 8px;
   margin: 5px;
@@ -94,7 +91,7 @@ header {
 }
 
 .gamepad-button:active {
-  background-color: #4e2718;
+  background-color: #2F4A1D;
 }
 
 /* Hide gamepad by default */
@@ -116,13 +113,13 @@ footer {
   display: flex;
   justify-content: center;
   padding: 20px 0;
-  background-color: #1f400a;
+  background-color: #052c40;
 }
 
 /* Back button styling */
 .back-button {
-  background-color: #a11029;
-  color: black;
+  background-color: #1C3C0D;
+  color: white;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -132,12 +129,12 @@ footer {
 }
 
 .back-button:hover {
-  background-color: #4e2718;
+  background-color: #2F4A1D;
 }
 
 .play-again-button {
-  background-color: #a11029;
-  color: black;
+  background-color: #1C3C0D;
+  color: white;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -147,7 +144,26 @@ footer {
 }
 
 .play-again-button:hover {
-  background-color: #4e2718;
+  background-color: #2F4A1D;
+}
+
+.dropdown {
+  background-color: #003080;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.dropdown:hover {
+  background-color: #004aad;
+}
+
+#themeSelector {
+  font-size: 10px;
 }
 
 /* Modal styling */
@@ -165,20 +181,18 @@ footer {
 }
 
 #questionContent {
-  background: #a11029;
+  background: #1C3C0D;
   padding: 40px; /* Increase padding for a larger feel */
   border-radius: 8px;
   width: 1000px; /* Increase width to make the modal larger */
   max-width: 80%; /* Optional: makes the modal responsive */
   overflow-y: auto; /* Adds scrolling if content exceeds max-height */
   text-align: center;
-  color: black;
 }
 
 #questionContent h2 {
   font-size: 18px;
   margin-bottom: 15px;
-  color: black;
 }
 
 /* Styling for options list */
@@ -186,14 +200,13 @@ footer {
   list-style-type: none;
   padding: 0;
   margin: 0 0 20px 0;
-  color: black;
 }
 
 #optionsList li {
   margin: 5px 0;
   cursor: pointer;
   padding: 8px;
-  background: #4e2718;
+  background: #691515;
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -201,7 +214,7 @@ footer {
 }
 
 #optionsList li:hover {
-  background: #ffd97d;
+  background: #e0e0e0;
 }
 
 #optionsList li .option-number {
@@ -228,6 +241,7 @@ canvas {
   height: auto; /* Maintain aspect ratio */
   display: block; /* Prevent inline spacing issues */
   margin: 0 auto; /* Center canvas horizontally */
+  box-shadow: 0 4px 8px rgb(255 255 255);
 }
 
 
@@ -268,22 +282,10 @@ canvas {
   }
 
   .back-button,
-  .play-again-button,
-  .dropdown {
+  .play-again-button {
     font-size: 0.9rem; /* Reduce font size for buttons */
     padding: 8px 15px; /* Adjust padding */
     margin: 5px 0; /* Add space between buttons */
-  }
-
-  .dropdown {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  #themeSelector {
-    font-size: 0.8rem; /* Adjust font size for dropdown */
-    margin-top: 5px;
   }
 
   /* Modal adjustments */

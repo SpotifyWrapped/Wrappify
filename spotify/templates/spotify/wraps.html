@@ -1,10 +1,12 @@
+{% load i18n %}
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify Wrapped</title>
+    <title>{% trans "Spotify Wrapped" %}</title>
     <link id="theme-style" rel="stylesheet" href="{% static 'spotify/wraps-light.css' %}">
     <script src="{% static 'spotify/slideshow.js' %}" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,8 +40,8 @@
             <div class="jagged-outline2"></div>
             <div class="bounce-in">
                 <section id="intro">
-                    <h2>Welcome to Your Spotify Wrapped</h2>
-                    <p>Let’s take a look at your music habits over {{ time_range_label }}!</p>
+                    <h2>{% trans "Welcome to Your Spotify Wrapped" %}</h2>
+                    <p>{% trans "Let’s take a look at your music habits over" %} {{ time_range_label }}!</p>
                 </section>
             </div>
         </div>
@@ -68,14 +70,14 @@
             <div class="jagged-outline4"></div>
             <div class="flip-in">
                 <section id="top-genres">
-                    <h2>My Top Genres</h2>
+                    <h2>{% trans "My Top Genres" %}</h2>
                     <ul>
                         {% for genre, count in top_genres %}
                             <li>
                                 <strong>{{ forloop.counter }}.</strong> {{ genre }}
                             </li>
                         {% empty %}
-                            <li>No top genres available.</li>
+                            <li>{% trans "No top genres available." %}</li>
                         {% endfor %}
                     </ul>
                 </section>
@@ -93,7 +95,7 @@
             <div class="jagged-outline6"></div>
             <div class="perspective-tilt">
                 <section id="top-tracks">
-                    <h2>My Top Songs</h2>
+                    <h2>{% trans "My Top Songs" %}</h2>
                     <ul>
                         {% for track in tracks %}
                             <li>
@@ -102,7 +104,7 @@
                                 <p>{{ track.name }} by {{ track.artists.0.name }}</p>
                             </li>
                         {% empty %}
-                            <li>No top tracks available.</li>
+                            <li>{% trans "No top tracks available." %}</li>
                         {% endfor %}
                     </ul>
                 </section>
@@ -135,8 +137,8 @@
             <div class="jagged-shape3-1"></div>
             <div class="jagged-shape4-1"></div>
             <section id="extra-slide">
-                <h2>HMM... Who's that special someone?</h2>
-                <p>Someone you just can't stop listening to...</p>
+                <h2>{% trans "HMM... Who's that special someone?" %}</h2>
+                <p>{% trans "Someone you just can't stop listening to..." %}</p>
             </section>
         </div>
 
@@ -151,14 +153,14 @@
                 <div class="glowing-sun"></div>
                 <section id="top-artist-deep-dive">
                 {% if top_artist %}
-                        <h2>Your #1 Artist: {{ top_artist.name }}</h2>
+                        <h2>{% trans "Your #1 Artist:" %} {{ top_artist.name }}</h2>
                         <img src="{{ top_artist.images.0.url }}" alt="{{ top_artist.name }}" width="100">
-                        <p><strong>Genres:</strong> {{ top_artist.genres|join:", " }}</p>
-                        <p><strong>Popularity:</strong> {{ top_artist.popularity }} / 100</p>
-                        <p><strong>Followers:</strong> {{ top_artist.followers.total|floatformat }}</p>
+                        <p><strong>{% trans "Genres:" %}</strong> {{ top_artist.genres|join:", " }}</p>
+                        <p><strong>{% trans "Popularity:" %}</strong> {{ top_artist.popularity }} / 100</p>
+                        <p><strong>{% trans "Followers:" %}</strong> {{ top_artist.followers.total|floatformat }}</p>
                 {% else %}
-                    <h2>No top artist available</h2>
-                    <p>It seems like you haven't listened to enough music recently to have a top artist.</p>
+                    <h2>{% trans "No top artist available" %}</h2>
+                    <p>{% trans "It seems like you haven't listened to enough music recently to have a top artist." %}</p>
                 {% endif %}
                 <div id="floating-hearts-container"></div>
                 </section>
@@ -173,7 +175,7 @@
             <div class="jagged-outline6"></div>
             <div class="perspective-tilt">
                 <section id="top-artists">
-                    <h2>My Top Artists</h2>
+                    <h2>{% trans "My Top Artists" %}</h2>
                     <ul>
                         {% for artist in artists %}
                             <li>
@@ -182,7 +184,7 @@
                                 <p>{{ artist.name }}</p>
                             </li>
                         {% empty %}
-                            <li>No top artists available.</li>
+                            <li>{% trans "No top artists available." %}</li>
                         {% endfor %}
                     </ul>
                 </section>
@@ -241,10 +243,10 @@
                 <section id="save-delete">
                     <h2>Save This Wrap</h2>
                     <div class="options">
-                        <button onclick="saveWrap()">Save</button>
+                        <button onclick="saveWrap()">{% trans "Save" %}</button>
                     </div>
                     <div class="back-home">
-                        <a href="{% url 'profile' %}" class="back-home-button">Exit</a>
+                        <a href="{% url 'profile' %}" class="back-home-button">{% trans "Exit" %}</a>
                     </div>
                 </section>
             </div>

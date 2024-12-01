@@ -1,0 +1,380 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-01 03:09-0500\n"
+"PO-Revision-Date: 2024-11-30 23:47-0500\n"
+"Last-Translator: marineranger  <mabanda229@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Translated-Using: django-rosetta 0.10.1\n"
+
+#: .\spotify\templates\spotify\account.html:29
+#: .\spotify\templates\spotify\profile.html:74
+msgid "Open in Spotify"
+msgstr "在 Spotify 中打开"
+
+#: .\spotify\templates\spotify\account.html:36
+msgid "Spotify Account"
+msgstr "Spotify 帐户"
+
+#: .\spotify\templates\spotify\account.html:37
+msgid "The Spotify account that you're signed in with."
+msgstr "您登录的 Spotify 帐户。"
+
+#: .\spotify\templates\spotify\account.html:39
+msgid "Username:"
+msgstr "用户名："
+
+#: .\spotify\templates\spotify\account.html:40
+msgid "Email:"
+msgstr "电子邮件："
+
+#: .\spotify\templates\spotify\account.html:45
+msgid "Delete Wrappify Account"
+msgstr "删除 Wrappify 账户"
+
+#: .\spotify\templates\spotify\account.html:46
+msgid "This will permanently delete your account."
+msgstr "这将永久删除您的帐户。"
+
+#: .\spotify\templates\spotify\account.html:49
+msgid "Delete Account"
+msgstr "删除帐户"
+
+#: .\spotify\templates\spotify\account.html:86
+msgid "Change Language"
+msgstr "更改语言"
+
+#: .\spotify\templates\spotify\account.html:90 .\spotify_wrapped\settings.py:38
+msgid "English"
+msgstr "英语"
+
+#: .\spotify\templates\spotify\account.html:91 .\spotify_wrapped\settings.py:39
+msgid "Spanish"
+msgstr "西班牙语"
+
+#: .\spotify\templates\spotify\account.html:92 .\spotify_wrapped\settings.py:41
+msgid "French"
+msgstr "法语"
+
+#: .\spotify\templates\spotify\account.html:93 .\spotify_wrapped\settings.py:40
+msgid "Dutch"
+msgstr "荷兰语"
+
+#: .\spotify\templates\spotify\account.html:94 .\spotify_wrapped\settings.py:42
+msgid "Chinese"
+msgstr "中国人"
+
+#: .\spotify\templates\spotify\account.html:101
+msgid "Select Theme"
+msgstr "选择主题"
+
+#: .\spotify\templates\spotify\account.html:103
+msgid "Default"
+msgstr "默认"
+
+#: .\spotify\templates\spotify\account.html:104
+msgid "Halloween"
+msgstr "万圣节"
+
+#: .\spotify\templates\spotify\account.html:105
+msgid "Christmas"
+msgstr "圣诞节"
+
+#: .\spotify\templates\spotify\account.html:106
+msgid "Wicked"
+msgstr "邪恶"
+
+#: .\spotify\templates\spotify\account.html:111
+msgid "Enable Dark Mode"
+msgstr "启用深色模式"
+
+#: .\spotify\templates\spotify\account.html:122
+#: .\spotify\templates\spotify\preference.html:21
+msgid "Back Home"
+msgstr "返回首页"
+
+#: .\spotify\templates\spotify\contact.html:17
+msgid "Meet the Developers"
+msgstr "与开发人员见面"
+
+#: .\spotify\templates\spotify\contact.html:29
+msgid ""
+"HIYO! My name is Hung and I am one of the developers of Wrappify! I hope you "
+"have had the chance to explore our website and enjoyed all it had to offer. "
+"Hopefully you didn't struggle too much with the game because I know I did "
+"even though I was the one that built it LOL. Anyways if you have any more "
+"questions feel free to ask through the link below!"
+msgstr ""
+"嗨哟！我叫 Hung，是 Wrappify 的开发人员之一！希望您有机会浏览我们的网站并享受"
+"它所提供的一切。希望您在玩这个游戏时没有遇到太多困难，因为我知道我遇到了，尽"
+"管我是这个游戏的开发者 LOL。无论如何，如果您还有其他问题，请随时通过以下链接"
+"提问！"
+
+#: .\spotify\templates\spotify\contact.html:36
+msgid ""
+"Hi! My name is Alvyn and I'm a full-stack developer for Wrappify! I focused "
+"mainly on some of the UI as well as the back-end portion of our website. I "
+"hope you enjoyed taking a look back on some of your music highlights and "
+"feel free to contact us for any feedback."
+msgstr ""
+"大家好！我叫 Alvyn，是 Wrappify 的全栈开发人员！我主要负责我们网站的一些 UI "
+"和后端部分。希望您喜欢回顾一些音乐亮点，如有任何反馈，请随时与我们联系。"
+
+#: .\spotify\templates\spotify\contact.html:43
+msgid ""
+"Hello! My name is Tracy and I'm a full-stack developer for Wrappify! I "
+"worked a lot with the Spotify API and making the entire website mobile "
+"friendly. Hopefully you enjoy taking a look at your listening history!"
+msgstr ""
+"您好！我叫 Tracy，是 Wrappify 的全栈开发人员！我使用 Spotify API 做了很多工"
+"作，并使整个网站适合移动设备。希望您喜欢查看您的收听历史记录！"
+
+#: .\spotify\templates\spotify\contact.html:50
+msgid ""
+"Hi! My name is Kelly and I worked as a front-end developer for Wrappify! I "
+"hope you liked the aesthics of our website and enjoy exploring your Wrappify!"
+msgstr ""
+"嗨！我叫 Kelly，是 Wrappify 的前端开发人员！希望您喜欢我们网站的美感，并享受"
+"探索 Wrappify 的乐趣！"
+
+#: .\spotify\templates\spotify\contact.html:57
+msgid ""
+"Hi there! My name is Marc Anthony and I worked as a developer for Wrappify! "
+"I focused mainly on translation features as well as some Halloween and "
+"Christmas themes."
+msgstr ""
+"大家好！我叫 Marc Anthony，是 Wrappify 的一名开发人员！我主要负责翻译功能以及"
+"一些万圣节和圣诞节主题。"
+
+#: .\spotify\templates\spotify\error.html:8
+#: .\spotify\templates\spotify\error.html:11
+msgid "Error"
+msgstr "错误"
+
+#: .\spotify\templates\spotify\game.html:9
+msgid "Game"
+msgstr "游戏"
+
+#: .\spotify\templates\spotify\game.html:73
+#: .\spotify\templates\spotify\saved_wraps.html:246
+msgid "Back to Library"
+msgstr "返回图书馆"
+
+#: .\spotify\templates\spotify\game.html:74
+msgid "Play Again"
+msgstr "再玩一次"
+
+#: .\spotify\templates\spotify\game.html:205
+msgid "Question"
+msgstr "问题"
+
+#: .\spotify\templates\spotify\game.html:209
+msgid "Select or use Keyboard"
+msgstr "选择或使用键盘"
+
+#: .\spotify\templates\spotify\login.html:9
+msgid "Your Spotify Wrapped"
+msgstr "Spotify 已完结"
+
+#: .\spotify\templates\spotify\login.html:35
+msgid "Your Music,"
+msgstr "你的音乐，"
+
+#: .\spotify\templates\spotify\login.html:35
+msgid "Your Wrapped."
+msgstr "你的包裹"
+
+#: .\spotify\templates\spotify\login.html:37
+msgid "Tired of waiting to discover your Spotify Wrapped?"
+msgstr "厌倦了等待发现您的 Spotify Wrapped 吗？"
+
+#: .\spotify\templates\spotify\login.html:38
+msgid ""
+"Wrappify allows you to make your own CUSTOM Spotify Wrapped, save it, and "
+"even quiz you on it!"
+msgstr ""
+"Wrappify 允许您制作自己的自定义 Spotify Wrapped、保存它，甚至对其进行测验！"
+
+#: .\spotify\templates\spotify\login.html:39
+msgid "Connect your Spotify account to start!"
+msgstr "连接您的 Spotify 帐户即可开始！"
+
+#: .\spotify\templates\spotify\login.html:41
+msgid "Login with Spotify"
+msgstr "使用 Spotify 登录"
+
+#: .\spotify\templates\spotify\preference.html:9
+#: .\spotify\templates\spotify\preference.html:17
+msgid "Settings"
+msgstr "设置"
+
+#: .\spotify\templates\spotify\profile.html:9
+msgid "User Profile"
+msgstr "用户资料"
+
+#: .\spotify\templates\spotify\profile.html:28
+msgid "Account"
+msgstr "帐户"
+
+#: .\spotify\templates\spotify\profile.html:29
+msgid "Contact"
+msgstr "接触"
+
+#: .\spotify\templates\spotify\profile.html:33
+msgid "Logout"
+msgstr "退出"
+
+#: .\spotify\templates\spotify\profile.html:36
+msgid "Light Mode"
+msgstr "灯光模式"
+
+#: .\spotify\templates\spotify\profile.html:83
+msgid "Last Month"
+msgstr "上个月"
+
+#: .\spotify\templates\spotify\profile.html:86
+msgid "Last 6 Months"
+msgstr "过去 6 个月"
+
+#: .\spotify\templates\spotify\profile.html:89
+msgid "All Time"
+msgstr "所有时间"
+
+#: .\spotify\templates\spotify\profile.html:96
+msgid "Explore Your Library"
+msgstr "探索您的图书馆"
+
+#: .\spotify\templates\spotify\saved_wraps.html:9
+#: .\spotify\templates\spotify\wraps.html:9
+msgid "Spotify Wrapped"
+msgstr "Spotify 已完结"
+
+#: .\spotify\templates\spotify\saved_wraps.html:43
+#: .\spotify\templates\spotify\wraps.html:43
+msgid "Welcome to Your Spotify Wrapped"
+msgstr "欢迎来到 Spotify Wrapped"
+
+#: .\spotify\templates\spotify\saved_wraps.html:44
+#: .\spotify\templates\spotify\wraps.html:44
+msgid "Let’s take a look at your music habits over"
+msgstr "让我们看看你的音乐习惯"
+
+#: .\spotify\templates\spotify\saved_wraps.html:74
+#: .\spotify\templates\spotify\wraps.html:74
+msgid "My Top Genres"
+msgstr "我的热门流派"
+
+#: .\spotify\templates\spotify\saved_wraps.html:81
+#: .\spotify\templates\spotify\wraps.html:81
+msgid "No top genres available."
+msgstr "没有可用的热门流派。"
+
+#: .\spotify\templates\spotify\saved_wraps.html:99
+#: .\spotify\templates\spotify\wraps.html:99
+msgid "My Top Songs"
+msgstr "我的热门歌曲"
+
+#: .\spotify\templates\spotify\saved_wraps.html:108
+#: .\spotify\templates\spotify\wraps.html:108
+msgid "No top tracks available."
+msgstr "没有可用的热门曲目。"
+
+#: .\spotify\templates\spotify\saved_wraps.html:141
+#: .\spotify\templates\spotify\wraps.html:141
+msgid "HMM... Who's that special someone?"
+msgstr "嗯...那个特别的人是谁？"
+
+#: .\spotify\templates\spotify\saved_wraps.html:142
+#: .\spotify\templates\spotify\wraps.html:142
+msgid "Someone you just can't stop listening to..."
+msgstr "有人让你无法停止聆听……"
+
+#: .\spotify\templates\spotify\saved_wraps.html:157
+#: .\spotify\templates\spotify\wraps.html:157
+msgid "Your #1 Artist:"
+msgstr "你的第一艺术家："
+
+#: .\spotify\templates\spotify\saved_wraps.html:159
+#: .\spotify\templates\spotify\wraps.html:159
+msgid "Genres:"
+msgstr "流派："
+
+#: .\spotify\templates\spotify\saved_wraps.html:160
+#: .\spotify\templates\spotify\wraps.html:160
+msgid "Popularity:"
+msgstr "受欢迎程度："
+
+#: .\spotify\templates\spotify\saved_wraps.html:161
+#: .\spotify\templates\spotify\wraps.html:161
+msgid "Followers:"
+msgstr "关注者："
+
+#: .\spotify\templates\spotify\saved_wraps.html:163
+#: .\spotify\templates\spotify\wraps.html:163
+msgid "No top artist available"
+msgstr "没有可用的顶级艺术家"
+
+#: .\spotify\templates\spotify\saved_wraps.html:164
+#: .\spotify\templates\spotify\wraps.html:164
+msgid ""
+"It seems like you haven't listened to enough music recently to have a top "
+"artist."
+msgstr "看起来您最近听的音乐还不够多，所以没有找到顶级艺术家。"
+
+#: .\spotify\templates\spotify\saved_wraps.html:179
+#: .\spotify\templates\spotify\wraps.html:179
+msgid "My Top Artists"
+msgstr "我的顶级艺术家"
+
+#: .\spotify\templates\spotify\saved_wraps.html:188
+#: .\spotify\templates\spotify\wraps.html:188
+msgid "No top artists available."
+msgstr "沒有可用的頂級藝術家。"
+
+#: .\spotify\templates\spotify\saved_wraps.html:248
+#: .\spotify\templates\spotify\wraps.html:251
+msgid "Exit"
+msgstr "出口"
+
+#: .\spotify\templates\spotify\wraps.html:248
+msgid "Save"
+msgstr "节省"
+
+#: .\spotify\templates\spotify\wraps_library.html:32
+msgid "My"
+msgstr "我的"
+
+#: .\spotify\templates\spotify\wraps_library.html:32
+msgid "Wrap"
+msgstr "裹"
+
+#: .\spotify\templates\spotify\wraps_library.html:33
+msgid "Duration:"
+msgstr "期间："
+
+#: .\spotify\templates\spotify\wraps_library.html:38
+msgid "View Wrap"
+msgstr "你的裹身布"
+
+#: .\spotify\templates\spotify\wraps_library.html:41
+msgid "Delete"
+msgstr "删除"
+
+#: .\spotify\templates\spotify\wraps_library.html:60
+msgid "Back to Profile"
+msgstr "返回个人资料"
+
+#: .\spotify_wrapped\urls.py:28
+msgid "admin/"
+msgstr "行政/"

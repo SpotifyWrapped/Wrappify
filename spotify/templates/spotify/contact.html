@@ -1,3 +1,5 @@
+{% load i18n %}
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +14,7 @@
 </head>
 <body data-page="contacts">
     <div class="container">
-        <h1 class="main-heading">Meet the Developers</h1>
+        <h1 class="main-heading">{% trans "Meet the Developers" %}</h1>
         <a href="{% url 'profile' %}">
             <img src="{% static 'spotify/images/logo.png' %}" alt="Logo" class="logo">
         </a>
@@ -24,35 +26,35 @@
             <img src="{% static 'spotify/images/hung.jpg' %}" alt="Developer 1">
             <h2>Hung</h2>
             <div class="description">
-                <p>HIYO! My name is Hung and I am one of the developers of Wrappify! I hope you have had the chance to explore our website and enjoyed all it had to offer. Hopefully you didn't struggle too much with the game because I know I did even though I was the one that built it LOL. Anyways if you have any more questions feel free to ask through the link below! </p>
+                <p>{% trans "HIYO! My name is Hung and I am one of the developers of Wrappify! I hope you have had the chance to explore our website and enjoyed all it had to offer. Hopefully you didn't struggle too much with the game because I know I did even though I was the one that built it LOL. Anyways if you have any more questions feel free to ask through the link below!" %} </p>
             </div>
         </div>
         <div class="card">
             <img src="{% static 'spotify/images/alvyn.jpg' %}" alt="Developer 2">
             <h2>Alvyn</h2>
             <div class="description">
-                <p>Hi! My name is Alvyn and I'm a full-stack developer for Wrappify! I focused mainly on some of the UI as well as the back-end portion of our website. I hope you enjoyed taking a look back on some of your music highlights and feel free to contact us for any feedback.</p>
+                <p>{% trans "Hi! My name is Alvyn and I'm a full-stack developer for Wrappify! I focused mainly on some of the UI as well as the back-end portion of our website. I hope you enjoyed taking a look back on some of your music highlights and feel free to contact us for any feedback." %}</p>
             </div>
         </div>
         <div class="card">
             <img src="{% static 'spotify/images/tracy.jpg' %}" alt="Developer 3">
             <h2>Tracy</h2>
             <div class="description">
-                <p>Hello! My name is Tracy and I'm a full-stack developer for Wrappify! I worked a lot with the Spotify API and making the entire website mobile friendly. Hopefully you enjoy taking a look at your listening history!</p>
+                <p>{% trans "Hello! My name is Tracy and I'm a full-stack developer for Wrappify! I worked a lot with the Spotify API and making the entire website mobile friendly. Hopefully you enjoy taking a look at your listening history!" %}</p>
             </div>
         </div>
         <div class="card">
             <img src="{% static 'spotify/images/kelly1.jpg' %}" alt="Developer 4">
             <h2>Kelly</h2>
             <div class="description">
-                <p>Hi! My name is Kelly and I worked as a front-end developer for Wrappify! I hope you liked the aesthics of our website and enjoy exploring your Wrappify!</p>
+                <p>{% trans "Hi! My name is Kelly and I worked as a front-end developer for Wrappify! I hope you liked the aesthics of our website and enjoy exploring your Wrappify!" %}</p>
             </div>
         </div>
         <div class="card">
             <img src="{% static 'spotify/images/marc.jpg' %}" alt="Developer 5">
             <h2>Marc Anthony</h2>
             <div class="description">
-                <p>Hi there! My name is Marc Anthony and I worked as a developer for Wrappify! I focused mainly on translation features as well as some Halloween and Christmas themes.</p>
+                <p>{% trans "Hi there! My name is Marc Anthony and I worked as a developer for Wrappify! I focused mainly on translation features as well as some Halloween and Christmas themes." %}</p>
             </div>
         </div>
     </div>

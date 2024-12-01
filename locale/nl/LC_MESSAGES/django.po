@@ -1,0 +1,391 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-01 03:09-0500\n"
+"PO-Revision-Date: 2024-11-30 23:18-0500\n"
+"Last-Translator: marineranger  <mabanda229@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.10.1\n"
+
+#: .\spotify\templates\spotify\account.html:29
+#: .\spotify\templates\spotify\profile.html:74
+msgid "Open in Spotify"
+msgstr "Openen in Spotify"
+
+#: .\spotify\templates\spotify\account.html:36
+msgid "Spotify Account"
+msgstr "Spotify-Account"
+
+#: .\spotify\templates\spotify\account.html:37
+msgid "The Spotify account that you're signed in with."
+msgstr "Het Spotify-Account waarmee u bent aangemeld."
+
+#: .\spotify\templates\spotify\account.html:39
+msgid "Username:"
+msgstr "Gebruikersnaam:"
+
+#: .\spotify\templates\spotify\account.html:40
+msgid "Email:"
+msgstr "E-mail:"
+
+#: .\spotify\templates\spotify\account.html:45
+msgid "Delete Wrappify Account"
+msgstr "Wrappify-account verwijderen"
+
+#: .\spotify\templates\spotify\account.html:46
+msgid "This will permanently delete your account."
+msgstr "Hiermee wordt uw account permanent verwijderd."
+
+#: .\spotify\templates\spotify\account.html:49
+msgid "Delete Account"
+msgstr "Account verwijderen"
+
+#: .\spotify\templates\spotify\account.html:86
+msgid "Change Language"
+msgstr "Taal wijzigen"
+
+#: .\spotify\templates\spotify\account.html:90 .\spotify_wrapped\settings.py:38
+msgid "English"
+msgstr "Engels"
+
+#: .\spotify\templates\spotify\account.html:91 .\spotify_wrapped\settings.py:39
+msgid "Spanish"
+msgstr "Spaans"
+
+#: .\spotify\templates\spotify\account.html:92 .\spotify_wrapped\settings.py:41
+msgid "French"
+msgstr "Frans"
+
+#: .\spotify\templates\spotify\account.html:93 .\spotify_wrapped\settings.py:40
+msgid "Dutch"
+msgstr "Nederlands"
+
+#: .\spotify\templates\spotify\account.html:94 .\spotify_wrapped\settings.py:42
+msgid "Chinese"
+msgstr "Chinese"
+
+#: .\spotify\templates\spotify\account.html:101
+msgid "Select Theme"
+msgstr "Selecteer Thema"
+
+#: .\spotify\templates\spotify\account.html:103
+msgid "Default"
+msgstr "Standaard"
+
+#: .\spotify\templates\spotify\account.html:104
+msgid "Halloween"
+msgstr "Halloween"
+
+#: .\spotify\templates\spotify\account.html:105
+msgid "Christmas"
+msgstr "Kerstmis"
+
+#: .\spotify\templates\spotify\account.html:106
+msgid "Wicked"
+msgstr "Slecht"
+
+#: .\spotify\templates\spotify\account.html:111
+msgid "Enable Dark Mode"
+msgstr "Schakel de donkere modus in"
+
+#: .\spotify\templates\spotify\account.html:122
+#: .\spotify\templates\spotify\preference.html:21
+msgid "Back Home"
+msgstr "Terug naar huis"
+
+#: .\spotify\templates\spotify\contact.html:17
+msgid "Meet the Developers"
+msgstr "Maak kennis met de ontwikkelaars"
+
+#: .\spotify\templates\spotify\contact.html:29
+msgid ""
+"HIYO! My name is Hung and I am one of the developers of Wrappify! I hope you "
+"have had the chance to explore our website and enjoyed all it had to offer. "
+"Hopefully you didn't struggle too much with the game because I know I did "
+"even though I was the one that built it LOL. Anyways if you have any more "
+"questions feel free to ask through the link below!"
+msgstr ""
+"HIYO! Mijn naam is Hung en ik ben een van de ontwikkelaars van Wrappify! Ik "
+"hoop dat je de kans hebt gehad om onze website te verkennen en hebt genoten "
+"van alles wat het te bieden had. Hopelijk heb je niet te veel moeite gehad "
+"met het spel, want ik weet dat ik dat wel heb gehad, ook al was ik degene "
+"die het spel heeft gebouwd LOL. Hoe dan ook, als je nog meer vragen hebt, "
+"stel ze gerust via de onderstaande link!"
+
+#: .\spotify\templates\spotify\contact.html:36
+msgid ""
+"Hi! My name is Alvyn and I'm a full-stack developer for Wrappify! I focused "
+"mainly on some of the UI as well as the back-end portion of our website. I "
+"hope you enjoyed taking a look back on some of your music highlights and "
+"feel free to contact us for any feedback."
+msgstr ""
+"Hoi! Ik ben Alvyn en ik ben een full-stack developer voor Wrappify! Ik heb "
+"me vooral gericht op een deel van de UI en het back-end gedeelte van onze "
+"website. Ik hoop dat je het leuk vond om terug te kijken op een aantal van "
+"je muzikale hoogtepunten en neem gerust contact met ons op voor feedback."
+
+#: .\spotify\templates\spotify\contact.html:43
+msgid ""
+"Hello! My name is Tracy and I'm a full-stack developer for Wrappify! I "
+"worked a lot with the Spotify API and making the entire website mobile "
+"friendly. Hopefully you enjoy taking a look at your listening history!"
+msgstr ""
+"Hallo! Mijn naam is Tracy en ik ben een full-stack developer voor Wrappify! "
+"Ik heb veel gewerkt met de Spotify API en de hele website mobielvriendelijk "
+"gemaakt. Hopelijk vind je het leuk om je luistergeschiedenis te bekijken!"
+
+#: .\spotify\templates\spotify\contact.html:50
+msgid ""
+"Hi! My name is Kelly and I worked as a front-end developer for Wrappify! I "
+"hope you liked the aesthics of our website and enjoy exploring your Wrappify!"
+msgstr ""
+"Hoi! Mijn naam is Kelly en ik werkte als front-end developer voor Wrappify! "
+"Ik hoop dat je de esthetiek van onze website leuk vond en geniet van het "
+"verkennen van je Wrappify!"
+
+#: .\spotify\templates\spotify\contact.html:57
+msgid ""
+"Hi there! My name is Marc Anthony and I worked as a developer for Wrappify! "
+"I focused mainly on translation features as well as some Halloween and "
+"Christmas themes."
+msgstr ""
+"Hoi! Mijn naam is Marc Anthony en ik werkte als ontwikkelaar voor Wrappify! "
+"Ik heb me vooral gericht op vertaalfuncties en een aantal Halloween- en "
+"kerstthema's."
+
+#: .\spotify\templates\spotify\error.html:8
+#: .\spotify\templates\spotify\error.html:11
+msgid "Error"
+msgstr "Fout"
+
+#: .\spotify\templates\spotify\game.html:9
+msgid "Game"
+msgstr "Spel"
+
+#: .\spotify\templates\spotify\game.html:73
+#: .\spotify\templates\spotify\saved_wraps.html:246
+msgid "Back to Library"
+msgstr "Terug naar Bibliotheek"
+
+#: .\spotify\templates\spotify\game.html:74
+msgid "Play Again"
+msgstr "Speel opnieuw"
+
+#: .\spotify\templates\spotify\game.html:205
+msgid "Question"
+msgstr "Vraag"
+
+#: .\spotify\templates\spotify\game.html:209
+msgid "Select or use Keyboard"
+msgstr "Selecteer of gebruik Toetsenbord"
+
+#: .\spotify\templates\spotify\login.html:9
+msgid "Your Spotify Wrapped"
+msgstr "Je Spotify verpakt"
+
+#: .\spotify\templates\spotify\login.html:35
+msgid "Your Music,"
+msgstr "Jouw muziek,"
+
+#: .\spotify\templates\spotify\login.html:35
+msgid "Your Wrapped."
+msgstr "Je ingepakt."
+
+#: .\spotify\templates\spotify\login.html:37
+msgid "Tired of waiting to discover your Spotify Wrapped?"
+msgstr "Bent u het wachten beu totdat u uw Spotify Wrapped ontdekt?"
+
+#: .\spotify\templates\spotify\login.html:38
+msgid ""
+"Wrappify allows you to make your own CUSTOM Spotify Wrapped, save it, and "
+"even quiz you on it!"
+msgstr ""
+"Met Wrappify kun je je eigen AANGEPASTE Spotify Wrapped maken, deze opslaan "
+"en er zelfs quizzen over houden!"
+
+#: .\spotify\templates\spotify\login.html:39
+msgid "Connect your Spotify account to start!"
+msgstr "Maak verbinding met je Spotify-account om te beginnen!"
+
+#: .\spotify\templates\spotify\login.html:41
+msgid "Login with Spotify"
+msgstr "Log in met Spotify"
+
+#: .\spotify\templates\spotify\preference.html:9
+#: .\spotify\templates\spotify\preference.html:17
+msgid "Settings"
+msgstr "Instellingen"
+
+#: .\spotify\templates\spotify\profile.html:9
+msgid "User Profile"
+msgstr "Gebruikersprofiel"
+
+#: .\spotify\templates\spotify\profile.html:28
+msgid "Account"
+msgstr "Rekening"
+
+#: .\spotify\templates\spotify\profile.html:29
+msgid "Contact"
+msgstr "Contact"
+
+#: .\spotify\templates\spotify\profile.html:33
+msgid "Logout"
+msgstr "Uitloggen"
+
+#: .\spotify\templates\spotify\profile.html:36
+msgid "Light Mode"
+msgstr "Lichtmodus"
+
+#: .\spotify\templates\spotify\profile.html:83
+msgid "Last Month"
+msgstr "Vorige maand"
+
+#: .\spotify\templates\spotify\profile.html:86
+msgid "Last 6 Months"
+msgstr "Laatste 6 maanden"
+
+#: .\spotify\templates\spotify\profile.html:89
+msgid "All Time"
+msgstr "Altijd"
+
+#: .\spotify\templates\spotify\profile.html:96
+msgid "Explore Your Library"
+msgstr "Verken uw bibliotheek"
+
+#: .\spotify\templates\spotify\saved_wraps.html:9
+#: .\spotify\templates\spotify\wraps.html:9
+msgid "Spotify Wrapped"
+msgstr "Spotify verpakt"
+
+#: .\spotify\templates\spotify\saved_wraps.html:43
+#: .\spotify\templates\spotify\wraps.html:43
+msgid "Welcome to Your Spotify Wrapped"
+msgstr "Welkom bij je Spotify Wrapped"
+
+#: .\spotify\templates\spotify\saved_wraps.html:44
+#: .\spotify\templates\spotify\wraps.html:44
+msgid "Let’s take a look at your music habits over"
+msgstr "Laten we eens kijken naar je muziekgewoonten"
+
+#: .\spotify\templates\spotify\saved_wraps.html:74
+#: .\spotify\templates\spotify\wraps.html:74
+msgid "My Top Genres"
+msgstr "Mijn topgenres"
+
+#: .\spotify\templates\spotify\saved_wraps.html:81
+#: .\spotify\templates\spotify\wraps.html:81
+msgid "No top genres available."
+msgstr "Geen topgenres beschikbaar."
+
+#: .\spotify\templates\spotify\saved_wraps.html:99
+#: .\spotify\templates\spotify\wraps.html:99
+msgid "My Top Songs"
+msgstr "Mijn topnummers"
+
+#: .\spotify\templates\spotify\saved_wraps.html:108
+#: .\spotify\templates\spotify\wraps.html:108
+msgid "No top tracks available."
+msgstr "Geen topnummers beschikbaar."
+
+#: .\spotify\templates\spotify\saved_wraps.html:141
+#: .\spotify\templates\spotify\wraps.html:141
+msgid "HMM... Who's that special someone?"
+msgstr "HMM... Wie is die speciale persoon?"
+
+#: .\spotify\templates\spotify\saved_wraps.html:142
+#: .\spotify\templates\spotify\wraps.html:142
+msgid "Someone you just can't stop listening to..."
+msgstr "Iemand naar wie je maar niet kunt stoppen met luisteren..."
+
+#: .\spotify\templates\spotify\saved_wraps.html:157
+#: .\spotify\templates\spotify\wraps.html:157
+msgid "Your #1 Artist:"
+msgstr "Jouw #1 artiest:"
+
+#: .\spotify\templates\spotify\saved_wraps.html:159
+#: .\spotify\templates\spotify\wraps.html:159
+msgid "Genres:"
+msgstr "Genres:"
+
+#: .\spotify\templates\spotify\saved_wraps.html:160
+#: .\spotify\templates\spotify\wraps.html:160
+msgid "Popularity:"
+msgstr "Populariteit:"
+
+#: .\spotify\templates\spotify\saved_wraps.html:161
+#: .\spotify\templates\spotify\wraps.html:161
+msgid "Followers:"
+msgstr "Volgers:"
+
+#: .\spotify\templates\spotify\saved_wraps.html:163
+#: .\spotify\templates\spotify\wraps.html:163
+msgid "No top artist available"
+msgstr "Geen topartiest beschikbaar"
+
+#: .\spotify\templates\spotify\saved_wraps.html:164
+#: .\spotify\templates\spotify\wraps.html:164
+msgid ""
+"It seems like you haven't listened to enough music recently to have a top "
+"artist."
+msgstr ""
+"Het lijkt erop dat je de laatste tijd te weinig muziek hebt geluisterd om "
+"een ​​topartiest te kunnen noemen."
+
+#: .\spotify\templates\spotify\saved_wraps.html:179
+#: .\spotify\templates\spotify\wraps.html:179
+msgid "My Top Artists"
+msgstr "Mijn topartiesten"
+
+#: .\spotify\templates\spotify\saved_wraps.html:188
+#: .\spotify\templates\spotify\wraps.html:188
+msgid "No top artists available."
+msgstr "Er zijn geen topartiesten beschikbaar."
+
+#: .\spotify\templates\spotify\saved_wraps.html:248
+#: .\spotify\templates\spotify\wraps.html:251
+msgid "Exit"
+msgstr "Uitgang"
+
+#: .\spotify\templates\spotify\wraps.html:248
+msgid "Save"
+msgstr "Redden"
+
+#: .\spotify\templates\spotify\wraps_library.html:32
+msgid "My"
+msgstr "Mijn"
+
+#: .\spotify\templates\spotify\wraps_library.html:32
+msgid "Wrap"
+msgstr "Wrap"
+
+#: .\spotify\templates\spotify\wraps_library.html:33
+msgid "Duration:"
+msgstr "Duur:"
+
+#: .\spotify\templates\spotify\wraps_library.html:38
+msgid "View Wrap"
+msgstr "Bekijk Omslag"
+
+#: .\spotify\templates\spotify\wraps_library.html:41
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: .\spotify\templates\spotify\wraps_library.html:60
+msgid "Back to Profile"
+msgstr "Terug naar profiel"
+
+#: .\spotify_wrapped\urls.py:28
+msgid "admin/"
+msgstr "beheerder/"

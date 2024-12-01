@@ -7,8 +7,6 @@
   padding: 0;
 }
 
-
-/* Set body background */
 body {
   background-color: #151515;
   overflow-y: auto; /* Allow vertical scrolling */
@@ -18,7 +16,6 @@ body {
   height: 100%; /* Ensure body takes full height */
 }
 
-
 /* Header styling */
 header {
   width: 100%;
@@ -27,7 +24,7 @@ header {
   align-items: center;
   justify-content: center;
   background-color: #151515;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgb(255 255 255 / 10%);
   padding: 10px 0;
   position: fixed;
   top: 0;
@@ -78,11 +75,11 @@ header {
 }
 
 .gamepad-button {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   background-color: #EA5F21;
   color: black;
-  font-size: 24px;
+  font-size: 20px;
   border: none;
   border-radius: 8px;
   margin: 5px;
@@ -94,7 +91,7 @@ header {
 }
 
 .gamepad-button:active {
-  background-color: #F56C3C;
+  background-color: #003080;
 }
 
 /* Hide gamepad by default */
@@ -132,7 +129,7 @@ footer {
 }
 
 .back-button:hover {
-  background-color: #F56C3C;
+  background-color: #004aad;
 }
 
 .play-again-button {
@@ -147,7 +144,26 @@ footer {
 }
 
 .play-again-button:hover {
-  background-color: #F56C3C;
+  background-color: #004aad;
+}
+
+.dropdown {
+  background-color: #EA5F21;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.dropdown:hover {
+  background-color: #004aad;
+}
+
+#themeSelector {
+  font-size: 10px;
 }
 
 /* Modal styling */
@@ -184,13 +200,14 @@ footer {
   list-style-type: none;
   padding: 0;
   margin: 0 0 20px 0;
+  color: white;
 }
 
 #optionsList li {
   margin: 5px 0;
   cursor: pointer;
   padding: 8px;
-  background: #EA5F21;
+  background: #000;
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -198,7 +215,7 @@ footer {
 }
 
 #optionsList li:hover {
-  background: #666;
+  background: #e0e0e0;
 }
 
 #optionsList li .option-number {
@@ -216,7 +233,7 @@ footer {
 /* Note for users */
 #questionContent p {
   font-size: 12px;
-  color: #666;
+  color: black;
   margin-top: 10px;
 }
 
@@ -225,6 +242,7 @@ canvas {
   height: auto; /* Maintain aspect ratio */
   display: block; /* Prevent inline spacing issues */
   margin: 0 auto; /* Center canvas horizontally */
+  box-shadow: 0 4px 8px rgb(255, 255, 255);
 }
 
 
@@ -265,22 +283,10 @@ canvas {
   }
 
   .back-button,
-  .play-again-button,
-  .dropdown {
+  .play-again-button {
     font-size: 0.9rem; /* Reduce font size for buttons */
     padding: 8px 15px; /* Adjust padding */
     margin: 5px 0; /* Add space between buttons */
-  }
-
-  .dropdown {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  #themeSelector {
-    font-size: 0.8rem; /* Adjust font size for dropdown */
-    margin-top: 5px;
   }
 
   /* Modal adjustments */

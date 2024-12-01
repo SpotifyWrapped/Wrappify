@@ -1,10 +1,12 @@
+{% load i18n %}
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings</title>
+    <title>{% trans "Settings" %}</title>
     <link rel="stylesheet" href="{% static 'spotify/settings.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,11 +14,11 @@
 </head>
 <body>
     <div class = 'container'>
-        <h1 class="main-heading">Settings</h1>
+        <h1 class="main-heading">{% trans "Settings" %}</h1>
     </div>
 
     <div class="home">
-        <a href="{% url 'profile' %}" class="home-button">Back Home</a>
+        <a href="{% url 'profile' %}" class="home-button">{% trans "Back Home" %}</a>
     </div>
 </body>
 </html>
