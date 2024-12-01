@@ -81,7 +81,8 @@
         }
         </script>
 
-        <!-- Language Selection Box -->
+        <!--
+        Language Selection Box
         <div class="settings-box">
             <h2 class="settings-title">{% trans "Change Language" %}</h2>
             <form action="{% url 'set_language' %}" method="post">
@@ -95,6 +96,7 @@
                 </select>
             </form>
         </div>
+    -->
 
         <!-- <div>
             <a href="/en/spotify/account/" role="button">{% trans "English" %}</a> |
@@ -118,7 +120,7 @@
                 <span class="slider"></span>
                 <span class="dark-mode-label">{% trans "Enable Dark Mode" %}</span>
             </label>
-        </div>          
+        </div>       
         
         
 
@@ -273,10 +275,10 @@
         function populateThemeDropdown() {
             const themeDropdown = document.getElementById("theme-dropdown");
             const allThemes = {
-                default: gettext("Default"),
-                halloween: gettext("Halloween"),
-                christmas: gettext("Christmas"),
-                wicked: gettext("Wicked"),
+                default: "Default",
+                halloween: "Halloween",
+                christmas: "Christmas",
+                wicked: "Wicked",
             };
             themeDropdown.innerHTML = ""; // Clear existing options
             for (const [themeKey, themeName] of Object.entries(allThemes)) {
