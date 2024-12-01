@@ -1,5 +1,3 @@
-{% load i18n %}
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -29,16 +27,16 @@
                         {% else %}
                             <img src="path/to/default_image.jpg" alt="Default Image" class="wrap-image">
                         {% endif %}
-                        <h3>{% trans "My" %} {{ wrap.created_at|date:"F j, Y" }} {% trans "Wrap" %}</h3>
-                        <p>{% trans "Duration:" %} {{ wrap.time_range_label }}</p>
+                        <h3>My {{ wrap.created_at|date:"F j, Y" }} Wrap</h3>
+                        <p>Duration: {{ wrap.time_range_label }}</p>
                     
                         <!-- Button container for View, Delete, and Play Game buttons -->
                         <div class="button-container">
                             <!-- View Wrap button -->
-                            <button class="view-wrap-button" data-url="{% url 'wrap_detail' wrap.id %}">{% trans "View Wrap" %}</button>
+                            <button class="view-wrap-button" data-url="{% url 'wrap_detail' wrap.id %}">View Wrap</button>
                             
                             <!-- Delete button -->
-                            <button class="delete-wrap-button" data-url="{% url 'delete_wrap' wrap.id %}">{% trans "Delete" %}</button>
+                            <button class="delete-wrap-button" data-url="{% url 'delete_wrap' wrap.id %}">Delete</button>
                     
                             <!-- Play Game button as an image link -->
                             <!-- Play Game button as an image link -->
@@ -57,7 +55,7 @@
     </div>
 
     <footer>
-        <a href="{% url 'profile' %}" class="back-button">{% trans "Back to Profile" %}</a>
+        <a href="{% url 'profile' %}" class="back-button">Back to Profile</a>
     </footer>
 
     <script>
