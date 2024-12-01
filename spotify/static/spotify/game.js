@@ -792,11 +792,14 @@ decreaseTimer()
 const enableQuestionPrompt = true; // Set to `false` to disable questions and deal direct damage
 
 
-// Add this function to prompt a question when player attacks
 function promptQuestion() {
-    if (!wrapData) return;
+    if (!wrapData) {
+        console.error("wrapData is undefined or null.");
+        return;
+    }
 
-    // Define question types and select one randomly
+    console.log("wrapData:", wrapData); // Debugging
+
     const questionTypes = ["top_track", "top_genre", "top_artist"];
     const selectedQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
 
@@ -804,7 +807,6 @@ function promptQuestion() {
     let correctAnswer = "";
     let options = [];
 
-    // Generate question based on the selected type
     if (selectedQuestionType === "top_track" && wrapData.top_tracks && wrapData.top_tracks.length > 0) {
         question = "What is your top track?";
         correctAnswer = wrapData.top_tracks[0].name;
@@ -815,28 +817,25 @@ function promptQuestion() {
         options = wrapData.top_genres.map(genre => genre[0]);
     } else if (selectedQuestionType === "top_artist" && wrapData.top_artist) {
         question = "Who is your top artist?";
-        correctAnswer = wrapData.top_artist.name;
-        options = [wrapData.top_artist.name, ...wrapData.top_artists.map(artist => artist.name)];
-    // } else if (selectedQuestionType === "avg_danceability" && wrapData.avg_danceability != null) {
-    //     question = "What is your average danceability score?";
-    //     correctAnswer = wrapData.avg_danceability.toFixed(2);
-    //     options = generateOptions(wrapData.avg_danceability);
-    // } else if (selectedQuestionType === "avg_energy" && wrapData.avg_energy != null) {
-    //     question = "What is your average energy score?";
-    //     correctAnswer = wrapData.avg_energy.toFixed(2);
-    //     options = generateOptions(wrapData.avg_energy);
-    // } else if (selectedQuestionType === "avg_valence" && wrapData.avg_valence != null) {
-    //     question = "What is your average happiness (valence) score?";
-    //     correctAnswer = wrapData.avg_valence.toFixed(2);
-    //     options = generateOptions(wrapData.avg_valence);
+        correctAnswer = wrapData.top_artist.name; // Correctly extract name
+
+        // Safely generate options
+        options = wrapData.top_artists 
+            ? wrapData.top_artists.map(artist => artist.name) 
+            : [wrapData.top_artist.name];
     } else {
-        console.log("Insufficient data for generating a question.");
-        return; // Exit if data is missing
+        console.error("Insufficient data for generating a question.");
+        return;
     }
 
-    // Display the question and options in the modal
+    console.log("Selected Question Type:", selectedQuestionType);
+    console.log("Question:", question);
+    console.log("Correct Answer:", correctAnswer);
+    console.log("Options:", options);
+
     showQuestionModal(question, options, correctAnswer);
 }
+
 
 function showQuestionModal(question, options, correctAnswer) {
     const questionModal = document.getElementById('questionModal');
