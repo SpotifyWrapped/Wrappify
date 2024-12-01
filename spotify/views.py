@@ -309,24 +309,33 @@ def settings(request):
 
 @login_required
 def game(request, wrap_id):
+    # Fetch the wrap object for the given wrap_id
     wrap = get_object_or_404(SavedWrap, id=wrap_id, user=request.user)
+
+    # Ensure `top_artists` is properly deserialized if stored as JSON
+    top_artists = wrap.top_artists if wrap.top_artists else []  # Fallback to an empty list if no artists
+
     wrap_data = {
         "title": wrap.title,
         "time_range_label": wrap.time_range_label,
         "top_genres": wrap.top_genres,
         "top_tracks": wrap.top_tracks,
         "top_artist": wrap.top_artist,
+        "top_artists": top_artists,  # Add top_artists to the data passed to the frontend
         # 'avg_danceability': wrap.avg_danceability,
         # 'avg_energy': wrap.avg_energy,
         # 'avg_valence': wrap.avg_valence,
         # 'recommendations': wrap.recommendations,
     }
+
+    # Convert wrap_data to JSON format for the frontend
     wrap_data_json = json.dumps(wrap_data, cls=DjangoJSONEncoder)
     
     return render(request, 'spotify/game.html', {
         'wrap_data_json': wrap_data_json,
-        'wrap_id': wrap_id  # Pass wrap_id to template
+        'wrap_id': wrap_id  # Pass wrap_id to the template
     })
+
 
 from django.shortcuts import redirect
 
