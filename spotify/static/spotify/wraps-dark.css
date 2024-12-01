@@ -48,6 +48,7 @@
         width: 100%; /* Full width for the section */
         align-items: left; /* Align text to the left inside this section */
       }
+    
     /* Progress bars for each slide */
     .progress-bars {
     display: flex;
@@ -516,12 +517,7 @@
     
     
     
-    @media (max-width: 768px) {
-    #top-tracks li p {
-        font-size: 0.5rem; /* Optional: Adjust font size for smaller screens */
-    }
-}
-
+    
     
     
     
@@ -719,49 +715,7 @@
             transform: translateX(0);
         }
     }
-    
-    @media (max-width: 768px) {
-        ul {
-            gap: 5px; /* Reduce spacing between items */
-            padding: 0 15px; /* Add padding to avoid edges clipping */
-        }
-    
-        li {
-            flex-direction: row; /* Align items horizontally */
-            align-items: center; /* Vertically align content */
-            justify-content: space-between; /* Spread items */
-            gap: 10px; /* Add spacing between elements */
-        }
-    
-        li img {
-            width: 60px; /* Further reduce image size */
-            height: 60px;
-            flex-shrink: 0; /* Prevent shrinking */
-        }
-    
-        li strong {
-            font-size: 1rem; /* Adjust font size for numbers */
-        }
-    
-        li p {
-            font-size: 0.6rem; /* Reduce text size */
-            text-align: left; /* Left-align text */
-            flex-grow: 1; /* Allow text to grow */
-            margin-left:0px; /* Add spacing between image and text */
-            margin-top: 20px;
-        }
-    
-        h2 {
-            font-size: 1.5rem; /* Slightly smaller header for mobile */
-            margin: 20px 0; /* Adjust spacing */
-            text-align: center; /* Center header */
-        }
-    
-        .container-full {
-            padding: 20px 10px; /* Adjust container padding */
-            overflow-y: scroll; /* Allow scrolling on mobile */
-        }
-    }
+
     
     .floating-icon {
         position: absolute;
@@ -906,3 +860,75 @@
         }
     }
     
+    @media (max-width: 768px) {
+        ul {
+            gap: 5px; /* Reduce spacing between items */
+            padding: 0 15px; /* Add padding to avoid edges clipping */
+        }
+    
+        li {
+            flex-direction: row; /* Align items horizontally */
+            align-items: center; /* Vertically align content */
+            justify-content: space-between; /* Spread items */
+            gap: 10px; /* Add spacing between elements */
+        }
+    
+        li img {
+            width: 60px; /* Further reduce image size */
+            height: 60px;
+            flex-shrink: 0; /* Prevent shrinking */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform-origin: center bottom;
+        }
+
+        li img:active {
+            transform: scale(1.05); /* Slightly enlarge the image on tap */
+            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.7); /* Softer shadow */
+        }
+    
+        li strong {
+            font-size: 1rem; /* Adjust font size for numbers */
+        }
+    
+        li p {
+            font-size: 0.6rem; /* Reduce text size */
+            text-align: left; /* Left-align text */
+            flex-grow: 1; /* Allow text to grow */
+            margin-left:0px; /* Add spacing between image and text */
+            margin-top: 20px;
+        }
+    
+        h2 {
+            font-size: 1.5rem; /* Slightly smaller header for mobile */
+            margin: 20px 0; /* Adjust spacing */
+            text-align: center; /* Center header */
+        }
+    
+        .container-full {
+            padding: 20px 10px; /* Adjust container padding */
+            overflow-y: scroll; /* Allow scrolling on mobile */
+        }
+    }
+    
+
+/* Desktop-specific styles */
+@media (min-width: 769px) {
+    #top-tracks img,
+    #top-artists img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 10px;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        will-change: transform;
+        backface-visibility: hidden;
+        transform-origin: center bottom;
+    }
+
+    #top-tracks img:hover,
+    #top-artists img:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 8px white;
+    }
+}
