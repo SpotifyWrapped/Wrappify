@@ -1,10 +1,12 @@
+{% load i18n %}
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game</title>
+    <title>{% trans "Game" %}</title>
     <link id="theme-style" rel="stylesheet" href="{% static 'spotify/game-light.css' %}">
     <script src="{% static 'spotify/game.js' %}" defer></script>
 </head>
@@ -68,8 +70,8 @@
     
     <!-- Footer with Back to Library button -->
     <footer>
-        <a href="{% url 'wraps_library' %}" class="back-button">Back to Library</a>
-        <button class="play-again-button" onclick="restartGame()">Play Again</button>
+        <a href="{% url 'wraps_library' %}" class="back-button">{% trans "Back to Library" %}</a>
+        <button class="play-again-button" onclick="restartGame()">{% trans "Play Again" %}</button>
     </footer>
     
 
@@ -200,11 +202,11 @@
     <!-- Question Modal -->
     <div id="questionModal" style="display: none;">
         <div id="questionContent">
-            <h2 id="questionText">Question</h2>
+            <h2 id="questionText">{% trans "Question" %}</h2>
             <ul id="optionsList">
                 <!-- Options will be generated dynamically here -->
             </ul>
-            <p style="font-size: 12px; margin-top: 10px;">Select or use Keyboard</p>
+            <p style="font-size: 12px; margin-top: 10px;">{% trans "Select or use Keyboard" %}</p>
         </div>
     </div>
 

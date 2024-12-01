@@ -1,14 +1,27 @@
+{% load i18n %}
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Spotify Wrapped</title>
+    <title>{% trans "Your Spotify Wrapped" %}</title>
     <link id="theme-style" rel="stylesheet" href="{% static 'spotify/login-light.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentDate = new Date();
+            const themeCSS = document.getElementById('theme-css');
+            if (currentDate.getMonth() === 9 && currentDate.getDate() === 31) { // Halloween
+                themeCSS.href = "{% static 'spotify/halloween.css' %}";
+            } else if (currentDate.getMonth() === 11 && currentDate.getDate() === 25) { // Christmas
+                themeCSS.href = "{% static 'spotify/christmas.css' %}";
+            }
+        });
+    </script>
 </head>
 <body data-page="login">
     <div class="jagged-shape1"></div>
@@ -19,13 +32,13 @@
         <!-- Left Content -->
         <div class="content-left">
             <img src="{% static 'spotify/images/logo.png' %}" alt="Logo" class="logo">
-            <h1 class="main-heading">Your Music,<br>Your Wrapped.</h1>
+            <h1 class="main-heading">{% trans "Your Music," %}<br>{% trans "Your Wrapped." %}</h1>
             <p class="description">
-                Tired of waiting to discover your Spotify Wrapped? <br>
-                Wrappify allows you to make your own CUSTOM Spotify Wrapped, save it, and even quiz you on it!
-                <br>Connect your Spotify account to start!
+                {% trans "Tired of waiting to discover your Spotify Wrapped?" %}" <br>
+                {% trans "Wrappify allows you to make your own CUSTOM Spotify Wrapped, save it, and even quiz you on it!" %}
+                <br>{% trans "Connect your Spotify account to start!" %}
             </p>
-            <a href="{% url 'redirect' %}" class="connect-button">Login with Spotify</a>
+            <a href="{% url 'redirect' %}" class="connect-button">{% trans "Login with Spotify" %}</a>
         </div>
 
         <!-- Right Image -->
