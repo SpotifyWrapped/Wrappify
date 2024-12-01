@@ -16,7 +16,7 @@
     font-family: "Roboto", serif;
     font-weight: 400;
     font-style: normal;
-    background-color: #F4F9F4; /* Light snowy background */
+    background: url("/static/images/Christmas_background.png"); /* Light snowy background */
     overflow-x: hidden;
   }
   
