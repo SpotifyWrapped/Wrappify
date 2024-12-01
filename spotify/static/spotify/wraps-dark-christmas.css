@@ -75,7 +75,7 @@ body {
 }
 
 .progress-bar.active {
-    background-color: #FF6347; /* Festive red for active state */
+    background-color: #8B0000; /* Festive red for active state */
 }
 
 /* Slide Styles */
@@ -94,7 +94,7 @@ img {
     height: 100px;
     margin-bottom: 10px;
     border-radius: 50%;
-    border: 2px solid #FF6347; /* Festive red border */
+    border: 2px solid #8B0000; /* Festive red border */
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* Add a glowing shadow */
 }
 
@@ -104,7 +104,7 @@ h2 {
     text-align: center;
     margin-bottom: 30px;
     font-size: 50px;
-    color: #FF6347; /* Bright red for headings */
+    color: #8B0000; /* Bright red for headings */
     text-shadow: 3px 3px 5px #0D1B2A; /* Subtle snowy glow effect */
 }
 
@@ -120,7 +120,7 @@ audio {
     margin-top: 10px;
     background-color: #2C2C54; /* Deep dark blue */
     border-radius: 5px;
-    border: 1px solid #FF6347; /* Festive red border */
+    border: 1px solid #8B0000; /* Festive red border */
     padding: 5px;
 }
 
@@ -175,13 +175,13 @@ h2::after {
     margin: 0 auto;
     z-index: 1;
     color: #D4E6F1; /* Light icy blue text for contrast */
-    text-shadow: 2px 2px 4px #FF6347; /* Subtle red glow for warmth */
+    text-shadow: 2px 2px 4px #8B0000; /* Subtle red glow for warmth */
 }
 
 /* Top Artist Deep Dive */
 #top-artist-deep-dive h2 {
     margin-bottom: 50px;
-    color: #FF6347; /* Bright festive red */
+    color: #8B0000; /* Bright festive red */
     text-shadow: 2px 2px 4px #1A1A2E; /* Subtle shadow for depth */
 }
 
@@ -189,7 +189,7 @@ h2::after {
     width: 200px;
     height: 200px;
     margin-bottom: 40px;
-    border: 2px solid #FF6347; /* Red border for images */
+    border: 2px solid #8B0000; /* Red border for images */
     border-radius: 50%;
     box-shadow: 0 0 15px rgba(255, 99, 71, 0.7); /* Glowing shadow for festive effect */
 }
@@ -206,7 +206,7 @@ h2::after {
 /* Strong Text in Lists */
 #top-artists li strong, #top-tracks li strong {
     margin-right: 15px;
-    color: #FF6347; /* Festive red for emphasis */
+    color: #8B0000; /* Festive red for emphasis */
 }
 
 /* Main Shapes */
@@ -219,7 +219,7 @@ h2::after {
 
 .jagged-shape1 {
     height: 30vh;
-    background-color: #FF6347; /* Bright festive red */
+    background-color: #8B0000; /* Bright festive red */
     clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
     z-index: 0;
 }
@@ -260,7 +260,7 @@ h2::after {
     left: 0;
     width: 40%;
     height: 50vh;
-    background-color: #FF6347; /* Bright festive red */
+    background-color: #7d0202; /* Bright festive red */
     z-index: 0;
     clip-path: polygon(0 0, 76% 0, 78% 10%, 52% 24%, 61% 60%, 0 72%, 0% 70%, 0% 30%);
 }
