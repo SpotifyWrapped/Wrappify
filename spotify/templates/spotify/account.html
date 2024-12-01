@@ -289,60 +289,51 @@
             }
         }
     
-        // Apply theme dynamically
         function applyTheme(theme, mode) {
             const currentPage = document.body.dataset.page;
             const themeKey = theme || "default";
             const modeKey = mode === "dark" ? "dark" : "light";
-    
+
             if (currentPage && themePaths[currentPage] && themePaths[currentPage][themeKey]) {
                 const themeStyle = document.getElementById("theme-style");
                 themeStyle.setAttribute("href", themePaths[currentPage][themeKey][modeKey]);
             }
-    
-            const darkModeText = document.getElementById("dark-mode-text");
-            const darkModeIcon = document.getElementById("dark-mode-icon");
-            if (darkModeText) darkModeText.textContent = mode === "dark" ? "Dark Mode" : "Light Mode";
-            if (darkModeIcon) darkModeIcon.src = mode === "dark"
-                ? "{% static 'images/lightmode.png' %}"
-                : "{% static 'images/darkmode.png' %}";
-    
+
+            // Update local storage
             localStorage.setItem("theme", themeKey);
             localStorage.setItem("mode", modeKey);
         }
-    
+
         function initializeTheme() {
             const themeDropdown = document.getElementById("theme-dropdown");
             const darkModeToggle = document.getElementById("dark-mode-toggle");
-    
+
             const savedTheme = localStorage.getItem("theme") || "default";
             const savedMode = localStorage.getItem("mode") || "light";
-    
+
             if (themeDropdown) {
                 populateThemeDropdown();
                 themeDropdown.value = savedTheme;
                 themeDropdown.addEventListener("change", () => {
-                    applyTheme(themeDropdown.value, darkModeToggle.checked ? "dark" : "light");
+                    const currentMode = darkModeToggle.checked ? "dark" : "light";
+                    applyTheme(themeDropdown.value, currentMode);
                 });
             }
-    
+
             if (darkModeToggle) {
                 darkModeToggle.checked = savedMode === "dark";
                 darkModeToggle.addEventListener("change", () => {
-                    applyTheme(savedTheme, darkModeToggle.checked ? "dark" : "light");
+                    const currentTheme = themeDropdown.value;
+                    applyTheme(currentTheme, darkModeToggle.checked ? "dark" : "light");
                 });
             }
-    
+
+            // Apply the saved theme and mode
             applyTheme(savedTheme, savedMode);
-    
-            window.addEventListener("storage", () => {
-                const updatedTheme = localStorage.getItem("theme") || "default";
-                const updatedMode = localStorage.getItem("mode") || "light";
-                applyTheme(updatedTheme, updatedMode);
-            });
         }
-    
+
         initializeTheme();
+
     </script>    
     
     
