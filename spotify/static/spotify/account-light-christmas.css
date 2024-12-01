@@ -1,0 +1,285 @@
+/* Body and Background */
+body {
+    margin: 0;
+    font-family: "Roboto", serif;
+    background-color: #D32F2F; /* Christmas red */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #FFF; /* Light text for contrast */
+  }
+  
+  /* Logo */
+  .logo {
+    width: 100px;
+    height: auto;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-99%);
+    z-index: 10;
+  }
+  
+  /* Top Section */
+  .top-section {
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #388E3C; /* Christmas green */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Profile Image */
+  .profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #FFEB3B; /* Festive gold */
+  }
+  
+  /* Content */
+  .content {
+    flex: 1;
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+  }
+  
+  /* Username */
+  .username {
+    color: #FFEB3B; /* Festive gold */
+    font-size: 36px;
+    font-weight: bold;
+    margin: 10px 0;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+  }
+  
+  /* Spotify Link */
+  .spotify-link {
+    color: #FFEB3B; /* Festive gold */
+    text-decoration: none;
+    font-weight: bold;
+    font-family: "Roboto", serif;
+    font-size: 14px;
+  }
+  
+  /* Home Button */
+  .home {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 1000;
+  }
+  
+  .home-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #388E3C; /* Christmas green */
+    color: #FFF;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .home-button:hover {
+    background-color: #2E7D32; /* Darker green for hover effect */
+  }
+  
+  /* Spotify Account Section */
+  .spotify-account,
+  .delete-account,
+  .settings-box {
+    background-color: #D32F2F; /* Christmas red */
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    font-family: "Roboto", sans-serif;
+    max-width: 90%; /* Shrink content for smaller screens */
+  }
+  
+  /* Titles */
+  .account-title,
+  .delete-title,
+  .settings-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #FFEB3B; /* Festive gold for headings */
+  }
+  
+  /* Descriptions */
+  .account-description,
+  .delete-description {
+    font-size: 12px;
+    margin-bottom: 15px;
+  }
+  
+  /* Field Values */
+  .field-title {
+    font-weight: bold;
+    color: #FFEB3B;
+  }
+  
+  .field-value {
+    font-weight: normal;
+    color: #FFF;
+    margin-left: 5px;
+  }
+  
+  /* Delete Button */
+  .delete-button {
+    padding: 8px 15px;
+    background-color: #C62828; /* Dark red */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .delete-button:hover {
+    background-color: #B71C1C; /* Slightly darker red for hover */
+  }
+  
+  /* Settings Box (Theme and Language Sections) */
+  .settings-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Add spacing between elements */
+    align-items: stretch;
+  }
+  
+  /* Theme Dropdown */
+  #theme-dropdown, #language {
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    padding: 5px;
+    cursor: pointer;
+    background-color: #FFEB3B; /* Festive gold */
+    color: #D32F2F; /* Christmas red for text */
+  }
+  
+  /* Dark Mode Toggle */
+  label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Styling for the Dark Mode Toggle */
+  .dark-mode-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    position: relative;
+    margin-top: 5px;
+    margin-left: -15px;
+  }
+  
+  /* Hide the default checkbox */
+  .dark-mode-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* Slider (track) styling */
+  .slider {
+    position: relative;
+    width: 40px;
+    height: 20px;
+    background-color: #FFF; /* Neutral slider background */
+    border-radius: 20px;
+    transition: 0.4s;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Circle (thumb) styling */
+  .slider:before {
+    content: "";
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #FFF;
+    border-radius: 50%; /* Circle thumb */
+    transition: 0.4s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Checked state: toggle moves and changes color */
+  input:checked + .slider {
+    background-color: #C62828; /* Dark red for active state */
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(20px); /* Move circle to the right */
+  }
+  
+  /* Footer styling */
+  footer {
+    width: 100%;
+    background-color: #388E3C; /* Christmas green */
+    text-align: center;
+    padding: 10px 0;
+    font-size: 12px;
+    color: #FFEB3B; /* Festive gold text */
+  }
+  
+  /* Mobile Adjustments */
+  @media (max-width: 768px) {
+    .logo {
+      width: 70px;
+    }
+  
+    .top-section {
+      height: 15vh;
+    }
+  
+    .profile-image {
+      width: 80px;
+      height: 80px;
+    }
+  
+    .username {
+      font-size: 24px;
+    }
+  
+    .spotify-account,
+    .delete-account,
+    .settings-box {
+      padding: 10px;
+    }
+  
+    .account-title,
+    .delete-title,
+    .settings-title {
+      font-size: 16px;
+    }
+  
+    .delete-button {
+      font-size: 10px;
+    }
+  
+    #theme-dropdown, #language {
+      font-size: 12px;
+    }
+  
+    footer {
+      font-size: 10px;
+    }
+  }

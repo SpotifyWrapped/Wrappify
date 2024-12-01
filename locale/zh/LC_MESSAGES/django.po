@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-30 23:06-0500\n"
+"POT-Creation-Date: 2024-12-01 03:09-0500\n"
 "PO-Revision-Date: 2024-11-30 23:47-0500\n"
 "Last-Translator: marineranger  <mabanda229@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,57 +55,54 @@ msgstr "删除帐户"
 msgid "Change Language"
 msgstr "更改语言"
 
-#: .\spotify\templates\spotify\account.html:90
-#: .\spotify\templates\spotify\account.html:101
-#: .\spotify_wrapped\settings.py:38
+#: .\spotify\templates\spotify\account.html:90 .\spotify_wrapped\settings.py:38
 msgid "English"
 msgstr "英语"
 
-#: .\spotify\templates\spotify\account.html:91
-#: .\spotify\templates\spotify\account.html:102
-#: .\spotify_wrapped\settings.py:39
+#: .\spotify\templates\spotify\account.html:91 .\spotify_wrapped\settings.py:39
 msgid "Spanish"
 msgstr "西班牙语"
 
-#: .\spotify\templates\spotify\account.html:92
-#: .\spotify_wrapped\settings.py:41
+#: .\spotify\templates\spotify\account.html:92 .\spotify_wrapped\settings.py:41
 msgid "French"
 msgstr "法语"
 
-#: .\spotify\templates\spotify\account.html:93
-#: .\spotify\templates\spotify\account.html:103
-#: .\spotify_wrapped\settings.py:40
+#: .\spotify\templates\spotify\account.html:93 .\spotify_wrapped\settings.py:40
 msgid "Dutch"
 msgstr "荷兰语"
 
-#: .\spotify\templates\spotify\account.html:94
-#: .\spotify_wrapped\settings.py:42
+#: .\spotify\templates\spotify\account.html:94 .\spotify_wrapped\settings.py:42
 msgid "Chinese"
 msgstr "中国人"
 
-#: .\spotify\templates\spotify\account.html:108
+#: .\spotify\templates\spotify\account.html:101
 msgid "Select Theme"
 msgstr "选择主题"
 
-#: .\spotify\templates\spotify\account.html:110
+#: .\spotify\templates\spotify\account.html:103
 msgid "Default"
 msgstr "默认"
 
-#: .\spotify\templates\spotify\account.html:111
+#: .\spotify\templates\spotify\account.html:104
 msgid "Halloween"
 msgstr "万圣节"
 
-#: .\spotify\templates\spotify\account.html:112
+#: .\spotify\templates\spotify\account.html:105
 msgid "Christmas"
 msgstr "圣诞节"
 
-#: .\spotify\templates\spotify\account.html:113
+#: .\spotify\templates\spotify\account.html:106
 msgid "Wicked"
 msgstr "邪恶"
 
-#: .\spotify\templates\spotify\account.html:118
+#: .\spotify\templates\spotify\account.html:111
 msgid "Enable Dark Mode"
 msgstr "启用深色模式"
+
+#: .\spotify\templates\spotify\account.html:122
+#: .\spotify\templates\spotify\preference.html:21
+msgid "Back Home"
+msgstr "返回首页"
 
 #: .\spotify\templates\spotify\contact.html:17
 msgid "Meet the Developers"
@@ -113,15 +110,16 @@ msgstr "与开发人员见面"
 
 #: .\spotify\templates\spotify\contact.html:29
 msgid ""
-"HIYO! My name is Hung and I am one of the developers of Wrappify! I hope you"
-" have had the chance to explore our website and enjoyed all it had to offer."
-" Hopefully you didn't struggle too much with the game because I know I did "
+"HIYO! My name is Hung and I am one of the developers of Wrappify! I hope you "
+"have had the chance to explore our website and enjoyed all it had to offer. "
+"Hopefully you didn't struggle too much with the game because I know I did "
 "even though I was the one that built it LOL. Anyways if you have any more "
 "questions feel free to ask through the link below!"
 msgstr ""
-"嗨哟！我叫 Hung，是 Wrappify "
-"的开发人员之一！希望您有机会浏览我们的网站并享受它所提供的一切。希望您在玩这个游戏时没有遇到太多困难，因为我知道我遇到了，尽管我是这个游戏的开发者 "
-"LOL。无论如何，如果您还有其他问题，请随时通过以下链接提问！"
+"嗨哟！我叫 Hung，是 Wrappify 的开发人员之一！希望您有机会浏览我们的网站并享受"
+"它所提供的一切。希望您在玩这个游戏时没有遇到太多困难，因为我知道我遇到了，尽"
+"管我是这个游戏的开发者 LOL。无论如何，如果您还有其他问题，请随时通过以下链接"
+"提问！"
 
 #: .\spotify\templates\spotify\contact.html:36
 msgid ""
@@ -139,22 +137,25 @@ msgid ""
 "worked a lot with the Spotify API and making the entire website mobile "
 "friendly. Hopefully you enjoy taking a look at your listening history!"
 msgstr ""
-"您好！我叫 Tracy，是 Wrappify 的全栈开发人员！我使用 Spotify API "
-"做了很多工作，并使整个网站适合移动设备。希望您喜欢查看您的收听历史记录！"
+"您好！我叫 Tracy，是 Wrappify 的全栈开发人员！我使用 Spotify API 做了很多工"
+"作，并使整个网站适合移动设备。希望您喜欢查看您的收听历史记录！"
 
 #: .\spotify\templates\spotify\contact.html:50
 msgid ""
 "Hi! My name is Kelly and I worked as a front-end developer for Wrappify! I "
-"hope you liked the aesthics of our website and enjoy exploring your "
-"Wrappify!"
-msgstr "嗨！我叫 Kelly，是 Wrappify 的前端开发人员！希望您喜欢我们网站的美感，并享受探索 Wrappify 的乐趣！"
+"hope you liked the aesthics of our website and enjoy exploring your Wrappify!"
+msgstr ""
+"嗨！我叫 Kelly，是 Wrappify 的前端开发人员！希望您喜欢我们网站的美感，并享受"
+"探索 Wrappify 的乐趣！"
 
 #: .\spotify\templates\spotify\contact.html:57
 msgid ""
 "Hi there! My name is Marc Anthony and I worked as a developer for Wrappify! "
 "I focused mainly on translation features as well as some Halloween and "
 "Christmas themes."
-msgstr "大家好！我叫 Marc Anthony，是 Wrappify 的一名开发人员！我主要负责翻译功能以及一些万圣节和圣诞节主题。"
+msgstr ""
+"大家好！我叫 Marc Anthony，是 Wrappify 的一名开发人员！我主要负责翻译功能以及"
+"一些万圣节和圣诞节主题。"
 
 #: .\spotify\templates\spotify\error.html:8
 #: .\spotify\templates\spotify\error.html:11
@@ -202,7 +203,8 @@ msgstr "厌倦了等待发现您的 Spotify Wrapped 吗？"
 msgid ""
 "Wrappify allows you to make your own CUSTOM Spotify Wrapped, save it, and "
 "even quiz you on it!"
-msgstr "Wrappify 允许您制作自己的自定义 Spotify Wrapped、保存它，甚至对其进行测验！"
+msgstr ""
+"Wrappify 允许您制作自己的自定义 Spotify Wrapped、保存它，甚至对其进行测验！"
 
 #: .\spotify\templates\spotify\login.html:39
 msgid "Connect your Spotify account to start!"
@@ -216,10 +218,6 @@ msgstr "使用 Spotify 登录"
 #: .\spotify\templates\spotify\preference.html:17
 msgid "Settings"
 msgstr "设置"
-
-#: .\spotify\templates\spotify\preference.html:21
-msgid "Back Home"
-msgstr "返回首页"
 
 #: .\spotify\templates\spotify\profile.html:9
 msgid "User Profile"
@@ -377,6 +375,6 @@ msgstr "删除"
 msgid "Back to Profile"
 msgstr "返回个人资料"
 
-#: .\spotify_wrapped\urls.py:24
+#: .\spotify_wrapped\urls.py:28
 msgid "admin/"
 msgstr "行政/"

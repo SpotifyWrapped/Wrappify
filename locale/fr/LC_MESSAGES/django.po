@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-30 23:06-0500\n"
+"POT-Creation-Date: 2024-12-01 03:09-0500\n"
 "PO-Revision-Date: 2024-11-30 23:27-0500\n"
 "Last-Translator: marineranger  <mabanda229@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,57 +56,54 @@ msgstr "Supprimer le compte"
 msgid "Change Language"
 msgstr "Changer de langue"
 
-#: .\spotify\templates\spotify\account.html:90
-#: .\spotify\templates\spotify\account.html:101
-#: .\spotify_wrapped\settings.py:38
+#: .\spotify\templates\spotify\account.html:90 .\spotify_wrapped\settings.py:38
 msgid "English"
 msgstr "Anglais"
 
-#: .\spotify\templates\spotify\account.html:91
-#: .\spotify\templates\spotify\account.html:102
-#: .\spotify_wrapped\settings.py:39
+#: .\spotify\templates\spotify\account.html:91 .\spotify_wrapped\settings.py:39
 msgid "Spanish"
 msgstr "Espagnol"
 
-#: .\spotify\templates\spotify\account.html:92
-#: .\spotify_wrapped\settings.py:41
+#: .\spotify\templates\spotify\account.html:92 .\spotify_wrapped\settings.py:41
 msgid "French"
 msgstr "Français"
 
-#: .\spotify\templates\spotify\account.html:93
-#: .\spotify\templates\spotify\account.html:103
-#: .\spotify_wrapped\settings.py:40
+#: .\spotify\templates\spotify\account.html:93 .\spotify_wrapped\settings.py:40
 msgid "Dutch"
 msgstr "Néerlandais"
 
-#: .\spotify\templates\spotify\account.html:94
-#: .\spotify_wrapped\settings.py:42
+#: .\spotify\templates\spotify\account.html:94 .\spotify_wrapped\settings.py:42
 msgid "Chinese"
 msgstr "Chinois"
 
-#: .\spotify\templates\spotify\account.html:108
+#: .\spotify\templates\spotify\account.html:101
 msgid "Select Theme"
 msgstr "Sélectionnez un thème"
 
-#: .\spotify\templates\spotify\account.html:110
+#: .\spotify\templates\spotify\account.html:103
 msgid "Default"
 msgstr "Défaut"
 
-#: .\spotify\templates\spotify\account.html:111
+#: .\spotify\templates\spotify\account.html:104
 msgid "Halloween"
 msgstr "Halloween"
 
-#: .\spotify\templates\spotify\account.html:112
+#: .\spotify\templates\spotify\account.html:105
 msgid "Christmas"
 msgstr "Noël"
 
-#: .\spotify\templates\spotify\account.html:113
+#: .\spotify\templates\spotify\account.html:106
 msgid "Wicked"
 msgstr "Méchant"
 
-#: .\spotify\templates\spotify\account.html:118
+#: .\spotify\templates\spotify\account.html:111
 msgid "Enable Dark Mode"
 msgstr "Activer le mode sombre"
+
+#: .\spotify\templates\spotify\account.html:122
+#: .\spotify\templates\spotify\preference.html:21
+msgid "Back Home"
+msgstr "Retour à la maison"
 
 #: .\spotify\templates\spotify\contact.html:17
 msgid "Meet the Developers"
@@ -114,9 +111,9 @@ msgstr "Rencontrez les développeurs"
 
 #: .\spotify\templates\spotify\contact.html:29
 msgid ""
-"HIYO! My name is Hung and I am one of the developers of Wrappify! I hope you"
-" have had the chance to explore our website and enjoyed all it had to offer."
-" Hopefully you didn't struggle too much with the game because I know I did "
+"HIYO! My name is Hung and I am one of the developers of Wrappify! I hope you "
+"have had the chance to explore our website and enjoyed all it had to offer. "
+"Hopefully you didn't struggle too much with the game because I know I did "
 "even though I was the one that built it LOL. Anyways if you have any more "
 "questions feel free to ask through the link below!"
 msgstr ""
@@ -134,11 +131,11 @@ msgid ""
 "hope you enjoyed taking a look back on some of your music highlights and "
 "feel free to contact us for any feedback."
 msgstr ""
-"Bonjour ! Je m'appelle Alvyn et je suis développeur full-stack pour Wrappify"
-" ! Je me suis principalement concentré sur une partie de l'interface "
-"utilisateur ainsi que sur la partie back-end de notre site Web. J'espère que"
-" vous avez apprécié de jeter un œil à certains de vos moments forts musicaux"
-" et n'hésitez pas à nous contacter pour tout commentaire."
+"Bonjour ! Je m'appelle Alvyn et je suis développeur full-stack pour "
+"Wrappify ! Je me suis principalement concentré sur une partie de l'interface "
+"utilisateur ainsi que sur la partie back-end de notre site Web. J'espère que "
+"vous avez apprécié de jeter un œil à certains de vos moments forts musicaux "
+"et n'hésitez pas à nous contacter pour tout commentaire."
 
 #: .\spotify\templates\spotify\contact.html:43
 msgid ""
@@ -146,16 +143,15 @@ msgid ""
 "worked a lot with the Spotify API and making the entire website mobile "
 "friendly. Hopefully you enjoy taking a look at your listening history!"
 msgstr ""
-"Bonjour ! Je m'appelle Tracy et je suis développeur full-stack pour Wrappify"
-" ! J'ai beaucoup travaillé avec l'API Spotify et j'ai rendu l'ensemble du "
-"site Web compatible avec les appareils mobiles. J'espère que vous "
-"apprécierez de jeter un œil à votre historique d'écoute !"
+"Bonjour ! Je m'appelle Tracy et je suis développeur full-stack pour "
+"Wrappify ! J'ai beaucoup travaillé avec l'API Spotify et j'ai rendu "
+"l'ensemble du site Web compatible avec les appareils mobiles. J'espère que "
+"vous apprécierez de jeter un œil à votre historique d'écoute !"
 
 #: .\spotify\templates\spotify\contact.html:50
 msgid ""
 "Hi! My name is Kelly and I worked as a front-end developer for Wrappify! I "
-"hope you liked the aesthics of our website and enjoy exploring your "
-"Wrappify!"
+"hope you liked the aesthics of our website and enjoy exploring your Wrappify!"
 msgstr ""
 "Bonjour ! Je m'appelle Kelly et j'ai travaillé comme développeur front-end "
 "pour Wrappify ! J'espère que vous avez apprécié l'esthétique de notre site "
@@ -233,10 +229,6 @@ msgstr "Connectez-vous avec Spotify"
 #: .\spotify\templates\spotify\preference.html:17
 msgid "Settings"
 msgstr "Paramètres"
-
-#: .\spotify\templates\spotify\preference.html:21
-msgid "Back Home"
-msgstr "Retour à la maison"
 
 #: .\spotify\templates\spotify\profile.html:9
 msgid "User Profile"
@@ -396,6 +388,6 @@ msgstr "Supprimer"
 msgid "Back to Profile"
 msgstr "Retour au profil"
 
-#: .\spotify_wrapped\urls.py:24
+#: .\spotify_wrapped\urls.py:28
 msgid "admin/"
 msgstr "administrateur/"

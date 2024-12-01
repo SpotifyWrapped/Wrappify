@@ -1,0 +1,191 @@
+/* Reset styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #1A1A1A; /* Dark background for a moody theme */
+    color: #EAEAEA; /* Light text for contrast */
+    height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scrolling due to shapes */
+    position: relative; /* Enable absolute positioning for shapes */
+  }
+  
+  /* Main Shapes and Outlines */
+  .jagged-shape1, .jagged-outline1, .jagged-shape2, .jagged-outline2 {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+  
+  .jagged-outline1 {
+    height: 26.5vh;
+    background-color: #8B0000; /* Dark red outline */
+    clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
+    z-index: 0;
+  }
+  
+  .jagged-shape1 {
+    height: 26vh;
+    background-color: #004D25; /* Deep evergreen */
+    clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
+    z-index: 1;
+  }
+  
+  .jagged-outline2 {
+    height: 15.5vh;
+    background-color: #8B0000; /* Dark red outline */
+    clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
+    z-index: 1;
+  }
+  
+  .jagged-shape2 {
+    height: 15vh;
+    background-color: #2F4F4F; /* Dark slate green */
+    clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
+    z-index: 2;
+  }
+  
+  /* Main container */
+  .container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 80vh;
+    z-index: 3;
+    position: relative;
+    align-items: center;
+  }
+  
+  /* Left content */
+  .content-left {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .logo {
+    width: 400px;
+    margin-bottom: -150px;
+  }
+  
+  .main-heading {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #FF4500; /* Bright festive red */
+  }
+  
+  .description {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #B0E0E6; /* Pale blue for a frosty feel */
+    line-height: 1.5;
+  }
+  
+  .connect-button {
+    padding: 12px 30px;
+    background-color: #FF4500; /* Festive red */
+    color: #1A1A1A; /* Dark text for contrast */
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .connect-button:hover {
+    background-color: #D52B1E; /* Darker red for hover */
+  }
+  
+  /* Right content */
+  .content-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .phone-image {
+    max-width: 500px;
+    height: auto;
+    margin-top: 80px;
+  }
+  
+  /* Media Queries for Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      height: auto;
+    }
+  
+    .content-left {
+      text-align: center;
+      padding: 20px;
+    }
+  
+    .main-heading {
+      font-size: 2rem;
+      margin-top: -60px;
+    }
+  
+    .description {
+      font-size: 1rem;
+    }
+  
+    .connect-button {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+    }
+  
+    .content-right {
+      justify-content: center;
+      margin-top: 20px;
+    }
+  
+    .logo {
+      width: 300px;
+      margin-bottom: -20px;
+      margin-top: -40px;
+    }
+  
+    .phone-image {
+      max-width: 80%;
+      margin-top: -10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .main-heading {
+      font-size: 1.8rem;
+    }
+  
+    .description {
+      font-size: 0.9rem;
+    }
+  
+    .connect-button {
+      padding: 8px 15px;
+      font-size: 0.8rem;
+    }
+  
+    .phone-image {
+      max-width: 70%;
+    }
+  
+    .jagged-shape1 {
+      height: 12vh;
+    }
+  
+    .jagged-outline1 {
+      height: 12.5vh;
+    }
+  
+    .jagged-shape2 {
+      height: 6vh;
+    }
+  
+    .jagged-outline2 {
+      height: 6.5vh;
+    }
+  }

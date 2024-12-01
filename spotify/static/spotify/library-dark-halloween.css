@@ -1,0 +1,228 @@
+/* library-dark-halloween.css */
+
+/* General Body Styling */
+body {
+    background-color: #0D0D1A; /* Deep black-purple for a darker Halloween vibe */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #D9D9D9; /* Dim white text for contrast */
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    padding: 0 30px;
+    background-color: #1A1A2B; /* Darker grey-purple header */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
+    box-sizing: border-box;
+}
+
+.logo {
+    max-height: 300%;
+    width: auto;
+    height: 300px;
+    justify-content: center;
+    filter: drop-shadow(0 0 15px #FF4500); /* Stronger fiery orange glow */
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.wrap-card {
+    background-color: #1A1A2B; /* Darker grey-purple */
+    border: 1px solid #FF4500; /* Fiery orange border */
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
+    border-radius: 8px;
+    flex: 1 1 calc(33.333% - 20px); /* Three cards per row */
+    max-width: calc(33.333% - 20px);
+    box-sizing: border-box;
+    color: #E5E5E5; /* Softer white text */
+}
+
+.wrap-card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 1); /* Stronger shadow on hover */
+}
+
+.wrap-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border: 2px solid #FF4500; /* Fiery orange border */
+}
+
+.wrap-card h3,
+.wrap-card p {
+    margin: 10px 0;
+}
+
+.view-wrap-button,
+.delete-wrap-button {
+    background-color: #FF4500; /* Fiery orange */
+    border: none;
+    height: 20px;
+    border-radius: 4px;
+    color: #0D0D1A; /* Dark black-purple for contrast */
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.delete-wrap-button {
+    background-color: #6B0000; /* Blood red */
+}
+
+.view-wrap-button:hover {
+    background-color: #FF6347; /* Lighter orange on hover */
+    color: #0D0D1A;
+}
+
+.delete-wrap-button:hover {
+    background-color: #8B0000; /* Darker blood red */
+    color: #FFF;
+}
+
+/* Container for aligning the buttons and the game image */
+.button-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Styling for the game button image */
+.game-button-image {
+    width: 50px !important;
+    height: 50px !important;
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
+    vertical-align: middle;
+    margin-top: 10px;
+    border: 2px solid #FF4500; /* Fiery orange border */
+    border-radius: 50%; /* Round like a Halloween pumpkin */
+}
+
+/* Hover effect for the game button image */
+.game-button-image:hover {
+    transform: scale(1.1);
+    filter: brightness(1.3); /* Stronger glow on hover */
+}
+
+/* Footer styling */
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background-color: #1A1A2B; /* Darker grey-purple footer */
+    color: #FF4500; /* Fiery orange text */
+}
+
+/* Back button styling */
+.back-button {
+    background-color: #6B0000; /* Blood red */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    background-color: #8B0000; /* Darker blood red */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .card-container {
+        flex-direction: column; /* Stack cards vertically */
+        align-items: center;
+        gap: 15px; /* Reduce spacing between cards */
+    }
+
+    .wrap-card {
+        flex: 1 1 100%; /* Full width on small screens */
+        max-width: 100%;
+    }
+
+    .header {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        padding: 10px 20px;
+    }
+
+    .logo {
+        max-height: 300px;
+        height: auto;
+        margin-top: -70px;
+        margin-bottom: -50px;
+    }
+
+    .button-container {
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .wrap-card {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+
+    .wrap-card h3 {
+        font-size: 1rem;
+    }
+
+    .wrap-card p {
+        font-size: 0.8rem;
+    }
+
+    .view-wrap-button,
+    .delete-wrap-button {
+        padding: 5px 8px;
+        font-size: 0.8rem;
+    }
+
+    .game-button-image {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .button-container {
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    footer {
+        padding: 15px 0;
+    }
+
+    .back-button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}

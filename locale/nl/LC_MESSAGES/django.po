@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-30 23:05-0500\n"
+"POT-Creation-Date: 2024-12-01 03:09-0500\n"
 "PO-Revision-Date: 2024-11-30 23:18-0500\n"
 "Last-Translator: marineranger  <mabanda229@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,57 +56,54 @@ msgstr "Account verwijderen"
 msgid "Change Language"
 msgstr "Taal wijzigen"
 
-#: .\spotify\templates\spotify\account.html:90
-#: .\spotify\templates\spotify\account.html:101
-#: .\spotify_wrapped\settings.py:38
+#: .\spotify\templates\spotify\account.html:90 .\spotify_wrapped\settings.py:38
 msgid "English"
 msgstr "Engels"
 
-#: .\spotify\templates\spotify\account.html:91
-#: .\spotify\templates\spotify\account.html:102
-#: .\spotify_wrapped\settings.py:39
+#: .\spotify\templates\spotify\account.html:91 .\spotify_wrapped\settings.py:39
 msgid "Spanish"
 msgstr "Spaans"
 
-#: .\spotify\templates\spotify\account.html:92
-#: .\spotify_wrapped\settings.py:41
+#: .\spotify\templates\spotify\account.html:92 .\spotify_wrapped\settings.py:41
 msgid "French"
 msgstr "Frans"
 
-#: .\spotify\templates\spotify\account.html:93
-#: .\spotify\templates\spotify\account.html:103
-#: .\spotify_wrapped\settings.py:40
+#: .\spotify\templates\spotify\account.html:93 .\spotify_wrapped\settings.py:40
 msgid "Dutch"
 msgstr "Nederlands"
 
-#: .\spotify\templates\spotify\account.html:94
-#: .\spotify_wrapped\settings.py:42
+#: .\spotify\templates\spotify\account.html:94 .\spotify_wrapped\settings.py:42
 msgid "Chinese"
 msgstr "Chinese"
 
-#: .\spotify\templates\spotify\account.html:108
+#: .\spotify\templates\spotify\account.html:101
 msgid "Select Theme"
 msgstr "Selecteer Thema"
 
-#: .\spotify\templates\spotify\account.html:110
+#: .\spotify\templates\spotify\account.html:103
 msgid "Default"
 msgstr "Standaard"
 
-#: .\spotify\templates\spotify\account.html:111
+#: .\spotify\templates\spotify\account.html:104
 msgid "Halloween"
 msgstr "Halloween"
 
-#: .\spotify\templates\spotify\account.html:112
+#: .\spotify\templates\spotify\account.html:105
 msgid "Christmas"
 msgstr "Kerstmis"
 
-#: .\spotify\templates\spotify\account.html:113
+#: .\spotify\templates\spotify\account.html:106
 msgid "Wicked"
 msgstr "Slecht"
 
-#: .\spotify\templates\spotify\account.html:118
+#: .\spotify\templates\spotify\account.html:111
 msgid "Enable Dark Mode"
 msgstr "Schakel de donkere modus in"
+
+#: .\spotify\templates\spotify\account.html:122
+#: .\spotify\templates\spotify\preference.html:21
+msgid "Back Home"
+msgstr "Terug naar huis"
 
 #: .\spotify\templates\spotify\contact.html:17
 msgid "Meet the Developers"
@@ -114,9 +111,9 @@ msgstr "Maak kennis met de ontwikkelaars"
 
 #: .\spotify\templates\spotify\contact.html:29
 msgid ""
-"HIYO! My name is Hung and I am one of the developers of Wrappify! I hope you"
-" have had the chance to explore our website and enjoyed all it had to offer."
-" Hopefully you didn't struggle too much with the game because I know I did "
+"HIYO! My name is Hung and I am one of the developers of Wrappify! I hope you "
+"have had the chance to explore our website and enjoyed all it had to offer. "
+"Hopefully you didn't struggle too much with the game because I know I did "
 "even though I was the one that built it LOL. Anyways if you have any more "
 "questions feel free to ask through the link below!"
 msgstr ""
@@ -152,8 +149,7 @@ msgstr ""
 #: .\spotify\templates\spotify\contact.html:50
 msgid ""
 "Hi! My name is Kelly and I worked as a front-end developer for Wrappify! I "
-"hope you liked the aesthics of our website and enjoy exploring your "
-"Wrappify!"
+"hope you liked the aesthics of our website and enjoy exploring your Wrappify!"
 msgstr ""
 "Hoi! Mijn naam is Kelly en ik werkte als front-end developer voor Wrappify! "
 "Ik hoop dat je de esthetiek van onze website leuk vond en geniet van het "
@@ -231,10 +227,6 @@ msgstr "Log in met Spotify"
 #: .\spotify\templates\spotify\preference.html:17
 msgid "Settings"
 msgstr "Instellingen"
-
-#: .\spotify\templates\spotify\preference.html:21
-msgid "Back Home"
-msgstr "Terug naar huis"
 
 #: .\spotify\templates\spotify\profile.html:9
 msgid "User Profile"
@@ -394,6 +386,6 @@ msgstr "Verwijderen"
 msgid "Back to Profile"
 msgstr "Terug naar profiel"
 
-#: .\spotify_wrapped\urls.py:24
+#: .\spotify_wrapped\urls.py:28
 msgid "admin/"
 msgstr "beheerder/"

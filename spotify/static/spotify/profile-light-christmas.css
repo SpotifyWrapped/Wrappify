@@ -1,0 +1,781 @@
+/* profile-light-christmas.css */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: #F4F9F4; /* Light snowy background */
+    overflow-x: hidden;
+  }
+  
+  /* Logo */
+  .logo {
+    position: fixed;
+    top: -30px;
+    left: 10px;
+    z-index: 999;
+    width: 150px;
+    height: auto;
+    filter: drop-shadow(0 0 10px #ffffff); /* Soft glowing effect */
+  }
+  
+  /* Jagged shapes - snowy hills */
+  .jagged-shape1, .jagged-outline1, .jagged-shape2, .jagged-outline2 {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+  
+  .jagged-outline1 {
+    height: 12.5vh;
+    background-color: #ffffff; /* Snow outline */
+    clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
+    z-index: 0;
+  }
+  
+  .jagged-shape1 {
+    height: 12vh;
+    background-color: #2D6A4F; /* Evergreen color */
+    clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
+    z-index: 1;
+  }
+  
+  .jagged-outline2 {
+    height: 8.5vh;
+    background-color: #ffffff; /* Snow outline */
+    clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
+    z-index: 1;
+  }
+  
+  .jagged-shape2 {
+    height: 8vh;
+    background-color: #E63946; /* Festive red */
+    clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
+    z-index: 2;
+  }
+
+  
+/* Main Container */
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    margin: auto;
+    background-color: #F9F9F9; /* Light snowy background */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* User Info, Links, Buttons */
+  .user-info, .wrapped-link, .time-range-buttons {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #FFFFFF; /* White for a clean look */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #DDD;
+  }
+  
+  h1 {
+    font-size: 80px;
+    margin-bottom: 10px;
+    color: #C42D2F; /* Festive red */
+    font-family: "Roboto", serif;
+    font-weight: 500;
+    font-style: normal;
+    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-details {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  /* Spotify Logo */
+  .spotify-logo {
+    width: 25px;
+    height: 25px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  
+  /* Profile Image */
+  .profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 30px;
+    border: 4px solid #2D6A4F; /* Evergreen border */
+    box-shadow: 0 0 10px #C42D2F; /* Subtle glowing red border */
+  }
+  
+  /* Name and Links */
+  .name-and-link {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 50px;
+  }
+  
+  .spotify-link {
+    color: #2D6A4F; /* Evergreen color */
+    text-decoration: none;
+    font-weight: bold;
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.1em;
+  }
+  
+  .spotify-link:hover {
+    color: #C42D2F; /* Festive red on hover */
+  }
+  
+  p {
+    font-size: 1.1em;
+    color: #333; /* Neutral text */
+    margin-bottom: 10px;
+    font-family: "Roboto", serif;
+  }
+  
+  /* Buttons */
+  button {
+    font-size: 1em;
+    color: #FFFFFF;
+    background-color: #2D6A4F; /* Evergreen button */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-family: "Roboto", serif;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #C42D2F; /* Festive red on hover */
+    transform: translateY(-2px); /* Lift effect */
+  }
+  
+  /* Wrapped Link Buttons */
+  .wrapped-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #C42D2F; /* Festive red */
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .wrapped-button:hover {
+    background-color: #2D6A4F; /* Evergreen on hover */
+  }
+  
+  /* Logout Links */
+  .logout a {
+    color: #2D6A4F; /* Evergreen color */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .logout a:hover {
+    color: #C42D2F; /* Festive red on hover */
+  }
+  
+  /* Time Range Buttons */
+  #time-range-buttons a {
+    display: inline-block;
+    padding: 12px 82px;
+    background-color: #C42D2F; /* Festive red */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-family: "Roboto", serif;
+    font-size: 19px;
+  }
+  
+  #time-range-buttons a:hover {
+    background-color: #2D6A4F; /* Evergreen on hover */
+  }
+  
+  #time-range-buttons a.active {
+    background-color: #1B4332; /* Darker evergreen */
+    pointer-events: none;
+  }
+  
+  /* Back Home Button */
+  .back-home-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #2D6A4F; /* Evergreen */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .back-home-button:hover {
+    background-color: #C42D2F; /* Festive red */
+    transform: translateY(-2px);
+  }
+
+
+/* Root Variables for Festive Colors */
+:root {
+    --bar-width: 60px;
+    --bar-height: 8px;
+    --hamburger-gap: 6px;
+    --foreground: #2D6A4F; /* Evergreen green */
+    --background: #FFFFFF; /* Snowy white */
+    --hamburger-margin: 10px;
+    --animation-timing: 200ms ease-in-out;
+    --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+  }
+  
+  /* Hamburger Menu */
+  .hamburger-menu {
+    --x-width: calc(var(--hamburger-height) * 1.41421356237);
+    display: flex;
+    flex-direction: column;
+    gap: var(--hamburger-gap);
+    width: max-content;
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 1001;
+    cursor: pointer;
+  }
+  
+  .hamburger-menu:has(input:checked) {
+    --foreground: #E63946; /* Festive red */
+    --background: #FFFFFF;
+  }
+  
+  .hamburger-menu:has(input:focus-visible)::before,
+  .hamburger-menu:has(input:focus-visible)::after,
+  .hamburger-menu input:focus-visible {
+    border: 1px solid var(--background);
+    box-shadow: 0 0 0 1px var(--foreground);
+  }
+  
+  .hamburger-menu::before,
+  .hamburger-menu::after,
+  .hamburger-menu input {
+    content: "";
+    width: var(--bar-width);
+    height: var(--bar-height);
+    background-color: var(--foreground);
+    border-radius: 9999px;
+    transform-origin: left center;
+    transition: opacity var(--animation-timing), width var(--animation-timing),
+      rotate var(--animation-timing), translate var(--animation-timing),
+      background-color var(--animation-timing);
+  }
+  
+  .hamburger-menu input {
+    appearance: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    pointer-events: none;
+  }
+  
+  .hamburger-menu:has(input:checked)::before {
+    rotate: 45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / -2);
+  }
+  
+  .hamburger-menu:has(input:checked)::after {
+    rotate: -45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / 2);
+  }
+  
+  .hamburger-menu input:checked {
+    opacity: 0;
+    width: 0;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    transition: translate var(--animation-timing);
+    translate: 100%;
+    padding: 0.5rem 2rem;
+    padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
+    background-color: var(--foreground);
+    color: var(--background);
+    max-width: 20rem;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+  }
+  
+  .hamburger-menu:has(input:checked) + .sidebar {
+    translate: 0;
+  }
+  
+  /* Menu List */
+  .menu-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    margin-top: 20px;
+  }
+  
+  .menu-list li {
+    margin: 0; /* Remove margin between items */
+    width: 100%; /* Make items take up full sidebar width */
+  }
+  
+  .menu-list a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px; /* Uniform height */
+    width: 100%; /* Full sidebar width */
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem; /* Font size */
+    background-color: #E63946; /* Festive red */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-radius: 5px;
+  }
+  
+  .menu-list a:hover {
+    background-color: #2D6A4F; /* Evergreen on hover */
+    transform: translateY(-3px); /* Lift effect */
+  }
+  
+  /* Icons */
+  .icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 0.5rem;
+    filter: brightness(0) invert(1);
+  }
+  
+  /* Divider */
+  .divider {
+    width: 90%;
+    border: none;
+    border-top: 1px solid #ffffff;
+    margin: 2rem auto;
+    opacity: 0.5;
+  }
+  
+  /* Fonts */
+  .roboto-black-italic {
+    font-family: "Roboto", serif;
+    font-weight: 900;
+    font-style: italic;
+  }
+  
+  .roboto-black, .roboto-bold {
+    font-family: "Roboto", serif;
+    font-weight: 700;
+    font-style: normal;
+    color: #E63946; /* Festive red */
+  }
+  
+  .roboto-medium, .roboto-regular {
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #2D6A4F; /* Evergreen */
+  }
+
+
+
+/* Logout Container */
+.logout {
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  /* Dark Mode Item */
+  .dark-mode-item {
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: #E63946; /* Festive red */
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  /* Dark Mode Text */
+  .dark-mode-text {
+    color: #FFFFFF; /* Snowy white */
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px #ffffff; /* Glowing effect */
+  }
+  
+  /* Dark Mode Toggle */
+  .dark-mode-toggle {
+    display: inline-block;
+    vertical-align: middle;
+    align-items: center;
+    margin-left: 0.5rem;
+    font-size: 0.7em;
+    margin-top: 55px;
+  }
+  
+  /* Switch */
+  .switch {
+    margin-left: 20px;
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide the default checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* Slider (Christmas colors) */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #88C0D0; /* Icy blue */
+    transition: 0.4s;
+    border-radius: 34px;
+    box-shadow: 0 0 10px #88C0D0; /* Glow effect */
+  }
+  
+  /* Circle on the slider */
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+  }
+  
+  /* When checked, change slider background */
+  input:checked + .slider {
+    background-color: #2D6A4F; /* Evergreen */
+  }
+  
+  /* When checked, move the slider circle */
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  /* Hover Effect */
+  .slider:hover {
+    background-color: #C42D2F; /* Festive red */
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.5rem;
+      color: #2D6A4F; /* Evergreen */
+    }
+  
+    .profile-image {
+      margin: auto;
+    }
+  
+    .wrapped-button {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .dark-mode-item {
+      gap: 5px; /* Adjust spacing */
+    }
+  
+    .slider {
+      width: 50px;
+      height: 30px;
+    }
+  
+    .slider:before {
+      width: 22px;
+      height: 22px;
+    }
+  }
+  
+  /* Back Home Button */
+  .back-home-button {
+    font-size: 0.9em;
+    padding: 8px 16px;
+    background-color: #2D6A4F; /* Evergreen */
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .back-home-button:hover {
+    background-color: #E63946; /* Festive red */
+    transform: translateY(-2px);
+  }
+  
+  /* Logo Adjustments */
+  .logo {
+    width: 150px;
+    height: auto;
+    filter: drop-shadow(0 0 10px #FFFFFF); /* Snowy glow */
+    transition: opacity 0.3s ease, z-index 0.3s ease;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    transition: translate 0.3s ease, z-index 0.3s ease;
+    translate: 100%;
+    padding: 0.5rem 2rem;
+    padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
+    background-color: #2D6A4F; /* Evergreen */
+    color: #FFFFFF; /* Snowy white */
+    max-width: 20rem;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 200;
+  }
+  
+  /* Sidebar active state */
+  .hamburger-menu input:checked + .sidebar {
+    translate: 0;
+  }
+  
+  /* Adjust shapes for mobile */
+  .jagged-shape1 {
+    height: 12vh;
+    background-color: #FFFFFF; /* Snowy white */
+  }
+  
+  .jagged-outline1 {
+    height: 12.5vh;
+  }
+  
+  .jagged-shape2 {
+    height: 6vh;
+    background-color: #E63946; /* Festive red */
+  }
+  
+  .jagged-outline2 {
+    height: 6.5vh;
+  }
+
+
+  @media (max-width: 480px) {
+    /* Container */
+    .container {
+      width: 95%;
+      padding: 10px;
+      background-color: #F4F9F4; /* Light snowy background */
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+  
+    /* User Info, Wrapped Link, Logout, Time Range Buttons */
+    .user-info, .wrapped-link, .logout, .time-range-buttons {
+      padding: 15px;
+      margin-bottom: 10px;
+      background-color: #FFFFFF; /* Snowy white */
+      border-radius: 5px;
+      border: 1px solid #E0E0E0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      color: #2D6A4F; /* Evergreen text */
+    }
+  
+    /* Header */
+    h1 {
+      font-size: 1.5em;
+      color: #E63946; /* Festive red */
+      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  
+    /* Links, Text, and Buttons */
+    .spotify-link, p, button {
+      font-size: 0.8em;
+      color: #2D6A4F; /* Evergreen text */
+      text-decoration: none;
+    }
+  
+    .spotify-link:hover {
+      color: #E63946; /* Festive red on hover */
+    }
+  }
+
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+        color: #88C0D0; /* Icy blue for dark mode */
+    }
+
+    .profile-image {
+        margin: auto;
+    }
+
+    .wrapped-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .dark-mode-item {
+        gap: 5px; /* Adjust spacing */
+    }
+
+    .slider {
+        width: 50px;
+        height: 30px;
+    }
+
+    .slider:before {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+/* Back Home Button */
+.back-home-button {
+    font-size: 0.9em;
+    padding: 8px 16px;
+    background-color: #1B4332; /* Dark evergreen */
+    color: #FFFFFF; /* Light text for contrast */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.back-home-button:hover {
+    background-color: #8B0000; /* Dark red for hover */
+    transform: translateY(-2px);
+}
+
+/* Logo Adjustments */
+.logo {
+    width: 150px;
+    height: auto;
+    filter: drop-shadow(0 0 10px #FF6347); /* Festive glowing red */
+    transition: opacity 0.3s ease, z-index 0.3s ease;
+}
+
+/* Sidebar */
+.sidebar {
+    transition: translate 0.3s ease, z-index 0.3s ease;
+    translate: 100%;
+    padding: 0.5rem 2rem;
+    padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
+    background-color: #1B1B1B; /* Dark background */
+    color: #FFFFFF; /* Light text for contrast */
+    max-width: 20rem;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 200;
+}
+
+/* Sidebar active state */
+.hamburger-menu input:checked + .sidebar {
+    translate: 0;
+}
+
+/* Adjust shapes for mobile */
+.jagged-shape1 {
+    height: 12vh;
+    background-color: #1B4332; /* Dark evergreen */
+}
+
+.jagged-outline1 {
+    height: 12.5vh;
+}
+
+.jagged-shape2 {
+    height: 6vh;
+    background-color: #8B0000; /* Dark red */
+}
+
+.jagged-outline2 {
+    height: 6.5vh;
+}
+
+@media (max-width: 480px) {
+    /* Container */
+    .container {
+        width: 95%;
+        padding: 10px;
+        background-color: #1A1A1A; /* Dark container background */
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+        color: #FFFFFF; /* Light text */
+    }
+
+    /* User Info, Wrapped Link, Logout, Time Range Buttons */
+    .user-info, .wrapped-link, .logout, .time-range-buttons {
+        padding: 15px;
+        margin-bottom: 10px;
+        background-color: #2D2D2D; /* Darker section background */
+        border-radius: 5px;
+        border: 1px solid #444444; /* Subtle border */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+        color: #88C0D0; /* Icy blue text for contrast */
+    }
+
+    /* Header */
+    h1 {
+        font-size: 1.5em;
+        color: #FF6347; /* Festive red with glowing effect */
+        text-shadow: 0px 2px 6px #FF4500;
+    }
+
+    /* Links, Text, and Buttons */
+    .spotify-link, p, button {
+        font-size: 0.8em;
+        color: #88C0D0; /* Icy blue text */
+        text-decoration: none;
+    }
+
+    .spotify-link:hover {
+        color: #FF6347; /* Glowing festive red on hover */
+    }
+}

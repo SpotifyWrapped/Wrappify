@@ -1,0 +1,180 @@
+/* contacts-dark-christmas.css */
+
+/* General Body Styling */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100vh;
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    background-color: #121212; /* Dark background */
+    margin: 0;
+    color: #E0E0E0; /* Light grey text for contrast */
+  }
+  
+  /* Festive Logo */
+  .logo {
+    width: 200px;
+    height: auto;
+    position: absolute;
+    top: -47.5px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    filter: drop-shadow(0 0 10px #FFC107); /* Festive gold glow */
+  }
+  
+  /* Container with fixed size */
+  .container {
+    text-align: center;
+    padding: 20px;
+    background-color: #1B5E20; /* Dark green */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    border: 1px solid #388E3C;
+    width: 60%;
+    max-width: 360px;
+    margin-top: 110px;
+    margin-bottom: 20px;
+    color: #FFFFFF; /* White text for readability */
+  }
+  
+  /* Main Heading Styling */
+  .main-heading {
+    font-size: 35px;
+    color: #FFC107; /* Festive gold */
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9); /* Stronger shadow for dark mode */
+  }
+  
+  /* Developer Cards Layout */
+  .developer-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px 0;
+    padding: 0 20px;
+  }
+  
+  /* Card Styling */
+  .card {
+    position: relative;
+    width: 260px;
+    height: 450px;
+    background-color: #1E1E1E; /* Dark grey card background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    border: 1px solid #D32F2F; /* Christmas red */
+    overflow: hidden;
+  }
+  
+  .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  /* Card Heading */
+  .card h2 {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    font-size: 20px;
+    color: #FFC107; /* Festive gold */
+    z-index: 2;
+    margin: 0;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Description Section (Visible on Hover) */
+  .card .description {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark overlay */
+    color: #FFC107; /* Festive gold text */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 0.3s ease;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .card:hover .description {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Footer Styling */
+  footer {
+    width: 100%;
+    background-color: #1B5E20; /* Dark green */
+    text-align: center;
+    padding: 15px 0;
+    position: relative;
+    color: #FFC107; /* Festive gold text */
+  }
+  
+  /* Footer Links Styling */
+  .contact-link,
+  .home-button {
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFC107; /* Festive gold */
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .home-button {
+    padding: 10px 20px;
+    background-color: #D32F2F; /* Christmas red */
+    color: #FFFFFF;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .contact-link:hover {
+    color: #FFEB3B; /* Brighter gold on hover */
+  }
+  
+  .home-button:hover {
+    background-color: #B71C1C; /* Darker red on hover */
+  }
+  
+  /* Mobile Adjustments */
+  @media (max-width: 768px) {
+    .logo {
+      width: 150px;
+    }
+  
+    .container {
+      width: 80%;
+    }
+  
+    .developer-cards {
+      gap: 20px;
+    }
+  
+    .card {
+      width: 220px;
+      height: 400px;
+    }
+  
+    footer {
+      font-size: 14px;
+    }
+  }
