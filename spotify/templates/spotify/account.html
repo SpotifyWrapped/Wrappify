@@ -273,10 +273,10 @@
         function populateThemeDropdown() {
             const themeDropdown = document.getElementById("theme-dropdown");
             const allThemes = {
-                default: "Default",
-                halloween: "Halloween",
-                christmas: "Christmas",
-                wicked: "Wicked",
+                default: gettext("Default"),
+                halloween: gettext("Halloween"),
+                christmas: gettext("Christmas"),
+                wicked: gettext("Wicked"),
             };
             themeDropdown.innerHTML = ""; // Clear existing options
             for (const [themeKey, themeName] of Object.entries(allThemes)) {
