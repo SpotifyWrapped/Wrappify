@@ -1,62 +1,58 @@
-/* wraps-dark-christmas.css */
-
-
 /* General reset */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-html, body {
+    }
+    
+    html, body {
     height: 100%; /* Make body take full height of viewport */
     overflow: hidden; /* Prevent scrolling */
-}
-
-body {
-    font-family: "Nunito", sans-serif;
-    font-style: normal;
-    font-optical-sizing: auto;
-    font-size: x-large;
-    color: #D4E6F1; /* Light icy blue text color for contrast */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to bottom, #1A1A2E, #16213E); /* Dark gradient background */
-}
-
-/* Full-screen container */
-.container-full {
-    position: relative;
-    width: 100vw; /* Full width */
-    height: 100vh; /* Full height */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    background-color: #1A1A2E; /* Midnight blue background */
-    background-image: url('https://www.example.com/dark-snowflake-pattern.png'); /* Dark festive background pattern */
-    background-size: cover;
-    padding: 20px; /* Small padding around the content */
-    z-index: 1;
-}
-
-/* Content container */
-.content-container {
-    width: 100%;
-    text-align: center;              
-    max-width: 1000px;          
-    margin: 0 auto;
-}
-
-/* Center the entire content, but align track list to the left */
-#top-tracks {
-    width: 100%; /* Full width for the section */
-    align-items: left; /* Align text to the left inside this section */
-}
-
-/* Progress bars for each slide */
-.progress-bars {
+    }
+    
+    body {
+        font-family: "Nunito", sans-serif;
+        font-style: normal;
+        font-optical-sizing: auto;
+        font-size: x-large;
+        color: #D4E6F1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to bottom, #1A1A2E, #16213E); /* Dark gradient background */
+    }
+    
+    /* Full-screen container */
+    .container-full {
+        position: relative;
+        width: 100vw; /* Full width */
+        height: 100vh; /* Full height */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Center content vertically */
+        align-items: center; /* Center content horizontally */
+        background-color: #1A1A2E; /* Midnight blue background */
+        background-image: url('https://www.example.com/dark-snowflake-pattern.png'); /* Dark festive background pattern */
+        background-size: cover;
+        padding: 20px; /* Small padding around the content */
+        z-index: 1;
+    }
+    
+    .content-container { /*for mood slide*/
+        width: 100%;
+        text-align: center;              
+        max-width: 1000px;          
+        margin: 0 auto;
+      }
+    
+    /* Center the entire content, but align track list to the left */
+    #top-tracks {
+        width: 100%; /* Full width for the section */
+        align-items: left; /* Align text to the left inside this section */
+      }
+    
+    /* Progress bars for each slide */
+    .progress-bars {
     display: flex;
     justify-content: space-between;
     width: 80%; /* Width of the progress bar */
@@ -65,105 +61,101 @@ body {
     position: absolute;
     top: 10px; /* Fix the bar at the top */
     z-index: 2;
-}
-
-.progress-bar {
-    background-color: #4B4B4B; /* Dark grey for inactive bars */
+    }
+    
+    .progress-bar {
+    background-color: #4B4B4B;
     height: 100%;
     flex: 1;
     margin: 0 5px;
-}
-
-.progress-bar.active {
-    background-color: #8B0000; /* Festive red for active state */
-}
-
-/* Slide Styles */
-.slides {
+    }
+    
+    .progress-bar.active {
+    background-color: #8B0000; /* Spotify green for active state */
+    }
+    
+    /* Slide Styles */
+    .slides {
     text-align: center;
     display: none; /* Hide all slides by default */
-}
-
-.slides.active {
+    }
+    
+    .slides.active {
     display: block; /* Show the active slide */
-}
-
-/* Images for tracks, artists, recommendations */
-img {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
-    border-radius: 50%;
-    border: 2px solid #8B0000; /* Festive red border */
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* Add a glowing shadow */
-}
-
-/* Text and headings */
-h2 {
-    font-family: "Bungee", sans-serif;
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 50px;
-    color: #8B0000; /* Bright red for headings */
-    text-shadow: 3px 3px 5px #0D1B2A; /* Subtle snowy glow effect */
-}
-
-p {
-    margin-bottom: 80px;
-    font-size: 25px;
-    color: #D4E6F1; /* Light icy blue for text */
-}
-
-/* Audio player styling */
-audio {
+    }
+    
+    /* Images for tracks, artists, recommendations */
+    img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 10px;
+        border-radius: 50%;
+        border: 2px solid #8B0000; /* Red border for festive feel */
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* Add a glowing shadow */
+    }
+    
+    /* Text and headings */
+    h2 {
+        font-family: "Bungee", sans-serif;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 50px;
+        color: #8B0000; /* Bright red for headings */
+        text-shadow: 3px 3px 5px #0D1B2A; /* Subtle snowy glow effect */
+    }
+    
+    p {
+        margin-bottom: 80px;
+        font-size: 25px;
+        color: #D4E6F1; /* Deep blue for festive contrast */
+    }
+    
+    /* Audio player styling */
+    audio {
     max-width: 150px;
     margin-top: 10px;
-    background-color: #2C2C54; /* Deep dark blue */
-    border-radius: 5px;
-    border: 1px solid #8B0000; /* Festive red border */
-    padding: 5px;
-}
-
-/* List styling for items like tracks, artists, recommendations */
-ul {
+    }
+    
+    /* List styling for items like tracks, artists, recommendations */
+    ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
-}
+    }
+    
+    li {
+        margin: 10px 0;
+        padding: 0;
+        list-style: none;
+        align-items: center;
+        display: flex;
+        justify-content: left; 
+    }
+    
+    li p {
+        margin-left: 10px; /* Space between image and text */
+        color: #D4E6F1; /* Deep blue for text */
+    }
+    
 
-li {
-    margin: 10px 0;
-    padding: 0;
-    list-style: none;
-    align-items: center;
-    display: flex;
-    justify-content: left; 
-}
-
-li p {
-    margin-left: 10px; /* Space between image and text */
-    color: #D4E6F1; /* Icy blue text */
-}
-
-/* Add a subtle hover effect for list items */
-li:hover {
-    background-color: #252850; /* Darker blue highlight */
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-/* Add snowflake icon before headings */
-h2::before {
-    content: "❄️ ";
-    font-size: 0.8em;
-}
-
-h2::after {
-    content: " ❄️";
-    font-size: 0.8em;
-}
-
-
+    /* Add snowflake icon before headings */
+    h2::before {
+        content: "❄️ ";
+        font-size: 0.8em;
+    }
+    
+    h2::after {
+        content: " ❄️";
+        font-size: 0.8em;
+    }
+    
+    #top-genres li {
+        list-style: none;
+        display: block;           /* Change from flex to block to remove flex styles */
+        justify-content: initial; /* Reset justify-content */
+        text-align: left;
+    }
+    
 /* Slide 1 Intro Styling */
 #slide1 {
     position: relative;

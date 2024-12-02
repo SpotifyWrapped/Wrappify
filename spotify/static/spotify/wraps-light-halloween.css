@@ -1,32 +1,29 @@
-/* wraps-light-halloween.css */
-
-
 /* General reset */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-html, body {
+    }
+    
+    html, body {
     height: 100%; /* Make body take full height of viewport */
     overflow: hidden; /* Prevent scrolling */
-}
-
-body {
-    font-family: "Nunito", sans-serif;
-    font-style: normal;
-    font-optical-sizing: auto;
-    font-size: x-large;
-    color: #FFFFFF; /* White text for contrast */
-    background-color: #1E1B1C; /* Dark background for Halloween vibe */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Full-screen container */
-.container-full {
+    }
+    
+    body {
+        font-family: "Nunito", sans-serif;
+        font-style: normal;
+        font-optical-sizing: auto;
+        font-size: x-large;
+        color: #FFFFFF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+    }
+    
+    /* Full-screen container */
+    .container-full {
     position: relative;   
     width: 100vw; /* Full width */
     height: 100vh; /* Full height */
@@ -34,27 +31,26 @@ body {
     flex-direction: column;
     justify-content: center; /* Center content vertically */
     align-items: center; /* Center content horizontally */
-    background-color: #2E2B2F; /* Slightly lighter dark gray */
+    background-color: #2E2B2F;
     padding: 20px; /* Small padding around the content */
     z-index: 1;
-}
-
-/* For mood slide */
-.content-container {
-    width: 100%;
-    text-align: center;              
-    max-width: 1000px;          
-    margin: 0 auto;
-}
-
-/* Center the entire content, but align track list to the left */
-#top-tracks {
-    width: 100%; /* Full width for the section */
-    align-items: left; /* Align text to the left inside this section */
-}
-
-/* Progress bars for each slide */
-.progress-bars {
+    }
+    
+    .content-container { /*for mood slide*/
+        width: 100%;
+        text-align: center;              
+        max-width: 1000px;          
+        margin: 0 auto;
+      }
+    
+    /* Center the entire content, but align track list to the left */
+    #top-tracks {
+        width: 100%; /* Full width for the section */
+        align-items: left; /* Align text to the left inside this section */
+      }
+    
+    /* Progress bars for each slide */
+    .progress-bars {
     display: flex;
     justify-content: space-between;
     width: 80%; /* Width of the progress bar */
@@ -63,396 +59,491 @@ body {
     position: absolute;
     top: 10px; /* Fix the bar at the top */
     z-index: 2;
-}
-
-.progress-bar {
-    background-color: #5A5A5A; /* Neutral gray */
+    }
+    
+    .progress-bar {
+    background-color: #5A5A5A;
     height: 100%;
     flex: 1;
     margin: 0 5px;
-}
-
-.progress-bar.active {
-    background-color: #FFA500; /* Pumpkin orange */
-}
-
-/* Slide Styles */
-.slides {
+    }
+    
+    .progress-bar.active {
+    background-color: #FFA500; /* Spotify green for active state */
+    }
+    
+    /* Slide Styles */
+    .slides {
     text-align: center;
     display: none; /* Hide all slides by default */
-}
-
-.slides.active {
+    }
+    
+    .slides.active {
     display: block; /* Show the active slide */
-}
-
-/* Images for tracks, artists, recommendations */
-img {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
-    border: 3px solid #FFA500; /* Orange border for spooky effect */
-    border-radius: 10px;
-}
-
-/* Text and headings */
-h2 {
-    font-family: "Bungee", sans-serif;
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 50px;
-    text-shadow: 5px 5px 5px #000000; /* Shadow for eerie effect */
-    color: #FFA500; /* Pumpkin orange */
-}
-
-p {
-    margin-bottom: 80px;
-    font-size: 25px;
-    color: #FFFFFF; /* White text */
-}
-
-/* Audio player styling */
-audio {
+    }
+    
+    /* Images for tracks, artists, recommendations */
+    img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 10px;
+        border: 3px solid #FFA500; /* Orange border for spooky effect */
+        border-radius: 10px;
+    }
+    
+    /* Text and headings */
+    h2 {
+        font-family: "Bungee", sans-serif;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 50px;
+        text-shadow: 5px 5px 5px #000000; /* Shadow for eerie effect */
+        color: #FFA500; /* Pumpkin orange */
+    }
+    
+    p {
+        margin-bottom: 80px;
+        font-size: 25px;
+        color: #FFFFFF; /* White text */
+    }
+    
+    /* Audio player styling */
+    audio {
     max-width: 150px;
     margin-top: 10px;
-}
-
-/* List styling for items like tracks, artists, recommendations */
-ul {
+    }
+    
+    /* List styling for items like tracks, artists, recommendations */
+    ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
-}
-
-li {
-    margin: 10px 0;
-    padding: 0;
-    list-style: none;
-    align-items: center;
-    display: flex;
-    justify-content: left; 
-    color: #FFA500; /* Pumpkin orange text */
-}
-
-li p {
-    margin-left: 10px; /* Space between image and text */
-    color: #FFFFFF; /* White text */
-}
-
-/* Spooky animations for Halloween */
-@keyframes glow {
-    0% {
-        text-shadow: 0 0 10px #FFA500, 0 0 20px #FFA500, 0 0 30px #FF4500;
     }
-    50% {
-        text-shadow: 0 0 20px #FF4500, 0 0 30px #FF6347, 0 0 40px #FFA500;
+    
+    li {
+        margin: 10px 0;
+        padding: 0;
+        list-style: none;
+        align-items: center;
+        display: flex;
+        justify-content: left; 
+        color: #FFA500; /* Pumpkin orange text */
     }
-    100% {
-        text-shadow: 0 0 10px #FFA500, 0 0 20px #FF4500, 0 0 30px #FF6347;
+    
+    li p {
+        margin-left: 10px; /* Space between image and text */
+        color: #FFFFFF; /* White text */
     }
-}
-
-h2 {
-    animation: glow 1.5s infinite alternate;
-}
-
-
-
-/* Halloween-themed Shapes */
-.jagged-shape1, .jagged-shape2, .jagged-shape1-1, .jagged-shape2-1 {
-    background-color: #4b0082; /* Deep purple for Halloween tones */
-}
-
-.jagged-outline1, .jagged-outline2 {
-    background-color: #000000; /* Deep black outlines for contrast */
-}
-
-/* Halloween Decorations */
-.jagged-shape3 {
-    background-color: #ff7518; /* Pumpkin orange */
-    clip-path: polygon(0 0, 80% 0, 90% 20%, 50% 40%, 60% 70%, 0 85%, 0 30%);
-}
-
-.jagged-shape4 {
-    background-color: #000000; /* Black bat-like shape */
-    clip-path: polygon(50% 20%, 100% 0, 100% 100%, 50% 80%, 0 100%, 0 0);
-}
-
-/* Text Effects */
-h1, h2, h3, h4, h5, h6 {
-    text-shadow: 2px 2px 5px #ff7518, 0 0 10px #ff7518; /* Glowing text effect */
-}
-
-a {
-    color: #f1c40f; /* Bright yellow for links */
-    text-decoration: none;
-}
-
-a:hover {
-    color: #ff0000; /* Red glow for hover effect */
-    text-shadow: 0 0 10px #ff0000;
-}
-
-/* Special Effects for Images */
-#top-artist-deep-dive img {
-    border: 5px solid #ff7518;
-    box-shadow: 0 0 15px #ff7518;
-    border-radius: 50%; /* Circular images for a spooky twist */
-    transition: transform 0.3s ease-in-out;
-}
-
-#top-artist-deep-dive img:hover {
-    transform: scale(1.1) rotate(10deg); /* Slight zoom and tilt on hover */
-}
-
-/* List Styles */
-#top-genres li {
-    list-style: '🎃'; /* Pumpkin emoji for bullet points */
-    color: #ff7518;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-}
-
-/* Buttons */
-button {
-    background-color: #ff7518;
-    color: #1a1a1a;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    box-shadow: 0 0 10px #ff7518;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-button:hover {
-    background-color: #1a1a1a;
-    color: #ff7518;
-    transform: scale(1.1);
-}
-
-/* Special Halloween Shape for Clock */
-.clock-image {
-    background-image: url('https://example.com/halloween-clock.png'); /* Replace with spooky clock image */
-    background-size: cover;
-    background-repeat: no-repeat;
-    filter: drop-shadow(0 0 15px #ff7518);
-}
-
-
-
-
-/* Halloween Shapes */
-.jagged-shape5, .jagged-shape6, .jagged-shape7, .jagged-shape8, .jagged-shape9, .jagged-shape10, .jagged-shape11 {
-    background-color: #4b0082; /* Deep purple for Halloween theme */
-    transition: transform 0.3s ease-in-out;
-}
-
-.jagged-shape5:hover,
-.jagged-shape6:hover,
-.jagged-shape7:hover,
-.jagged-shape8:hover,
-.jagged-shape9:hover,
-.jagged-shape10:hover,
-.jagged-shape11:hover {
-    transform: scale(1.05); /* Slight growth effect for hover */
-}
-
-.jagged-outline5, .jagged-outline6, .jagged-outline8, .jagged-outline10, .jagged-outline11 {
-    background-color: #000000; /* Deep black for spooky contrasts */
-}
-
-/* Special Glow Effects */
-h1, h2, h3, h4, h5, h6 {
-    text-shadow: 2px 2px 8px #ff7518, 0 0 10px #f39c12;
-    color: #ff7518;
-}
-
-a {
-    color: #f39c12; /* Golden glow for links */
-    text-decoration: none;
-}
-
-a:hover {
-    color: #ff0000; /* Blood-red hover effect */
-    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
-}
-
-/* Decorative Shapes */
-.jagged-shape5 {
-    background-color: #ff7518; /* Pumpkin orange */
-    clip-path: polygon(10% 20%, 25% 35%, 12% 50%, 20% 80%, 8% 90%, 15% 100%, 0 100%, 0 0, 30% 0);
-}
-
-.jagged-shape6 {
-    background-color: #4b0082; /* Deep purple */
-    clip-path: polygon(90% 10%, 80% 30%, 95% 50%, 85% 70%, 90% 85%, 75% 100%, 100% 100%, 100% 0, 70% 0);
-}
-
-.jagged-shape10 {
-    background-color: #800020; /* Deep blood red */
-    clip-path: polygon(93% 10%, 85% 0, 100% 0, 100% 100%, 83% 100%, 71% 90%, 94% 71%, 80% 53%, 93% 33%, 85% 21%);
-}
-
-.jagged-outline10 {
-    background-color: #000000; /* Keep black for contrast */
-}
-
-/* Festive Background Enhancements */
-.jagged-shape7 {
-    background-image: url('https://example.com/halloween-web.png'); /* Spooky spider web (replace with real URL) */
-    background-size: cover;
-    clip-path: polygon(20% 9%, 86% 0, 71% 40%, 0 33%, 0 17%);
-}
-
-.jagged-shape11 {
-    background-color: #800020; /* Blood red */
-    clip-path: polygon(85% 10%, 78% 0, 100% 0, 100% 100%, 100% 99%, 100% 95%, 93% 83%, 83% 68%, 91% 51%, 78% 30%);
-}
-
-/* Buttons */
-button {
-    background-color: #ff7518;
-    color: #0b0c0d;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: bold;
-    box-shadow: 0 0 15px #ff7518;
-    transition: transform 0.3s, background-color 0.3s;
-}
-
-button:hover {
-    background-color: #000000;
-    color: #ff7518;
-    transform: scale(1.1);
-}
-
-/* Special Image Effects */
-img {
-    filter: drop-shadow(0 0 10px #ff7518);
-    transition: filter 0.3s;
-}
-
-img:hover {
-    filter: drop-shadow(0 0 20px #ff7518);
-}
-
-
-
-/* Halloween Shapes */
-.jagged-shape12, .jagged-shape13, .jagged-shape13-1 {
-    background-color: #4b0082; /* Deep purple for a spooky vibe */
-    transition: transform 0.3s ease-in-out;
-}
-
-.jagged-shape12:hover,
-.jagged-shape13:hover,
-.jagged-shape13-1:hover {
-    transform: scale(1.1); /* Slight growth effect for hover */
-}
-
-.jagged-outline12 {
-    background-color: #000000; /* Black outline for contrast */
-}
-
-/* Eerie Glow Effects */
-h1, h2, h3, h4, h5, h6 {
-    text-shadow: 2px 2px 8px #ff7518, 0 0 10px #ff7518;
-}
-
-a {
-    color: #f39c12; /* Bright golden glow for links */
-    text-decoration: none;
-}
-
-a:hover {
-    color: #ff0000; /* Blood-red hover effect */
-    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
-}
-
-/* Buttons */
-#save-delete .options button,
-#save-delete .back-home .back-home-button {
-    background-color: #ff7518; /* Pumpkin orange */
-    color: #1a1a1a;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-family: 'Bungee', sans-serif; /* Playful Halloween font */
-    box-shadow: 0 0 15px #ff7518;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-#save-delete .options button:hover,
-#save-delete .back-home .back-home-button:hover {
-    background-color: #000000; /* Black with glowing effect */
-    color: #ff7518;
-    transform: scale(1.1);
-}
-
-/* Decorative Arrow Shapes */
-.jagged-shape13 {
-    background-color: #800020; /* Blood red */
-    clip-path: polygon(100% 55%, 68% 100%, 100% 100%);
-}
-
-.jagged-shape13-1 {
-    background-color: #4b0082; /* Deep purple */
-    clip-path: polygon(12% 0, 0 0, 0 47%);
-}
-
-/* Save & Back to Library Section */
-#save-delete {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-#save-delete .options button {
-    background-color: #ff7518;
-    border: none;
-}
-
-#save-delete .options button:hover {
-    background-color: #e67e22;
-}
-
-#save-delete .back-home .back-home-button {
-    display: inline-block;
-    margin-top: 20px;
-    background-color: #787878; /* Gray for contrast */
-    border: none;
-}
-
-#save-delete .back-home .back-home-button:hover {
-    background-color: #5a5a5a; /* Darker gray for hover */
-}
-
-/* Special Effects for Shapes */
-.jagged-shape12 {
-    background-color: #ff7518; /* Pumpkin orange */
-    clip-path: polygon(0% 0%, 0% 100%, 22% 100%, 17% 10%, 91% 19%, 67% 81%, 6% 89%, 11% 100%, 100% 100%, 100% 0%);
-}
-
-.jagged-outline12 {
-    background-color: #000000; /* Black for contrast */
-    clip-path: polygon(0% 0%, 0% 100%, 22% 100%, 17% 10%, 91% 19%, 67% 81%, 6% 89%, 11% 100%, 100% 100%, 100% 0%);
-}
-
-/* Interactive Shapes */
-.jagged-shape12:hover,
-.jagged-outline12:hover {
-    filter: brightness(1.2); /* Slight brightening effect */
-}
-
-
-
-
+    
+    /* Spooky animations for Halloween */
+    @keyframes glow {
+        0% {
+            text-shadow: 0 0 10px #FFA500, 0 0 20px #FFA500, 0 0 30px #FF4500;
+        }
+        50% {
+            text-shadow: 0 0 20px #FF4500, 0 0 30px #FF6347, 0 0 40px #FFA500;
+        }
+        100% {
+            text-shadow: 0 0 10px #FFA500, 0 0 20px #FF4500, 0 0 30px #FF6347;
+        }
+    }
+    
+    h2 {
+        animation: glow 1.5s infinite alternate;
+    }
+    
+    
+    
+    #top-genres li {
+        list-style: none;
+        display: block;           /* Change from flex to block to remove flex styles */
+        justify-content: initial; /* Reset justify-content */
+        text-align: left;
+    }
+    
+    /* Slide 1 Intro Styling */
+    #slide1 {
+    position: relative;
+    }
+    #slide1 #intro {
+    position: relative;
+    margin: 0 auto; /* Center within the slide */
+    z-index: 1; /* Ensure text appears above jagged shapes */
+    }
+    
+    
+    #top-artist-deep-dive h2 {
+        margin-bottom: 50px;  /* Space between the h2 and the next element (img) */
+    }
+    
+    #top-artist-deep-dive img {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 40px;  /* Space between the img and the next element (first p) */
+    }
+    
+    #top-artist-deep-dive p {
+        margin-bottom: 10px;  /* Space between paragraphs if needed */
+    }
+    
+    /* Optionally, you can adjust the space between the last paragraph and the bottom */
+    #top-artist-deep-dive p:last-child {
+        margin-bottom: 20px; /* Remove margin from the last p element if no space is needed */
+    }
+    
+    #top-artists li strong, #top-tracks li strong {
+        margin-right: 15px;  /* Space after the numbering */
+    }
+    
+    /* Main Shapes */
+    .jagged-shape1, .jagged-shape2, .jagged-shape1-1, .jagged-shape2-1 {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    }
+    
+    .jagged-shape1 {
+    height: 30vh;
+    background-color: #FF7518;
+    clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
+    z-index: 0;
+    }
+    
+    .jagged-shape2 {
+    height: 20vh;
+    background-color: #4E9A51;
+    clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
+    z-index: 1;
+    }
+    
+    .jagged-shape1-1 {
+        height: 30vh;
+        background-color: #fff;
+        clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
+        z-index: 0;
+    }
+    
+    .jagged-shape2-1 {
+        height: 20vh;
+        background-color: #fff;
+        clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
+        z-index: 1;
+    }
+    
+    .jagged-outline1, .jagged-outline2 {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Make sure they stay behind the #intro content */
+    }
+    
+    .jagged-outline1 {
+    height: 31vh;
+    background-color: #fff;
+    clip-path: polygon(0 0, 15% 40%, 30% 20%, 45% 50%, 60% 10%, 75% 40%, 100% 0, 100% 100%, 0 100%);
+    z-index: -1;
+    }
+    
+    .jagged-outline2 {
+    height: 21vh;
+    background-color: #fff;
+    clip-path: polygon(0 0, 10% 40%, 20% 20%, 30% 60%, 40% 2%, 50% 60%, 70% 5%, 70% 5%, 80% 60%, 100% 0, 100% 100%, 0 100%);
+    z-index: 0;
+    }
+    
+    
+    
+    /*Slide 2 Specific Slide*/
+    .jagged-shape3 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 40%;
+        height: 50vh;
+        background-color: #FF7518;
+        z-index: 0;
+        clip-path: polygon(0 0, 76% 0, 78% 10%, 52% 24%, 61% 60%, 0 72%, 0% 70%, 0% 30%);
+    }
+    
+    .jagged-shape4 {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 40%;
+        height: 50vh;
+        background-color: #4E9A51;
+        clip-path: polygon(54% 14%, 100% 0, 100% 60%, 100% 100%, 14% 100%, 29% 60%, 55% 50%);
+        z-index: -1;
+    }
+    
+    .jagged-shape3-1 {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 40%;
+        height: 50vh;
+        background-color: #FF7518;
+        z-index: 0;
+        clip-path: polygon(0 100%, 76% 100%, 78% 90%, 52% 76%, 61% 40%, 0 28%, 0% 30%, 0% 70%);
+    }
+    
+    .jagged-shape4-1 {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 35%;
+        height: 50vh;
+        background-color: #FF7518;
+        clip-path: polygon(54% 86%, 100% 100%, 100% 40%, 100% 0, 14% 0, 29% 40%, 55% 50%);
+        z-index: -1;
+    }
+    
+    .clock-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    object-fit: cover;
+    }
+    
+    
+    /*Slide 4*/
+    
+    .jagged-shape5 {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 40%;
+        height: 100vh;
+        background-color: #FF7518;
+        clip-path: polygon(9% 15%, 23% 29%, 10% 42%, 23% 60%, 11% 72%, 22% 100%, 0 100%, 0 0, 24% 0);
+        z-index: 1;
+    }
+    
+    .jagged-outline5 {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 45%;
+        height: 100vh;
+        background-color: #000000;
+        clip-path: polygon(9% 15%, 23% 29%, 10% 42%, 23% 60%, 11% 72%, 22% 100%, 0 100%, 0 0, 24% 0);
+        z-index: 0;
+    }
+      
+      
+    .jagged-shape6 {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 40%;
+        height: 100vh;
+        background-color: #4E9A51;
+        clip-path: polygon(89% 15%, 81% 29%, 92% 50%, 78% 65%, 90% 78%, 75% 100%, 100% 100%, 100% 0, 75% 0);
+        z-index: 1;
+    }
+      
+    .jagged-outline6 {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 45%;
+        height: 100vh;
+        background-color: #000000;
+        clip-path: polygon(89% 15%, 81% 29%, 92% 50%, 78% 65%, 90% 78%, 75% 100%, 100% 100%, 100% 0, 75% 0);
+        z-index: 0;
+    }
+    
+    /*Slide My Vibe*/
+    .jagged-shape7 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #FF7518;
+        clip-path: polygon(20% 9%, 86% 0, 71% 40%, 0 33%, 0 17%);
+        z-index: -10;
+    }
+    
+    .jagged-shape8 {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 50%;
+        height: 80vh;
+        background-color: #FF7518;
+        clip-path: polygon(6% 82%, 30% 76%, 27% 100%, 0 100%, 0 89%);
+        z-index: -10;
+    }
+    
+    .jagged-outline8 {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 52%;
+        height: 85vh;
+        background-color: #000000;
+        clip-path: polygon(6% 82%, 30% 76%, 27% 100%, 0 100%, 0 89%);
+        z-index: -11;
+    }
+    
+    
+    /* Slide rec. songs */
+    .jagged-shape9 {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 50%;
+        height: 80vh;
+        background-color: #FF7518;
+        clip-path: polygon(6% 82%, 30% 76%, 27% 100%, 0 100%, 0 89%);
+        z-index: -10;
+    }
+    
+    
+    /* Slide Rec. Songs*/
+    .jagged-shape10 {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 70%;
+        height: 100vh;
+        background-color: #FF7518;
+        clip-path: polygon(93% 10%, 85% 0, 100% 0, 100% 100%, 83% 100%, 71% 90%, 94% 71%, 80% 53%, 93% 33%, 85% 21%);
+        z-index: -10;
+    }
+    
+    .jagged-outline10 {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 75%;
+        height: 100vh;
+        background-color: #000000;
+        clip-path: polygon(93% 10%, 85% 0, 100% 0, 100% 100%, 83% 100%, 71% 90%, 94% 71%, 80% 53%, 93% 33%, 85% 21%);
+        z-index: -11;
+    }
+    
+    .jagged-shape11 {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 80%;
+        height: 100vh;
+        background-color: #FF7518; /*5c738e48*/
+        clip-path: polygon(85% 10%, 78% 0, 100% 0, 100% 100%, 100% 99%, 100% 95%, 93% 83%, 83% 68%, 91% 51%, 78% 30%);
+        z-index: -12;
+    }
+    
+    .jagged-outline11 {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 85%;
+        height: 100vh;
+        background-color: #000000; /*becbda28*/
+        clip-path: polygon(85% 10%, 78% 0, 100% 0, 100% 100%, 100% 99%, 100% 95%, 93% 83%, 83% 68%, 91% 51%, 78% 30%);
+        z-index: -13;
+    }
+    
+    
+    /*#1 Artist*/
+    .jagged-shape12 {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #FF7518;
+        clip-path: polygon(0% 0%, 0% 100%, 22% 100%, 17% 10%, 91% 19%, 67% 81%, 6% 89%, 11% 100%, 100% 100%, 100% 0%);
+        z-index: -11;
+    }
+    
+    .jagged-outline12 {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 105%;
+        height: 105vh;
+        background-color: #FF7518; /*4d8be12e*/   /*2f8bfc29*/
+        clip-path: polygon(0% 0%, 0% 100%, 22% 100%, 17% 10%, 91% 19%, 67% 81%, 6% 89%, 11% 100%, 100% 100%, 100% 0%);
+        z-index: -11;
+    }
+    
+    .jagged-shape13 { /*arrow*/
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 60%;
+        height: 100vh;
+        background-color: #4E9A51;
+        clip-path: polygon(100% 55%, 68% 100%, 100% 100%);
+        z-index: -10;
+    }
+    
+    .jagged-shape13-1 { /*arrow*/
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 80%;
+        height: 100vh;
+        background-color: #4E9A51;
+        clip-path: polygon(12% 0, 0 0, 0 47%);
+        z-index: -10;
+    }
+    
+    
+    
+    
+    /*save slide*/
+    #save-delete {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    #save-delete .options button,
+    #save-delete .back-home .back-home-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-family: "Bungee", sans-serif;
+    }
+    
+    /* Save Button */
+    #save-delete .options button {
+        background-color: #4E9A51;
+        border: none;
+    }
+    
+    #save-delete .options button:hover {
+        background-color: #ff944c;
+    }
+    
+    /* Back to Library Button */
+    #save-delete .back-home .back-home-button {
+        display: inline-block;
+        margin-top: 20px;
+        background-color: #787878;
+    }
+    
+    #save-delete .back-home .back-home-button:hover {
+        background-color: #5a5a5a;
+    }
+    
+    
+    
+    
+    
+    
+    
     /*transition/special effects*/
     
     /* Keyframe for fade-in right-to-left effect */
