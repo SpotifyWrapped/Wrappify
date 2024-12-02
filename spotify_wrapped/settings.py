@@ -13,8 +13,6 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-from django.utils.translation import gettext_lazy as _
-
 #Client ID and Client Secret
 load_dotenv()
 
@@ -34,20 +32,6 @@ SECRET_KEY = "django-insecure-0a#e0+yghxs3cpb-*6s00x0g^f&u!l8)fogf_&ey01&4m@)4&x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-LANGUAGES  = (
-    ('en', _('English')),
-    ('es', _('Spanish')),
-    ('nl', _('Dutch')),
-    ('fr', _('French')),
-    ('zh', _('Chinese')),
-)
-
-ROSETTA_REQUIRES_AUTH = False
-
-LOCALE_PATHS = [
-    BASE_DIR / 'locale',
-]
-
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -60,13 +44,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'spotify',
-    'rosetta',
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -128,13 +110,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "en"
+LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "America/New_York"
 
 USE_I18N = True
-
-USE_L10N = True
 
 USE_TZ = True
 
@@ -149,4 +129,3 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-

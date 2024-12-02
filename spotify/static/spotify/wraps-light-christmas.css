@@ -1,61 +1,58 @@
-/* wraps-light-christmas.css */
-
 /* General reset */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-html, body {
+    }
+    
+    html, body {
     height: 100%; /* Make body take full height of viewport */
     overflow: hidden; /* Prevent scrolling */
-}
-
-body {
-    font-family: "Nunito", sans-serif;
-    font-style: normal;
-    font-optical-sizing: auto;
-    font-size: x-large;
-    color: #002B5B; /* Deep blue for text */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to bottom, #E0E7EF, #AFDCEC); /* Light snowy gradient */
-}
-
-/* Full-screen container */
-.container-full {
-    position: relative;
-    width: 100vw; /* Full width */
-    height: 100vh; /* Full height */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    background-color: #E0E7EF; /* Snowy background */
-    background-image: url('https://www.example.com/snowflake-pattern.png'); /* Add festive background pattern */
-    background-size: cover;
-    padding: 20px; /* Small padding around the content */
-    z-index: 1;
-}
-
-/* Content container */
-.content-container {
-    width: 100%;
-    text-align: center;              
-    max-width: 1000px;          
-    margin: 0 auto;
-}
-
-/* Center the entire content, but align track list to the left */
-#top-tracks {
-    width: 100%; /* Full width for the section */
-    align-items: left; /* Align text to the left inside this section */
-}
-
-/* Progress bars for each slide */
-.progress-bars {
+    }
+    
+    body {
+        font-family: "Nunito", sans-serif;
+        font-style: normal;
+        font-optical-sizing: auto;
+        font-size: x-large;
+        color: #002B5B;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to bottom, #E0E7EF, #AFDCEC); /* Light snowy gradient */
+    }
+    
+    /* Full-screen container */
+    .container-full {
+        position: relative;
+        width: 100vw; /* Full width */
+        height: 100vh; /* Full height */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Center content vertically */
+        align-items: center; /* Center content horizontally */
+        background-color: #E0E7EF; /* Snowy background */
+        background-image: url('https://www.example.com/snowflake-pattern.png'); /* Add festive background pattern */
+        background-size: cover;
+        padding: 20px; /* Small padding around the content */
+        z-index: 1;
+    }
+    
+    .content-container { /*for mood slide*/
+        width: 100%;
+        text-align: center;              
+        max-width: 1000px;          
+        margin: 0 auto;
+      }
+    
+    /* Center the entire content, but align track list to the left */
+    #top-tracks {
+        width: 100%; /* Full width for the section */
+        align-items: left; /* Align text to the left inside this section */
+      }
+    
+    /* Progress bars for each slide */
+    .progress-bars {
     display: flex;
     justify-content: space-between;
     width: 80%; /* Width of the progress bar */
@@ -64,110 +61,104 @@ body {
     position: absolute;
     top: 10px; /* Fix the bar at the top */
     z-index: 2;
-}
-
-.progress-bar {
-    background-color: #CCCCCC; /* Light grey for inactive bars */
+    }
+    
+    .progress-bar {
+    background-color: #CCCCCC;
     height: 100%;
     flex: 1;
     margin: 0 5px;
-}
-
-.progress-bar.active {
-    background-color: #FF0000; /* Festive red for active state */
-}
-
-/* Slide Styles */
-.slides {
+    }
+    
+    .progress-bar.active {
+    background-color: #FF0000; /* Spotify green for active state */
+    }
+    
+    /* Slide Styles */
+    .slides {
     text-align: center;
     display: none; /* Hide all slides by default */
-}
-
-.slides.active {
+    }
+    
+    .slides.active {
     display: block; /* Show the active slide */
-}
-
-/* Images for tracks, artists, recommendations */
-img {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
-    border-radius: 50%;
-    border: 2px solid #FF0000; /* Red border for festive feel */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
-}
-
-/* Text and headings */
-h2 {
-    font-family: "Bungee", sans-serif;
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 50px;
-    color: #FF0000; /* Bright red for headings */
-    text-shadow: 3px 3px 5px #FFFFFF; /* Snowy glow effect */
-}
-
-p {
-    margin-bottom: 80px;
-    font-size: 25px;
-    color: #002B5B; /* Deep blue for festive contrast */
-}
-
-/* Audio player styling */
-audio {
+    }
+    
+    /* Images for tracks, artists, recommendations */
+    img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 10px;
+        border-radius: 50%;
+        border: 2px solid #FF0000; /* Red border for festive feel */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+    }
+    
+    /* Text and headings */
+    h2 {
+        font-family: "Bungee", sans-serif;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 50px;
+        color: #FF0000; /* Bright red for headings */
+        text-shadow: 3px 3px 5px #FFFFFF; /* Snowy glow effect */
+    }
+    
+    p {
+        margin-bottom: 80px;
+        font-size: 25px;
+        color: #002B5B; /* Deep blue for festive contrast */
+    }
+    
+    /* Audio player styling */
+    audio {
     max-width: 150px;
     margin-top: 10px;
-    background-color: #FFFFFF; /* Snowy white */
-    border-radius: 5px;
-    border: 1px solid #FF0000; /* Festive red border */
-    padding: 5px;
-}
-
-/* List styling for items like tracks, artists, recommendations */
-ul {
+    }
+    
+    /* List styling for items like tracks, artists, recommendations */
+    ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
-}
+    }
+    
+    li {
+        margin: 10px 0;
+        padding: 0;
+        list-style: none;
+        align-items: center;
+        display: flex;
+        justify-content: left; 
+    }
+    
+    li p {
+        margin-left: 10px; /* Space between image and text */
+        color: #002B5B; /* Deep blue for text */
+    }
+    
 
-li {
-    margin: 10px 0;
-    padding: 0;
-    list-style: none;
-    align-items: center;
-    display: flex;
-    justify-content: left; 
-}
-
-li p {
-    margin-left: 10px; /* Space between image and text */
-    color: #002B5B; /* Deep blue for text */
-}
-
-/* Add a subtle hover effect for list items */
-li:hover {
-    background-color: #FFF5F5; /* Soft red highlight */
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-/* Add snowflake icon before headings */
-h2::before {
-    content: "❄️ ";
-    font-size: 0.8em;
-}
-
-h2::after {
-    content: " ❄️";
-    font-size: 0.8em;
-}
-
-
-
+    /* Add snowflake icon before headings */
+    h2::before {
+        content: "❄️ ";
+        font-size: 0.8em;
+    }
+    
+    h2::after {
+        content: " ❄️";
+        font-size: 0.8em;
+    }
+    
+    #top-genres li {
+        list-style: none;
+        display: block;           /* Change from flex to block to remove flex styles */
+        justify-content: initial; /* Reset justify-content */
+        text-align: left;
+    }
+    
 /* Slide 1 Intro Styling */
 #slide1 {
     position: relative;
-    background-color: #FFF5F5; /* Light festive red background */
 }
 
 #slide1 #intro {

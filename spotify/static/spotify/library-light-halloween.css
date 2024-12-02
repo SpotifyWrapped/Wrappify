@@ -35,7 +35,7 @@ body {
 }
 
 .wrap-card {
-    background-color: #2C2C3E;
+    background-color: #FF7518;
     border: 1px solid #FF7518;
     padding: 20px;
     text-align: center;
@@ -67,11 +67,11 @@ body {
 
 .view-wrap-button,
 .delete-wrap-button {
-    background-color: #FF7518;
+    background-color: #2C2C3E;
     border: none;
     height: 20px;
     border-radius: 4px;
-    color: #1E1E2F;
+    color: #fff;
     padding: 0 10px;
     cursor: pointer;
 }
@@ -81,8 +81,8 @@ body {
 }
 
 .view-wrap-button:hover {
-    background-color: #FFA64D;
-    color: #1E1E2F;
+    background-color: #303035;
+    color: #fff;
 }
 
 .delete-wrap-button:hover {
