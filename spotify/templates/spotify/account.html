@@ -240,7 +240,7 @@
     
         // Check if a theme is allowed
         function isThemeAllowed(theme) {
-            const holidayRestrictionEnabled = false;
+            const holidayRestrictionEnabled = true;
             const holidayMonths = { halloween: 9, christmas: 11 };
             if (!holidayRestrictionEnabled) return true;
             const currentMonth = new Date().getMonth();
